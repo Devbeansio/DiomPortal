@@ -1,0 +1,35 @@
+.syncmodelheadeing{
+    font-family: 'Montserrat';
+font-style: normal;
+font-weight: normal;
+font-size: 20px;
+color: #000000;
+
+}
+.syncmodelclickdetail{
+    font-family: 'Montserrat';
+font-style: normal;
+font-weight: normal;
+font-size: 15px;
+color: #000000;
+
+}
+.synclocationsheadings{
+    font-family: 'Montserrat';
+font-style: normal;
+font-weight: 600;
+font-size: 20px;
+color: #000000;
+margin-top: 20px;
+}
+.synclocationsheadingsicon{
+    font-family: 'Montserrat';
+font-style: normal;
+font-weight: 600;
+font-size: 20px;
+
+margin-top: 20px;
+}
+/* .synclocationsheadingsicon span i:hover{
+cursor: hand;
+} */

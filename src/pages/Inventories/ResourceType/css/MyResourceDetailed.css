@@ -1,0 +1,51 @@
+.cardpadding {
+  padding-left: 50px;
+  padding-right: 50px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+.disabled_label {
+  border: 1px solid #474747;
+  box-sizing: border-box;
+  border-radius: 4px;
+  background-color: #f4f4f4;
+}
+.detailsinput{
+  color: #000000 !important;
+  
+}
+.resourceinfocard {
+  padding-left: 50px;
+  padding-right: 50px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.cardsheadings {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 17px;
+  color: #000000;
+}
+.itemlabels {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 15px;
+  color: #000000;
+}
+.checklabels {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 13px;
+  color: #000000;
+}
+.pricinglabel {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 13px;
+  color: #000000;
+}

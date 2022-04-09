@@ -1,0 +1,25 @@
+.locationbrandtitle {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 23px;
+  margin-left: 20px;
+}
+.showitem {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  color: #aaaaaa;
+}
+.tableheading {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12px;
+  margin-bottom: 10px;
+}
+.arrowheightwidth {
+  font-size: 29px;
+  /* margin-top: 20px; */
+}

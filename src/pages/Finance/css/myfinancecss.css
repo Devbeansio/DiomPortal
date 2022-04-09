@@ -1,0 +1,33 @@
+.finnacecardcss:hover {
+  border: 2px solid #03b2a5;
+}
+.finnacecardcss {
+   background: #ffffff;
+ /* border-radius: 5px;
+  box-shadow: 3px 6px #ececece7 !important; */
+  box-shadow: 0px 4px 9px rgba(0, 0, 0, 0.12) !important;
+border-radius: 5px;
+}
+.finnanceicons {
+  color: #03b2a5;
+  font-size: 3vh;
+}
+.finnaceheadings {
+  font-family: "Montserrat";
+  color: #474747;
+  font-weight: 500;
+  font-size: 20px;
+}
+
+.finnacefirstheading{
+  font-family: 'Montserrat';
+font-style: normal;
+font-weight: 600;
+font-size: 23px;
+}
+.link {
+  color: #000000;
+}
+.link:hover {
+  color: #03b2a5;
+}

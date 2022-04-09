@@ -1,0 +1,14 @@
+.tabletitle {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  color: #000000;
+}
+.inventoriespaginationcolor {
+  background-color: #1cbb8c !important;
+}
+.page-item.active .page-link {
+  background-color: #1cbb8c !important;
+  border-color: #0b9c71 !important;
+}

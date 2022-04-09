@@ -1,0 +1,49 @@
+.headings{
+    font-family: 'Montserrat';
+    color: #474747;
+    font-size:18px;
+}
+
+.headings1{
+    font-family: 'Montserrat';
+    color: white;
+    font-size:18px;
+}
+
+.amount1{
+    font-family: 'Montserrat';
+    font-style: '';
+font-weight: 600;
+font-size: 18px;
+color: #FFFFFF;
+}
+
+.amount{
+    font-family: 'Montserrat';
+    font-style: '';
+font-weight: 600;
+font-size: 18px;
+color: #333333;
+}
+.icons{
+    color: #03B2A5;
+}
+.cardcss{
+    background: #FFFFFF;
+box-shadow: 0px 4px 9px rgba(0, 0, 0, 0.12) !important;
+border-radius: 5px;
+
+}
+.cardcss:hover {
+   
+    border: 2px solid #03B2A5;
+}
+.dashboardsecondcard{
+    background-color: #03B2A5 !important;
+}
+.link {
+    color: #000000;
+  }
+  .link:hover {
+     color: #03B2A5;
+  }

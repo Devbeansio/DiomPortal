@@ -1,0 +1,25 @@
+.LBDheadings {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 21px;
+  text-transform: capitalize;
+  color: #000000;
+}
+
+.LBDLabels {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 21px;
+  color: #000000;
+}
+
+.link {
+  color: #000000;
+}
+.link:hover {
+  color: #03b2a5;
+}

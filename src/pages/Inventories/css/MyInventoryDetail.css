@@ -1,0 +1,53 @@
+.resourceinfocard {
+  padding-left: 50px;
+  padding-right: 50px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+.bookingtitle {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 19px;
+  margin-left: 20px;
+}
+.cardtitle {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 17px;
+  color: #000000;
+}
+.label {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 15px;
+  color: #000000;
+}
+.labeldetails {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 15px;
+  color: #abb5be;
+}
+.checkboxlabel {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 13px;
+  color: #000000;
+}
+.checkboxsizeIDetail {
+  height: 20px !important;
+  width: 20px !important;
+  size: 100px;
+  margin-right: 20px;
+}
+.link {
+  color: #505d69;
+}
+.link:hover {
+  color: #03b2a5;
+}

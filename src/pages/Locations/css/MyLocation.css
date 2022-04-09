@@ -1,0 +1,36 @@
+.tablebgcolor {
+  background-color: white;
+}
+.loctiontitle {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 23px;
+}
+.dropdowncss{
+  z-index: 1000 !important;
+}
+
+.paginationitmes1 {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+  margin-left: 10px;
+  margin-top: 5px;
+}
+.paginationitmes {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 5px;
+}
+.link {
+  color: #000000;
+}
+.link:hover {
+  color: #03b2a5;
+}

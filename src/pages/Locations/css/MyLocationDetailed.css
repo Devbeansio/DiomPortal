@@ -1,0 +1,40 @@
+.addmorebuttonclass {
+  text-align: left;
+}
+.arrowheightwidth {
+  font-size: 24px;
+}
+.detailsinput {
+  color: #000000 !important;
+}
+
+.editlocationoperatintitle {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 17px;
+  color: #000000;
+}
+.locationstatus {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 15px;
+  color: #000000;
+}
+.mylocationdetailsavebtn {
+  margin-top: 30px;
+}
+
+.deliconsize {
+  height: 20px;
+}
+.loationdetailswitchsize {
+  width: 100%;
+}
+.link {
+  color: #000000;
+}
+.link:hover {
+  color: #03b2a5;
+}

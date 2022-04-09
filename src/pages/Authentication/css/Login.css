@@ -1,0 +1,74 @@
+.imgheightwidth{
+    width: 569px;
+/* height: 625px  !important; */
+height: 657px  !important;
+}
+.wellcomepanel{
+    font-family: 'Montserrat';
+font-style: normal;
+font-weight: 500;
+font-size: 30px;
+color: #000000;
+}
+.logininboxpanels{
+    font-family: 'Montserrat';
+font-style: normal;
+font-weight: 500;
+font-size: 16px;
+color: #696F79;
+}
+.signinbutton{
+    font-family: 'Montserrat';
+font-style: normal;
+font-weight: 500;
+font-size: 20px;
+}
+.inputbg{
+    background-color: white;
+}
+.image-wrap{
+    /* height: 50% !important; */
+    height: 100vh;
+    width: 100% !important;
+}
+
+.img-responsive{
+    width: 100%;
+    height: 100%;
+}
+.paddingbottominputlogin{
+    padding-bottom: 25px !important;
+}
+
+@media screen and (max-width: 1440px) {
+    .imgheightwidth{
+        width: 569px;
+    /* height: 625px  !important; */
+    height: 657px  !important;
+    }
+  }
+
+  @media screen and (max-width: 1075px) {
+    .imgheightwidth{
+        width: 569px;
+    height: 625px  !important;
+    /* height: 657px  !important; */
+    }
+  }
+
+  @media screen and (max-width: 1024px) {
+    .imgheightwidth{
+        width: 469px;
+    height: 625px  !important;
+    /* height: 657px  !important; */
+    }
+  }
+  
+  @media screen and (max-width: 768px) {
+    .imgheightwidth{
+        width: 369px;
+        height:530px  !important; 
+    /* height: 625px  !important; */
+    /* height: 657px  !important; */
+    }
+  }

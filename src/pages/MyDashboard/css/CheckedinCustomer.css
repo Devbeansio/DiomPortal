@@ -1,0 +1,16 @@
+.cehckincustomertitle{
+
+    font-family: 'Montserrat';
+font-style: normal;
+font-weight: 600;
+font-size: 20px;
+margin-left: 20px;
+
+}
+
+.link {
+    color: #000000;
+  }
+  .link:hover {
+     color: #03B2A5;
+  }

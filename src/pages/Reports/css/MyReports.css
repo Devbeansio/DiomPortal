@@ -1,0 +1,23 @@
+.myreportsfirstheading{
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 23px;
+    color: #000000;
+}
+.myreportslabels{
+    font-family: 'Montserrat';
+font-style: normal;
+font-weight: 500;
+font-size: 14px;
+color: #333333;
+}
+.genenratebuttonmargin{
+    margin-top: 28px !important;
+}
+.myreportsgeneratebutton{
+    font-family: 'Montserrat';
+font-style: normal;
+font-weight: 600;
+font-size: 17px;
+}

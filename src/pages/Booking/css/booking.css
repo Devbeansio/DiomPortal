@@ -1,0 +1,20 @@
+.bookingtodaytitle{
+    font-family: 'Montserrat';
+font-style: normal;
+font-weight: 700;
+padding-top: 3px;
+font-size: 20px;
+margin-left: 20px;
+/* color: black; */
+}
+.showlabel{
+    color: #AAAAAA;
+}
+.tableheading{
+    font-weight: 600;
+    font-family: 'Montserrat';
+    font-size: 12px;
+}
+.arrowheightwidth{
+    font-size: 24px;
+}

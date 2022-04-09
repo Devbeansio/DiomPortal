@@ -1,0 +1,55 @@
+.profiletitle{font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 23px;
+margin-left: 20px;
+}
+.cardlabelsCI{
+    font-family: 'Montserrat';
+font-style: normal;
+font-weight: 600;
+font-size: 16px;
+
+}
+.pdetailsheading{
+    font-family: 'Montserrat';
+font-style: normal;
+font-weight: 500;
+font-size: 13px;
+}
+.pdetailscolor{
+    font-family: 'Montserrat';
+font-style: normal;
+font-weight: 600;
+font-size: 13px;
+color: #03B2A5;
+}
+.checkedinimgdiv{
+    padding: 25px;
+    /* height: 100px; */
+    /* width: 100%; */
+}
+.userbookingmargin{
+    margin-left: 20px;
+}
+.nav-link::after {
+  
+    background: #03B2A5 !important;
+}
+.link {
+    color: #505D69;
+  }
+  .link:hover {
+     color: #03B2A5;
+     /* color:#16b185; */
+  }
+
+
+   .nav-link.active  {
+      color:#03B2A5 !important;
+      
+  }
+  :hover.nav-link  {
+    color:#03B2A5 !important;
+   
+}
