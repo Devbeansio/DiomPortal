@@ -1,13 +1,35 @@
 .headings{
     font-family: 'Montserrat';
     color: #474747;
-    font-size:18px;
+    font-weight: 600 !important;
+    font-size:18px !important;
 }
 
 .headings1{
     font-family: 'Montserrat';
     color: white;
     font-size:18px;
+}
+.dashboardtab1{
+    font-family: 'Montserrat';
+font-style: normal;
+font-weight: 600;
+font-size: 16px;
+line-height: 20px;
+color: #808A98;
+
+}
+.dashboaedfilter{
+    font-family: 'Montserrat';
+font-style: normal;
+font-weight: 500;
+font-size: 12.2353px;
+line-height: 12px;
+/* identical to box height, or 82% */
+
+letter-spacing: -0.207576px;
+
+color: #32698F;
 }
 
 .amount1{

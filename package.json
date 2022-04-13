@@ -10,6 +10,7 @@
     "@fullcalendar/interaction": "^5.7.0",
     "@fullcalendar/react": "^5.7.0",
     "@lourenci/react-kanban": "^2.1.0",
+    "@mongodb-js/charts-embed-dom": "^2.2.0",
     "@react-pdf-viewer/open": "^2.11.0",
     "@react-pdf/renderer": "^2.0.21",
     "@testing-library/jest-dom": "^5.12.0",

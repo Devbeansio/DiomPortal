@@ -8,8 +8,8 @@ import { DIOM_BASED_URLS } from "../config/url";
  * @returns a list of all resource in DIOM
  */
 export const getResources = async (
-  size = 30,
-  page = 1,
+  size,
+  page,
   token = "",
   applyFilter = false,
   filters = {}

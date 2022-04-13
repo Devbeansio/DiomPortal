@@ -12,9 +12,6 @@ export const useTaxation = () => {
   const [pageSize, setPageSize] = useState(50);
   const changeCurrentPage = (pageNum) => setCurrentPage(pageNum);
   const token = localStorage.getItem("Token");
-  const [loaded, setLoaded] = useState(false);
-  const [taxs, setTaxs] = useState([]);
-  const [error, setError] = useState(null);
   const queryClient = useQueryClient();
 
   const {

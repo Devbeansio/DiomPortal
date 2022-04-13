@@ -242,7 +242,7 @@ class Header extends Component {
       .then((response) => response.json())
       .then((result) => {
         if (result) {
-          toast.success("Resourses Successfully Synced");
+          toast.success("Resources Successfully Synced");
         } else {
           toast.error(" Something is wrong");
         }
@@ -263,7 +263,7 @@ class Header extends Component {
       .then((response) => response.json())
       .then((result) => {
         if (result) {
-          toast.success("ResourseTypes Successfully Synced");
+          toast.success("ResourceTypes Successfully Synced");
         } else {
           toast.error(" Something is wrong");
         }

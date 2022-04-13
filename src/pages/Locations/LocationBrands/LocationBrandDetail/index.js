@@ -147,7 +147,7 @@ const LocationBrandDetail = () => {
                       <Input
                         type="time"
                         // defaultValue="13:45:00"
-                        defaultValue={locationBrandData.startTime2}
+                        defaultValue={locationBrandData.startTime}
                         onChange={(e) => {
                           startTimeFunc(e);
                         }}
@@ -161,7 +161,7 @@ const LocationBrandDetail = () => {
                       <Input
                         type="time"
                         //  defaultValue="13:45:00"
-                        defaultValue={locationBrandData.endTime2}
+                        defaultValue={locationBrandData.endTime}
                         onChange={(e) => {
                           endTimeFunc(e);
                         }}
