@@ -33,6 +33,11 @@ const MyDashboard = () => {
     activeTabJustify,
     toggleCustomJustified,
     Loader,
+    financeCardddata,
+    generalCardddata,
+    locationCardddata,
+    brandCardddata,
+    usersCardddata,
   } = UseDashboard();
   const [selectedDate, setSelectedDate] = useState("");
   const [filterDate, setFilterDate] = useState({});
@@ -42,6 +47,239 @@ const MyDashboard = () => {
       setFilterDate({ createdAt: selectedDate });
     }
   }, [selectedDate]);
+
+  const chartsView = () => {
+    if (activeTabJustify === "1") {
+      return (
+        <div key={activeTabJustify}>
+          <Row className="mt-3">
+            <Col md={6}>
+              <div className="charts">
+                <Chart
+                  height={"350px"}
+                  width={"480px"}
+                  filter={maxDataAge}
+                  chartId={"625134b0-5d61-46db-86c0-48eef0760b6e"}
+                />
+              </div>
+            </Col>
+
+            <Col md={6}>
+              <div className="charts">
+                <Chart
+                  height={"350px"}
+                  width={"480px"}
+                  filter={maxDataAge}
+                  chartId={"625139bf-45ca-4d14-85ba-9a0e96d9ab76"}
+                />
+              </div>
+            </Col>
+          </Row>
+          <Row className="mt-3">
+            <Col md={6}>
+              <div className="charts">
+                <Chart
+                  height={"350px"}
+                  width={"480px"}
+                  filter={maxDataAge}
+                  chartId={"6256af9a-04a5-4f01-8929-ba406cf900cb"}
+                />
+              </div>
+            </Col>
+            {/* <Col md={1}></Col> */}
+            <Col md={6}>
+              <div className="charts">
+                <Chart
+                  height={"350px"}
+                  width={"480px"}
+                  filter={maxDataAge}
+                  chartId={"62514999-70f4-431b-8d96-68f6a4c6a942"}
+                />
+              </div>
+            </Col>
+          </Row>
+          <Row className="mt-3">
+            <Col md={6}>
+              <div className="charts">
+                <Chart
+                  height={"350px"}
+                  width={"480px"}
+                  filter={maxDataAge}
+                  chartId={"625154e9-ed04-4f19-8b12-9548acd2508c"}
+                />
+              </div>
+            </Col>
+            {/* <Col md={1}></Col> */}
+            <Col md={6}>
+              <div className="charts">
+                <Chart
+                  height={"350px"}
+                  width={"480px"}
+                  filter={maxDataAge}
+                  chartId={"62514d58-905f-40e2-83f4-4c6b1b2877eb"}
+                />
+              </div>
+            </Col>
+          </Row>
+        </div>
+      );
+    }
+    if (activeTabJustify === "2") {
+      return (
+        <div key={activeTabJustify}>
+          <Row className="mt-3">
+            <Col md={6}>
+              <div className="charts">
+                <Chart
+                  height={"350px"}
+                  width={"480px"}
+                  filter={maxDataAge}
+                  chartId={"625134b0-5d61-46db-86c0-48eef0760b6e"}
+                />
+              </div>
+            </Col>
+
+            <Col md={6}></Col>
+          </Row>
+
+          <Row className="mt-5">
+            <Col md={6}>
+              <div className="charts">
+                <Chart
+                  height={"350px"}
+                  width={"480px"}
+                  filter={maxDataAge}
+                  chartId={"6256af9a-04a5-4f01-8929-ba406cf900cb"}
+                />
+              </div>
+            </Col>
+
+            <Col md={6}>
+              <div className="charts">
+                <Chart
+                  height={"350px"}
+                  width={"480px"}
+                  filter={maxDataAge}
+                  chartId={"62514d58-905f-40e2-83f4-4c6b1b2877eb"}
+                />
+              </div>
+            </Col>
+          </Row>
+        </div>
+      );
+    }
+    if (activeTabJustify === "3") {
+      return (
+        <div key={activeTabJustify}>
+          <Row className="mt-3">
+            <Col md={6}>
+              <div className="charts">
+                <Chart
+                  height={"350px"}
+                  width={"480px"}
+                  filter={maxDataAge}
+                  chartId={"625134b0-5d61-46db-86c0-48eef0760b6e"}
+                />
+              </div>
+            </Col>
+
+            <Col md={6}>
+              <div className="charts">
+                <Chart
+                  height={"350px"}
+                  width={"480px"}
+                  filter={maxDataAge}
+                  chartId={"62515345-2438-4c2b-8a7d-0245e2511098"}
+                />
+              </div>
+            </Col>
+          </Row>
+          <Row className="mt-3">
+            <Col md={6}>
+              <div className="charts">
+                <Chart
+                  height={"350px"}
+                  width={"480px"}
+                  filter={maxDataAge}
+                  chartId={"625154e9-ed04-4f19-8b12-9548acd2508c"}
+                />
+              </div>
+            </Col>
+
+            <Col md={6}>
+              <div className="charts">
+                <Chart
+                  height={"350px"}
+                  width={"480px"}
+                  filter={maxDataAge}
+                  chartId={"6257b292-342b-4a2c-83f5-dfcb02f4bae1"}
+                />
+              </div>
+            </Col>
+          </Row>
+        </div>
+      );
+    }
+    if (activeTabJustify === "4") {
+      return (
+        <div key={activeTabJustify}>
+          <Row className="mt-3">
+            <Col md={6}>
+              <div className="charts">
+                <Chart
+                  height={"350px"}
+                  width={"480px"}
+                  filter={maxDataAge}
+                  chartId={"625139bf-45ca-4d14-85ba-9a0e96d9ab76"}
+                />
+              </div>
+            </Col>
+
+            <Col md={6}>
+              <div className="charts">
+                <Chart
+                  height={"350px"}
+                  width={"480px"}
+                  filter={maxDataAge}
+                  chartId={"6256af9a-04a5-4f01-8929-ba406cf900cb"}
+                />
+              </div>
+            </Col>
+          </Row>
+        </div>
+      );
+    }
+    if (activeTabJustify === "5") {
+      return (
+        <div key={activeTabJustify}>
+          <Row className="mt-3">
+            <Col md={6}>
+              <div className="charts">
+                <Chart
+                  height={"350px"}
+                  width={"480px"}
+                  filter={maxDataAge}
+                  chartId={"6256aed7-adc9-4235-8e2e-c4d5e33c4cd1"}
+                />
+              </div>
+            </Col>
+
+            <Col md={6}>
+              <div className="charts">
+                <Chart
+                  height={"350px"}
+                  width={"480px"}
+                  filter={maxDataAge}
+                  chartId={"6256af21-ad42-491c-886b-c379e048fc5a"}
+                />
+              </div>
+            </Col>
+          </Row>
+        </div>
+      );
+    }
+    return;
+  };
   return (
     <>
       {loaded ? (
@@ -109,11 +347,15 @@ const MyDashboard = () => {
                     <Nav tabs className="nav-tabs-custom nav-justified">
                       <NavItem>
                         <NavLink
-                          style={{ cursor: "pointer" }}
+                          style={{
+                            cursor: "pointer",
+                            backgroundColor: "transparent",
+                          }}
                           className={classnames({
                             active: activeTabJustify === "1",
                           })}
                           onClick={() => {
+                            toggleCustomJustified("");
                             toggleCustomJustified("1");
                           }}
                         >
@@ -124,11 +366,15 @@ const MyDashboard = () => {
                       </NavItem>
                       <NavItem>
                         <NavLink
-                          style={{ cursor: "pointer" }}
+                          style={{
+                            cursor: "pointer",
+                            backgroundColor: "transparent",
+                          }}
                           className={classnames({
                             active: activeTabJustify === "2",
                           })}
                           onClick={() => {
+                            toggleCustomJustified("");
                             toggleCustomJustified("2");
                           }}
                         >
@@ -139,11 +385,15 @@ const MyDashboard = () => {
                       </NavItem>
                       <NavItem>
                         <NavLink
-                          style={{ cursor: "pointer" }}
+                          style={{
+                            cursor: "pointer",
+                            backgroundColor: "transparent",
+                          }}
                           className={classnames({
                             active: activeTabJustify === "3",
                           })}
                           onClick={() => {
+                            toggleCustomJustified("");
                             toggleCustomJustified("3");
                           }}
                         >
@@ -154,11 +404,15 @@ const MyDashboard = () => {
                       </NavItem>
                       <NavItem>
                         <NavLink
-                          style={{ cursor: "pointer" }}
+                          style={{
+                            cursor: "pointer",
+                            backgroundColor: "transparent",
+                          }}
                           className={classnames({
                             active: activeTabJustify === "4",
                           })}
                           onClick={() => {
+                            toggleCustomJustified("");
                             toggleCustomJustified("4");
                           }}
                         >
@@ -169,11 +423,15 @@ const MyDashboard = () => {
                       </NavItem>
                       <NavItem>
                         <NavLink
-                          style={{ cursor: "pointer" }}
+                          style={{
+                            cursor: "pointer",
+                            backgroundColor: "transparent",
+                          }}
                           className={classnames({
                             active: activeTabJustify === "5",
                           })}
                           onClick={() => {
+                            toggleCustomJustified("");
                             toggleCustomJustified("5");
                           }}
                         >
@@ -211,7 +469,11 @@ const MyDashboard = () => {
                         </Row>
                         <Row className="">
                           <Col md={12} lg={12} sm={12}>
-                            <CardText className="amount1">12</CardText>
+                            <CardText className="amount1">
+                              {generalCardddata
+                                ? generalCardddata.todayBookings
+                                : "0"}
+                            </CardText>
                           </Col>
                         </Row>
                       </CardBody>
@@ -230,7 +492,11 @@ const MyDashboard = () => {
                         </Row>
                         <Row className="">
                           <Col md={12} lg={12} sm={12}>
-                            <CardText className="amount1">12</CardText>
+                            <CardText className="amount1">
+                              {generalCardddata
+                                ? generalCardddata.totalSales
+                                : "0"}
+                            </CardText>
                           </Col>
                         </Row>
                       </CardBody>
@@ -249,7 +515,12 @@ const MyDashboard = () => {
                         </Row>
                         <Row className="">
                           <Col md={12} lg={12} sm={12}>
-                            <CardText className="amount1">12</CardText>
+                            <CardText className="amount1">
+                              {" "}
+                              {generalCardddata
+                                ? generalCardddata.todayCheckIns
+                                : "0"}
+                            </CardText>
                           </Col>
                         </Row>
                       </CardBody>
@@ -270,27 +541,11 @@ const MyDashboard = () => {
                         </Row>
                         <Row className="">
                           <Col md={12} lg={12} sm={12}>
-                            <CardText className="amount1">12</CardText>
-                          </Col>
-                        </Row>
-                      </CardBody>
-                    </Card>
-                  </Col>
-
-                  <Col md={3} lg={3} sm={12}>
-                    <Card className="cardcss dashboardsecondcard">
-                      <CardBody>
-                        <Row>
-                          <Col md={12} lg={12} sm={12}>
-                            <CardTitle className="headings1">
-                              Best Saling Products
-                            </CardTitle>
-                          </Col>
-                        </Row>
-                        <Row className="">
-                          <Col md={12} lg={12} sm={12}>
                             <CardText className="amount1">
-                              Meeting room 8x
+                              {" "}
+                              {financeCardddata
+                                ? financeCardddata.totalSales
+                                : "0"}
                             </CardText>
                           </Col>
                         </Row>
@@ -304,13 +559,40 @@ const MyDashboard = () => {
                         <Row>
                           <Col md={12} lg={12} sm={12}>
                             <CardTitle className="headings1">
-                              Top Brand
+                              Best Selling Products
                             </CardTitle>
                           </Col>
                         </Row>
                         <Row className="">
                           <Col md={12} lg={12} sm={12}>
-                            <CardText className="amount1">Flex</CardText>
+                            <CardText className="amount1">
+                              {financeCardddata
+                                ? financeCardddata.bestSellingProduct
+                                : "0"}
+                            </CardText>
+                          </Col>
+                        </Row>
+                      </CardBody>
+                    </Card>
+                  </Col>
+
+                  <Col md={3} lg={3} sm={12}>
+                    <Card className="cardcss dashboardsecondcard">
+                      <CardBody>
+                        <Row>
+                          <Col md={12} lg={12} sm={12}>
+                            <CardTitle className="headings1">
+                              Top Brand By Revenue
+                            </CardTitle>
+                          </Col>
+                        </Row>
+                        <Row className="">
+                          <Col md={12} lg={12} sm={12}>
+                            <CardText className="amount1">
+                              {financeCardddata
+                                ? financeCardddata.topBrand.name
+                                : "0"}
+                            </CardText>
                           </Col>
                         </Row>
                       </CardBody>
@@ -331,7 +613,11 @@ const MyDashboard = () => {
                         </Row>
                         <Row className="">
                           <Col md={12} lg={12} sm={12}>
-                            <CardText className="amount1">Diom Rubeen</CardText>
+                            <CardText className="amount1">
+                              {locationCardddata
+                                ? locationCardddata.topLocationByBookings.name
+                                : "0"}
+                            </CardText>
                           </Col>
                         </Row>
                       </CardBody>
@@ -350,7 +636,11 @@ const MyDashboard = () => {
                         </Row>
                         <Row className="">
                           <Col md={12} lg={12} sm={12}>
-                            <CardText className="amount1">abc</CardText>
+                            <CardText className="amount1">
+                              {locationCardddata
+                                ? locationCardddata.topResourceTtype
+                                : "0"}
+                            </CardText>
                           </Col>
                         </Row>
                       </CardBody>
@@ -365,13 +655,17 @@ const MyDashboard = () => {
                         <Row>
                           <Col md={12} lg={12} sm={12}>
                             <CardTitle className="headings1">
-                              Top Brand
+                              Top Brand By Bookings
                             </CardTitle>
                           </Col>
                         </Row>
                         <Row className="">
                           <Col md={12} lg={12} sm={12}>
-                            <CardText className="amount1">Flex</CardText>
+                            <CardText className="amount1">
+                              {brandCardddata
+                                ? brandCardddata.topBrandsByBookings.name
+                                : "0"}
+                            </CardText>
                           </Col>
                         </Row>
                       </CardBody>
@@ -392,7 +686,9 @@ const MyDashboard = () => {
                         </Row>
                         <Row className="">
                           <Col md={12} lg={12} sm={12}>
-                            <CardText className="amount1">12</CardText>
+                            <CardText className="amount1">
+                              {usersCardddata ? usersCardddata.totalUsers : "0"}
+                            </CardText>
                           </Col>
                         </Row>
                       </CardBody>
@@ -411,7 +707,11 @@ const MyDashboard = () => {
                         </Row>
                         <Row className="">
                           <Col md={12} lg={12} sm={12}>
-                            <CardText className="amount1">Technology</CardText>
+                            <CardText className="amount1">
+                              {usersCardddata
+                                ? usersCardddata.topUsersByIndustry.name
+                                : "0"}
+                            </CardText>
                           </Col>
                         </Row>
                       </CardBody>
@@ -430,7 +730,11 @@ const MyDashboard = () => {
                         </Row>
                         <Row className="">
                           <Col md={12} lg={12} sm={12}>
-                            <CardText className="amount1">Freelauncer</CardText>
+                            <CardText className="amount1">
+                              {usersCardddata
+                                ? usersCardddata.topBrandsByBookings.name
+                                : "0"}
+                            </CardText>
                           </Col>
                         </Row>
                       </CardBody>
@@ -560,162 +864,8 @@ const MyDashboard = () => {
                 </Col>
               </Row>
             </div>
-            {/* /end */}
-            {activeTabJustify === "1" ? (
-              <div>
-                <Row className="mt-3">
-                  <Col md={6}>
-                    <div className="charts">
-                      <Chart
-                        height={"350px"}
-                        width={"480px"}
-                        filter={maxDataAge}
-                        chartId={"625134b0-5d61-46db-86c0-48eef0760b6e"}
-                      />
-                    </div>
-                  </Col>
-                  {/* <Col lg={1} md={1} sm={12}></Col> */}
-                  {/* <Col lg={1} md={1} sm={12}></Col> */}
-                  <Col md={6}>
-                    <div className="charts">
-                      <Chart
-                        height={"350px"}
-                        width={"480px"}
-                        filter={maxDataAge}
-                        chartId={"625139bf-45ca-4d14-85ba-9a0e96d9ab76"}
-                      />
-                    </div>
-                  </Col>
-                </Row>
-                <Row className="mt-3">
-                  <Col md={6}></Col>
-                  {/* <Col md={1}></Col> */}
-                  <Col md={6}>
-                    <div className="charts">
-                      <Chart
-                        height={"350px"}
-                        width={"480px"}
-                        filter={maxDataAge}
-                        chartId={"62514999-70f4-431b-8d96-68f6a4c6a942"}
-                      />
-                    </div>
-                  </Col>
-                </Row>
-                <Row className="mt-3">
-                  <Col md={6}>
-                    <div className="charts">
-                      <Chart
-                        height={"350px"}
-                        width={"480px"}
-                        filter={maxDataAge}
-                        chartId={"625154e9-ed04-4f19-8b12-9548acd2508c"}
-                      />
-                    </div>
-                  </Col>
-                  {/* <Col md={1}></Col> */}
-                  <Col md={6}>
-                    <div className="charts">
-                      <Chart
-                        height={"350px"}
-                        width={"480px"}
-                        filter={maxDataAge}
-                        chartId={"62514d58-905f-40e2-83f4-4c6b1b2877eb"}
-                      />
-                    </div>
-                  </Col>
-                </Row>
-              </div>
-            ) : activeTabJustify === "2" ? (
-              <div>
-                <Row className="mt-3">
-                  <Col md={6}>
-                    <div className="charts">
-                      <Chart
-                        height={"350px"}
-                        width={"480px"}
-                        filter={maxDataAge}
-                        chartId={"625134b0-5d61-46db-86c0-48eef0760b6e"}
-                      />
-                    </div>
-                  </Col>
 
-                  <Col md={6}></Col>
-                </Row>
-
-                <Row className="mt-5">
-                  <Col md={6}></Col>
-
-                  <Col md={6}>
-                    <div className="charts">
-                      <Chart
-                        height={"350px"}
-                        width={"480px"}
-                        filter={maxDataAge}
-                        chartId={"62514d58-905f-40e2-83f4-4c6b1b2877eb"}
-                      />
-                    </div>
-                  </Col>
-                </Row>
-              </div>
-            ) : activeTabJustify === "3" ? (
-              <div>
-                {" "}
-                <Row className="mt-3">
-                  <Col md={6}>
-                    <div className="charts">
-                      <Chart
-                        height={"350px"}
-                        width={"480px"}
-                        filter={maxDataAge}
-                        chartId={"625134b0-5d61-46db-86c0-48eef0760b6e"}
-                      />
-                    </div>
-                  </Col>
-
-                  <Col md={6}>
-                    <div className="charts">
-                      <Chart
-                        height={"350px"}
-                        width={"480px"}
-                        filter={maxDataAge}
-                        chartId={"62515345-2438-4c2b-8a7d-0245e2511098"}
-                      />
-                    </div>
-                  </Col>
-                </Row>
-                <Row className="mt-3">
-                  <Col md={6}>
-                    <div className="charts">
-                      <Chart
-                        height={"350px"}
-                        width={"480px"}
-                        filter={maxDataAge}
-                        chartId={"625154e9-ed04-4f19-8b12-9548acd2508c"}
-                      />
-                    </div>
-                  </Col>
-
-                  <Col md={6}></Col>
-                </Row>
-              </div>
-            ) : activeTabJustify === "4" ? (
-              <div>
-                <Row className="mt-3">
-                  <Col md={6}>
-                    <div className="charts">
-                      <Chart
-                        height={"350px"}
-                        width={"480px"}
-                        filter={maxDataAge}
-                        chartId={"625139bf-45ca-4d14-85ba-9a0e96d9ab76"}
-                      />
-                    </div>
-                  </Col>
-
-                  <Col md={6}></Col>
-                </Row>
-              </div>
-            ) : activeTabJustify === "5" ? null : null}
+            {chartsView()}
           </Container>
         </div>
       )}

@@ -43,12 +43,11 @@ const Chart = ({ filter, chartId, height, width }) => {
   }, [chart]);
   useEffect(() => {
     if (rendered) {
-      console.log("filter : ", filter);
       chart
         .setFilter(filter)
         .catch((err) => console.log("Error while filtering.", err));
     }
   }, [chart, filter, rendered]);
-  return <div className="chart" ref={chartDiv} />;
+  return <div className="charts" ref={chartDiv} />;
 };
 export default Chart;

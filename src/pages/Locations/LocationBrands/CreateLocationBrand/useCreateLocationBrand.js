@@ -44,7 +44,7 @@ export const useCreateLocationBrand = () => {
         if (result3.status === 200) {
           toast.success("Updated Successfully");
         } else {
-          toast.error(" Something is wrong");
+          toast.error(" Something went wrong");
         }
         setModal_static(false);
       })

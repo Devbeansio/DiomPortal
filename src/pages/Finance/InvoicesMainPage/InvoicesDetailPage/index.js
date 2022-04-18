@@ -198,13 +198,6 @@ function InvoicesDetailPage() {
               </CardBody>
             </Col>
             <Col md={4}>
-              {/* <Button
-                color="success"
-                outline
-                className="invoicesdetailbuttons waves-effect waves-light  w-100  "
-              > */}
-              {/* {console.log("Booking Details", InvoiceData)} */}
-
               {InvoiceData.id && (
                 <PDFDownloadLink
                   stopColor={true}

@@ -225,10 +225,10 @@ class Header extends Component {
         toast.success("Locations Synced Successfully");
         // }
         // else {
-        //   toast.error(" Something is wrong");
+        //   toast.error(" Something went wrong");
         // }
       })
-      .catch((error) => toast.error(" Something is wrong"));
+      .catch((error) => toast.error(" Something went wrong"));
   };
   syncResourceFunc = () => {
     fetch(`${DIOM_BASED_URLS}/admin-resources-inventories/sync`, {
@@ -244,12 +244,12 @@ class Header extends Component {
         if (result) {
           toast.success("Resources Successfully Synced");
         } else {
-          toast.error(" Something is wrong");
+          toast.error(" Something went wrong");
         }
       })
       .catch((error) => console.log("error", error));
 
-    // toast.error(" Something is wrong"));
+    // toast.error(" Something went wrong"));
   };
   syncResourceTypeFunc = () => {
     fetch(`${DIOM_BASED_URLS}/admin-resource-types-inventories/sync`, {
@@ -265,10 +265,10 @@ class Header extends Component {
         if (result) {
           toast.success("ResourceTypes Successfully Synced");
         } else {
-          toast.error(" Something is wrong");
+          toast.error(" Something went wrong");
         }
       })
-      .catch((error) => toast.error(" Something is wrong"));
+      .catch((error) => toast.error(" Something went wrong"));
   };
   componentDidMount() {
     this.diomBrandfunc();

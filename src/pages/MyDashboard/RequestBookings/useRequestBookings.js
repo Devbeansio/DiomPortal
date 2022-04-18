@@ -57,18 +57,23 @@ const UseRequestBookings = () => {
       //   gettodaybookings();
       // } else {
       fetchFilteredTodayBookings(a);
+      // QueryClient.invalidateQueries("gettodaysbookings");
       // }
     } else if (activeTabJustify === "3") {
       // if (a === "All") {
       //   fetchScheduledBookings();
       // } else {
       fetchFilteredScheduledBookings(a);
+      // QueryClient.invalidateQueries("getschduledbookings");
       // }
     } else if (activeTabJustify === "6") {
       // if (a === "All") {
       //   fetchPastBookings();
+      queryClient.invalidateQueries("getpastbookings");
       // } else {
       fetchFilteredPastBookings(a);
+
+      // QueryClient.invalidateQueries("getpastbookings");
       // }
     }
   };
@@ -126,10 +131,12 @@ const UseRequestBookings = () => {
       setCurrentPage(1);
       setApplyFilter(false);
       setFilter("All");
+      queryClient.invalidateQueries("getpastbookings");
     } else {
       setCurrentPage(1);
       setApplyFilter(true);
       setFilter(val);
+      queryClient.invalidateQueries("getpastbookings");
     }
   };
 
@@ -170,6 +177,7 @@ const UseRequestBookings = () => {
   }, [currentPage, queryClient, applyLocationFilter]);
 
   const fetchFilteredTodayBookings = async (val) => {
+    // QueryClient.invalidateQueries("gettodaysbookings");
     console.log("val : ", val);
     if (val === "All") {
       setCurrentPage(1);

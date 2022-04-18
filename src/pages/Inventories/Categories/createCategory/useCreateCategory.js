@@ -35,11 +35,11 @@ export const UseCreateCategory = () => {
         } else if (result3.status === 204) {
           toast.success("Updated Successfully");
         } else {
-          toast.error(" Something is wrong");
+          toast.error(" Something went wrong");
         }
         setModal_static(false);
       })
-      .catch((error) => toast.error(" Something is wrong"));
+      .catch((error) => toast.error(" Something went wrong"));
   };
 
   const categoryNamechangefunc = (event) => {
@@ -67,11 +67,11 @@ export const UseCreateCategory = () => {
         } else if (result3.status === 204) {
           toast.success("Updated Successfully");
         } else {
-          toast.error(" Something is wrong");
+          toast.error(" Something went wrong");
         }
         setModal_static(false);
       })
-      .catch((error) => toast.error(" Something is wrong"));
+      .catch((error) => toast.error(" Something went wrong"));
 
     setModal_static1(false);
   };

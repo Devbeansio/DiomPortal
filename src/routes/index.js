@@ -35,7 +35,6 @@ import Login1 from "../pages/AuthenticationInner/Login";
 import Register1 from "../pages/AuthenticationInner/Register";
 import ForgetPwd1 from "../pages/AuthenticationInner/ForgetPassword";
 
-
 import MyDashboard from "../pages/MyDashboard/mydashboard";
 
 import Finance from "../pages/Finance/index";
@@ -66,13 +65,10 @@ import CategoriesDetail from "../pages/Inventories/Categories/CategoriesDetail";
 import RequestBookings from "../pages/MyDashboard/RequestBookings/index.js";
 import UserProfileDetail from "../pages/UserProfile/UserProfileDetail/index.js";
 import CreateCategory from "../pages/Inventories/Categories/createCategory";
-import Productschart  from "../pages/testing project/productschart";
-import SalesByBrand from "../pages/testing project/salesByBrand";
-import SalesByPackages from "../pages/testing project/salesByPackages";
-const authProtectedRoutes = [
 
+const authProtectedRoutes = [
   { path: "/mydashboard", component: MyDashboard },
-  {path:"/categoriesdetail/:id",component:CategoriesDetail},
+  { path: "/categoriesdetail/:id", component: CategoriesDetail },
   { path: "/finance", component: Finance },
   { path: "/reports", component: Reports },
   { path: "/addapackage", component: AddAPackage },
@@ -85,10 +81,8 @@ const authProtectedRoutes = [
   { path: "/inventorydetail/:id", component: InventoryDetail },
   { path: "/resourcetype", component: ResourceType },
   { path: "/categories", component: Categories },
-  {path:"/createcategory",component:CreateCategory},
-  {path:"/productschart", component:Productschart},
-  {path:"/salesbybrand",component:SalesByBrand},
-  {path:"/salesbypackages",component:SalesByPackages},
+  { path: "/createcategory", component: CreateCategory },
+
   {
     path: "/resourcedetailed/:id/:resourceTypeKey",
     component: ResourceDetailed,

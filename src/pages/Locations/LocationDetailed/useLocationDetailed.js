@@ -3,9 +3,10 @@ import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { DIOM_BASED_URLS } from "../../../config/url";
 import { getdiomlocationBrand, getLocation } from "../../../APIS/locations";
-import { useQuery } from "react-query";
+import { useQueryClient, useQuery } from "react-query";
 
 const UseLocationDetailed = () => {
+  const QueryClient = useQueryClient();
   const [modal_static, setModal_static] = useState(false);
   const [locationstite, setLocationstitle] = useState({});
   const [amentiesImgUrl, setAmentiesImgUrl] = useState({});
@@ -129,18 +130,20 @@ const UseLocationDetailed = () => {
       .then((result3) => {
         if (result3.status === 200) {
           toast.success("Updated Successfully");
+          QueryClient.invalidateQueries("locations");
           getlocations();
         } else if (result3.status === 204) {
           toast.success("Updated Successfully");
+          QueryClient.invalidateQueries("locations");
           getlocations();
         } else {
-          toast.error(" Something is wrong");
+          toast.error(" Something went wrong");
         }
         setEnableEdit(false);
         setModal_static(false);
         // getdiomBrandfunc()
       })
-      .catch((error) => toast.error(" Something is wrong"));
+      .catch((error) => toast.error(" Something went wrong"));
   };
 
   const locationTagEditButtonfunc = () => {
@@ -168,12 +171,16 @@ const UseLocationDetailed = () => {
       .then((result3) => {
         if (result3.status === 200) {
           toast.success("Updated Successfully");
+          QueryClient.invalidateQueries("locations");
+          QueryClient.invalidateQueries("locationbrands");
           getlocations();
         } else if (result3.status === 204) {
           toast.success("Updated Successfully");
+          QueryClient.invalidateQueries("locations");
+          QueryClient.invalidateQueries("locationbrands");
           getlocations();
         } else {
-          toast.error(" Something is wrong");
+          toast.error(" Something went wrong");
         }
 
         setEnableEdit(false);
@@ -181,7 +188,7 @@ const UseLocationDetailed = () => {
 
         // getdiomBrandfunc()
       })
-      .catch((error) => toast.error(" Something is wrong"));
+      .catch((error) => toast.error(" Something went wrong"));
   };
 
   const uploadfilelocationfunc = async () => {
@@ -218,15 +225,21 @@ const UseLocationDetailed = () => {
 
           if (result[0].statusCode === 200) {
             toast.success("Image uplaoded", result[0].statusCode);
+            QueryClient.invalidateQueries("locations");
+            QueryClient.invalidateQueries("locationbrands");
+          } else if (result[0].statusCode === 204) {
+            toast.success("Image uplaoded", result[0].statusCode);
+            QueryClient.invalidateQueries("locations");
+            QueryClient.invalidateQueries("locationbrands");
           } else {
-            toast.error(" Something is wrong");
+            toast.error(" Something went wrong");
           }
 
           setModal_static(false);
           setLocationAddMoreBlock(false);
           getlocations();
         })
-        .catch((error) => toast.error(" Something is wrong"));
+        .catch((error) => toast.error(" Something went wrong"));
     }
   };
 
@@ -261,15 +274,19 @@ const UseLocationDetailed = () => {
 
         if (result[0].statusCode === 200) {
           toast.success("Image uplaoded", result[0].statusCode);
+          QueryClient.invalidateQueries("locations");
+        } else if (result[0].statusCode === 204) {
+          toast.success("Image uplaoded", result[0].statusCode);
+          QueryClient.invalidateQueries("locations");
         } else {
-          toast.error(" Something is wrong");
+          toast.error(" Something went wrong");
         }
 
         setModal_static(false);
         setNearbyAddMoreBlock(false);
         getlocations();
       })
-      .catch((error) => toast.error(" Something is wrong"));
+      .catch((error) => toast.error(" Something went wrong"));
   };
 
   const uploadfileAmentiesfunc = () => {
@@ -305,11 +322,17 @@ const UseLocationDetailed = () => {
           });
 
           if (result[0].statusCode === 200) {
+            QueryClient.invalidateQueries("locations");
+            toast.success("Image uplaoded", {
+              toastId: "Success1",
+            });
+          } else if (result[0].statusCode === 204) {
+            QueryClient.invalidateQueries("locations");
             toast.success("Image uplaoded", {
               toastId: "Success1",
             });
           } else {
-            toast.error(" Something is wrong");
+            toast.error(" Something went wrong");
           }
           setAmenitiesAddMoreBlock(false);
           setModal_static(false);
@@ -337,10 +360,12 @@ const UseLocationDetailed = () => {
       .then((result3) => {
         if (result3.status === 200) {
           toast.success("Updated Successfully");
+          QueryClient.invalidateQueries("locations");
         } else if (result3.status === 204) {
           toast.success("Updated Successfully");
+          QueryClient.invalidateQueries("locations");
         } else {
-          toast.error(" Something is wrong");
+          toast.error(" Something went wrong");
         }
         setModal_static(false);
       })
@@ -358,9 +383,11 @@ const UseLocationDetailed = () => {
     })
       .then((result3) => {
         toast.success("Deleted Successfully");
+        QueryClient.invalidateQueries("locationbrands");
+        QueryClient.invalidateQueries("locations");
         getlocations();
       })
-      .catch((error) => toast.error(" Something is wrong"));
+      .catch((error) => toast.error(" Something went wrong"));
   };
 
   const nearbyimagedeletedfunc = (_id) => {
@@ -377,9 +404,10 @@ const UseLocationDetailed = () => {
     )
       .then((result3) => {
         toast.success("Deleted Successfully");
+        QueryClient.invalidateQueries("locations");
         getlocations();
       })
-      .catch((error) => toast.error(" Something is wrong"));
+      .catch((error) => toast.error(" Something went wrong"));
   };
 
   const imagedeletedAmentiesfunc = (_id) => {
@@ -396,9 +424,10 @@ const UseLocationDetailed = () => {
     )
       .then((result3) => {
         toast.success("Deleted Successfully");
+        QueryClient.invalidateQueries("locations");
         getlocations();
       })
-      .catch((error) => toast.error(" Something is wrong"));
+      .catch((error) => toast.error(" Something went wrong"));
   };
 
   const handellocationeditfunc = (e, e_id) => {
@@ -476,7 +505,7 @@ const UseLocationDetailed = () => {
         .then((result) => {
           toast.success("Location Archived");
         })
-        .catch((error) => toast.error(" Something is wrong"));
+        .catch((error) => toast.error(" Something went wrong"));
     }
 
     setLocationstitle({
@@ -546,6 +575,7 @@ const UseLocationDetailed = () => {
     })();
   }, [getLocationdata, diomlocationBrandata]);
 
+  // QueryClient.invalidateQueries("locations");
   return {
     modal_static,
     setModal_static,

@@ -1,17 +1,21 @@
 import React from "react";
-import { Card, Row, Col,CardBody,Table } from "reactstrap";
+import { Card, Row, Col, CardBody, Table, Container } from "reactstrap";
 import SimpleBar from "simplebar-react";
 import "./css/bookingdetail.css";
 import moment from "moment";
-const Bookingdetailcomponent = ({ bookings }) => {
+const Bookingdetailcomponent = (bookings) => {
+  console.log("bookings : ", bookings);
   return (
     <div>
-      
-      <Card>
-      <Row className="mt-5">
+      <Row>
+        <Col xs={12}>
+          {/* <Container> */}
+          <CardBody style={{ background: "white" }}>
+            <Card>
+              <Row className="mt-5">
                 <Col xs={1}></Col>
                 <Col xs={5}>
-                  <p className="bookingdetailscss">Booking Details</p>
+                  <p className="bookings.bookingdetailscss">Booking Details</p>
                   <Card className="innercards">
                     <Row>
                       <Col xs={12}>
@@ -21,28 +25,44 @@ const Bookingdetailcomponent = ({ bookings }) => {
                     </Row>
 
                     <Row>
-                      <Col xs={7} className="fontblackcolor">
+                      <Col xs={6} className="fontblackcolor">
                         Customer Name
                       </Col>
-                      <Col xs={5}>
+                      <Col xs={6}>
                         <p className="fontcolor">
-                          {bookings.bookingUserName ? bookings.bookingUserName : "N/A"}
+                          {bookings.bookings.userbookingData
+                            ? bookings.bookings.userbookingData.username
+                            : "N/A"}
+                        </p>
+                      </Col>
+                    </Row>
+
+                    {/* <Row>
+                      <Col xs={6} className="fontblackcolor">
+                        Customer BOOKINGS.ID
+                      </Col>
+                      <Col xs={6}>
+                        <p className="fontcolor">
+                          {bookings.bookings.userbookingData ? bookings.bookings.userbookingData.users.bookings.id : "N/A"}
+                        </p>
+                      </Col>
+                    </Row> */}
+
+                    <Row>
+                      <Col xs={6} className="fontblackcolor">
+                        Booking No.
+                      </Col>
+                      <Col xs={6}>
+                        <p className="fontcolor">
+                          {bookings.id ? bookings.revokebookingstatus : "N/A"}
                         </p>
                       </Col>
                     </Row>
                     <Row>
-                      <Col xs={7} className="fontblackcolor">
-                        Booking No.
-                      </Col>
-                      <Col xs={5}>
-                        <p className="fontcolor">{bookings.id ? bookings.id : "N/A"}</p>
-                      </Col>
-                    </Row>
-                    <Row>
-                      <Col xs={7} className="fontblackcolor">
+                      <Col xs={6} className="fontblackcolor">
                         Booking Type
                       </Col>
-                      <Col xs={5}>
+                      <Col xs={6}>
                         <p className="fontcolor">
                           {bookings.bookingDetails.bookingType
                             ? bookings.bookingDetails.bookingType
@@ -51,17 +71,19 @@ const Bookingdetailcomponent = ({ bookings }) => {
                       </Col>
                     </Row>
                     <Row>
-                      <Col xs={4} className="fontblackcolor">
+                      <Col xs={5} className="fontblackcolor">
                         Duration
                       </Col>
-                      <Col xs={8}>
+                      <Col xs={7}>
                         <p className="fontcolors">
                           {bookings.bookingDetails.fromTime
                             ? moment(bookings.bookingDetails.fromTime).format(
                                 "DD/MM/YYYY "
                               )
                             : "N/A"}
-                          <span style={{ marginRight: 10, marginLeft: 10 }}> - </span>
+                          <span style={{ marginRight: 10, marginLeft: 10 }}>
+                            -
+                          </span>
                           {bookings.bookingDetails.toTime
                             ? moment(bookings.bookingDetails.toTime).format(
                                 "DD/MM/YYYY "
@@ -78,13 +100,17 @@ const Bookingdetailcomponent = ({ bookings }) => {
                       <Col xs={6}>
                         <p className="fontcolors">
                           {bookings.bookingDetails.fromTime
-                            ? moment(bookings.bookingDetails.fromTime).format("HH:mm")
+                            ? moment(bookings.bookingDetails.fromTime).format(
+                                "HH:mm"
+                              )
                             : "N/A"}
                           <span style={{ marginRight: 10, marginLeft: 10 }}>
                             -
                           </span>
                           {bookings.bookingDetails.toTime
-                            ? moment(bookings.bookingDetails.toTime).format("HH:mm ")
+                            ? moment(bookings.bookingDetails.toTime).format(
+                                "HH:mm "
+                              )
                             : "N/A"}
                         </p>
                       </Col>
@@ -95,13 +121,12 @@ const Bookingdetailcomponent = ({ bookings }) => {
                       <p className="bookingdetail mt-3">Location Information</p>
                       <hr />
                     </Row>
-                    
-                   
+
                     <Row>
-                      <Col xs={7} className="fontblackcolor">
+                      <Col xs={6} className="fontblackcolor">
                         Location
                       </Col>
-                      <Col xs={5}>
+                      <Col xs={6}>
                         <p className="fontcolor">
                           {bookings.bookingDetails.businessName
                             ? bookings.bookingDetails.businessName
@@ -110,10 +135,10 @@ const Bookingdetailcomponent = ({ bookings }) => {
                       </Col>
                     </Row>
                     <Row>
-                      <Col xs={7} className="fontblackcolor">
+                      <Col xs={6} className="fontblackcolor">
                         Resource Type
                       </Col>
-                      <Col xs={5}>
+                      <Col xs={6}>
                         <p className="fontcolor">
                           {bookings.bookingDetails.resourceTypeName
                             ? bookings.bookingDetails.resourceTypeName
@@ -122,10 +147,10 @@ const Bookingdetailcomponent = ({ bookings }) => {
                       </Col>
                     </Row>
                     <Row>
-                      <Col xs={7} className="fontblackcolor">
+                      <Col xs={6} className="fontblackcolor">
                         Resource Allocated
                       </Col>
-                      <Col xs={5}>
+                      <Col xs={6}>
                         <p className="fontcolor">
                           {bookings.bookingDetails.resourceName
                             ? bookings.bookingDetails.resourceName
@@ -133,14 +158,14 @@ const Bookingdetailcomponent = ({ bookings }) => {
                         </p>
                       </Col>
                       <p className="bookingdetail mt-3">Billing Information</p>
-                    <hr />
+                      <hr />
                     </Row>
-                   
+
                     <Row>
-                      <Col xs={7} className="fontblackcolor">
+                      <Col xs={6} className="fontblackcolor">
                         Invoice #
                       </Col>
-                      <Col xs={5}>
+                      <Col xs={6}>
                         <p className="fontcolor">
                           {bookings.bookingDetails.invoiceNumber
                             ? bookings.bookingDetails.invoiceNumber
@@ -149,10 +174,10 @@ const Bookingdetailcomponent = ({ bookings }) => {
                       </Col>
                     </Row>
                     <Row>
-                      <Col xs={7} className="fontblackcolor">
+                      <Col xs={6} className="fontblackcolor">
                         Amount Paid
                       </Col>
-                      <Col xs={5}>
+                      <Col xs={6}>
                         <p className="fontcolor">
                           {bookings.bookingDetails.totalAmount
                             ? bookings.bookingDetails.totalAmount
@@ -161,10 +186,10 @@ const Bookingdetailcomponent = ({ bookings }) => {
                       </Col>
                     </Row>
                     <Row>
-                      <Col xs={7} className="fontblackcolor">
+                      <Col xs={6} className="fontblackcolor">
                         Payment Method
                       </Col>
-                      <Col xs={5}>
+                      <Col xs={6}>
                         <p className="fontcolor">CC VISA</p>
                       </Col>
                     </Row>
@@ -186,13 +211,42 @@ const Bookingdetailcomponent = ({ bookings }) => {
                         <div>
                           <SimpleBar style={{ maxHeight: "330px" }}>
                             <ul className="list-unstyled activity-wid">
-                              {bookings.bookingDetails.timeLogs &&
-                                bookings.bookingDetails.timeLogs.length > 0 &&
-                                bookings.bookingDetails.timeLogs.map((time) => (
+                              {/* Booking Status */}
+                              <li className="activity-list">
+                                <div className="activity-icon avatar-xs">
+                                  <span className="greencolor  text-primary rounded-circle">
+                                    <i className=""></i>
+                                  </span>
+                                </div>
+                                <div>
+                                  <h5 className="fontblackcolordates">
+                                    Booking Status
+                                  </h5>
+                                  <p className="text-muted mb-0">
+                                    {bookings.bookingDetails
+                                      ? bookings.bookingDetails.bookingStatus
+                                      : "N/A"}
+                                  </p>
+                                </div>
+                              </li>
+                            </ul>
+                          </SimpleBar>
+                        </div>
+                      </Col>
+                    </Row>
+                    <Row>
+                      <Col xs={12}>
+                        <div>
+                          <SimpleBar style={{ maxHeight: "330px" }}>
+                            <ul className="list-unstyled activity-wid">
+                              {bookings.revokeBookingStatus
+                                ? bookings.revokeBookingStatus
+                                : null}
+                              {bookings.checkInCheckout &&
+                                bookings.checkInCheckout.length > 0 &&
+                                bookings.checkInCheckout.map((time) => (
                                   <>
-                                   
-
-                                    {bookings.time.toTime && (
+                                    {time.toTime && (
                                       <li className="activity-list">
                                         <div className="activity-icon avatar-xs">
                                           <span className="avatar-title bg-soft-primary text-primary rounded-circle">
@@ -202,12 +256,12 @@ const Bookingdetailcomponent = ({ bookings }) => {
                                         <div>
                                           <div>
                                             <h5 className="fontblackcolordates">
-                                              {moment(bookings.time.toTime).format(
+                                              {moment(time.toTime).format(
                                                 "YYYY-MM-DD"
                                               )}
                                               <small className="text-muted">
                                                 {" "}
-                                                {moment(bookings.time.toTime).format(
+                                                {moment(time.toTime).format(
                                                   "HH:mm"
                                                 )}
                                               </small>
@@ -223,7 +277,7 @@ const Bookingdetailcomponent = ({ bookings }) => {
                                       </li>
                                     )}
 
-                                {bookings.time.fromTime && (
+                                    {time.fromTime && (
                                       <li className="activity-list">
                                         <div className="activity-icon  avatar-xs">
                                           <span className="greencolor  text-primary rounded-circle">
@@ -233,12 +287,12 @@ const Bookingdetailcomponent = ({ bookings }) => {
                                         <div>
                                           <div>
                                             <h5 className="fontblackcolordates">
-                                              {moment(bookings.time.fromTime).format(
-                                                "YYYY-MM-DD"
+                                              {moment(time.fromTime).format(
+                                                "YYYY-MM-DD "
                                               )}
                                               <small className="text-muted">
                                                 {" "}
-                                                {moment(bookings.time.fromTime).format(
+                                                {moment(time.fromTime).format(
                                                   "HH:mm"
                                                 )}
                                               </small>
@@ -253,9 +307,6 @@ const Bookingdetailcomponent = ({ bookings }) => {
                                         </div>
                                       </li>
                                     )}
-
-
-
                                   </>
                                 ))}
                             </ul>
@@ -269,15 +320,12 @@ const Bookingdetailcomponent = ({ bookings }) => {
                 <Col xs={1}></Col>
               </Row>
 
-      
-        <Row>
+              <Row>
                 <Col xs={1}></Col>
                 <Col xs={5}>
-                 
                   <Card className="innercards">
-                   
                     <Row>
-                      <Col xm={12}>
+                      <Col xs={12}>
                         <p className="bookingdetail ">Guests Information</p>
 
                         <Card>
@@ -289,6 +337,7 @@ const Bookingdetailcomponent = ({ bookings }) => {
                               <Table className="   mb-0">
                                 <thead>
                                   <tr>
+                                    <th>Booking ID</th>
                                     <th> Name</th>
                                     <th>Phone No.</th>
                                     <th>Email</th>
@@ -296,25 +345,32 @@ const Bookingdetailcomponent = ({ bookings }) => {
                                 </thead>
                                 <tbody>
                                   {bookings.guestData.data
-                                    ? bookings.guestData.data.map((element, Index) => (
-                                        <tr>
-                                          <td>
-                                            {element.guestName
-                                              ? element.guestName
-                                              : "N/A"}
-                                          </td>
-                                          <td>
-                                            {element.guestPhone
-                                              ? element.guestPhone
-                                              : "N/A"}
-                                          </td>
-                                          <td>
-                                            {element.guestEmail
-                                              ? element.guestEmail
-                                              : "N/A"}
-                                          </td>
-                                        </tr>
-                                      ))
+                                    ? bookings.guestData.data.map(
+                                        (element, Index) => (
+                                          <tr>
+                                            <td>
+                                              {element
+                                                ? element.bookingId
+                                                : "N/A"}
+                                            </td>
+                                            <td>
+                                              {element
+                                                ? element.guestName
+                                                : "N/A"}
+                                            </td>
+                                            <td>
+                                              {element
+                                                ? element.guestPhone
+                                                : "N/A"}
+                                            </td>
+                                            <td>
+                                              {element
+                                                ? element.guestEmail
+                                                : "N/A"}
+                                            </td>
+                                          </tr>
+                                        )
+                                      )
                                     : null}
                                 </tbody>
                               </Table>
@@ -325,87 +381,106 @@ const Bookingdetailcomponent = ({ bookings }) => {
                     </Row>
                   </Card>
                 </Col>
-                <Col xm={5}>
+                <Col xs={5}>
                   <Card className="innercards">
                     {" "}
                     <Row>
-                      <Col xm={12}>
+                      <Col xs={12}>
                         <p className="bookingdetail">User Personal Details</p>
                         <hr />
                         <Row>
-                          <Col xm={6} className="fontblackcolor">
+                          <Col xs={6} className="fontblackcolor">
+                            Customer ID
+                          </Col>
+                          <Col xs={6}>
+                            <p className="fontcolor">
+                              {bookings.bookings.userbookingData
+                                ? bookings.bookings.userbookingData.id
+                                : "N/A"}
+                            </p>
+                          </Col>
+                        </Row>
+
+                        <Row>
+                          <Col xs={6} className="fontblackcolor">
                             Full Name
                           </Col>
-                          <Col xm={6}>
+                          <Col xs={6}>
                             <p className="fontcolor">
-                              {bookings.bookingUserName ? bookings.bookingUserName : "N/A"}
+                              {bookings.bookings.userbookingData
+                                ? bookings.bookings.userbookingData.username
+                                : "N/A"}
                             </p>
                           </Col>
                         </Row>
                         <Row>
-                          <Col xm={6} className="fontblackcolor">
+                          <Col xs={6} className="fontblackcolor">
                             Email Address
                           </Col>
-                          <Col xm={6}>
+                          <Col xs={6}>
                             <p className="fontcolor">
-                              {bookings.userBookings.Email ? bookings.userBookings.Email : "N/A"}
+                              {bookings.bookings.userbookingData
+                                ? bookings.bookings.userbookingData.Email
+                                : "N/A"}
                             </p>
                           </Col>
                         </Row>
                         <Row>
-                          <Col xm={6} className="fontblackcolor">
+                          <Col xs={6} className="fontblackcolor">
                             Phone No.
                           </Col>
-                          <Col xm={6}>
+                          <Col xs={6}>
                             <p className="fontcolor">
-                              {bookings.userBookings.MobilePhone
-                                ? bookings.userBookings.MobilePhone
+                              {bookings.bookings.userbookingData
+                                ? bookings.bookings.userbookingData.MobilePhone
                                 : "N/A"}
                             </p>
                           </Col>
                         </Row>
                         <Row>
-                          <Col xm={6} className="fontblackcolor">
+                          <Col xs={6} className="fontblackcolor">
                             Date of Birth
                           </Col>
-                          <Col xm={6}>
+                          <Col xs={6}>
                             <p className="fontcolor">
-                              {bookings.userBookings.DateOfBirth
-                                ? bookings.userBookings.DateOfBirth
+                              {bookings.bookings.userbookingData
+                                ? bookings.bookings.userbookingData.DateOfBirth
                                 : "N/A"}
                             </p>
                           </Col>
                         </Row>
                         <Row>
-                          <Col xm={6} className="fontblackcolor">
+                          <Col xs={6} className="fontblackcolor">
                             Adress
                           </Col>
-                          <Col xm={6}>
+                          <Col xs={6}>
                             <p className="fontcolor">
-                              {bookings.userBookings.Address
-                                ? bookings.userBookings.Address
+                              {bookings.bookings.userbookingData
+                                ? bookings.bookings.userbookingData.Address
                                 : "N/A"}
                             </p>
                           </Col>
                         </Row>
                         <Row>
-                          <Col xm={6} className="fontblackcolor">
+                          <Col xs={6} className="fontblackcolor">
                             State
                           </Col>
-                          <Col xm={6}>
+                          <Col xs={6}>
                             <p className="fontcolor">
-                              {bookings.userBookings.State ? bookings.userBookings.State : "N/A"}
+                              {bookings.bookings.userbookingData
+                                ? bookings.bookings.userbookingData.State
+                                : "N/A"}
                             </p>
                           </Col>
                         </Row>
                         <Row>
-                          <Col xm={6} className="fontblackcolor">
+                          <Col xs={6} className="fontblackcolor">
                             city
                           </Col>
-                          <Col xm={6}>
+                          <Col xs={6}>
                             <p className="fontcolor">
-                              {bookings.userBookings.CityName
-                                ? bookings.userBookings.CityName
+                              {bookings.bookings.userbookingData
+                                ? bookings.bookings.userbookingData.CityName
                                 : "N/A"}
                             </p>
                           </Col>
@@ -418,8 +493,11 @@ const Bookingdetailcomponent = ({ bookings }) => {
                 </Col>
                 <Col xs={1}></Col>
               </Row>
-        {/* End */}
-      </Card>
+            </Card>
+          </CardBody>
+          {/* </Container> */}
+        </Col>
+      </Row>
     </div>
   );
 };

@@ -88,22 +88,29 @@ const BookingDetail = () => {
                 </Col>
               </Row>
             </div>
-            {/* {abc ? (
-              // bookingDetails && userbookingData  && userbookingData && guestData && id  &&(
-              <div style={{ display: "none" }}>
-                <div ref={componentRef}>
-                  <Bookingdetailcomponent
-                    bookings={{
-                      bookingDetails,
-                      userbookingData.username,
-                      userbookingData,
-                      guestData,
-                      id,
-                    }}
-                  />
-                </div>
+
+            <div style={{ display: "none" }}>
+              <div ref={componentRef}>
+                {abc &&
+                  bookingDetails &&
+                  userbookingData &&
+                  guestData &&
+                  checkInCheckout &&
+                  revokeBookingStatus &&
+                  id && (
+                    <Bookingdetailcomponent
+                      bookings={{
+                        bookingDetails,
+                        userbookingData,
+                        guestData,
+                        checkInCheckout,
+                        revokeBookingStatus,
+                        id,
+                      }}
+                    />
+                  )}
               </div>
-            ) : null} */}
+            </div>
 
             <div>
               <Card>

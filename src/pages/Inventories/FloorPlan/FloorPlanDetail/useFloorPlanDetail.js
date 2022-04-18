@@ -90,13 +90,13 @@ const useFloorPlanDetail = () => {
         } else if (result[0].statusCode === 204) {
           toast.success("Floorplans Added Succufully");
         } else {
-          toast.error(" Something is wrong");
+          toast.error(" Something went wrong");
         }
         setModal_static(false);
       })
       .catch(
         (error) => setError(error.message),
-        toast.error(" Something is wrong")
+        toast.error(" Something went wrong")
       );
   };
 

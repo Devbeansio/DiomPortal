@@ -30,7 +30,7 @@ import paginationFactory, {
 import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
 import "../../Tables/datatables.scss";
 import { useUserProfileDetail } from "./useUserProfileDetail";
-
+const activeTabJustify = "1";
 const { SearchBar } = Search;
 const columns = [
   {
@@ -42,6 +42,14 @@ const columns = [
     dataField: "_id",
     text: "Booking ID",
     sort: true,
+    formatter: (cell, row) => (
+      <Link
+        to={`/bookingdetail/${row._id}/${activeTabJustify}`}
+        className="link"
+      >
+        {cell}
+      </Link>
+    ),
   },
   {
     dataField: "resourceName",
@@ -67,6 +75,12 @@ const columns = [
     dataField: "invoiceNumber",
     text: "Invoice ID",
     sort: true,
+    formatter: (cell, row) => (
+      <Link to={`/invoicesdetailpage/${row.invoiceNumber}`} className="link">
+        {" "}
+        {cell}{" "}
+      </Link>
+    ),
   },
   {
     dataField: "totalAmount",

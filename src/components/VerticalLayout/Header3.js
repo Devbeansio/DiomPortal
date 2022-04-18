@@ -234,10 +234,10 @@ const  syncLocationsFunc = () => {
         toast.success("Locations Synced Successfully");
         // }
         // else {
-        //   toast.error(" Something is wrong");
+        //   toast.error(" Something went wrong");
         // }
       })
-      .catch((error) => toast.error(" Something is wrong"));
+      .catch((error) => toast.error(" Something went wrong"));
   };
 const  syncResourceFunc = () => {
     fetch(`${DIOM_BASED_URLS}/admin-resources-inventories/sync`, {
@@ -253,12 +253,12 @@ const  syncResourceFunc = () => {
         if (result) {
           toast.success("Resourses Successfully Synced");
         } else {
-          toast.error(" Something is wrong");
+          toast.error(" Something went wrong");
         }
       })
       .catch((error) => console.log("error", error));
 
-    // toast.error(" Something is wrong"));
+    // toast.error(" Something went wrong"));
   };
 const  syncResourceTypeFunc = () => {
     fetch(`${DIOM_BASED_URLS}/admin-resource-types-inventories/sync`, {
@@ -274,10 +274,10 @@ const  syncResourceTypeFunc = () => {
         if (result) {
           toast.success("ResourseTypes Successfully Synced");
         } else {
-          toast.error(" Something is wrong");
+          toast.error(" Something went wrong");
         }
       })
-      .catch((error) => toast.error(" Something is wrong"));
+      .catch((error) => toast.error(" Something went wrong"));
   };
 
   useEffect(() => {

@@ -1,10 +1,9 @@
 import { useState, useEffect } from "react";
 import { DIOM_BASED_URLS } from "../../../../config/url";
-import { useHistory } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
-import { Search } from "react-bootstrap-table2-toolkit";
-import { useQuery } from "react-query";
+import { useQueryClient, useQuery } from "react-query";
+
 import {
   getHourlyDayRate,
   getlocationsresourceTypes,
@@ -13,6 +12,7 @@ import {
   getResourceResourceType,
 } from "../../../../APIS/resourceType";
 const UseResourceTypeDetail = () => {
+  const QueryClient = useQueryClient();
   const [error, setError] = useState(null);
   const [resourceDetailes, setResourceDetailes] = useState([]);
   const [resourceTypes, setResourceTypes] = useState([]);
@@ -29,9 +29,6 @@ const UseResourceTypeDetail = () => {
   const [vat, setVat] = useState([]);
   const [enableEdit, setEnableEdit] = useState(false);
   const [locationImgId, setLocationImgId] = useState("");
-
-  const history = useHistory();
-  const { SearchBar } = Search;
   const token = localStorage.getItem("Token");
   const { id, resourceTypeKey } = useParams();
 
@@ -118,10 +115,12 @@ const UseResourceTypeDetail = () => {
         .then((result) => {
           if (result[0].statusCode === 200) {
             toast.success("Image uplaoded");
+            QueryClient.invalidateQueries("resourcetypeResources");
           } else if (result[0].statusCode === 204) {
             toast.success("Image uplaoded");
+            QueryClient.invalidateQueries("resourcetypeResources");
           } else {
-            toast.error(" Something is wrong");
+            toast.error(" Something went wrong");
           }
           setModal_static(false);
           setResourceTypeAddMoreBlock(false);
@@ -149,17 +148,17 @@ const UseResourceTypeDetail = () => {
       .then((result3) => {
         if (result3.status === 200) {
           toast.success("Updated Successfully");
-          getallresources();
+          QueryClient.invalidateQueries("resourcetypeResources");
         } else if (result3.status === 204) {
           toast.success("Updated Successfully");
-          getallresources();
+          QueryClient.invalidateQueries("resourcetypeResources");
         } else {
-          toast.error(" Something is wrong");
+          toast.error(" Something went wrong");
         }
         setEnableEdit(false);
         setModal_static(false);
       })
-      .catch((error) => toast.error(" Something is wrong"));
+      .catch((error) => toast.error(" Something went wrong"));
   };
 
   const updatelocationbranddetails = () => {
@@ -183,10 +182,12 @@ const UseResourceTypeDetail = () => {
       .then((result3) => {
         if (result3.status === 200) {
           toast.success("Successfully Updated");
+          QueryClient.invalidateQueries("resourcetypeResources");
         } else if (result3.status === 204) {
           toast.success("Successfully Updated");
+          QueryClient.invalidateQueries("resourcetypeResources");
         } else {
-          toast.error(" Something is wrong");
+          toast.error(" Something went wrong");
         }
 
         setModal_static(false);
@@ -206,58 +207,21 @@ const UseResourceTypeDetail = () => {
     })
       .then((result3) => {
         toast.success("Deleted Successfully");
-        getallresources();
+        QueryClient.invalidateQueries("resourcetypeResources");
       })
 
-      .catch((error) => toast.error(" Something is wrong"));
-  };
-
-  const getresourcetypesdata = async () => {
-    // try {
-    //   const response = await fetch(
-    //     `${DIOM_BASED_URLS}/admin-resources-inventories?filter={"limit": 10, "skip":0, "where" : { "ResourceTypeId" : ${id}}}`,
-    //     {
-    //       method: "GET",
-    //       redirect: "follow",
-    //       headers: {
-    //         Authorization: "Bearer " + token,
-    //       },
-    //     }
-    //   );
-    //   const result3 = await response.json();
-    //   const mapdata = result3.map((element, index) => ({
-    //     ID: index + 1,
-    //     _id: element.id,
-    //     ResourceType: element.Name,
-    //     ResourceTypeNames: element.ResourceTypeName,
-    //   }));
-    //   setResourceTypes(mapdata);
-    // } catch (error) {
-    //   setError(error.message);
-    //   console.log("error", error);
-    // }
+      .catch((error) => toast.error(" Something went wrong"));
   };
 
   // *************
   const resourceResourcetypesdata = useQuery(
-    ["resourceResourcetypesdata", id],
+    ["resourceResourcetypdata", id],
     () => getResourceResourceType(token, id)
   );
   const resourceResourcetypedata = resourceResourcetypesdata.data;
   // *************
 
   const getResourceByResourceType = async (id, token) => {
-    // const response = await fetch(
-    //   `${DIOM_BASED_URLS}/admin-resources-inventories?filter={"limit": 10, "skip":0, "where" : { "ResourceTypeId" : ${id}}}`,
-    //   {
-    //     method: "GET",
-    //     redirect: "follow",
-
-    //     headers: {
-    //       Authorization: "Bearer " + token,
-    //     },
-    //   }
-    // );
     return resourceResourcetypedata.json();
   };
 
@@ -288,14 +252,6 @@ const UseResourceTypeDetail = () => {
   const getHourlydayrateData = getHourlydayrate.data;
   // *************
   const gethourlyDayRateFunc = async () => {
-    //   if (!response.ok) {
-    //     if (response.status === 401) {
-    //       setError(response.statusText);
-    //       history.push("/login");
-    //     }
-
-    //     throw new Error(response.statusText);
-
     const Price = getHourlydayrateData.data.resourceTypePrices.map(
       (element, index) => ({
         name: element.Name,
@@ -318,7 +274,7 @@ const UseResourceTypeDetail = () => {
   const locationsresourceTypesdata = locationsresourceTypes.data;
   // *************
   const getalllocationsfunc = async () => {
-    const mapdata = locationsresourceTypesdata.map((element) => ({
+    const mapdata = locationsresourceTypesdata.map((element, index) => ({
       value: element.id,
       label: element.Name,
     }));
@@ -335,6 +291,15 @@ const UseResourceTypeDetail = () => {
         ],
       },
     ]);
+  };
+  const getresoucresbyid = () => {
+    const mapdata = resourceResourcetypedata.data.map((element, index) => ({
+      ID: index + 1,
+      _id: element.id,
+      ResourceType: element.Name,
+      ResourceTypeNames: element.ResourceTypeName,
+    }));
+    setResourceTypes(mapdata);
   };
 
   const { status, isLoading, data } = useQuery("resources", async () => {
@@ -356,16 +321,18 @@ const UseResourceTypeDetail = () => {
   useEffect(() => {
     (async () => {
       resourcetypeResourcesdata && (await getallresources());
-      await getresourcetypesdata();
       locationsresourceTypesdata && (await getalllocationsfunc());
+      resourceResourcetypedata && (await getresoucresbyid());
       Locationfocusdestdata && (await GetLocationWithFocusDeskfunc());
       getHourlydayrateData && (await gethourlyDayRateFunc());
+      // resourceResourcetypesdata && (await getresoucresbyid());
     })();
   }, [
     Locationfocusdestdata,
     resourcetypeResourcesdata,
     getHourlydayrateData,
     locationsresourceTypesdata,
+    resourceResourcetypedata,
   ]);
 
   return {
@@ -409,7 +376,6 @@ const UseResourceTypeDetail = () => {
     tog_static,
     descriptionvaulefunc,
     perminutpricfunc,
-    getresourcetypesdata,
     GetLocationWithFocusDeskfunc,
     getallresources,
     updatelocationbranddetails,

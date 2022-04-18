@@ -4,11 +4,12 @@ import { useHistory } from "react-router-dom";
 import { DIOM_BASED_URLS } from "../../../../config/url";
 import { toast } from "react-toastify";
 import { getCategoryDetails } from "../../../../APIS/categories";
-import { useQuery } from "react-query";
+import { useQueryClient, useQuery } from "react-query";
 import { getResourcetypeDropdown } from "../../../../APIS/categories";
 import { getCategoryDetaildropdown } from "../../../../APIS/categories";
 
 const UseCategoryDetail = () => {
+  const QueryClient = useQueryClient();
   const [error, setError] = useState(null);
   const [selectedMulti, setSelectedMulti] = useState([]);
   const [modal_static, setModal_static] = useState(false);
@@ -57,14 +58,20 @@ const UseCategoryDetail = () => {
       .then((result3) => {
         if (result3.status === 200) {
           toast.success("Updated Successfully");
+          QueryClient.invalidateQueries("resourceTypedropdown");
+          QueryClient.invalidateQueries("categpryDetaildropdown");
+          QueryClient.invalidateQueries("categpryDetails");
         } else if (result3.status === 204) {
           toast.success("Updated Successfully");
+          QueryClient.invalidateQueries("resourceTypedropdown");
+          QueryClient.invalidateQueries("categpryDetaildropdown");
+          QueryClient.invalidateQueries("categpryDetails");
         } else {
-          toast.error(" Something is wrong");
+          toast.error(" Something went wrong");
         }
         setModal_static(false);
       })
-      .catch((error) => toast.error(" Something is wrong"));
+      .catch((error) => toast.error(" Something went wrong"));
   };
 
   const handleMulti = (selected) => {
@@ -90,10 +97,16 @@ const UseCategoryDetail = () => {
           .then((result3) => {
             if (result3.status === 200) {
               toast.success("Updated Successfully");
+              QueryClient.invalidateQueries("resourceTypedropdown");
+              QueryClient.invalidateQueries("categpryDetaildropdown");
+              QueryClient.invalidateQueries("categpryDetails");
             } else if (result3.status === 204) {
               toast.success("Updated Successfully");
+              QueryClient.invalidateQueries("resourceTypedropdown");
+              QueryClient.invalidateQueries("categpryDetaildropdown");
+              QueryClient.invalidateQueries("categpryDetails");
             } else {
-              toast.error(" Something is wrong");
+              toast.error(" Something went wrong");
             }
             // setModal_static(false);
           })
@@ -125,13 +138,19 @@ const UseCategoryDetail = () => {
         .then((result3) => {
           if (result3.status === 200) {
             toast.success(" Successfully Deleted");
+            QueryClient.invalidateQueries("resourceTypedropdown");
+            QueryClient.invalidateQueries("categpryDetaildropdown");
+            QueryClient.invalidateQueries("categpryDetails");
           } else if (result3.status === 204) {
             toast.success(" Successfullyn Deleted");
+            QueryClient.invalidateQueries("resourceTypedropdown");
+            QueryClient.invalidateQueries("categpryDetaildropdown");
+            QueryClient.invalidateQueries("categpryDetails");
           } else {
-            toast.error(" Something is wrong");
+            toast.error(" Something went wrong");
           }
         })
-        .catch((error) => toast.error(" Something is wrong"));
+        .catch((error) => toast.error(" Something went wrong"));
     }
 
     setSelectedMulti(selected);
@@ -152,14 +171,20 @@ const UseCategoryDetail = () => {
       .then((result3) => {
         if (result3.status === 200) {
           toast.success("Updated Successfully");
+          QueryClient.invalidateQueries("resourceTypedropdown");
+          QueryClient.invalidateQueries("categpryDetaildropdown");
+          QueryClient.invalidateQueries("categpryDetails");
         } else if (result3.status === 204) {
           toast.success("Updated Successfully");
+          QueryClient.invalidateQueries("resourceTypedropdown");
+          QueryClient.invalidateQueries("categpryDetaildropdown");
+          QueryClient.invalidateQueries("categpryDetails");
         } else {
-          toast.error(" Something is wrong");
+          toast.error(" Something went wrong");
         }
         setModal_static(false);
       })
-      .catch((error) => toast.error(" Something is wrong"));
+      .catch((error) => toast.error(" Something went wrong"));
 
     setModal_static1(false);
   };

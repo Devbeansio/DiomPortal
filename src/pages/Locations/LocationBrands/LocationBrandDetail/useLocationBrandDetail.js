@@ -4,11 +4,12 @@ import { toast } from "react-toastify";
 import { useParams } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import { getBranddDetail } from "../../../../APIS/locationBrands";
-import { useQuery } from "react-query";
+import { useQueryClient, useQuery } from "react-query";
 import { getBranddDetaildropdown } from "../../../../APIS/locationBrands";
 import { getBrandallocationdropdown } from "../../../../APIS/locationBrands";
 
 const useLocationBrandDetail = () => {
+  const QueryClient = useQueryClient();
   const [error, setError] = useState(null);
   const [locationBrandData, setLocationBrandData] = useState({});
   const [selectedMulti, setSelectedMulti] = useState();
@@ -79,10 +80,16 @@ const useLocationBrandDetail = () => {
           .then((result3) => {
             if (result3.status === 200) {
               toast.success("Updated Successfully");
+              QueryClient.invalidateQueries("Brandlocations");
+              QueryClient.invalidateQueries("BrandDetaildropdown");
+              QueryClient.invalidateQueries("BrandDetail");
             } else if (result3.status === 204) {
               toast.success("Updated Successfully");
+              QueryClient.invalidateQueries("Brandlocations");
+              QueryClient.invalidateQueries("BrandDetaildropdown");
+              QueryClient.invalidateQueries("BrandDetail");
             } else {
-              toast.error(" Something is wrong");
+              toast.error(" Something went wrong");
             }
           })
           .catch((error) => console.log("error", error));
@@ -113,13 +120,19 @@ const useLocationBrandDetail = () => {
         .then((result3) => {
           if (result3.status === 200) {
             toast.success(" Successfully Deleted");
+            QueryClient.invalidateQueries("Brandlocations");
+            QueryClient.invalidateQueries("BrandDetaildropdown");
+            QueryClient.invalidateQueries("BrandDetail");
           } else if (result3.status === 204) {
             toast.success(" Successfullyn Deleted");
+            QueryClient.invalidateQueries("Brandlocations");
+            QueryClient.invalidateQueries("BrandDetaildropdown");
+            QueryClient.invalidateQueries("BrandDetail");
           } else {
-            toast.error(" Something is wrong");
+            toast.error(" Something went wrong");
           }
         })
-        .catch((error) => toast.error(" Something is wrong"));
+        .catch((error) => toast.error(" Something went wrong"));
     }
 
     setSelectedMulti(selected);
@@ -144,14 +157,20 @@ const useLocationBrandDetail = () => {
       .then((result3) => {
         if (result3.status === 200) {
           toast.success("Updated Successfully");
+          QueryClient.invalidateQueries("Brandlocations");
+          QueryClient.invalidateQueries("BrandDetaildropdown");
+          QueryClient.invalidateQueries("BrandDetail");
         } else if (result3.status === 204) {
           toast.success("Updated Successfully");
+          QueryClient.invalidateQueries("Brandlocations");
+          QueryClient.invalidateQueries("BrandDetaildropdown");
+          QueryClient.invalidateQueries("BrandDetail");
         } else {
-          toast.error(" Something is wrong");
+          toast.error(" Something went wrong");
         }
         setModal_static(false);
       })
-      .catch((error) => toast.error(" Something is wrong"));
+      .catch((error) => toast.error(" Something went wrong"));
   };
 
   const postbrandLocations = () => {
@@ -172,14 +191,20 @@ const useLocationBrandDetail = () => {
       .then((result3) => {
         if (result3.status === 200) {
           toast.success("Updated Successfully");
+          QueryClient.invalidateQueries("Brandlocations");
+          QueryClient.invalidateQueries("BrandDetaildropdown");
+          QueryClient.invalidateQueries("BrandDetail");
         } else if (result3.status === 204) {
           toast.success("Updated Successfully");
+          QueryClient.invalidateQueries("Brandlocations");
+          QueryClient.invalidateQueries("BrandDetaildropdown");
+          QueryClient.invalidateQueries("BrandDetail");
         } else {
-          toast.error(" Something is wrong");
+          toast.error(" Something went wrong");
         }
         setModal_static(false);
       })
-      .catch((error) => toast.error(" Something is wrong"));
+      .catch((error) => toast.error(" Something went wrong"));
 
     setModal_static1(false);
   };

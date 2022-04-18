@@ -35,7 +35,7 @@
 //           toast.success("Updated Successfully");
 //           getlocations();
 //         } else {
-//           toast.error(" Something is wrong");
+//           toast.error(" Something went wrong");
 //         }
 
 //         setEnableEdit(false);
@@ -43,7 +43,7 @@
 
 //         // getdiomBrandfunc()
 //       })
-//       .catch((error) => toast.error(" Something is wrong"));
+//       .catch((error) => toast.error(" Something went wrong"));
 //   };
 
 //   const imagedeletedfunc = (_id) => {
@@ -59,7 +59,7 @@
 //         toast.success("Deleted Successfully");
 //         getlocations();
 //       })
-//       .catch((error) => toast.error(" Something is wrong"));
+//       .catch((error) => toast.error(" Something went wrong"));
 //   };
 
 //   return (

@@ -9,8 +9,8 @@ import { DIOM_BASED_URLS } from "../config/url";
  */
 
 export const getResourceTypes = async (
-  size = 30,
-  page = 1,
+  size,
+  page,
   token = "",
   applyFilter = false,
   filters = {}
@@ -103,7 +103,8 @@ export const getSearchedResourceTypes = async (token = "") => {
 export const getResourceResourceType = async (token = "", id) => {
   return await (
     await await fetch(
-      `${DIOM_BASED_URLS}/admin-resources-inventories?filter={ "where" : { "businessName" : ${id}}}`,
+      // `${DIOM_BASED_URLS}/admin-resources-inventories?filter={ "where" : { "businessName" : ${id}}}`,
+      `${DIOM_BASED_URLS}/admin-resources-inventories?filter={ "where" : { "ResourceTypeId" : ${id}}}`,
       {
         method: "GET",
         redirect: "follow",

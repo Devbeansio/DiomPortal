@@ -10,43 +10,32 @@ import AppRoute from "./routes/route";
 import VerticalLayout from "./components/VerticalLayout/";
 import HorizontalLayout from "./components/HorizontalLayout/";
 import NonAuthLayout from "./components/NonAuthLayout";
+// import firebase from "./firebase";
 
 // Import scss
 import "./assets/scss/theme.scss";
 
 //Fake backend
 import fakeBackend from "./helpers/AuthType/fakeBackend";
+import "./firebase";
 
-//Firebase helper
-// import { initFirebaseBackend } from "./helpers/firebase_helper";
+import { getMessaging, onMessage, getToken } from "firebase/messaging";
 
-// Activating fake backend
 fakeBackend();
 
-// const firebaseConfig = {
-// 	apiKey: process.env.REACT_APP_APIKEY,
-// 	authDomain: process.env.REACT_APP_AUTHDOMAIN,
-// 	databaseURL: process.env.REACT_APP_DATABASEURL,
-// 	projectId: process.env.REACT_APP_PROJECTID,
-// 	storageBucket: process.env.REACT_APP_STORAGEBUCKET,
-// 	messagingSenderId: process.env.REACT_APP_MESSAGINGSENDERID,
-// 	appId: process.env.REACT_APP_APPID,
-// 	measurementId: process.env.REACT_APP_MEASUREMENTID,
-// };
-
-// init firebase backend
-// initFirebaseBackend(firebaseConfig);
+const messaging = getMessaging();
+onMessage(messaging, (payload) => {
+  console.log("Message received. ", payload);
+  // ...
+});
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {};
-    // this.getLayout = this.getLayout.bind(this);
+    // onMessageListener();
   }
 
-  /**
-   * Returns the layout
-   */
   getLayout = () => {
     let layoutCls = VerticalLayout;
 
@@ -60,6 +49,32 @@ class App extends Component {
     }
     return layoutCls;
   };
+
+  componentDidMount() {
+    const messaging = getMessaging();
+    getToken(messaging, {
+      vapidKey:
+        "BM1fWytNemYmBDWXErhlC830Pawh6YMuAXqU1T7XWsUm5_U7ZCXIZipfmwkcLIOlcz8uexN7u-9EtqpQWChFb-E",
+    })
+      .then((currentToken) => {
+        if (currentToken) {
+          console.log(currentToken);
+        } else {
+          console.log(
+            "No registration token available. Request permission to generate one."
+          );
+          // ...
+        }
+      })
+      .catch((err) => {
+        console.log("An error occurred while retrieving token. ", err);
+        // ...
+      });
+
+    // onMessage(getMessaging(), (payload) => {
+    //   console.log("Message received. ", payload);
+    // });
+  }
 
   render() {
     const Layout = this.getLayout();
