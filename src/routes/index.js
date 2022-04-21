@@ -65,7 +65,7 @@ import CategoriesDetail from "../pages/Inventories/Categories/CategoriesDetail";
 import RequestBookings from "../pages/MyDashboard/RequestBookings/index.js";
 import UserProfileDetail from "../pages/UserProfile/UserProfileDetail/index.js";
 import CreateCategory from "../pages/Inventories/Categories/createCategory";
-
+import NotificationListingPage from "../pages/Notifications/notificationListingPage";
 const authProtectedRoutes = [
   { path: "/mydashboard", component: MyDashboard },
   { path: "/categoriesdetail/:id", component: CategoriesDetail },
@@ -82,6 +82,7 @@ const authProtectedRoutes = [
   { path: "/resourcetype", component: ResourceType },
   { path: "/categories", component: Categories },
   { path: "/createcategory", component: CreateCategory },
+  { path: "/notificationListingPage", component: NotificationListingPage },
 
   {
     path: "/resourcedetailed/:id/:resourceTypeKey",

@@ -1,176 +1,326 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Dropdown, DropdownToggle, DropdownMenu, Row, Col } from "reactstrap";
 import SimpleBar from "simplebar-react";
-
-//i18b
+import moment from "moment";
+import { getMessaging, onMessage } from "firebase/messaging";
+import "../../../firebase";
 import { withNamespaces } from "react-i18next";
+import UseNotifications from "../../../pages/Notifications/useNotifications";
+const NotificationDropdown = () => {
+  const [menu, setMenu] = useState(false);
+  const [notifications, setNotifications] = useState();
 
-//Import images
-import avatar3 from "../../../assets/images/users/avatar-3.jpg";
-import avatar4 from "../../../assets/images/users/avatar-4.jpg";
+  const { adminNotificationdata } = UseNotifications();
+  // console.log("adminNotificationdata : ", adminNotificationdata.data);
 
-class NotificationDropdown extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      menu: false,
-    };
-    this.toggle = this.toggle.bind(this);
-  }
+  const toggle = () => {
+    setMenu((prevState) => !prevState.menu);
+  };
 
-  toggle() {
-    this.setState((prevState) => ({
-      menu: !prevState.menu,
-    }));
-  }
-  render() {
-    return (
-      <React.Fragment>
-        <Dropdown
-          isOpen={this.state.menu}
-          toggle={this.toggle}
-          className="d-inline-block"
+  const messaging = getMessaging();
+
+  useEffect(() => {
+    onMessage(messaging, (payload) => {
+      setNotifications(payload.notification);
+    });
+  }, []);
+
+  return (
+    <React.Fragment>
+      <Dropdown isOpen={menu} toggle={toggle} className="d-inline-block">
+        <DropdownToggle
+          tag="button"
+          className="btn header-item noti-icon waves-effect"
+          id="page-header-notifications-dropdown"
         >
-          <DropdownToggle
-            tag="button"
-            className="btn header-item noti-icon waves-effect"
-            id="page-header-notifications-dropdown"
-          >
-            <i className="ri-notification-3-line"></i>
-            <span className="noti-dot"></span>
-          </DropdownToggle>
-          <DropdownMenu
-            className="dropdown-menu-end dropdown-menu-lg p-0"
-            aria-labelledby="page-header-notifications-dropdown"
-          >
-            <div className="p-3">
-              <Row className="align-items-center">
-                <Col>
-                  <h6 className="m-0"> {this.props.t("Notifications")} </h6>
-                </Col>
-                <div className="col-auto">
-                  <Link to="" className="small">
-                    {" "}
-                    {this.props.t("View All")}
-                  </Link>
-                </div>
-              </Row>
-            </div>
-            <SimpleBar style={{ maxHeight: "230px" }}>
-              <Link to="#" className="text-reset notification-item">
-                <div className="d-flex">
-                  <div className="avatar-xs me-3">
-                    <span className="avatar-title bg-primary rounded-circle font-size-16">
-                      <i className="ri-shopping-cart-line"></i>
-                    </span>
-                  </div>
-                  <div className="flex-1">
-                    <h6 className="mt-0 mb-1">
-                      {this.props.t("Your order is placed")}
-                    </h6>
-                    <div className="font-size-12 text-muted">
-                      <p className="mb-1">
-                        {this.props.t(
-                          "If several languages coalesce the grammar"
-                        )}
-                      </p>
-                      <p className="mb-0">
-                        <i className="mdi mdi-clock-outline"></i>{" "}
-                        {this.props.t("3 min ago")}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </Link>
-              <Link to="#" className="text-reset notification-item">
-                <div className="d-flex">
-                  <img
-                    src={avatar3}
-                    className="me-3 rounded-circle avatar-xs"
-                    alt="user-pic"
-                  />
-                  <div className="flex-1">
-                    <h6 className="mt-0 mb-1">
-                      {this.props.t("James Lemire")}
-                    </h6>
-                    <div className="font-size-12 text-muted">
-                      <p className="mb-1">
-                        {this.props.t("It will seem like simplified English.")}
-                      </p>
-                      <p className="mb-0">
-                        <i className="mdi mdi-clock-outline"></i>{" "}
-                        {this.props.t("1 hours ago")}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </Link>
-              <Link to="#" className="text-reset notification-item">
-                <div className="d-flex">
-                  <div className="avatar-xs me-3">
-                    <span className="avatar-title bg-success rounded-circle font-size-16">
-                      <i className="ri-checkbox-circle-line"></i>
-                    </span>
-                  </div>
-                  <div className="flex-1">
-                    <h6 className="mt-0 mb-1">
-                      {this.props.t("Your item is shipped")}
-                    </h6>
-                    <div className="font-size-12 text-muted">
-                      <p className="mb-1">
-                        {this.props.t(
-                          "If several languages coalesce the grammar"
-                        )}
-                      </p>
-                      <p className="mb-0">
-                        <i className="mdi mdi-clock-outline"></i>{" "}
-                        {this.props.t("3 min ago")}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </Link>
+          <i className="ri-notification-3-line"></i>
+          <span className="noti-dot"></span>
+        </DropdownToggle>
+        <DropdownMenu
+          className="dropdown-menu-end dropdown-menu-lg p-0"
+          aria-labelledby="page-header-notifications-dropdown"
+        >
+          <div className="p-3">
+            <Row className="align-items-center">
+              <Col>
+                <h6 className="m-0"> {"Notifications"} </h6>
+              </Col>
+              <div className="col-auto">
+                <Link to="/notificationListingPage" className="small">
+                  {"View All"}
+                </Link>
+              </div>
+            </Row>
+          </div>
+          <SimpleBar style={{ maxHeight: "230px" }}>
+            <Link to="#" className="text-reset notification-item">
+              <div className="d-flex flex-column">
+                {adminNotificationdata?.data.map((e) => (
+                  <div>
+                    {e?.redirectTo === "BOOKING" ? (
+                      // <Link to={`/bookingdetail/${e.bookingId}/1}`}>
+                      <div>
+                        {e.actionType === "CANCELLED_BOOKING" ? (
+                          <Link to={`/bookingdetail/${e.bookingId}/1}`}>
+                            <div className="flex-1" key={e?.id}>
+                              <div>
+                                <i className="mdi mdi-minus-circle revokedmarkcircle">
+                                  <span className="mt-0 mb-1 ">{e?.title}</span>
+                                </i>
+                                <div className="font-size-12 text-muted">
+                                  <p className="mb-1">{e?.body}</p>
+                                  <p className="mb-0">
+                                    <i className="mdi mdi-clock-outline"></i>
 
-              <Link to="#" className="text-reset notification-item">
-                <div className="d-flex">
-                  <img
-                    src={avatar4}
-                    className="me-3 rounded-circle avatar-xs"
-                    alt="user-pic"
-                  />
-                  <div className="flex-1">
-                    <h6 className="mt-0 mb-1">
-                      {this.props.t("Salena Layfield")}
-                    </h6>
-                    <div className="font-size-12 text-muted">
-                      <p className="mb-1">
-                        {this.props.t(
-                          "As a skeptical Cambridge friend of mine occidental."
-                        )}
-                      </p>
-                      <p className="mb-0">
-                        <i className="mdi mdi-clock-outline"></i>{" "}
-                        {this.props.t("1 hours ago")}
-                      </p>
-                    </div>
+                                    {moment
+                                      .utc(e?.createdAt)
+                                      .local()
+                                      .startOf("seconds")
+                                      .fromNow()}
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+                          </Link>
+                        ) : e.actionType === "REVOKED_BOOKING" ? (
+                          <Link to={`/bookingdetail/${e.bookingId}/1}`}>
+                            <div className="flex-1" key={e?.id}>
+                              <div>
+                                <i className="mdi mdi-alert-circle revokedmarkcircle">
+                                  <span className="mt-0 mb-1">{e?.title}</span>
+                                </i>
+                                <div className="font-size-12 text-muted">
+                                  <p className="mb-1">{e?.body}</p>
+                                  <p className="mb-0">
+                                    <i className="mdi mdi-clock-outline"></i>
+
+                                    {moment
+                                      .utc(e?.createdAt)
+                                      .local()
+                                      .startOf("seconds")
+                                      .fromNow()}
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+                          </Link>
+                        ) : e.actionType === "SUCCESS_BOOKING" ? (
+                          <Link to={`/bookingdetail/${e.bookingId}/1}`}>
+                            <div className="flex-1" key={e?.id}>
+                              <div>
+                                <i className="mdi mdi-checkbox-marked-circle succesmarkcircle">
+                                  <span className="mt-0 mb-1">{e?.title}</span>
+                                </i>
+                                <div className="font-size-12 text-muted">
+                                  <p className="mb-1">{e?.body}</p>
+                                  <p className="mb-0">
+                                    <i className="mdi mdi-clock-outline"></i>
+
+                                    {moment
+                                      .utc(e?.createdAt)
+                                      .local()
+                                      .startOf("seconds")
+                                      .fromNow()}
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+                          </Link>
+                        ) : e.actionType === "ALERT" ? (
+                          <Link to={`/bookingdetail/${e.bookingId}/1}`}>
+                            <div className="flex-1" key={e?.id}>
+                              <div>
+                                <i className="mdi mdi-alert-circle revokedmarkcircle">
+                                  <span className="mt-0 mb-1 ml-1">
+                                    {e?.title}
+                                  </span>
+                                </i>
+                                <div className="font-size-12 text-muted">
+                                  <p className="mb-1">{e?.body}</p>
+                                  <p className="mb-0">
+                                    <i className="mdi mdi-clock-outline"></i>
+
+                                    {moment
+                                      .utc(e?.createdAt)
+                                      .local()
+                                      .startOf("seconds")
+                                      .fromNow()}
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+                          </Link>
+                        ) : e.actionType === "INFO" ? (
+                          <Link to={`/bookingdetail/${e.bookingId}/1}`}>
+                            <div className="flex-1" key={e?.id}>
+                              <div>
+                                <i className="mdi mdi-information requestmarkcircle">
+                                  <span className="mt-0 mb-1">{e?.title}</span>
+                                </i>
+                                <div className="font-size-12 text-muted">
+                                  <p className="mb-1">{e?.body}</p>
+                                  <p className="mb-0">
+                                    <i className="mdi mdi-clock-outline"></i>
+
+                                    {moment
+                                      .utc(e?.createdAt)
+                                      .local()
+                                      .startOf("seconds")
+                                      .fromNow()}
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+                          </Link>
+                        ) : null}
+                      </div>
+                    ) : e?.redirectTo === "USER" ? (
+                      <div>
+                        {/* <Link to={`/userprofiledetail/${e.userId}`}> */}
+                        <div>
+                          {e.actionType === "CANCELLED_BOOKING" ? (
+                            <Link to={`/userprofiledetail/${e.userId}`}>
+                              <div className="flex-1" key={e?.id}>
+                                <div>
+                                  <i className="mdi mdi-minus-circle revokedmarkcircle">
+                                    <span className="mt-0 mb-1 ">
+                                      {e?.title}
+                                    </span>
+                                  </i>
+                                  <div className="font-size-12 text-muted">
+                                    <p className="mb-1">{e?.body}</p>
+                                    <p className="mb-0">
+                                      <i className="mdi mdi-clock-outline"></i>
+
+                                      {moment
+                                        .utc(e?.createdAt)
+                                        .local()
+                                        .startOf("seconds")
+                                        .fromNow()}
+                                    </p>
+                                  </div>
+                                </div>
+                              </div>
+                            </Link>
+                          ) : e.actionType === "REVOKED_BOOKING" ? (
+                            <Link to={`/userprofiledetail/${e.userId}`}>
+                              <div className="flex-1" key={e?.id}>
+                                <div>
+                                  <i className="mdi mdi-alert-circle revokedmarkcircle">
+                                    <span className="mt-0 mb-1">
+                                      {e?.title}
+                                    </span>
+                                  </i>
+                                  <div className="font-size-12 text-muted">
+                                    <p className="mb-1">{e?.body}</p>
+                                    <p className="mb-0">
+                                      <i className="mdi mdi-clock-outline"></i>
+
+                                      {moment
+                                        .utc(e?.createdAt)
+                                        .local()
+                                        .startOf("seconds")
+                                        .fromNow()}
+                                    </p>
+                                  </div>
+                                </div>
+                              </div>
+                            </Link>
+                          ) : e.actionType === "SUCCESS_BOOKING" ? (
+                            <Link to={`/userprofiledetail/${e.userId}`}>
+                              <div className="flex-1" key={e?.id}>
+                                <div>
+                                  <i className="mdi mdi-checkbox-marked-circle succesmarkcircle">
+                                    <span className="mt-0 mb-1">
+                                      {e?.title}
+                                    </span>
+                                  </i>
+                                  <div className="font-size-12 text-muted">
+                                    <p className="mb-1">{e?.body}</p>
+                                    <p className="mb-0">
+                                      <i className="mdi mdi-clock-outline"></i>
+
+                                      {moment
+                                        .utc(e?.createdAt)
+                                        .local()
+                                        .startOf("seconds")
+                                        .fromNow()}
+                                    </p>
+                                  </div>
+                                </div>
+                              </div>
+                            </Link>
+                          ) : e.actionType === "ALERT" ? (
+                            <Link to={`/userprofiledetail/${e.userId}`}>
+                              <div className="flex-1" key={e?.id}>
+                                <div>
+                                  <i className="mdi mdi-alert-circle revokedmarkcircle">
+                                    <span className="mt-0 mb-1 ml-1">
+                                      {e?.title}
+                                    </span>
+                                  </i>
+                                  <div className="font-size-12 text-muted">
+                                    <p className="mb-1">{e?.body}</p>
+                                    <p className="mb-0">
+                                      <i className="mdi mdi-clock-outline"></i>
+
+                                      {moment
+                                        .utc(e?.createdAt)
+                                        .local()
+                                        .startOf("seconds")
+                                        .fromNow()}
+                                    </p>
+                                  </div>
+                                </div>
+                              </div>
+                            </Link>
+                          ) : e.actionType === "INFO" ? (
+                            <Link to={`/userprofiledetail/${e.userId}`}>
+                              <div className="flex-1" key={e?.id}>
+                                <div>
+                                  <i className="mdi mdi-information requestmarkcircle">
+                                    <span className="mt-0 mb-1">
+                                      {e?.title}
+                                    </span>
+                                  </i>
+                                  <div className="font-size-12 text-muted">
+                                    <p className="mb-1">{e?.body}</p>
+                                    <p className="mb-0">
+                                      <i className="mdi mdi-clock-outline"></i>
+
+                                      {moment
+                                        .utc(e?.createdAt)
+                                        .local()
+                                        .startOf("seconds")
+                                        .fromNow()}
+                                    </p>
+                                  </div>
+                                </div>
+                              </div>
+                            </Link>
+                          ) : null}
+                        </div>
+                      </div>
+                    ) : null}
                   </div>
-                </div>
-              </Link>
-            </SimpleBar>
-            <div className="p-2 border-top">
-              <Link
-                to="#"
-                className="btn btn-sm btn-link font-size-14 btn-block text-center"
-              >
-                <i className="mdi mdi-arrow-right-circle me-1"></i>
-                {this.props.t(" View More")}
-              </Link>
-            </div>
-          </DropdownMenu>
-        </Dropdown>
-      </React.Fragment>
-    );
-  }
-}
-export default withNamespaces()(NotificationDropdown);
+                ))}
+              </div>
+            </Link>
+          </SimpleBar>
+          <div className="p-2 border-top">
+            <Link
+              to="/notificationListingPage"
+              className="btn btn-sm btn-link font-size-14 btn-block text-center"
+            >
+              <i className="mdi mdi-arrow-right-circle me-1"></i>
+              {" View More"}
+            </Link>
+          </div>
+        </DropdownMenu>
+      </Dropdown>
+    </React.Fragment>
+  );
+};
+
+export default NotificationDropdown;

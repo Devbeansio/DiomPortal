@@ -107,6 +107,12 @@ const RequestBookings = () => {
       dataField: "userId",
       text: "Customer ID",
       sort: true,
+      formatter: (cell, row) => (
+        <Link to={`/checkedincustomerdetail/${row.userId}`} className="link">
+          {" "}
+          {cell}{" "}
+        </Link>
+      ),
     },
     {
       dataField: "userName",
@@ -139,6 +145,12 @@ const RequestBookings = () => {
       dataField: "invoiceNumber",
       text: "Invoice ID",
       sort: true,
+      formatter: (cell, row) => (
+        <Link to={`/invoicesdetailpage/${row.invoiceNumber}`} className="link">
+          {" "}
+          {cell}{" "}
+        </Link>
+      ),
     },
     {
       dataField: "bookingStatus",
@@ -175,6 +187,12 @@ const RequestBookings = () => {
       dataField: "userId",
       text: "Customer ID",
       sort: true,
+      formatter: (cell, row) => (
+        <Link to={`/checkedincustomerdetail/${row.userId}`} className="link">
+          {" "}
+          {cell}{" "}
+        </Link>
+      ),
     },
     {
       dataField: "userName",

@@ -58,7 +58,7 @@ class App extends Component {
     })
       .then((currentToken) => {
         if (currentToken) {
-          console.log(currentToken);
+          // console.log(currentToken);
         } else {
           console.log(
             "No registration token available. Request permission to generate one."

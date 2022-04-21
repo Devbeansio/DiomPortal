@@ -45,6 +45,7 @@ const columns = [
     dataField: "resourcetype",
     text: "Resource Type",
     sort: true,
+    style: { width: "40%" },
   },
 ];
 
@@ -139,7 +140,7 @@ const Categories = () => {
                                     bordered={false}
                                     striped={false}
                                     defaultSorted={defaultSorted}
-                                    classes={"table align-middle table-nowrap"}
+                                    classes={"table align-middle  "}
                                     headerWrapperClasses={"thead-light"}
                                     {...toolkitProps.baseProps}
                                     {...paginationTableProps}

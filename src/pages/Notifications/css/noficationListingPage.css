@@ -1,0 +1,21 @@
+.notificationcardcss{
+    height:70px;
+    padding: 23px;
+}
+.succesmarkcircle{
+
+    color:green;
+}
+
+.revertcirclecolorcss{
+    color: black;
+    font-weight: 600;
+    padding-left: 10px;
+}
+.revokedmarkcircle{
+
+    color:orange;
+}
+.requestmarkcircle{
+    color: lightskyblue;
+}

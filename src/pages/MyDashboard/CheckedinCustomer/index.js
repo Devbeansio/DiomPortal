@@ -40,8 +40,7 @@ const columns = [
     sort: true,
     formatter: (cell, row) => (
       <Link to={`/checkedincustomerdetail/${row._id}`} className="link">
-        {" "}
-        {cell}{" "}
+        {cell}
       </Link>
     ),
   },
@@ -165,7 +164,7 @@ const CheckedinCustomer = () => {
 
                               <Row>
                                 <Col xl="12">
-                                  <div className="table-responsive">
+                                  <div className="table-responsive ">
                                     <BootstrapTable
                                       hover
                                       keyField={"id"}

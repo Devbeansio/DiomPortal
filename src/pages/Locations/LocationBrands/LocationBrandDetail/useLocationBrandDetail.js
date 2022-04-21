@@ -7,7 +7,7 @@ import { getBranddDetail } from "../../../../APIS/locationBrands";
 import { useQueryClient, useQuery } from "react-query";
 import { getBranddDetaildropdown } from "../../../../APIS/locationBrands";
 import { getBrandallocationdropdown } from "../../../../APIS/locationBrands";
-
+import moment from "moment";
 const useLocationBrandDetail = () => {
   const QueryClient = useQueryClient();
   const [error, setError] = useState(null);
@@ -30,6 +30,9 @@ const useLocationBrandDetail = () => {
   };
 
   const startTimeFunc = (e) => {
+    const bb = e.target.value;
+    const aa = moment(bb).format("h:mm:ss a");
+    console.log("e", aa);
     setStartTime(e.target.value);
   };
   const endTimeFunc = (e) => {
@@ -224,10 +227,10 @@ const useLocationBrandDetail = () => {
     getBranddDetaildropdown(token, id)
   );
   const BrandDetailDropDownDailedData = BrandDetailDropDownData.data;
-  console.log(
-    "BrandDetailDropDownDailedData : ",
-    BrandDetailDropDownDailedData
-  );
+  // console.log(
+  //   "BrandDetailDropDownDailedData : ",
+  //   BrandDetailDropDownDailedData
+  // );
   // *************
   const getBrandDetaildropdown = async () => {
     const matadata = BrandDetailDropDownDailedData.map((element) => {

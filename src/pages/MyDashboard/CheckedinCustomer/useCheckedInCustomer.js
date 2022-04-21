@@ -17,7 +17,7 @@ export const useCheckedInCustomer = () => {
   const {
     data: { data: customerCheckInData, hasNextPage, hasPreviousPage, total },
     isLoading,
-  } = usePaginatedQuery(["checkedcustomer", currentPage], () =>
+  } = usePaginatedQuery(["checkedcustomers", currentPage], () =>
     getcustomers(pageSize, currentPage, token, applyLocationFilter, filter)
   );
   // console.log("customerCheckInData : ", customerCheckInData);

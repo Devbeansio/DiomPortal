@@ -59,7 +59,7 @@ const LocationBrandDetail = () => {
       ) : (
         <div className="page-content">
           <Row className="mb-3">
-            {console.log("locationBrandData : ", locationBrandData.name)}
+            {/* {console.log("locationBrandData : ", locationBrandData.name)} */}
             <Col md={4}>
               <Link to="/locationbrands" className="link">
                 <span className="fas fa-angle-left arrowheightwidth"></span>

@@ -14,38 +14,23 @@ import { useBookingDetails } from "./useBookingDetails";
 const BookingDetail = () => {
   const {
     error,
-    setError,
     bookingDetails,
-    setBookingDetails,
     checkInCheckout,
-    setCheckInCheckout,
     // bookingUserName,
     // setBookingUserName,
-    userBookings,
-    setUserBookings,
-    loaded,
-    setLoaded,
     guestData,
-    setGuestData,
     revokeBookingStatus,
-    setRevokeBookingStatus,
-    bookingdetails,
-    guestinfofunc,
     abc,
     isLoading,
     setAbc,
-    bookingusername,
-    checkinCheckoutfunc,
     // getrevokedbookings,
     userbookingData,
   } = useBookingDetails();
 
   const Loader = require("react-loader");
-  const history = useHistory();
-  const token = localStorage.getItem("Token");
+
   const { id, t_ID } = useParams();
   const componentRef = useRef();
-
   const handlePrint = useReactToPrint({
     content: () => componentRef.current,
     copyStyles: true,
@@ -87,29 +72,6 @@ const BookingDetail = () => {
                   </Button>
                 </Col>
               </Row>
-            </div>
-
-            <div style={{ display: "none" }}>
-              <div ref={componentRef}>
-                {abc &&
-                  bookingDetails &&
-                  userbookingData &&
-                  guestData &&
-                  checkInCheckout &&
-                  revokeBookingStatus &&
-                  id && (
-                    <Bookingdetailcomponent
-                      bookings={{
-                        bookingDetails,
-                        userbookingData,
-                        guestData,
-                        checkInCheckout,
-                        revokeBookingStatus,
-                        id,
-                      }}
-                    />
-                  )}
-              </div>
             </div>
 
             <div>
@@ -537,9 +499,7 @@ const BookingDetail = () => {
                             </Col>
                             <Col md={6}>
                               <p className="fontcolor">
-                                {userbookingData
-                                  ? userbookingData.DateOfBirth
-                                  : "N/A"}
+                                {userbookingData ? userbookingData.dob : "N/A"}
                               </p>
                             </Col>
                           </Row>
@@ -550,7 +510,7 @@ const BookingDetail = () => {
                             <Col md={6}>
                               <p className="fontcolor">
                                 {userbookingData
-                                  ? userbookingData.Address
+                                  ? userbookingData.address
                                   : "N/A"}
                               </p>
                             </Col>
@@ -562,7 +522,7 @@ const BookingDetail = () => {
                             <Col md={6}>
                               <p className="fontcolor">
                                 {userbookingData
-                                  ? userbookingData.State
+                                  ? userbookingData.state
                                   : "N/A"}
                               </p>
                             </Col>
@@ -574,7 +534,7 @@ const BookingDetail = () => {
                             <Col md={6}>
                               <p className="fontcolor">
                                 {userbookingData
-                                  ? userbookingData.CityName
+                                  ? userbookingData.cityName
                                   : "N/A"}
                               </p>
                             </Col>
@@ -588,6 +548,31 @@ const BookingDetail = () => {
                   <Col md={1}></Col>
                 </Row>
               </Card>
+            </div>
+
+            <div style={{ display: "none" }}>
+              <div ref={componentRef}>
+                {bookingDetails &&
+                  userbookingData &&
+                  id &&
+                  (console.log(
+                    "bookingDetails ",
+                    bookingDetails ? bookingDetails : null
+                  ),
+                  console.log(
+                    "userbookingData ",
+                    userbookingData ? userbookingData : null
+                  ),
+                  (
+                    <Bookingdetailcomponent
+                      bookings={{
+                        bookingDetails,
+                        userbookingData,
+                        id,
+                      }}
+                    />
+                  ))}
+              </div>
             </div>
           </div>
         )}

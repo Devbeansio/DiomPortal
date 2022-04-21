@@ -7,12 +7,14 @@ import "./css/Login.css";
 import { AvForm, AvField } from "availity-reactstrap-validation";
 import { checkLogin, apiError } from "../../store/actions";
 import { DIOM_BASED_URLS } from "../../config/url";
+import { getMessaging, onMessage, getToken } from "firebase/messaging";
 const Login = () => {
   const [username, setUsername] = useState("humx7898@gmail.com");
   const [userpassword, setUserpassword] = useState("123456789Abc");
   const dispatch = useDispatch();
   const history = useHistory();
   const { loginError } = useSelector((state) => state.Login);
+  const [currentTokenOfUser, setCurrentTokenOfUser] = useState("");
 
   const handleSubmit = (event, values) => {
     // *************API START***************
@@ -25,6 +27,7 @@ const Login = () => {
       body: JSON.stringify({
         email: username,
         password: userpassword,
+        userDeviceToken: currentTokenOfUser,
       }),
     })
       .then((response) => response.json())
@@ -44,6 +47,16 @@ const Login = () => {
     setUsername(e.target.value);
   };
   useEffect(() => {
+    const messaging = getMessaging();
+    getToken(messaging, {
+      vapidKey:
+        "BM1fWytNemYmBDWXErhlC830Pawh6YMuAXqU1T7XWsUm5_U7ZCXIZipfmwkcLIOlcz8uexN7u-9EtqpQWChFb-E",
+    }).then((currentToken) => {
+      if (currentToken) {
+        setCurrentTokenOfUser(currentToken);
+      }
+    });
+
     dispatch(apiError(""));
     document.body.classList.add("auth-body-bg");
     return document.body.classList.remove("auth-body-bg");

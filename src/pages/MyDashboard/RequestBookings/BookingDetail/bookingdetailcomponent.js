@@ -1,10 +1,10 @@
 import React from "react";
-import { Card, Row, Col, CardBody, Table, Container } from "reactstrap";
+import { Card, Row, Col, CardBody, Table } from "reactstrap";
 import SimpleBar from "simplebar-react";
 import "./css/bookingdetail.css";
 import moment from "moment";
 const Bookingdetailcomponent = (bookings) => {
-  console.log("bookings : ", bookings);
+  console.log("bookings abc : ", bookings);
   return (
     <div>
       <Row>
@@ -54,7 +54,7 @@ const Bookingdetailcomponent = (bookings) => {
                       </Col>
                       <Col xs={6}>
                         <p className="fontcolor">
-                          {bookings.id ? bookings.revokebookingstatus : "N/A"}
+                          {bookings.bookings.id ? bookings.bookings.id : "N/A"}
                         </p>
                       </Col>
                     </Row>
@@ -64,8 +64,8 @@ const Bookingdetailcomponent = (bookings) => {
                       </Col>
                       <Col xs={6}>
                         <p className="fontcolor">
-                          {bookings.bookingDetails.bookingType
-                            ? bookings.bookingDetails.bookingType
+                          {bookings.bookings.bookingDetails
+                            ? bookings.bookings.bookingDetails.bookingType
                             : "N/A"}
                         </p>
                       </Col>
@@ -76,18 +76,18 @@ const Bookingdetailcomponent = (bookings) => {
                       </Col>
                       <Col xs={7}>
                         <p className="fontcolors">
-                          {bookings.bookingDetails.fromTime
-                            ? moment(bookings.bookingDetails.fromTime).format(
-                                "DD/MM/YYYY "
-                              )
+                          {bookings.bookings.bookingDetails
+                            ? moment(
+                                bookings.bookings.bookingDetails.fromTime
+                              ).format("DD/MM/YYYY ")
                             : "N/A"}
                           <span style={{ marginRight: 10, marginLeft: 10 }}>
                             -
                           </span>
-                          {bookings.bookingDetails.toTime
-                            ? moment(bookings.bookingDetails.toTime).format(
-                                "DD/MM/YYYY "
-                              )
+                          {bookings.bookings.bookingDetails
+                            ? moment(
+                                bookings.bookings.bookingDetails.toTime
+                              ).format("DD/MM/YYYY ")
                             : "N/A"}
                         </p>
                       </Col>
@@ -99,18 +99,18 @@ const Bookingdetailcomponent = (bookings) => {
                       </Col>
                       <Col xs={6}>
                         <p className="fontcolors">
-                          {bookings.bookingDetails.fromTime
-                            ? moment(bookings.bookingDetails.fromTime).format(
-                                "HH:mm"
-                              )
+                          {bookings.bookings.bookingDetails
+                            ? moment(
+                                bookings.bookings.bookingDetails.fromTime
+                              ).format("HH:mm")
                             : "N/A"}
                           <span style={{ marginRight: 10, marginLeft: 10 }}>
                             -
                           </span>
-                          {bookings.bookingDetails.toTime
-                            ? moment(bookings.bookingDetails.toTime).format(
-                                "HH:mm "
-                              )
+                          {bookings.bookings.bookingDetails
+                            ? moment(
+                                bookings.bookings.bookingDetails.toTime
+                              ).format("HH:mm ")
                             : "N/A"}
                         </p>
                       </Col>
@@ -128,8 +128,8 @@ const Bookingdetailcomponent = (bookings) => {
                       </Col>
                       <Col xs={6}>
                         <p className="fontcolor">
-                          {bookings.bookingDetails.businessName
-                            ? bookings.bookingDetails.businessName
+                          {bookings.bookings.bookingDetails
+                            ? bookings.bookings.bookingDetails.businessName
                             : "N/A"}
                         </p>
                       </Col>
@@ -140,8 +140,8 @@ const Bookingdetailcomponent = (bookings) => {
                       </Col>
                       <Col xs={6}>
                         <p className="fontcolor">
-                          {bookings.bookingDetails.resourceTypeName
-                            ? bookings.bookingDetails.resourceTypeName
+                          {bookings.bookings.bookingDetails
+                            ? bookings.bookings.bookingDetails.resourceTypeName
                             : "N/A"}
                         </p>
                       </Col>
@@ -152,8 +152,8 @@ const Bookingdetailcomponent = (bookings) => {
                       </Col>
                       <Col xs={6}>
                         <p className="fontcolor">
-                          {bookings.bookingDetails.resourceName
-                            ? bookings.bookingDetails.resourceName
+                          {bookings.bookings.bookingDetails
+                            ? bookings.bookings.bookingDetails.resourceName
                             : "N/A"}
                         </p>
                       </Col>
@@ -167,8 +167,8 @@ const Bookingdetailcomponent = (bookings) => {
                       </Col>
                       <Col xs={6}>
                         <p className="fontcolor">
-                          {bookings.bookingDetails.invoiceNumber
-                            ? bookings.bookingDetails.invoiceNumber
+                          {bookings.bookings.bookingDetails
+                            ? bookings.bookings.bookingDetails.invoiceNumber
                             : "N/A"}
                         </p>
                       </Col>
@@ -179,8 +179,8 @@ const Bookingdetailcomponent = (bookings) => {
                       </Col>
                       <Col xs={6}>
                         <p className="fontcolor">
-                          {bookings.bookingDetails.totalAmount
-                            ? bookings.bookingDetails.totalAmount
+                          {bookings.bookings.bookingDetails
+                            ? bookings.bookings.bookingDetails.totalAmount
                             : "N/A"}
                         </p>
                       </Col>
@@ -196,7 +196,116 @@ const Bookingdetailcomponent = (bookings) => {
                   </Card>
                 </Col>
                 <Col xs={5}>
-                  <Card className="innercards mt-5">
+                  <p className="bookingdetail">User Personal Details</p>
+                  <Card className="innercards ">
+                    <Row>
+                      <Col md={12}>
+                        <p className="bookingdetail">User Personal Details</p>
+                        <hr />
+                        <Row>
+                          <Col md={6} className="fontblackcolor">
+                            Customer ID
+                          </Col>
+                          <Col md={6}>
+                            <p className="fontcolor">
+                              {bookings.bookings.userbookingData
+                                ? bookings.bookings.userbookingData.id
+                                : "N/A"}
+                            </p>
+                          </Col>
+                        </Row>
+
+                        <Row>
+                          <Col md={6} className="fontblackcolor">
+                            Full Name
+                          </Col>
+                          <Col md={6}>
+                            <p className="fontcolor">
+                              {bookings.bookings.userbookingData
+                                ? bookings.bookings.userbookingData.username
+                                : "N/A"}
+                            </p>
+                          </Col>
+                        </Row>
+                        <Row>
+                          <Col md={6} className="fontblackcolor">
+                            Email Address
+                          </Col>
+                          <Col md={6}>
+                            <p className="fontcolor">
+                              {bookings.bookings.userbookingData
+                                ? bookings.bookings.userbookingData.Email
+                                : "N/A"}
+                            </p>
+                          </Col>
+                        </Row>
+                        <Row>
+                          <Col md={6} className="fontblackcolor">
+                            Phone No.
+                          </Col>
+                          <Col md={6}>
+                            <p className="fontcolor">
+                              {bookings.bookings.userbookingData
+                                ? bookings.bookings.userbookingData.MobilePhone
+                                : "N/A"}
+                            </p>
+                          </Col>
+                        </Row>
+                        <Row>
+                          <Col md={6} className="fontblackcolor">
+                            Date of Birth
+                          </Col>
+                          <Col md={6}>
+                            <p className="fontcolor">
+                              {bookings.bookings.userbookingData
+                                ? bookings.bookings.userbookingData.dob
+                                : "N/A"}
+                            </p>
+                          </Col>
+                        </Row>
+                        <Row>
+                          <Col md={6} className="fontblackcolor">
+                            Adress
+                          </Col>
+                          <Col md={6}>
+                            <p className="fontcolor">
+                              {bookings.bookings.userbookingData
+                                ? bookings.bookings.userbookingData.address
+                                : "N/A"}
+                            </p>
+                          </Col>
+                        </Row>
+                        <Row>
+                          <Col md={6} className="fontblackcolor">
+                            State
+                          </Col>
+                          <Col md={6}>
+                            <p className="fontcolor">
+                              {bookings.bookings.userbookingData
+                                ? bookings.bookings.userbookingData.state
+                                : "N/A"}
+                            </p>
+                          </Col>
+                        </Row>
+                        <Row>
+                          <Col md={6} className="fontblackcolor">
+                            city
+                          </Col>
+                          <Col md={6}>
+                            <p className="fontcolor">
+                              {bookings.bookings.serbookingData
+                                ? bookings.userbookingData.cityName
+                                : "N/A"}
+                            </p>
+                          </Col>
+                        </Row>
+
+                        <hr />
+                      </Col>
+                    </Row>
+                  </Card>
+
+                  {/* <Card className="innercards mt-5">
                     <Row>
                       <Col xs={12}>
                         <p className="bookingdetail">
@@ -211,7 +320,7 @@ const Bookingdetailcomponent = (bookings) => {
                         <div>
                           <SimpleBar style={{ maxHeight: "330px" }}>
                             <ul className="list-unstyled activity-wid">
-                              {/* Booking Status */}
+                         
                               <li className="activity-list">
                                 <div className="activity-icon avatar-xs">
                                   <span className="greencolor  text-primary rounded-circle">
@@ -314,7 +423,7 @@ const Bookingdetailcomponent = (bookings) => {
                         </div>
                       </Col>
                     </Row>
-                  </Card>
+                  </Card> */}
                 </Col>
 
                 <Col xs={1}></Col>
@@ -324,7 +433,7 @@ const Bookingdetailcomponent = (bookings) => {
                 <Col xs={1}></Col>
                 <Col xs={5}>
                   <Card className="innercards">
-                    <Row>
+                    {/* <Row>
                       <Col xs={12}>
                         <p className="bookingdetail ">Guests Information</p>
 
@@ -378,21 +487,21 @@ const Bookingdetailcomponent = (bookings) => {
                           </CardBody>
                         </Card>
                       </Col>
-                    </Row>
+                    </Row> */}
                   </Card>
                 </Col>
                 <Col xs={5}>
                   <Card className="innercards">
                     {" "}
-                    <Row>
-                      <Col xs={12}>
+                    {/* <Row>
+                      <Col md={12}>
                         <p className="bookingdetail">User Personal Details</p>
                         <hr />
                         <Row>
-                          <Col xs={6} className="fontblackcolor">
+                          <Col md={6} className="fontblackcolor">
                             Customer ID
                           </Col>
-                          <Col xs={6}>
+                          <Col md={6}>
                             <p className="fontcolor">
                               {bookings.bookings.userbookingData
                                 ? bookings.bookings.userbookingData.id
@@ -402,10 +511,10 @@ const Bookingdetailcomponent = (bookings) => {
                         </Row>
 
                         <Row>
-                          <Col xs={6} className="fontblackcolor">
+                          <Col md={6} className="fontblackcolor">
                             Full Name
                           </Col>
-                          <Col xs={6}>
+                          <Col md={6}>
                             <p className="fontcolor">
                               {bookings.bookings.userbookingData
                                 ? bookings.bookings.userbookingData.username
@@ -414,10 +523,10 @@ const Bookingdetailcomponent = (bookings) => {
                           </Col>
                         </Row>
                         <Row>
-                          <Col xs={6} className="fontblackcolor">
+                          <Col md={6} className="fontblackcolor">
                             Email Address
                           </Col>
-                          <Col xs={6}>
+                          <Col md={6}>
                             <p className="fontcolor">
                               {bookings.bookings.userbookingData
                                 ? bookings.bookings.userbookingData.Email
@@ -426,10 +535,10 @@ const Bookingdetailcomponent = (bookings) => {
                           </Col>
                         </Row>
                         <Row>
-                          <Col xs={6} className="fontblackcolor">
+                          <Col md={6} className="fontblackcolor">
                             Phone No.
                           </Col>
-                          <Col xs={6}>
+                          <Col md={6}>
                             <p className="fontcolor">
                               {bookings.bookings.userbookingData
                                 ? bookings.bookings.userbookingData.MobilePhone
@@ -438,49 +547,49 @@ const Bookingdetailcomponent = (bookings) => {
                           </Col>
                         </Row>
                         <Row>
-                          <Col xs={6} className="fontblackcolor">
+                          <Col md={6} className="fontblackcolor">
                             Date of Birth
                           </Col>
-                          <Col xs={6}>
+                          <Col md={6}>
                             <p className="fontcolor">
                               {bookings.bookings.userbookingData
-                                ? bookings.bookings.userbookingData.DateOfBirth
+                                ? bookings.bookings.userbookingData.dob
                                 : "N/A"}
                             </p>
                           </Col>
                         </Row>
                         <Row>
-                          <Col xs={6} className="fontblackcolor">
+                          <Col md={6} className="fontblackcolor">
                             Adress
                           </Col>
-                          <Col xs={6}>
+                          <Col md={6}>
                             <p className="fontcolor">
                               {bookings.bookings.userbookingData
-                                ? bookings.bookings.userbookingData.Address
+                                ? bookings.bookings.userbookingData.address
                                 : "N/A"}
                             </p>
                           </Col>
                         </Row>
                         <Row>
-                          <Col xs={6} className="fontblackcolor">
+                          <Col md={6} className="fontblackcolor">
                             State
                           </Col>
-                          <Col xs={6}>
+                          <Col md={6}>
                             <p className="fontcolor">
                               {bookings.bookings.userbookingData
-                                ? bookings.bookings.userbookingData.State
+                                ? bookings.bookings.userbookingData.state
                                 : "N/A"}
                             </p>
                           </Col>
                         </Row>
                         <Row>
-                          <Col xs={6} className="fontblackcolor">
+                          <Col md={6} className="fontblackcolor">
                             city
                           </Col>
-                          <Col xs={6}>
+                          <Col md={6}>
                             <p className="fontcolor">
-                              {bookings.bookings.userbookingData
-                                ? bookings.bookings.userbookingData.CityName
+                              {bookings.bookings.serbookingData
+                                ? bookings.userbookingData.cityName
                                 : "N/A"}
                             </p>
                           </Col>
@@ -488,7 +597,7 @@ const Bookingdetailcomponent = (bookings) => {
 
                         <hr />
                       </Col>
-                    </Row>
+                    </Row> */}
                   </Card>
                 </Col>
                 <Col xs={1}></Col>

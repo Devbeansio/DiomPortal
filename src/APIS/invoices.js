@@ -16,7 +16,7 @@ export const getInvoices = async (
   applyFilter = false
 ) => {
   const res = await fetch(
-    `${DIOM_BASED_URLS}/invoices?size=${size}&page=${page}&filter={"where":{"bookingCancelled":true}}`,
+    `${DIOM_BASED_URLS}/invoices?size=${size}&page=${page}`,
 
     {
       method: "GET",

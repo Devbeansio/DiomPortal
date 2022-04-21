@@ -48,6 +48,7 @@ const columns = [
     text: "Name",
     sort: true,
   },
+
   {
     dataField: "createdAt",
     text: "Date",
@@ -57,6 +58,11 @@ const columns = [
     dataField: "bookingId",
     text: "Booking ID",
     sort: true,
+    formatter: (cell, row) => (
+      <Link to={`/bookingdetail/${row.bookingId}/1`} className="link">
+        {cell}
+      </Link>
+    ),
   },
   {
     dataField: "totalPaid",

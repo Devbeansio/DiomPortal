@@ -536,25 +536,6 @@ const UseLocationDetailed = () => {
   // *************
 
   const getdiomBrandfunc = async () => {
-    // setLoaded(true);
-
-    // const response = await fetch(
-    //   `${DIOM_BASED_URLS}/admin-location-categories`,
-    //   {
-    //     method: "GET",
-    //     redirect: "follow",
-    //     headers: {
-    //       Authorization: "Bearer " + token,
-    //     },
-    //   }
-    // );
-
-    // if (!response.ok) {
-    //   const message = `An error has occured: ${response.status}`;
-    //   throw new Error(message);
-    // }
-    // const result = await response.json();
-
     const mapdata = diomlocationBrandata.map((element) => ({
       value: element.id,
       label: element.name,
@@ -565,7 +546,6 @@ const UseLocationDetailed = () => {
         options: mapdata,
       },
     ]);
-    // setLoaded(false);
   };
 
   useEffect(() => {
@@ -575,7 +555,6 @@ const UseLocationDetailed = () => {
     })();
   }, [getLocationdata, diomlocationBrandata]);
 
-  // QueryClient.invalidateQueries("locations");
   return {
     modal_static,
     setModal_static,

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Suspense, lazy } from "react";
 import Container from "reactstrap/lib/Container";
 import Chart from "./Chart";
 import moment from "moment";
@@ -22,6 +22,7 @@ import classnames from "classnames";
 import "./css/mydashboard.css";
 import { Link } from "react-router-dom";
 import UseDashboard from "./useDashboard";
+// import ChartComponent from "./chartComponent";
 
 const MyDashboard = () => {
   const currentMonth = new Date();
@@ -39,6 +40,8 @@ const MyDashboard = () => {
     brandCardddata,
     usersCardddata,
   } = UseDashboard();
+
+  // const { chartsView } = ChartComponent();
   const [selectedDate, setSelectedDate] = useState("");
   const [filterDate, setFilterDate] = useState({});
 
@@ -49,6 +52,7 @@ const MyDashboard = () => {
   }, [selectedDate]);
 
   const chartsView = () => {
+    // lazy(() => {
     if (activeTabJustify === "1") {
       return (
         <div key={activeTabJustify}>
@@ -279,6 +283,7 @@ const MyDashboard = () => {
       );
     }
     return;
+    // });
   };
   return (
     <>
@@ -591,6 +596,9 @@ const MyDashboard = () => {
                             <CardText className="amount1">
                               {financeCardddata
                                 ? financeCardddata.topBrand.name
+                                    .charAt(0)
+                                    .toUpperCase() +
+                                  financeCardddata.topBrand.name.slice(1)
                                 : "0"}
                             </CardText>
                           </Col>
@@ -664,6 +672,11 @@ const MyDashboard = () => {
                             <CardText className="amount1">
                               {brandCardddata
                                 ? brandCardddata.topBrandsByBookings.name
+                                    .charAt(0)
+                                    .toUpperCase() +
+                                  brandCardddata.topBrandsByBookings.name.slice(
+                                    1
+                                  )
                                 : "0"}
                             </CardText>
                           </Col>
@@ -701,7 +714,7 @@ const MyDashboard = () => {
                         <Row>
                           <Col md={12} lg={12} sm={12}>
                             <CardTitle className="headings1">
-                              Top User Type(industry)
+                              Top User Type(Industry)
                             </CardTitle>
                           </Col>
                         </Row>
@@ -724,7 +737,7 @@ const MyDashboard = () => {
                         <Row>
                           <Col md={12} lg={12} sm={12}>
                             <CardTitle className="headings1">
-                              Top User Type( Position)
+                              Top User Type(Position)
                             </CardTitle>
                           </Col>
                         </Row>
@@ -864,8 +877,9 @@ const MyDashboard = () => {
                 </Col>
               </Row>
             </div>
-
-            {chartsView()}
+            <Suspense fallback={<div>please wait ... </div>}>
+              {chartsView()}
+            </Suspense>
           </Container>
         </div>
       )}

@@ -18,6 +18,7 @@ export const getcustomers = async (
   filters = {}
 ) => {
   const locationid = localStorage.getItem("locationId");
+  console.log(filters);
   const res = await fetch(
     `${DIOM_BASED_URLS}/admin-diom-location/${filters}/active-customers`,
 
