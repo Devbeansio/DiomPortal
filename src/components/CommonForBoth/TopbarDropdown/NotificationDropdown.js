@@ -12,10 +12,9 @@ const NotificationDropdown = () => {
   const [notifications, setNotifications] = useState();
 
   const { adminNotificationdata } = UseNotifications();
-  // console.log("adminNotificationdata : ", adminNotificationdata.data);
 
   const toggle = () => {
-    setMenu((prevState) => !prevState.menu);
+    setMenu((prevState) => !prevState);
   };
 
   const messaging = getMessaging();
@@ -54,259 +53,279 @@ const NotificationDropdown = () => {
             </Row>
           </div>
           <SimpleBar style={{ maxHeight: "230px" }}>
-            <Link to="#" className="text-reset notification-item">
-              <div className="d-flex flex-column">
-                {adminNotificationdata?.data.map((e) => (
-                  <div>
-                    {e?.redirectTo === "BOOKING" ? (
-                      // <Link to={`/bookingdetail/${e.bookingId}/1}`}>
+            <div className="d-flex flex-column" style={{ padding: 10 }}>
+              {adminNotificationdata?.data.map((e) => (
+                <div>
+                  {e?.redirectTo === "BOOKING" ? (
+                    <div key={e?.id}>
+                      {e.actionType === "CANCELLED_BOOKING" ? (
+                        <div className="flex-1">
+                          <div>
+                            <Link
+                              to={`/bookingdetail/${e.bookingId}/1}`}
+                              className="text-reset notification-item"
+                            >
+                              <i className="mdi mdi-minus-circle revokedmarkcircle">
+                                <span className="mt-0 mb-1 revertcirclecolorcss">
+                                  {e?.title}
+                                </span>
+                              </i>
+                            </Link>
+                            <div className="font-size-12 text-muted">
+                              <p className="mb-1">{e?.body}</p>
+                              <p className="mb-0">
+                                <i className="mdi mdi-clock-outline"></i>
+
+                                {moment
+                                  .utc(e?.createdAt)
+                                  .local()
+                                  .startOf("seconds")
+                                  .fromNow()}
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      ) : e.actionType === "REVOKED_BOOKING" ? (
+                        <div className="flex-1" key={e?.id}>
+                          <div>
+                            <Link
+                              to={`/bookingdetail/${e.bookingId}/1}`}
+                              className="text-reset notification-item"
+                            >
+                              <i className="mdi mdi-alert-circle revokedmarkcircle">
+                                <span className="mt-0 mb-1 revertcirclecolorcss">
+                                  {e?.title}
+                                </span>
+                              </i>
+                            </Link>
+                            <div className="font-size-12 text-muted">
+                              <p className="mb-1">{e?.body}</p>
+                              <p className="mb-0">
+                                <i className="mdi mdi-clock-outline"></i>
+
+                                {moment
+                                  .utc(e?.createdAt)
+                                  .local()
+                                  .startOf("seconds")
+                                  .fromNow()}
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      ) : e.actionType === "SUCCESS_BOOKING" ? (
+                        <div className="flex-1" key={e?.id}>
+                          <div>
+                            <Link
+                              to={`/bookingdetail/${e.bookingId}/1}`}
+                              className="text-reset notification-item"
+                            >
+                              <i className="mdi mdi-checkbox-marked-circle succesmarkcircle">
+                                <span className="mt-0 mb-1 revertcirclecolorcss">
+                                  {e?.title}
+                                </span>
+                              </i>
+                            </Link>
+                            <div className="font-size-12 text-muted">
+                              <p className="mb-1">{e?.body}</p>
+                              <p className="mb-0">
+                                <i className="mdi mdi-clock-outline"></i>
+
+                                {moment
+                                  .utc(e?.createdAt)
+                                  .local()
+                                  .startOf("seconds")
+                                  .fromNow()}
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      ) : e.actionType === "ALERT" ? (
+                        <div className="flex-1" key={e?.id}>
+                          <div>
+                            <Link
+                              to={`/bookingdetail/${e.bookingId}/1}`}
+                              className="text-reset notification-item"
+                            >
+                              <i className="mdi mdi-alert-circle revokedmarkcircle">
+                                <span className="mt-0 mb-1 ml-1 revertcirclecolorcss">
+                                  {e?.title}
+                                </span>
+                              </i>
+                            </Link>
+                            <div className="font-size-12 text-muted">
+                              <p className="mb-1">{e?.body}</p>
+                              <p className="mb-0">
+                                <i className="mdi mdi-clock-outline"></i>
+
+                                {moment
+                                  .utc(e?.createdAt)
+                                  .local()
+                                  .startOf("seconds")
+                                  .fromNow()}
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      ) : e.actionType === "INFO" ? (
+                        <div className="flex-1" key={e?.id}>
+                          <div>
+                            <Link
+                              to={`/bookingdetail/${e.bookingId}/1}`}
+                              className="text-reset notification-item"
+                            >
+                              <i className="mdi mdi-information requestmarkcircle">
+                                <span className="mt-0 mb-1 revertcirclecolorcss">
+                                  {e?.title}
+                                </span>
+                              </i>
+                            </Link>
+                            <div className="font-size-12 text-muted">
+                              <p className="mb-1">{e?.body}</p>
+                              <p className="mb-0">
+                                <i className="mdi mdi-clock-outline"></i>
+
+                                {moment
+                                  .utc(e?.createdAt)
+                                  .local()
+                                  .startOf("seconds")
+                                  .fromNow()}
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      ) : null}
+                    </div>
+                  ) : e?.redirectTo === "USER" ? (
+                    <div key={e?.id}>
                       <div>
                         {e.actionType === "CANCELLED_BOOKING" ? (
-                          <Link to={`/bookingdetail/${e.bookingId}/1}`}>
-                            <div className="flex-1" key={e?.id}>
-                              <div>
+                          <div className="flex-1" key={e?.id}>
+                            <div>
+                              <Link to={`/userprofiledetail/${e.userId}`}>
                                 <i className="mdi mdi-minus-circle revokedmarkcircle">
-                                  <span className="mt-0 mb-1 ">{e?.title}</span>
-                                </i>
-                                <div className="font-size-12 text-muted">
-                                  <p className="mb-1">{e?.body}</p>
-                                  <p className="mb-0">
-                                    <i className="mdi mdi-clock-outline"></i>
-
-                                    {moment
-                                      .utc(e?.createdAt)
-                                      .local()
-                                      .startOf("seconds")
-                                      .fromNow()}
-                                  </p>
-                                </div>
-                              </div>
-                            </div>
-                          </Link>
-                        ) : e.actionType === "REVOKED_BOOKING" ? (
-                          <Link to={`/bookingdetail/${e.bookingId}/1}`}>
-                            <div className="flex-1" key={e?.id}>
-                              <div>
-                                <i className="mdi mdi-alert-circle revokedmarkcircle">
-                                  <span className="mt-0 mb-1">{e?.title}</span>
-                                </i>
-                                <div className="font-size-12 text-muted">
-                                  <p className="mb-1">{e?.body}</p>
-                                  <p className="mb-0">
-                                    <i className="mdi mdi-clock-outline"></i>
-
-                                    {moment
-                                      .utc(e?.createdAt)
-                                      .local()
-                                      .startOf("seconds")
-                                      .fromNow()}
-                                  </p>
-                                </div>
-                              </div>
-                            </div>
-                          </Link>
-                        ) : e.actionType === "SUCCESS_BOOKING" ? (
-                          <Link to={`/bookingdetail/${e.bookingId}/1}`}>
-                            <div className="flex-1" key={e?.id}>
-                              <div>
-                                <i className="mdi mdi-checkbox-marked-circle succesmarkcircle">
-                                  <span className="mt-0 mb-1">{e?.title}</span>
-                                </i>
-                                <div className="font-size-12 text-muted">
-                                  <p className="mb-1">{e?.body}</p>
-                                  <p className="mb-0">
-                                    <i className="mdi mdi-clock-outline"></i>
-
-                                    {moment
-                                      .utc(e?.createdAt)
-                                      .local()
-                                      .startOf("seconds")
-                                      .fromNow()}
-                                  </p>
-                                </div>
-                              </div>
-                            </div>
-                          </Link>
-                        ) : e.actionType === "ALERT" ? (
-                          <Link to={`/bookingdetail/${e.bookingId}/1}`}>
-                            <div className="flex-1" key={e?.id}>
-                              <div>
-                                <i className="mdi mdi-alert-circle revokedmarkcircle">
-                                  <span className="mt-0 mb-1 ml-1">
+                                  <span className="mt-0 mb-1 revertcirclecolorcss">
                                     {e?.title}
                                   </span>
                                 </i>
-                                <div className="font-size-12 text-muted">
-                                  <p className="mb-1">{e?.body}</p>
-                                  <p className="mb-0">
-                                    <i className="mdi mdi-clock-outline"></i>
+                              </Link>
+                              <div className="font-size-12 text-muted">
+                                <p className="mb-1">{e?.body}</p>
+                                <p className="mb-0">
+                                  <i className="mdi mdi-clock-outline"></i>
 
-                                    {moment
-                                      .utc(e?.createdAt)
-                                      .local()
-                                      .startOf("seconds")
-                                      .fromNow()}
-                                  </p>
-                                </div>
+                                  {moment
+                                    .utc(e?.createdAt)
+                                    .local()
+                                    .startOf("seconds")
+                                    .fromNow()}
+                                </p>
                               </div>
                             </div>
-                          </Link>
-                        ) : e.actionType === "INFO" ? (
-                          <Link to={`/bookingdetail/${e.bookingId}/1}`}>
-                            <div className="flex-1" key={e?.id}>
-                              <div>
-                                <i className="mdi mdi-information requestmarkcircle">
-                                  <span className="mt-0 mb-1">{e?.title}</span>
+                          </div>
+                        ) : e.actionType === "REVOKED_BOOKING" ? (
+                          <div className="flex-1" key={e?.id}>
+                            <div>
+                              <Link to={`/userprofiledetail/${e.userId}`}>
+                                <i className="mdi mdi-alert-circle revokedmarkcircle">
+                                  <span className="mt-0 mb-1 revertcirclecolorcss">
+                                    {e?.title}
+                                  </span>
                                 </i>
-                                <div className="font-size-12 text-muted">
-                                  <p className="mb-1">{e?.body}</p>
-                                  <p className="mb-0">
-                                    <i className="mdi mdi-clock-outline"></i>
+                              </Link>
+                              <div className="font-size-12 text-muted">
+                                <p className="mb-1">{e?.body}</p>
+                                <p className="mb-0">
+                                  <i className="mdi mdi-clock-outline"></i>
 
-                                    {moment
-                                      .utc(e?.createdAt)
-                                      .local()
-                                      .startOf("seconds")
-                                      .fromNow()}
-                                  </p>
-                                </div>
+                                  {moment
+                                    .utc(e?.createdAt)
+                                    .local()
+                                    .startOf("seconds")
+                                    .fromNow()}
+                                </p>
                               </div>
                             </div>
-                          </Link>
+                          </div>
+                        ) : e.actionType === "SUCCESS_BOOKING" ? (
+                          <div className="flex-1" key={e?.id}>
+                            <div>
+                              <Link to={`/userprofiledetail/${e.userId}`}>
+                                <i className="mdi mdi-checkbox-marked-circle succesmarkcircle">
+                                  <span className="mt-0 mb-1 revertcirclecolorcss">
+                                    {e?.title}
+                                  </span>
+                                </i>
+                              </Link>
+                              <div className="font-size-12 text-muted">
+                                <p className="mb-1">{e?.body}</p>
+                                <p className="mb-0">
+                                  <i className="mdi mdi-clock-outline"></i>
+
+                                  {moment
+                                    .utc(e?.createdAt)
+                                    .local()
+                                    .startOf("seconds")
+                                    .fromNow()}
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+                        ) : e.actionType === "ALERT" ? (
+                          <div className="flex-1" key={e?.id}>
+                            <div>
+                              <Link to={`/userprofiledetail/${e.userId}`}>
+                                <i className="mdi mdi-alert-circle revokedmarkcircle">
+                                  <span className="mt-0 mb-1 ml-1 revertcirclecolorcss">
+                                    {e?.title}
+                                  </span>
+                                </i>
+                              </Link>
+                              <div className="font-size-12 text-muted">
+                                <p className="mb-1">{e?.body}</p>
+                                <p className="mb-0">
+                                  <i className="mdi mdi-clock-outline"></i>
+
+                                  {moment
+                                    .utc(e?.createdAt)
+                                    .local()
+                                    .startOf("seconds")
+                                    .fromNow()}
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+                        ) : e.actionType === "INFO" ? (
+                          <div className="flex-1" key={e?.id}>
+                            <div>
+                              <Link to={`/userprofiledetail/${e.userId}`}>
+                                <i className="mdi mdi-information requestmarkcircle">
+                                  <span className="mt-0 mb-1 revertcirclecolorcss">
+                                    {e?.title}
+                                  </span>
+                                </i>
+                              </Link>
+                              <div className="font-size-12 text-muted">
+                                <p className="mb-1">{e?.body}</p>
+                                <p className="mb-0">
+                                  <i className="mdi mdi-clock-outline"></i>
+
+                                  {moment
+                                    .utc(e?.createdAt)
+                                    .local()
+                                    .startOf("seconds")
+                                    .fromNow()}
+                                </p>
+                              </div>
+                            </div>
+                          </div>
                         ) : null}
                       </div>
-                    ) : e?.redirectTo === "USER" ? (
-                      <div>
-                        {/* <Link to={`/userprofiledetail/${e.userId}`}> */}
-                        <div>
-                          {e.actionType === "CANCELLED_BOOKING" ? (
-                            <Link to={`/userprofiledetail/${e.userId}`}>
-                              <div className="flex-1" key={e?.id}>
-                                <div>
-                                  <i className="mdi mdi-minus-circle revokedmarkcircle">
-                                    <span className="mt-0 mb-1 ">
-                                      {e?.title}
-                                    </span>
-                                  </i>
-                                  <div className="font-size-12 text-muted">
-                                    <p className="mb-1">{e?.body}</p>
-                                    <p className="mb-0">
-                                      <i className="mdi mdi-clock-outline"></i>
-
-                                      {moment
-                                        .utc(e?.createdAt)
-                                        .local()
-                                        .startOf("seconds")
-                                        .fromNow()}
-                                    </p>
-                                  </div>
-                                </div>
-                              </div>
-                            </Link>
-                          ) : e.actionType === "REVOKED_BOOKING" ? (
-                            <Link to={`/userprofiledetail/${e.userId}`}>
-                              <div className="flex-1" key={e?.id}>
-                                <div>
-                                  <i className="mdi mdi-alert-circle revokedmarkcircle">
-                                    <span className="mt-0 mb-1">
-                                      {e?.title}
-                                    </span>
-                                  </i>
-                                  <div className="font-size-12 text-muted">
-                                    <p className="mb-1">{e?.body}</p>
-                                    <p className="mb-0">
-                                      <i className="mdi mdi-clock-outline"></i>
-
-                                      {moment
-                                        .utc(e?.createdAt)
-                                        .local()
-                                        .startOf("seconds")
-                                        .fromNow()}
-                                    </p>
-                                  </div>
-                                </div>
-                              </div>
-                            </Link>
-                          ) : e.actionType === "SUCCESS_BOOKING" ? (
-                            <Link to={`/userprofiledetail/${e.userId}`}>
-                              <div className="flex-1" key={e?.id}>
-                                <div>
-                                  <i className="mdi mdi-checkbox-marked-circle succesmarkcircle">
-                                    <span className="mt-0 mb-1">
-                                      {e?.title}
-                                    </span>
-                                  </i>
-                                  <div className="font-size-12 text-muted">
-                                    <p className="mb-1">{e?.body}</p>
-                                    <p className="mb-0">
-                                      <i className="mdi mdi-clock-outline"></i>
-
-                                      {moment
-                                        .utc(e?.createdAt)
-                                        .local()
-                                        .startOf("seconds")
-                                        .fromNow()}
-                                    </p>
-                                  </div>
-                                </div>
-                              </div>
-                            </Link>
-                          ) : e.actionType === "ALERT" ? (
-                            <Link to={`/userprofiledetail/${e.userId}`}>
-                              <div className="flex-1" key={e?.id}>
-                                <div>
-                                  <i className="mdi mdi-alert-circle revokedmarkcircle">
-                                    <span className="mt-0 mb-1 ml-1">
-                                      {e?.title}
-                                    </span>
-                                  </i>
-                                  <div className="font-size-12 text-muted">
-                                    <p className="mb-1">{e?.body}</p>
-                                    <p className="mb-0">
-                                      <i className="mdi mdi-clock-outline"></i>
-
-                                      {moment
-                                        .utc(e?.createdAt)
-                                        .local()
-                                        .startOf("seconds")
-                                        .fromNow()}
-                                    </p>
-                                  </div>
-                                </div>
-                              </div>
-                            </Link>
-                          ) : e.actionType === "INFO" ? (
-                            <Link to={`/userprofiledetail/${e.userId}`}>
-                              <div className="flex-1" key={e?.id}>
-                                <div>
-                                  <i className="mdi mdi-information requestmarkcircle">
-                                    <span className="mt-0 mb-1">
-                                      {e?.title}
-                                    </span>
-                                  </i>
-                                  <div className="font-size-12 text-muted">
-                                    <p className="mb-1">{e?.body}</p>
-                                    <p className="mb-0">
-                                      <i className="mdi mdi-clock-outline"></i>
-
-                                      {moment
-                                        .utc(e?.createdAt)
-                                        .local()
-                                        .startOf("seconds")
-                                        .fromNow()}
-                                    </p>
-                                  </div>
-                                </div>
-                              </div>
-                            </Link>
-                          ) : null}
-                        </div>
-                      </div>
-                    ) : null}
-                  </div>
-                ))}
-              </div>
-            </Link>
+                    </div>
+                  ) : null}
+                </div>
+              ))}
+            </div>
+            {/* </Link> */}
           </SimpleBar>
           <div className="p-2 border-top">
             <Link

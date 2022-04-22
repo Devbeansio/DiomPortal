@@ -145,13 +145,14 @@ const LocationBrandDetail = () => {
                     <FormGroup className="mt-1">
                       <label class="LBDLabels">Operational Hours</label>
                       <Input
+                        // format="HH:mm:ss.SSS"
                         type="time"
-                        // defaultValue="13:45:00"
-                        defaultValue={locationBrandData.startTime}
+                        value={locationBrandData.startTime}
+                        // value="13:00"
                         onChange={(e) => {
                           startTimeFunc(e);
                         }}
-                        id="example-time-input"
+                        id="appt-time"
                       />
                     </FormGroup>
                   </Col>

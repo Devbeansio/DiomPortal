@@ -183,8 +183,8 @@ const UserProfileDetail = () => {
                           <Col md={1}></Col>
                           <Col md={6}>
                             <p className="pdetailscolor">
-                              {userdetailsData.username
-                                ? userdetailsData.username
+                              {userdetailsData.fullName
+                                ? userdetailsData.fullName
                                 : "N/A"}
                             </p>
                           </Col>
@@ -196,8 +196,8 @@ const UserProfileDetail = () => {
                           <Col md={1}></Col>
                           <Col md={6}>
                             <p className="pdetailscolor">
-                              {userdetailsData.email
-                                ? userdetailsData.email
+                              {userdetailsData.Email
+                                ? userdetailsData.Email
                                 : "N/A"}
                             </p>
                           </Col>
@@ -223,8 +223,8 @@ const UserProfileDetail = () => {
                           <Col md={1}></Col>
                           <Col md={6}>
                             <p className="pdetailscolor">
-                              {userdetailsData.DateOfBirth
-                                ? userdetailsData.DateOfBirth
+                              {userdetailsData.dob
+                                ? userdetailsData.dob
                                 : "N/A"}
                             </p>
                           </Col>
@@ -236,8 +236,8 @@ const UserProfileDetail = () => {
                           <Col md={1}></Col>
                           <Col md={6}>
                             <p className="pdetailscolor">
-                              {userdetailsData.Address
-                                ? userdetailsData.Address
+                              {userdetailsData.address
+                                ? userdetailsData.address
                                 : "N/A"}
                             </p>
                           </Col>
@@ -250,8 +250,8 @@ const UserProfileDetail = () => {
                           <Col md={6}>
                             <p className="pdetailscolor">
                               {" "}
-                              {userdetailsData.State
-                                ? userdetailsData.State
+                              {userdetailsData.state
+                                ? userdetailsData.state
                                 : "N/A"}
                             </p>
                           </Col>
@@ -264,8 +264,8 @@ const UserProfileDetail = () => {
                           <Col md={6}>
                             <p className="pdetailscolor">
                               {" "}
-                              {userdetailsData.CityName
-                                ? userdetailsData.CityName
+                              {userdetailsData.cityName
+                                ? userdetailsData.cityName
                                 : "N/A"}
                             </p>
                           </Col>
@@ -285,8 +285,8 @@ const UserProfileDetail = () => {
                           <Col md={6}>
                             <p className="pdetailscolor">
                               {" "}
-                              {userdetailsData.CompanyName
-                                ? userdetailsData.CompanyName
+                              {userdetailsData.companyName
+                                ? userdetailsData.companyName
                                 : "N/A"}
                             </p>
                           </Col>
@@ -299,8 +299,8 @@ const UserProfileDetail = () => {
                           <Col md={6}>
                             <p className="pdetailscolor">
                               {" "}
-                              {userdetailsData.Industry
-                                ? userdetailsData.Industry
+                              {userdetailsData.industryName
+                                ? userdetailsData.industryName
                                 : "N/A"}
                             </p>
                           </Col>
@@ -314,23 +314,8 @@ const UserProfileDetail = () => {
                           <Col md={6}>
                             <p className="pdetailscolor">
                               {" "}
-                              {userdetailsData.Position
-                                ? userdetailsData.Position
-                                : "N/A"}
-                            </p>
-                          </Col>
-                        </Row>
-
-                        <Row>
-                          <Col md={5}>
-                            <p className="pdetailsheading">Website</p>
-                          </Col>
-                          <Col md={1}></Col>
-                          <Col md={6}>
-                            <p className="pdetailscolor">
-                              {" "}
-                              {userdetailsData.ProfileWebsite
-                                ? userdetailsData.ProfileWebsite
+                              {userdetailsData.positionName
+                                ? userdetailsData.positionName
                                 : "N/A"}
                             </p>
                           </Col>
@@ -343,8 +328,8 @@ const UserProfileDetail = () => {
                           <Col md={1}></Col>
                           <Col md={6}>
                             <p className="pdetailscolor">
-                              {userdetailsData.Linkedin
-                                ? userdetailsData.Linkedin
+                              {userdetailsData.linkedIn
+                                ? userdetailsData.linkedIn
                                 : "N/A"}
                             </p>
                           </Col>
