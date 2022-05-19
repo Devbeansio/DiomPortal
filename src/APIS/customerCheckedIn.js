@@ -11,17 +11,16 @@ import moment from "moment";
  */
 
 export const getcustomers = async (
+  filter,
   size = 30,
   page = 1,
   token = "",
-  applyFilter = true,
-  filters = {}
+  applyLocationFilter
 ) => {
-  const locationid = localStorage.getItem("locationId");
-  console.log(filters);
   const res = await fetch(
-    `${DIOM_BASED_URLS}/admin-diom-location/${filters}/active-customers`,
-
+    !applyLocationFilter
+      ? `${DIOM_BASED_URLS}/users/checked-in`
+      : `${DIOM_BASED_URLS}/admin-diom-location/${filter}/active-customers`,
     {
       method: "GET",
       redirect: "follow",
@@ -35,8 +34,8 @@ export const getcustomers = async (
     throw new Error(resJson.error.message);
   }
   const resJson = await res.json();
-  // console.log("resJson : ", resJson);
-  const customerCheckInData = resJson.map((e, index) => {
+  console.log("resJson : ", resJson);
+  const customerCheckInData = resJson.data.map((e, index) => {
     return {
       ...e,
       id: index + 1,

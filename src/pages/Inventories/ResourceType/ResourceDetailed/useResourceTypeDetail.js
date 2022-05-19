@@ -39,6 +39,69 @@ const UseResourceTypeDetail = () => {
   const locationTagEditButtonfunc = () => {
     setEnableEdit(true);
   };
+  const getresourcetypeStatusFunc = async (e) => {
+    const response = await fetch(
+      `${DIOM_BASED_URLS}/admin-resource-types-inventories/${id}/togglevisibility`,
+      {
+        method: "PATCH",
+        redirect: "follow",
+
+        headers: {
+          Accept: "application/json, text/plain",
+          "Content-Type": "application/json;charset=UTF-8",
+          Authorization: "Bearer " + token,
+        },
+        body: JSON.stringify({
+          visibility: e,
+        }),
+      }
+    );
+
+    if (!response.ok) {
+      const message = `An error has occured: ${response.status}`;
+      throw new Error(message);
+    } else {
+      toast.success(response.message);
+
+      QueryClient.invalidateQueries("resourcetypeResources");
+    }
+  };
+
+  function Offsymbol(text) {
+    return (
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "100%",
+          fontSize: 12,
+          color: "#fff",
+          paddingRight: 2,
+        }}
+      >
+        {text}
+      </div>
+    );
+  }
+
+  function OnSymbol(text) {
+    return (
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "100%",
+          fontSize: 12,
+          color: "#fff",
+          paddingRight: 2,
+        }}
+      >
+        {text}
+      </div>
+    );
+  }
 
   const formatBytes = (bytes, decimals = 2) => {
     if (bytes === 0) return "0 Bytes";
@@ -115,9 +178,11 @@ const UseResourceTypeDetail = () => {
         .then((result) => {
           if (result[0].statusCode === 200) {
             toast.success("Image uplaoded");
+            setSelectedFiles([]);
             QueryClient.invalidateQueries("resourcetypeResources");
           } else if (result[0].statusCode === 204) {
             toast.success("Image uplaoded");
+            setSelectedFiles([]);
             QueryClient.invalidateQueries("resourcetypeResources");
           } else {
             toast.error(" Something went wrong");
@@ -162,6 +227,10 @@ const UseResourceTypeDetail = () => {
   };
 
   const updatelocationbranddetails = () => {
+    console.log(
+      " resourceDetailes.perMinuteMinutePrice : ",
+      resourceDetailes.perMinuteMinutePrice
+    );
     fetch(
       `${DIOM_BASED_URLS}/admin-resource-types-inventories/${id}`,
 
@@ -175,7 +244,7 @@ const UseResourceTypeDetail = () => {
         body: JSON.stringify({
           isAvailableInWnpl: resourceDetailes.isAvailableInWnpl,
           description: resourceDetailes.description,
-          perMinuteMinutePrice: resourceDetailes.perMinuteMinutePrice,
+          perMinuteMinutePrice: Number(resourceDetailes.perMinuteMinutePrice),
         }),
       }
     )
@@ -214,11 +283,13 @@ const UseResourceTypeDetail = () => {
   };
 
   // *************
+
   const resourceResourcetypesdata = useQuery(
     ["resourceResourcetypdata", id],
     () => getResourceResourceType(token, id)
   );
   const resourceResourcetypedata = resourceResourcetypesdata.data;
+
   // *************
 
   const getResourceByResourceType = async (id, token) => {
@@ -226,30 +297,38 @@ const UseResourceTypeDetail = () => {
   };
 
   // *************
+
   const Locationfocusdest = useQuery(["Locationfocusdest", id], () =>
     GetLocationfocusdest(token, resourceTypeKey)
   );
   const Locationfocusdestdata = Locationfocusdest.data;
+
   // *************
+
   const GetLocationWithFocusDeskfunc = async () => {
     setBusinesName(Locationfocusdestdata.locations);
   };
 
   // *************
+
   const resourcetypeResources = useQuery(["resourcetypeResources", id], () =>
     getResourcetypeResources(token, id)
   );
   const resourcetypeResourcesdata = resourcetypeResources.data;
+
   // *************
+
   const getallresources = async () => {
     setResourceDetailes(resourcetypeResourcesdata);
   };
 
   // *************
+
   const getHourlydayrate = useQuery(["gethourlydayrate", id], () =>
     getHourlyDayRate(token, id)
   );
   const getHourlydayrateData = getHourlydayrate.data;
+
   // *************
   const gethourlyDayRateFunc = async () => {
     const Price = getHourlydayrateData.data.resourceTypePrices.map(
@@ -350,6 +429,9 @@ const UseResourceTypeDetail = () => {
     setModal_static,
     loaded,
     setLoaded,
+    OnSymbol,
+    Offsymbol,
+    getresourcetypeStatusFunc,
     resourceTypeAddMoreBlock,
     setResourceTypeAddMoreBlock,
     businesName,
@@ -383,6 +465,7 @@ const UseResourceTypeDetail = () => {
     imagedeletedfunc,
     getalllocationsfunc,
     locationedittagfunc,
+    resourcetypeResourcesdata,
     pageOptions,
   };
 };

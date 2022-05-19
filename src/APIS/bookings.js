@@ -128,9 +128,15 @@ export const gettodaysbookings = async (
       " - " +
       moment(booking.toTime).format("MMM DD"),
 
-    timeLogs: booking.timeLogs
-      .map((e) => moment(e.fromTime).format("HH:mm"))
-      .join(", "),
+    timeLogs:
+      booking.timeLogs.length > 0
+        ? moment(booking.timeLogs[booking.timeLogs.length - 1].fromTime).format(
+            "HH:mm"
+          )
+        : null,
+
+    // booking.timeLogs.map((e) => moment(e.fromTime).format("HH:mm"))
+    // .join(", "),
   }));
   return {
     data: todayBookingsdata,

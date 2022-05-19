@@ -127,7 +127,8 @@ const ResourceType = () => {
                                   data={
                                     filter !== "All"
                                       ? resourceTypeData
-                                      : searchedresourceTypeData
+                                      : resourceTypeData
+                                    // searchedresourceTypeData
                                   }
                                   search
                                 >

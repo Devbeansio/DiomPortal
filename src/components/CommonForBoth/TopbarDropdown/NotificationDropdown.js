@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Dropdown, DropdownToggle, DropdownMenu, Row, Col } from "reactstrap";
 import SimpleBar from "simplebar-react";
+import "./css/notificationdropdowncss.css";
 import moment from "moment";
 import { getMessaging, onMessage } from "firebase/messaging";
 import "../../../firebase";
@@ -37,7 +38,7 @@ const NotificationDropdown = () => {
           <span className="noti-dot"></span>
         </DropdownToggle>
         <DropdownMenu
-          className="dropdown-menu-end dropdown-menu-lg p-0"
+          className="dropdown-menu-end dropdown-menu-lg p-0 "
           aria-labelledby="page-header-notifications-dropdown"
         >
           <div className="p-3">
@@ -52,7 +53,10 @@ const NotificationDropdown = () => {
               </div>
             </Row>
           </div>
-          <SimpleBar style={{ maxHeight: "230px" }}>
+          <SimpleBar
+            style={{ maxHeight: "230px" }}
+            className="notifocationfontstyle"
+          >
             <div className="d-flex flex-column" style={{ padding: 10 }}>
               {adminNotificationdata?.data.map((e) => (
                 <div>
@@ -73,6 +77,7 @@ const NotificationDropdown = () => {
                             </Link>
                             <div className="font-size-12 text-muted">
                               <p className="mb-1">{e?.body}</p>
+                              <span className="notificlockmargin"></span>{" "}
                               <p className="mb-0">
                                 <i className="mdi mdi-clock-outline"></i>
 
@@ -101,7 +106,9 @@ const NotificationDropdown = () => {
                             <div className="font-size-12 text-muted">
                               <p className="mb-1">{e?.body}</p>
                               <p className="mb-0">
-                                <i className="mdi mdi-clock-outline"></i>
+                                <span className="notificlockmargin">
+                                  <i className="mdi mdi-clock-outline"></i>{" "}
+                                </span>
 
                                 {moment
                                   .utc(e?.createdAt)
@@ -128,7 +135,9 @@ const NotificationDropdown = () => {
                             <div className="font-size-12 text-muted">
                               <p className="mb-1">{e?.body}</p>
                               <p className="mb-0">
-                                <i className="mdi mdi-clock-outline"></i>
+                                <span className="notificlockmargin">
+                                  <i className="mdi mdi-clock-outline"></i>{" "}
+                                </span>
 
                                 {moment
                                   .utc(e?.createdAt)
@@ -155,7 +164,9 @@ const NotificationDropdown = () => {
                             <div className="font-size-12 text-muted">
                               <p className="mb-1">{e?.body}</p>
                               <p className="mb-0">
-                                <i className="mdi mdi-clock-outline"></i>
+                                <span className="notificlockmargin">
+                                  <i className="mdi mdi-clock-outline"></i>{" "}
+                                </span>
 
                                 {moment
                                   .utc(e?.createdAt)
@@ -182,7 +193,9 @@ const NotificationDropdown = () => {
                             <div className="font-size-12 text-muted">
                               <p className="mb-1">{e?.body}</p>
                               <p className="mb-0">
-                                <i className="mdi mdi-clock-outline"></i>
+                                <span className="notificlockmargin">
+                                  <i className="mdi mdi-clock-outline"></i>{" "}
+                                </span>
 
                                 {moment
                                   .utc(e?.createdAt)
@@ -211,7 +224,9 @@ const NotificationDropdown = () => {
                               <div className="font-size-12 text-muted">
                                 <p className="mb-1">{e?.body}</p>
                                 <p className="mb-0">
-                                  <i className="mdi mdi-clock-outline"></i>
+                                  <span className="notificlockmargin">
+                                    <i className="mdi mdi-clock-outline"></i>{" "}
+                                  </span>
 
                                   {moment
                                     .utc(e?.createdAt)
@@ -235,7 +250,9 @@ const NotificationDropdown = () => {
                               <div className="font-size-12 text-muted">
                                 <p className="mb-1">{e?.body}</p>
                                 <p className="mb-0">
-                                  <i className="mdi mdi-clock-outline"></i>
+                                  <span className="notificlockmargin">
+                                    <i className="mdi mdi-clock-outline"></i>{" "}
+                                  </span>
 
                                   {moment
                                     .utc(e?.createdAt)
@@ -259,7 +276,9 @@ const NotificationDropdown = () => {
                               <div className="font-size-12 text-muted">
                                 <p className="mb-1">{e?.body}</p>
                                 <p className="mb-0">
-                                  <i className="mdi mdi-clock-outline"></i>
+                                  <span className="notificlockmargin">
+                                    <i className="mdi mdi-clock-outline"></i>{" "}
+                                  </span>
 
                                   {moment
                                     .utc(e?.createdAt)
@@ -283,7 +302,9 @@ const NotificationDropdown = () => {
                               <div className="font-size-12 text-muted">
                                 <p className="mb-1">{e?.body}</p>
                                 <p className="mb-0">
-                                  <i className="mdi mdi-clock-outline"></i>
+                                  <span className="notificlockmargin">
+                                    <i className="mdi mdi-clock-outline"></i>{" "}
+                                  </span>
 
                                   {moment
                                     .utc(e?.createdAt)
@@ -307,7 +328,9 @@ const NotificationDropdown = () => {
                               <div className="font-size-12 text-muted">
                                 <p className="mb-1">{e?.body}</p>
                                 <p className="mb-0">
-                                  <i className="mdi mdi-clock-outline"></i>
+                                  <span className="notificlockmargin">
+                                    <i className="mdi mdi-clock-outline"></i>{" "}
+                                  </span>
 
                                   {moment
                                     .utc(e?.createdAt)

@@ -9,6 +9,7 @@ import {
   ModalHeader,
   ModalBody,
 } from "reactstrap";
+import Switch from "react-switch";
 import Select from "react-select";
 import { Link } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
@@ -27,11 +28,16 @@ const CategoriesDetail = () => {
     modal_static1,
     setModal_static1,
     categoryDetail,
+    categoryDailedData,
+    getresourceStatusFunc,
     setCategoryDetail,
     categoryDropDown,
     setCategoryDropDown,
     categoryDetailname,
     setCategoryDetailname,
+    categorydropdownDailedData,
+    OnSymbol,
+    Offsymbol,
     selectedvalue,
     setSelectedvalue,
     loaded,
@@ -97,9 +103,34 @@ const CategoriesDetail = () => {
                     </Col>
                   </Row>
                   <hr />
+                  {/* start */}
+                  <Row className="mt-4">
+                    <Col md={3}>Category (Status)</Col>
+                    <Col md={3}></Col>
+                    <Col md={3}></Col>
+                    <Col md={3}></Col>
+                  </Row>
+                  <Row className="mt-2">
+                    <Col md={3}>
+                      <Switch
+                        onHandleColor="#16b185"
+                        width={70}
+                        uncheckedIcon={Offsymbol(<small>Inactive</small>)}
+                        checkedIcon={OnSymbol(<small>Active</small>)}
+                        onColor="#a2a2a2"
+                        onChange={(e) => getresourceStatusFunc(e)}
+                        checked={categoryDailedData?.visibility}
+                        className="mr-1 mt-1  "
+                      />
+                    </Col>
+                    <Col md={3}></Col>
+                    <Col md={3}></Col>
+                    <Col md={3}></Col>
+                  </Row>
+                  {/* end  */}
                   <Row>
                     <Col md={5}>
-                      <p className="LBDLabels">Category Name</p>
+                      <p className="LBDLabels mt-4">Category Name</p>
                       <Input
                         //  className="detailsinput"
                         placeholder="Enter Name"

@@ -13,6 +13,9 @@
     color: #333333;
     font-size: 23px;
 }
+.alignrighttext{
+    text-align: right;
+}
 .greencolor{
     
     background-color: #00BCAE;

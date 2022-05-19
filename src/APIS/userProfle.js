@@ -153,7 +153,7 @@ export const getUserPastBookings = async (
   }
 
   const resJson = await res.json();
-  console.log("resJson : ", resJson);
+
   // const userPastBookingsData = resJson.bookings.map((booking, index) => ({
   const userPastBookingsData = resJson.data.map((booking, index) => ({
     ...booking,
@@ -214,4 +214,24 @@ export const getUserScheduledBookings = async (
     hasNextPage: resJson.hasNextPage,
     hasPreviousPage: resJson.hasPreviousPage,
   };
+};
+
+/**
+ *
+ * @param size
+ * @param page
+ * @param {JWT} token
+ * @returns a list of user  by profession in DIOM
+ */
+
+export const getUserByProfession = async (token = "") => {
+  return await (
+    await await fetch(`${DIOM_BASED_URLS}/general/users/professions`, {
+      method: "GET",
+      redirect: "follow",
+      headers: {
+        Authorization: "Bearer " + token,
+      },
+    })
+  ).json();
 };

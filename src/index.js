@@ -11,13 +11,20 @@ import LoadingOverlay from "react-loading-overlay";
 import BounceLoader from "react-spinners/BounceLoader";
 
 import store from "./store";
+import { SnackbarProvider } from "notistack";
 
 const app = (
   <Provider store={store}>
     <QueryClientProvider client={queryClient}>
+    <SnackbarProvider maxSnack={3}  anchorOrigin={{
+        vertical: 'bottom',
+        horizontal: 'right',
+    }}>
       <BrowserRouter>
         <App />
       </BrowserRouter>
+      </SnackbarProvider>
+
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   </Provider>

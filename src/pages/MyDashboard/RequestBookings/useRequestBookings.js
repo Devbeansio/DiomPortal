@@ -53,28 +53,13 @@ const UseRequestBookings = () => {
 
   const handeldiomlocation = async (a) => {
     if (activeTabJustify === "1") {
-      // if (a === "All") {
-      //   gettodaybookings();
-      // } else {
       fetchFilteredTodayBookings(a);
-      // QueryClient.invalidateQueries("gettodaysbookings");
-      // }
     } else if (activeTabJustify === "3") {
-      // if (a === "All") {
-      //   fetchScheduledBookings();
-      // } else {
       fetchFilteredScheduledBookings(a);
-      // QueryClient.invalidateQueries("getschduledbookings");
-      // }
+     
     } else if (activeTabJustify === "6") {
-      // if (a === "All") {
-      //   fetchPastBookings();
       queryClient.invalidateQueries("getpastbookings");
-      // } else {
       fetchFilteredPastBookings(a);
-
-      // QueryClient.invalidateQueries("getpastbookings");
-      // }
     }
   };
   //pending
@@ -126,7 +111,6 @@ const UseRequestBookings = () => {
   );
 
   const fetchFilteredPastBookings = async (val) => {
-    console.log("value", val);
     if (val === "All") {
       setCurrentPage(1);
       setApplyFilter(false);

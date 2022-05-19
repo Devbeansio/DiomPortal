@@ -81,7 +81,9 @@ const Taxation = () => {
                 <span className="fas fa-angle-left arrowheightwidth"></span>
               </Link>
 
-              <span className=" bookingtodaytitle ml-4">Taxation</span>
+              <span className=" loctiontitle " style={{ marginLeft: 11 }}>
+                Taxation
+              </span>
             </Col>
             <Col md={9}></Col>
           </Row>

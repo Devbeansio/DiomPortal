@@ -33,10 +33,10 @@ export const useLocationsListing = () => {
   );
 
   const { data: locationsData, isLoading: loadingLocations } = useAllDataQuery(
-    ["locations", "visible"],
+    ["locationbrandData", "visible"],
     () => getLocationBrand(token)
   );
-
+  const brandData = locationsData;
   const toggle = () => {
     setIsOpen(!isOpen);
   };
@@ -90,6 +90,7 @@ export const useLocationsListing = () => {
     isLoading,
     pagelengthnum,
     pageSize,
+    brandData,
     toggle,
     isOpen,
     handeldiomlocation,

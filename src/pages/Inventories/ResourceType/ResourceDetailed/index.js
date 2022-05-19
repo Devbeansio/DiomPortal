@@ -11,6 +11,7 @@ import {
   Card,
   Form,
 } from "reactstrap";
+import Switch from "react-switch";
 import Input from "reactstrap/lib/Input";
 import Label from "reactstrap/lib/Label";
 import Dropzone from "react-dropzone";
@@ -44,11 +45,15 @@ const ResourceDetailed = () => {
     resourceTypeAddMoreBlock,
     setResourceTypeAddMoreBlock,
     businesName,
+    OnSymbol,
+    Offsymbol,
     diomLocation,
+    getresourcetypeStatusFunc,
     prices,
     selectedFiles,
     pageOptions,
     setLocationlabel,
+    resourcetypeResourcesdata,
     vat,
     enableEdit,
     handellocationeditfunc,
@@ -262,6 +267,33 @@ const ResourceDetailed = () => {
               <Col md={9}></Col>
             </Row>
             <hr />
+            {/* {console.log(
+              "resourcetypeResourcesdata : ",
+              resourcetypeResourcesdata.visibility
+            )} */}
+            <Row className="mt-4">
+              <Col md={3}>Resource Type (Status)</Col>
+              <Col md={3}></Col>
+              <Col md={3}></Col>
+              <Col md={3}></Col>
+            </Row>
+            <Row className="mt-2">
+              <Col md={3}>
+                <Switch
+                  onHandleColor="#16b185"
+                  width={70}
+                  uncheckedIcon={Offsymbol(<small>Inactive</small>)}
+                  checkedIcon={OnSymbol(<small>Active</small>)}
+                  onColor="#a2a2a2"
+                  onChange={(e) => getresourcetypeStatusFunc(e)}
+                  checked={resourcetypeResourcesdata?.visibility}
+                  className="mr-1 mt-1  "
+                />
+              </Col>
+              <Col md={3}></Col>
+              <Col md={3}></Col>
+              <Col md={3}></Col>
+            </Row>
 
             <Row className="mt-4">
               <Col md={6}>
@@ -279,10 +311,76 @@ const ResourceDetailed = () => {
                     }
                   />
                 </div>
+
+                {/* start  */}
+                <p className="label itemlabels mt-4">Select Booking Type</p>
+                <Row>
+                  <Col md={6}>
+                    <span className="form-check mb-3">
+                      <Input
+                        className="form-check-input "
+                        style={{
+                          backgroundColor: "#03B2A5",
+                          borderColor: "#08a399",
+                        }}
+                        type="checkbox"
+                        value=""
+                        id="defaultCheck1"
+                        checked={true}
+                        disabled
+                      />
+                      <Label
+                        className="form-check-label checklabels"
+                        htmlFor="defaultCheck1"
+                      >
+                        Standard Booking
+                      </Label>
+                    </span>
+                  </Col>
+                  <Col md={6}>
+                    <span className="form-check mb-3">
+                      <Input
+                        className="form-check-input"
+                        style={{
+                          backgroundColor: "#03B2A5",
+                          borderColor: "#08a399",
+                        }}
+                        type="checkbox"
+                        id="defaultCheck1"
+                        onChange={() =>
+                          setResourceDetailes({
+                            ...resourceDetailes,
+                            isAvailableInWnpl:
+                              !resourceDetailes.isAvailableInWnpl,
+                          })
+                        }
+                        checked={resourceDetailes.isAvailableInWnpl}
+                      />
+
+                      <Label
+                        className="form-check-label checklabels"
+                        htmlFor="defaultCheck1"
+                      >
+                        Work Now, Pay Later
+                      </Label>
+                    </span>
+                  </Col>
+                </Row>
+                {/* <div>
+                  <div className="form-check mb-3"> */}
+
+                {/* </div>
+                </div> */}
+                {/* <div> */}
+                {/* <div className="form-check mb-3"> */}
+
+                {/* </div> */}
+                {/* </div> */}
+                {/* end  */}
               </Col>
               <Col md={2}></Col>
               <Col md={4}>
-                <p className="label itemlabels">Select Booking Type</p>
+                {/* <p className="label itemlabels">Select Booking Type</p>
                 <div>
                   <div className="form-check mb-3">
                     <Input
@@ -332,7 +430,7 @@ const ResourceDetailed = () => {
                       Work Now, Pay Later
                     </Label>
                   </div>
-                </div>
+                </div> */}
               </Col>
             </Row>
           </Card>
@@ -365,7 +463,7 @@ const ResourceDetailed = () => {
                 ))}
             </Row>
             <Row>
-              <Col md={2} className="pricinglabel mt-5 mb-2">
+              <Col md={2} className="pricinglabel mt-5 mb-3">
                 VAT
               </Col>
 
@@ -375,7 +473,7 @@ const ResourceDetailed = () => {
               {vat &&
                 vat.map((vat) => (
                   <Col md={12}>
-                    <Input placeholder={vat.Vat}></Input>
+                    <Input value={vat.Vat}></Input>
                   </Col>
                 ))}
             </Row>
@@ -394,17 +492,18 @@ const ResourceDetailed = () => {
                           <Col md={4}>
                             <Form className="dropzone">
                               <Dropzone
-                                onDrop={(acceptedFiles) => {
-                                  // handleAcceptedFiles(acceptedFiles);
-                                }}
+                                // onDrop={(acceptedFiles) => {
+                                //   // handleAcceptedFiles(acceptedFiles);
+                                // }}
                               >
-                                {({ getRootProps, getInputProps }) => (
+                                {
+                                ({ getRootProps, getInputProps }) => (
                                   <div>
                                     <div
                                       className="dz-message needsclick"
                                       {...getRootProps()}
                                     >
-                                      <input {...getInputProps()} />
+                                      {/* <input {...getInputProps()} /> */}
                                       <img
                                         src={e.imageUrl}
                                         style={{ height: 250, width: 200 }}

@@ -103,12 +103,12 @@ class SidebarContent extends Component {
               <Link to="/#" className="waves-effect has-arrow">
                 <i class="mdi mdi-clipboard-check-outline"></i>
 
-                <span className="ml-1">{this.props.t("Inventories")}</span>
+                <span className="ml-1">{this.props.t("Inventory")}</span>
               </Link>
               <ul className="sub-menu">
                 <li>
                   <Link to="/inventories" className="waves-effect">
-                    <span className="ml-1">{this.props.t("Inventories")}</span>
+                    <span className="ml-1">{this.props.t("All Inventories")}</span>
                   </Link>
                 </li>
 
@@ -125,11 +125,11 @@ class SidebarContent extends Component {
                     </span>
                   </Link>
                 </li>
-                <li>
+                {/* <li>
                   <Link to="/floorplan" className="waves-effect">
                     <span className="ml-1">{this.props.t("Floor Plan")}</span>
                   </Link>
-                </li>
+                </li> */}
               </ul>
             </li>
 
@@ -152,6 +152,11 @@ class SidebarContent extends Component {
                     </span>
                   </Link>
                 </li>
+                <li>
+                  <Link to="/floorplan" className="waves-effect">
+                    <span className="ml-1">{this.props.t("Floor Plan")}</span>
+                  </Link>
+                </li>
               </ul>
             </li>
 
@@ -165,11 +170,26 @@ class SidebarContent extends Component {
               </Link>
             </li> */}
 
+<li>
+              <Link to="/#" className="has-arrow waves-effect">
+              <i className="fas fa-file-alt"></i>
+              <span className="ml-1">{this.props.t("Reports ")}</span>
+              </Link>
+              <ul className="sub-menu">
             <li>
               <Link to="/reports" className=" waves-effect">
-                <i className="fas fa-file-alt"></i>
-                <span className="ml-1">{this.props.t("Reports")}</span>
+                {/* <i className="fas fa-file-alt"></i> */}
+                <span className="ml-1">{this.props.t("Create a Report")}</span>
               </Link>
+            </li>
+
+            <li>
+              <Link to="/reportRequest" className=" waves-effect">
+                {/* <i className="fas fa-file-alt"></i> */}
+                <span className="ml-1">{this.props.t("All Reports")}</span>
+              </Link>
+            </li>
+            </ul>
             </li>
 
             <li>

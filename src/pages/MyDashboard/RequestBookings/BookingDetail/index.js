@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Card, Row, Col, Button, CardBody, Table } from "reactstrap";
 import SimpleBar from "simplebar-react";
+
 import "./css/bookingdetail.css";
 import { Link, useParams, useHistory } from "react-router-dom";
 
@@ -22,18 +23,19 @@ const BookingDetail = () => {
     revokeBookingStatus,
     abc,
     isLoading,
-    setAbc,
+    set ,
     // getrevokedbookings,
     userbookingData,
   } = useBookingDetails();
 
   const Loader = require("react-loader");
-
+  const pageStyle = `{ size: 5.5in }`;
   const { id, t_ID } = useParams();
   const componentRef = useRef();
   const handlePrint = useReactToPrint({
     content: () => componentRef.current,
     copyStyles: true,
+    pageStyle: { pageStyle },
   });
   if (error) {
     return (
@@ -92,9 +94,11 @@ const BookingDetail = () => {
                         <Col md={6} className="fontblackcolor">
                           Customer Name
                         </Col>
-                        <Col md={6}>
+                        <Col md={6} className="alignrighttext">
                           <p className="fontcolor">
-                            {userbookingData ? userbookingData.username : "N/A"}
+                            {/* {userbookingData ? userbookingData.username : "N/A"}
+                             */}
+                             {bookingDetails?bookingDetails.userName:"N/A"}
                           </p>
                         </Col>
                       </Row>
@@ -114,7 +118,7 @@ const BookingDetail = () => {
                         <Col md={6} className="fontblackcolor">
                           Booking No.
                         </Col>
-                        <Col md={6}>
+                        <Col md={6} className="alignrighttext">
                           <p className="fontcolor">{id ? id : "N/A"}</p>
                         </Col>
                       </Row>
@@ -122,7 +126,7 @@ const BookingDetail = () => {
                         <Col md={6} className="fontblackcolor">
                           Booking Type
                         </Col>
-                        <Col md={6}>
+                        <Col md={6} className="alignrighttext">
                           <p className="fontcolor">
                             {bookingDetails.bookingType
                               ? bookingDetails.bookingType
@@ -134,7 +138,7 @@ const BookingDetail = () => {
                         <Col md={5} className="fontblackcolor">
                           Duration
                         </Col>
-                        <Col md={7}>
+                        <Col md={7} className="alignrighttext">
                           <p className="fontcolors">
                             {bookingDetails.fromTime
                               ? moment(bookingDetails.fromTime).format(
@@ -157,7 +161,7 @@ const BookingDetail = () => {
                         <Col md={6} className="fontblackcolor">
                           Time
                         </Col>
-                        <Col md={6}>
+                        <Col md={6} className="alignrighttext">
                           <p className="fontcolors">
                             {bookingDetails.fromTime
                               ? moment(bookingDetails.fromTime).format("HH:mm")
@@ -184,7 +188,7 @@ const BookingDetail = () => {
                         <Col md={6} className="fontblackcolor">
                           Location
                         </Col>
-                        <Col md={6}>
+                        <Col md={6} className="alignrighttext">
                           <p className="fontcolor">
                             {bookingDetails.businessName
                               ? bookingDetails.businessName
@@ -196,7 +200,7 @@ const BookingDetail = () => {
                         <Col md={6} className="fontblackcolor">
                           Resource Type
                         </Col>
-                        <Col md={6}>
+                        <Col md={6} className="alignrighttext">
                           <p className="fontcolor">
                             {bookingDetails.resourceTypeName
                               ? bookingDetails.resourceTypeName
@@ -208,7 +212,7 @@ const BookingDetail = () => {
                         <Col md={6} className="fontblackcolor">
                           Resource Allocated
                         </Col>
-                        <Col md={6}>
+                        <Col md={6} className="alignrighttext">
                           <p className="fontcolor">
                             {bookingDetails.resourceName
                               ? bookingDetails.resourceName
@@ -225,7 +229,7 @@ const BookingDetail = () => {
                         <Col md={6} className="fontblackcolor">
                           Invoice #
                         </Col>
-                        <Col md={6}>
+                        <Col md={6} className="alignrighttext">
                           <p className="fontcolor">
                             {bookingDetails.invoiceNumber
                               ? bookingDetails.invoiceNumber
@@ -237,7 +241,7 @@ const BookingDetail = () => {
                         <Col md={6} className="fontblackcolor">
                           Amount Paid
                         </Col>
-                        <Col md={6}>
+                        <Col md={6} className="alignrighttext">
                           <p className="fontcolor">
                             {bookingDetails.totalAmount
                               ? bookingDetails.totalAmount
@@ -249,7 +253,7 @@ const BookingDetail = () => {
                         <Col md={6} className="fontblackcolor">
                           Payment Method
                         </Col>
-                        <Col md={6}>
+                        <Col md={6} className="alignrighttext">
                           <p className="fontcolor">CC VISA</p>
                         </Col>
                       </Row>
@@ -266,13 +270,13 @@ const BookingDetail = () => {
                         </Col>
                       </Row>
 
+                      
                       <Row>
                         <Col md={12}>
                           <div>
                             <SimpleBar style={{ maxHeight: "330px" }}>
                               <ul className="list-unstyled activity-wid">
-                                {/* Booking Status */}
-                                <li className="activity-list">
+                              {/* <li className="activity-list">
                                   <div className="activity-icon avatar-xs">
                                     <span className="greencolor  text-primary rounded-circle">
                                       <i className=""></i>
@@ -289,16 +293,6 @@ const BookingDetail = () => {
                                     </p>
                                   </div>
                                 </li>
-                              </ul>
-                            </SimpleBar>
-                          </div>
-                        </Col>
-                      </Row>
-                      <Row>
-                        <Col md={12}>
-                          <div>
-                            <SimpleBar style={{ maxHeight: "330px" }}>
-                              <ul className="list-unstyled activity-wid">
                                 {revokeBookingStatus
                                   ? revokeBookingStatus
                                   : null}
@@ -339,8 +333,8 @@ const BookingDetail = () => {
 
                                       {time.fromTime && (
                                         <li className="activity-list">
-                                          <div className="activity-icon  avatar-xs">
-                                            <span className="greencolor  text-primary rounded-circle">
+                                          <div className="activity-icon avatar-xs">
+                                            <span className="avatar-title bg-soft-primary text-primary rounded-circle">
                                               <i className=""></i>
                                             </span>
                                           </div>
@@ -368,12 +362,47 @@ const BookingDetail = () => {
                                         </li>
                                       )}
                                     </>
-                                  ))}
+                                  ))} */}
+{bookingDetails?bookingDetails.bookingStatusTimeLogs?.map((e)=>{
+  return(
+  < li className="activity-list" key={e}>
+                                          <div className="activity-icon avatar-xs">
+                                            <span className="avatar-title bg-soft-primary text-primary rounded-circle">
+                                           
+                                            </span>
+                                          </div>
+                              
+                                  <div>
+                                    <h5 className="fontblackcolordates">
+                                      
+                                     { moment(
+                                         e.createdAt).format("YYYY-MM-DD ")}
+                                         <small className="text-muted">
+                                              
+                                                  {moment( e.createdAt).format(
+                                                    "HH:mm"
+                                                  )}
+                                                </small>
+                                    </h5>
+                                    <p className="text-muted mb-0">
+                                     
+                                        { e.title}
+                                    </p>
+                                  </div>
+                                </li>
+  )
+   }):null}
+                    
                               </ul>
                             </SimpleBar>
+
+                          
                           </div>
                         </Col>
                       </Row>
+
+
+                     
                     </Card>
                   </Col>
 
@@ -452,7 +481,11 @@ const BookingDetail = () => {
                             </Col>
                             <Col md={6}>
                               <p className="fontcolor">
-                                {userbookingData ? userbookingData.id : "N/A"}
+                                {userbookingData
+                                  ? userbookingData.id
+                                    ? userbookingData.id
+                                    : "N/A"
+                                  : "N/A"}
                               </p>
                             </Col>
                           </Row>
@@ -464,7 +497,9 @@ const BookingDetail = () => {
                             <Col md={6}>
                               <p className="fontcolor">
                                 {userbookingData
-                                  ? userbookingData.username
+                                  ? userbookingData.FullName
+                                    ? userbookingData.FullName
+                                    : "N/A"
                                   : "N/A"}
                               </p>
                             </Col>
@@ -477,6 +512,8 @@ const BookingDetail = () => {
                               <p className="fontcolor">
                                 {userbookingData
                                   ? userbookingData.Email
+                                    ? userbookingData.Email
+                                    : "N/A"
                                   : "N/A"}
                               </p>
                             </Col>
@@ -489,6 +526,8 @@ const BookingDetail = () => {
                               <p className="fontcolor">
                                 {userbookingData
                                   ? userbookingData.MobilePhone
+                                    ? userbookingData.MobilePhone
+                                    : "N/A"
                                   : "N/A"}
                               </p>
                             </Col>
@@ -499,7 +538,11 @@ const BookingDetail = () => {
                             </Col>
                             <Col md={6}>
                               <p className="fontcolor">
-                                {userbookingData ? userbookingData.dob : "N/A"}
+                                {userbookingData
+                                  ? userbookingData.dob
+                                    ? userbookingData.dob
+                                    : "N/A"
+                                  : "N/A"}
                               </p>
                             </Col>
                           </Row>
@@ -511,6 +554,8 @@ const BookingDetail = () => {
                               <p className="fontcolor">
                                 {userbookingData
                                   ? userbookingData.address
+                                    ? userbookingData.address
+                                    : "N/A"
                                   : "N/A"}
                               </p>
                             </Col>
@@ -523,6 +568,8 @@ const BookingDetail = () => {
                               <p className="fontcolor">
                                 {userbookingData
                                   ? userbookingData.state
+                                    ? userbookingData.state
+                                    : "N/A"
                                   : "N/A"}
                               </p>
                             </Col>
@@ -535,6 +582,8 @@ const BookingDetail = () => {
                               <p className="fontcolor">
                                 {userbookingData
                                   ? userbookingData.cityName
+                                    ? userbookingData.cityName
+                                    : "N/A"
                                   : "N/A"}
                               </p>
                             </Col>
@@ -555,23 +604,19 @@ const BookingDetail = () => {
                 {bookingDetails &&
                   userbookingData &&
                   id &&
-                  (console.log(
-                    "bookingDetails ",
-                    bookingDetails ? bookingDetails : null
-                  ),
-                  console.log(
-                    "userbookingData ",
-                    userbookingData ? userbookingData : null
-                  ),
+                 
                   (
                     <Bookingdetailcomponent
                       bookings={{
                         bookingDetails,
                         userbookingData,
+                        revokeBookingStatus,
+                        checkInCheckout,
+                        guestData,
                         id,
                       }}
                     />
-                  ))}
+                  )}
               </div>
             </div>
           </div>

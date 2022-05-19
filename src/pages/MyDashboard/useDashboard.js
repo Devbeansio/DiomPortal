@@ -8,6 +8,7 @@ import {
   getLocationCard,
   getUsersCard,
 } from "../../APIS/dashboard";
+import { on } from "process";
 const UseDashboard = () => {
   const today = moment().format("YYYY-MM ");
   const token = localStorage.getItem("Token");
@@ -24,6 +25,10 @@ const UseDashboard = () => {
   const Loader = require("react-loader");
 
   const toggleCustomJustified = (tab) => {
+    if (activeTabJustify === tab) {
+      setActiveTabJustify(tab);
+    }
+
     if (activeTabJustify !== tab) {
       setActiveTabJustify(tab);
     }
@@ -34,35 +39,26 @@ const UseDashboard = () => {
     getFinanceCard(token)
   );
   const financeCardddata = dashboardFinanceCardddata.data;
-  // *************
   // *******General******
   const dashboardGeneralCardddata = useQuery(["GeneralCards"], () =>
     getGenaralCard(token)
   );
   const generalCardddata = dashboardGeneralCardddata.data;
-  // *************
-
   // *******Location******
   const dashboardLocationCardddata = useQuery(["LocationCards"], () =>
     getLocationCard(token)
   );
   const locationCardddata = dashboardLocationCardddata.data;
-  // *************
-
   // *******Brand******
   const dashboardBrandCardddata = useQuery(["BrandCards"], () =>
     getBrandCard(token)
   );
   const brandCardddata = dashboardBrandCardddata.data;
-  // *************
-
   // *******Brand******
   const dashboardUsersCardddata = useQuery(["UsersCards"], () =>
     getUsersCard(token)
   );
   const usersCardddata = dashboardUsersCardddata.data;
-  // *************
-
   return {
     loaded,
     activeTabJustify,

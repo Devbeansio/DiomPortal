@@ -94,7 +94,7 @@ const Categories = () => {
                   block
                 >
                   <span className="printbutton">
-                    <span className="fas fa-plus mr-3"> </span> Add a categories
+                    <span className="fas fa-plus mr-3"> </span> Add a category
                   </span>
                 </Button>
               </Link>

@@ -4,28 +4,28 @@ import { toast } from "react-toastify";
 import { DIOM_BASED_URLS } from "../../../../config/url";
 import { useParams } from "react-router-dom";
 import { getFloorPlansNames } from "../../../../APIS/floorplans";
-import { useQuery } from "react-query";
+import { useQueryClient, useQuery } from "react-query";
 
 const useFloorPlanDetail = () => {
+  const QueryClient = useQueryClient();
   const [error, setError] = useState(null);
   const [modal_static, setModal_static] = useState(false);
   const [selectedFiles, setSelectedFiles] = useState([]);
   const [selectedLocation, setSelectedLocation] = useState({});
   const [selectLocationName, setSelectLocationName] = useState("");
   const [selectLocationNameById, setSelectLocationNameById] = useState("");
+  const [modal_static1, setModal_static1] = useState(false);
   const [selectLocationNamefloorname, setSelectLocationNamefloorname] =
     useState("");
   const [loaded, setLoaded] = useState(false);
-
   const handleSelectGroup = (selectedGroup) => {
-    //  console.log(selectedGroup)
     setSelectedLocation(selectedGroup);
     setSelectLocationName(selectedGroup.label);
   };
-
   const { floorid } = useParams();
   const history = useHistory();
   const token = localStorage.getItem("Token");
+
 
   const formatBytes = (bytes, decimals = 2) => {
     if (bytes === 0) return "0 Bytes";
@@ -44,6 +44,12 @@ const useFloorPlanDetail = () => {
     );
 
     setSelectedFiles(files);
+  };
+
+  const tog_static1 = () => {
+    setModal_static1(!modal_static1);
+
+    removeBodyCss();
   };
 
   const namefunc = (e) => {
@@ -100,7 +106,49 @@ const useFloorPlanDetail = () => {
       );
   };
 
-  // *************
+
+
+const deleteFloorPlansFunc = ()=>{
+  
+
+
+  fetch(
+    `${DIOM_BASED_URLS}/admin-business-locations/${floorid}/floorpans/selectLocationNamefloorname[0]._id`,
+    {
+      method: "DELETE",
+      headers: {
+        Accept: "application/json, text/plain",
+        "Content-Type": "application/json;charset=UTF-8",
+        Authorization: "Bearer " + token,
+      },
+      body: JSON.stringify({}),
+    }
+  )
+    .then((result3) => {
+      if (result3.status === 200) {
+        toast.success(" Successfully Deleted");
+
+        setModal_static1(false)
+        QueryClient.invalidateQueries("floorplanname");
+       
+      } else if (result3.status === 204) {
+        toast.success(" Successfullyn Deleted");
+        setModal_static1(false)
+        QueryClient.invalidateQueries("floorplanname");
+      
+      } else {
+        toast.error(" Something went wrong");
+        setModal_static1(false)
+        QueryClient.invalidateQueries("floorplanname");
+      }
+    })
+    .catch((error) => toast.error(" Something went wrong"));
+}
+
+
+
+
+  // ************* 
   const floorPlanData = useQuery(["floorplanname", floorid], () =>
     getFloorPlansNames(token, floorid)
   );
@@ -143,7 +191,11 @@ const useFloorPlanDetail = () => {
     namefunc,
     uploadFile,
     tog_static,
+    deleteFloorPlansFunc,
     getlocations,
+    modal_static1,
+    setModal_static1,
+    tog_static1,
   };
 };
 

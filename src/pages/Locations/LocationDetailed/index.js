@@ -214,9 +214,9 @@ const LocationDetailed = () => {
                               <Col md={4}>
                                 <Form className="dropzone">
                                   <Dropzone
-                                    onDrop={(acceptedFiles) => {
-                                      // handleAcceptedFiles(acceptedFiles);
-                                    }}
+                                    // onDrop={(acceptedFiles) => {
+                                    //   // handleAcceptedFiles(acceptedFiles);
+                                    // }}
                                   >
                                     {({ getRootProps, getInputProps }) => (
                                       <div>
@@ -224,7 +224,7 @@ const LocationDetailed = () => {
                                           className="dz-message needsclick"
                                           {...getRootProps()}
                                         >
-                                          <input {...getInputProps()} />
+                                          {/* <input {...getInputProps()} /> */}
                                           <img
                                             src={e.imageUrl}
                                             alt="image"
@@ -449,9 +449,9 @@ const LocationDetailed = () => {
                             <Col md={4}>
                               <Form className="dropzone">
                                 <Dropzone
-                                  onDrop={(acceptedFiles) => {
-                                    // handleAcceptedFiles2(acceptedFiles)
-                                  }}
+                                  // onDrop={(acceptedFiles) => {
+                                  //   // handleAcceptedFiles2(acceptedFiles)
+                                  // }}
                                 >
                                   {({ getRootProps, getInputProps }) => (
                                     <div>
@@ -459,7 +459,7 @@ const LocationDetailed = () => {
                                         className="dz-message needsclick"
                                         {...getRootProps()}
                                       >
-                                        <input {...getInputProps()} />
+                                        {/* <input {...getInputProps()} /> */}
                                         <img
                                           alt="image"
                                           src={e.imageUrl}
@@ -684,9 +684,9 @@ const LocationDetailed = () => {
                               <Col md={4}>
                                 <Form className="dropzone">
                                   <Dropzone
-                                    onDrop={(acceptedFiles) => {
-                                      // handleAcceptedFiles5(acceptedFiles);
-                                    }}
+                                    // onDrop={(acceptedFiles) => {
+                                    //   // handleAcceptedFiles5(acceptedFiles);
+                                    // }}
                                   >
                                     {({ getRootProps, getInputProps }) => (
                                       <div>
@@ -694,7 +694,7 @@ const LocationDetailed = () => {
                                           className="dz-message needsclick"
                                           {...getRootProps()}
                                         >
-                                          <input {...getInputProps()} />
+                                          {/* <input {...getInputProps()} /> */}
                                           <img
                                             src={e.imageUrl}
                                             alt="image"

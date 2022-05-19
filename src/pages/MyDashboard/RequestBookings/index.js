@@ -270,11 +270,14 @@ const RequestBookings = () => {
           <div className="page-content">
             <div>
               <Row>
-                <Col md={2}>
-                  <h5 className="Bookingstitle">Bookings </h5>
+                <Col md={5}>
+                  <Link to={`/mydashboard`} className="link">
+                    <span className="fas fa-angle-left arrowheightwidth"></span>
+                  </Link>
+
+                  <span className="cehckincustomertitle">Bookings</span>
                 </Col>
-                <Col md={8}></Col>
-                <Col md={2} className=""></Col>
+                <Col md={7}></Col>
               </Row>
             </div>
 

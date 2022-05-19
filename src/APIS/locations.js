@@ -63,7 +63,13 @@ export const getcheckInLocations = async (token) => {
   return [
     {
       label: "--All Locations",
-      options: [...res],
+      options: [
+        {
+          value: "All",
+          label: "All",
+        },
+        ...res,
+      ],
     },
   ];
 };

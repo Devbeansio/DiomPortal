@@ -43,6 +43,69 @@ const UseCategoryDetail = () => {
     removeBodyCss();
   };
 
+  function Offsymbol(text) {
+    return (
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "100%",
+          fontSize: 12,
+          color: "#fff",
+          paddingRight: 2,
+        }}
+      >
+        {text}
+      </div>
+    );
+  }
+
+  function OnSymbol(text) {
+    return (
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "100%",
+          fontSize: 12,
+          color: "#fff",
+          paddingRight: 2,
+        }}
+      >
+        {text}
+      </div>
+    );
+  }
+
+  const getresourceStatusFunc = async (e) => {
+    const response = await fetch(
+      `${DIOM_BASED_URLS}/resource-type-categories/${id}/togglevisibility`,
+      {
+        method: "PATCH",
+        redirect: "follow",
+
+        headers: {
+          Accept: "application/json, text/plain",
+          "Content-Type": "application/json;charset=UTF-8",
+          Authorization: "Bearer " + token,
+        },
+        body: JSON.stringify({
+          visibility: e,
+        }),
+      }
+    );
+
+    if (!response.ok) {
+      const message = `An error has occured: ${response.status}`;
+      throw new Error(message);
+    } else {
+      toast.success("Category Updated");
+      QueryClient.invalidateQueries("categpryDetails");
+    }
+  };
+
   const updateNameAndDescription = () => {
     fetch(`${DIOM_BASED_URLS}/resource-type-categories/${id}`, {
       method: "PATCH",
@@ -194,6 +257,7 @@ const UseCategoryDetail = () => {
     getCategoryDetails(token, id)
   );
   const categoryDailedData = categoryData.data;
+  // console.log("categoryDailedData =======>>>>: ", categoryDailedData);
   // *************
   const CategoryDetail = async () => {
     setCategoryDetailname(categoryDailedData.name);
@@ -212,10 +276,13 @@ const UseCategoryDetail = () => {
       return {
         label: element.Name,
         value: element.id,
+        resourceTypeCategoryId: element.resourceTypeCategoryId,
+        // visibility: element.visibility,
       };
     });
     setSelectedMulti(matadata);
     setCategoryDropDown(matadata);
+    // console.log("categorydropdownDailedDataddddd: ", matadata);
   };
 
   // *************
@@ -231,6 +298,8 @@ const UseCategoryDetail = () => {
         label: element.Name,
         value: element.id,
         UniqueId: element.UniqueId,
+        resourceTypeCategoryId: element.resourceTypeCategoryId,
+        // visibility: element.visibility,
       };
     });
 
@@ -261,6 +330,8 @@ const UseCategoryDetail = () => {
     isLoading,
     categoryDetail,
     setCategoryDetail,
+    OnSymbol,
+    Offsymbol,
     categoryDropDown,
     setCategoryDropDown,
     categoryDetailname,
@@ -277,9 +348,12 @@ const UseCategoryDetail = () => {
     tog_static1,
     tog_static,
     FetchbrandLocations,
+    categorydropdownDailedData,
     CategoryDetail,
     CategoryDetaildropdown,
     Resourcetypesdropdown,
+    getresourceStatusFunc,
+    categoryDailedData,
   };
 };
 

@@ -30,6 +30,7 @@ const useLocationBrandDetail = () => {
   };
 
   const startTimeFunc = (e) => {
+    console.log("start time : ", e.target.value);
     setStartTime(e.target.value);
   };
   const endTimeFunc = (e) => {
@@ -150,8 +151,8 @@ const useLocationBrandDetail = () => {
         name: `${locationBrandData.name}`,
         description: `${locationBrandData.description}`,
         // locationTitle: selectedMulti,
-        startTime: startTime,
-        endTime: endTime,
+        startTime: `${startTime}`,
+        endTime: `${endTime}`,
       }),
     })
       .then((result3) => {

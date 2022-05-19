@@ -39,6 +39,7 @@ import MyDashboard from "../pages/MyDashboard/mydashboard";
 
 import Finance from "../pages/Finance/index";
 import Reports from "../pages/Reports/index";
+import ReportRequest from "../pages/Reports/reportRequest";
 import AddAPackage from "../pages/AddAPackage/index";
 import LocationDetailed from "../pages/Locations/LocationDetailed/index";
 import Locations from "../pages/Locations/index";
@@ -71,6 +72,7 @@ const authProtectedRoutes = [
   { path: "/categoriesdetail/:id", component: CategoriesDetail },
   { path: "/finance", component: Finance },
   { path: "/reports", component: Reports },
+  { path: "/reportRequest", component: ReportRequest },
   { path: "/addapackage", component: AddAPackage },
   { path: "/locationdetailed/:id", component: LocationDetailed },
   { path: "/locations", component: Locations },

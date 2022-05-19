@@ -1,0 +1,31 @@
+.reportinputmargin{
+margin-left: 20px;
+}
+.reporttitlecss{
+    font-family: 'Montserrat';
+    
+    font-weight: 600;
+    font-size: 23px;
+}
+.reportlinktitle{
+    font-family: 'Montserrat';
+font-weight: 500;
+font-size: 14px;
+}
+.reportcreatedon{
+    font-family: 'Montserrat';
+font-style: normal;
+font-weight: 500;
+font-size: 12px;
+/* align-items:center ; */
+
+/* display: inline-flex; */
+text-align: center;
+}
+.reportcreactedinputcss{
+    display: inline-flex;
+    align-items: center;
+}
+.reportinputcss{
+    margin-left: 20px;
+}

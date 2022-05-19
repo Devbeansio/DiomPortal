@@ -20,7 +20,20 @@ color: #808A98;
 
 
 }
+.generalcardborders{
+   
+    
+  }
+.navbuttonborder{
+    border-bottom: 2px #808A98;
+}
+/* .nav-fill .nav-item .nav-link, .nav-justified .nav-item .nav-link{
+    border-bottom: 2px #808A98 !important;
+} */
 
+/* .btn-light{
+    background-color: #e82d2d;
+} */
 .dashboaedfilter{
     font-family: 'Montserrat';
 font-style: normal;

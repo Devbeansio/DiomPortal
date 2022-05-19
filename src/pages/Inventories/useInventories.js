@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useQueryClient } from "react-query";
+import { QueryClient, useQuery, useQueryClient } from "react-query";
 import { getResources, getLocations, getSearchedResources } from "../../APIS";
 import { useAllDataQuery, usePaginatedQuery } from "../../hooks/query";
 export const useInventories = () => {
@@ -11,12 +11,35 @@ export const useInventories = () => {
   const queryClient = useQueryClient();
   const [applyLocationFilter, setApplyFilter] = useState(false);
   const [filter, setFilter] = useState("All");
-  const {
-    data: { data: resourcesData, hasNextPage, hasPreviousPage, total },
-    isLoading,
-  } = usePaginatedQuery(["resources", currentPage, filter], () =>
-    getResources(pageSize, currentPage, token, applyLocationFilter, filter)
+  // const {
+  //   data: { data: resourcesData, hasNextPage, hasPreviousPage, total },
+  //   isLoading,
+  // } = usePaginatedQuery(["resources", currentPage, filter], () =>
+  //   getResources(pageSize, currentPage, token, applyLocationFilter, filter)
+  // );
+  // console.log("total", "total");
+  // console.log(["resources", currentPage, filter]);
+  const { data, isLoading } = useQuery(
+    ["resources", currentPage, filter],
+    async () =>
+      await getResources(
+        pageSize,
+        currentPage,
+        token,
+        applyLocationFilter,
+        filter
+      ),
+    {
+      keepPreviousData: true,
+      staleTime: 2000,
+      retry: false,
+    }
   );
+  // console.log("total", "total");
+  // console.log(data?.total, "total");
+
+  // usePaginatedQuery(,
+  // );
 
   const {
     data: { data: resourcessearchedData },
@@ -28,6 +51,7 @@ export const useInventories = () => {
     ["locations", "visible"],
     () => getLocations(token)
   );
+  const locationData = locationsData;
 
   const toggle = () => {
     setIsOpen(!isOpen);
@@ -40,20 +64,21 @@ export const useInventories = () => {
     } else if (e.target.value === "3") {
       setPageSize(50);
     }
+    // QueryClient.invalidateQueries("searcehdresources");
   };
 
   const pageOptions = {
     sizePerPage: pageSize,
-    totalSize: total ?? 0,
+    totalSize: data?.total ?? 0,
     custom: true,
   };
   const onChangeLocationFilter = (val) => {
     if (val === "All") {
-      setCurrentPage(1);
+      setCurrentPage(currentPage);
       setApplyFilter(false);
       setFilter("All");
     } else {
-      setCurrentPage(1);
+      setCurrentPage(currentPage);
       setApplyFilter(true);
       setFilter(`{"BusinessId":${val}}`);
     }
@@ -61,23 +86,26 @@ export const useInventories = () => {
 
   useEffect(() => {
     // FOR PRE-FETCHING NEXT PAGE
-    if (hasNextPage) {
+    if (data?.hasNextPage) {
       const nextPage = currentPage + 1;
-      queryClient.prefetchQuery(["resources", nextPage, filter], () =>
-        getResources(pageSize, nextPage, token)
+      // console.log("dkakhdkjs dhakjs", ["resources", nextPage, filter]);
+      queryClient.prefetchQuery(
+        ["resources", nextPage, filter],
+        async () => await getResources(pageSize, nextPage, token)
       );
     }
-  }, [currentPage, queryClient, filter]);
+  }, [currentPage, filter]);
 
   return {
     currentPage,
     pageOptions,
-    resourcesData,
-    hasNextPage,
-    hasPreviousPage,
-    total,
+    resourcesData: data?.data,
+    hasNextPage: data?.hasNextPage,
+    hasPreviousPage: data?.hasPreviousPage,
+    total: data?.total,
     locationsData,
     loadingLocations,
+    locationData,
     isLoading,
     onChangeLocationFilter,
     changeCurrentPage,
@@ -86,6 +114,6 @@ export const useInventories = () => {
     toggle,
     isOpen,
     filter,
-    resourcessearchedData,
+    // resourcessearchedData,
   };
 };

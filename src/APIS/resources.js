@@ -14,6 +14,7 @@ export const getResources = async (
   applyFilter = false,
   filters = {}
 ) => {
+  console.log("page : ", page);
   const res = await fetch(
     !applyFilter
       ? `${DIOM_BASED_URLS}/admin-resources-inventories?size=${size}&page=${page}`
@@ -40,10 +41,10 @@ export const getResources = async (
     ResourceType: element.ResourceTypeName,
   }));
   return {
-    data: resourcesData,
-    total: resJson.total,
-    hasNextPage: resJson.hasNextPage,
-    hasPreviousPage: resJson.hasPreviousPage,
+    data: resourcesData.length > 0 ? resourcesData : [],
+    total: resJson ? resJson.total : 0,
+    hasNextPage: resJson.hasNextPage ?? false,
+    hasPreviousPage: resJson.hasPreviousPage ?? false,
   };
 };
 

@@ -98,7 +98,7 @@ const Locations = () => {
         <div className="page-content">
           <div>
             <Row>
-              <Col md={2}>
+              <Col md={2} style={{ marginLeft: 25 }}>
                 <h5 className="loctiontitle">Locations</h5>
               </Col>
               <Col md={1}>
@@ -148,7 +148,8 @@ const Locations = () => {
                           data={
                             filter !== "All"
                               ? locationLisitngData
-                              : searchedlocationLisitngData
+                              : locationLisitngData
+                            //  searchedlocationLisitngData
                           }
                           search
                         >

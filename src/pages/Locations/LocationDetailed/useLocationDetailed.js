@@ -225,12 +225,16 @@ const UseLocationDetailed = () => {
 
           if (result[0].statusCode === 200) {
             toast.success("Image uplaoded", result[0].statusCode);
+
             QueryClient.invalidateQueries("locations");
             QueryClient.invalidateQueries("locationbrands");
+            setSelectedFiles([]);
           } else if (result[0].statusCode === 204) {
             toast.success("Image uplaoded", result[0].statusCode);
+
             QueryClient.invalidateQueries("locations");
             QueryClient.invalidateQueries("locationbrands");
+            setSelectedFiles([]);
           } else {
             toast.error(" Something went wrong");
           }
@@ -275,9 +279,11 @@ const UseLocationDetailed = () => {
         if (result[0].statusCode === 200) {
           toast.success("Image uplaoded", result[0].statusCode);
           QueryClient.invalidateQueries("locations");
+          setSelectedFiles5([]);
         } else if (result[0].statusCode === 204) {
           toast.success("Image uplaoded", result[0].statusCode);
           QueryClient.invalidateQueries("locations");
+          setSelectedFiles5([]);
         } else {
           toast.error(" Something went wrong");
         }
@@ -326,11 +332,13 @@ const UseLocationDetailed = () => {
             toast.success("Image uplaoded", {
               toastId: "Success1",
             });
+            setSelectedFiles2([]);
           } else if (result[0].statusCode === 204) {
             QueryClient.invalidateQueries("locations");
             toast.success("Image uplaoded", {
               toastId: "Success1",
             });
+            setSelectedFiles2([]);
           } else {
             toast.error(" Something went wrong");
           }

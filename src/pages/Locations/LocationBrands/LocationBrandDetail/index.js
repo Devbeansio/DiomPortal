@@ -147,7 +147,7 @@ const LocationBrandDetail = () => {
                       <Input
                         // format="HH:mm:ss.SSS"
                         type="time"
-                        value={locationBrandData.startTime}
+                        defaultValue={locationBrandData.startTime}
                         // value="13:00"
                         onChange={(e) => {
                           startTimeFunc(e);

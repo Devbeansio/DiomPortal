@@ -2,15 +2,33 @@
   font-family: "Montserrat";
   font-style: normal;
   font-weight: 600;
-  font-size: 35px;
+  font-size: 30px;
   color: #000000;
 }
 .invoicedetailname {
   font-family: "Montserrat";
   font-style: normal;
   font-weight: 600;
-  font-size: 20px;
+  font-size: 15px;
   color: #000000;
+}
+.rightaligncss{
+ 
+  text-align: right;
+}
+.invoicestatuscss{
+  color: green;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 15px;
+}
+.invoiceunpaidstatuscss{
+  color: rgba(190, 190, 75, 0.836);
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 15px;
 }
 .invoicedetailemail {
   font-family: "Montserrat";
@@ -39,6 +57,7 @@
   font-weight: normal;
   font-size: 15px;
   color: #000000;
+
 }
 .invoicesdetailtotalpay {
   font-family: "Montserrat";
@@ -62,6 +81,15 @@
   font-size: 17px;
   color: #03b2a5;
 }
+.invoicerefundcss{
+  color: #03b2a5;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 15px;
+
+}
+
 .invoicepdfcss {
   color: #03b2a5;
 }
@@ -80,3 +108,11 @@
   color: #000000;
   margin-left: 20px;
 }
+.accordion-button:not(.collapsed) {
+  color: #4dbd9d !important;
+}
+/* .accordion-button{
+  color: #4dbd9d !important;
+ 
+
+} */

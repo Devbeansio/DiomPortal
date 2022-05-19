@@ -80,7 +80,7 @@ const Inventories = () => {
     pageSize,
     toggle,
     isOpen,
-    resourcessearchedData,
+    // resourcessearchedData,
     filter,
     // paginationProps,
   } = useInventories();
@@ -122,167 +122,161 @@ const Inventories = () => {
                                     data={
                                       filter !== "All"
                                         ? resourcesData
-                                        : resourcessearchedData
+                                        : resourcesData
                                     }
                                     // data={resourcessearchedData}
                                     search
                                   >
                                     {(toolkitProps) => (
-                                      console.log(
-                                        "toolkitProps:",
-                                        toolkitProps
-                                      ),
-                                      (
-                                        <React.Fragment>
-                                          <Row className="mb-2">
-                                            <Col md="4">
-                                              <div className="search-box me-2 mb-2 d-inline-block">
-                                                <div className="position-relative">
-                                                  <SearchBar
-                                                    {...toolkitProps.searchProps}
-                                                  />
-                                                  <i className="search-box chat-search-box" />
-                                                </div>
-                                              </div>
-                                            </Col>
-                                            <Col md="4"></Col>
-                                            <Col md="4">
-                                              <div>
-                                                <FormGroup className="select2-container mt-2">
-                                                  <Select
-                                                    onChange={(opt) => {
-                                                      onChangeLocationFilter(
-                                                        opt.value
-                                                      );
-                                                    }}
-                                                    options={locationsData}
-                                                    placeholder="All Location"
-                                                    classNamePrefix="select2-selection"
-                                                  />
-                                                </FormGroup>
-                                              </div>
-                                            </Col>
-                                          </Row>
-
-                                          <Row>
-                                            <Col xl="12">
-                                              <div className="table-responsive">
-                                                <BootstrapTable
-                                                  hover
-                                                  keyField={"id"}
-                                                  responsive
-                                                  bordered={false}
-                                                  striped={false}
-                                                  defaultSorted={defaultSorted}
-                                                  classes={
-                                                    "table align-middle table-nowrap"
-                                                  }
-                                                  headerWrapperClasses={
-                                                    "thead-light"
-                                                  }
-                                                  {...toolkitProps.baseProps}
-                                                  {...paginationTableProps}
+                                      <React.Fragment>
+                                        <Row className="mb-2">
+                                          <Col md="4">
+                                            <div className="search-box me-2 mb-2 d-inline-block">
+                                              <div className="position-relative">
+                                                <SearchBar
+                                                  {...toolkitProps.searchProps}
                                                 />
+                                                <i className="search-box chat-search-box" />
                                               </div>
-                                            </Col>
-                                          </Row>
+                                            </div>
+                                          </Col>
+                                          <Col md="4"></Col>
+                                          <Col md="4">
+                                            <div>
+                                              <FormGroup className="select2-container mt-2">
+                                                <Select
+                                                  onChange={(opt) => {
+                                                    onChangeLocationFilter(
+                                                      opt.value
+                                                    );
+                                                  }}
+                                                  options={locationsData}
+                                                  placeholder="All Location"
+                                                  classNamePrefix="select2-selection"
+                                                />
+                                              </FormGroup>
+                                            </div>
+                                          </Col>
+                                        </Row>
 
-                                          <Row className="align-items-md-center mt-30">
-                                            <Col className="inner-custom-pagination d-flex">
-                                              <span className="paginationitmes ">
-                                                Items
-                                              </span>
-                                              <div className="d-inline ">
-                                                {/* <SizePerPageDropdownStandalone
+                                        <Row>
+                                          <Col xl="12">
+                                            <div className="table-responsive">
+                                              <BootstrapTable
+                                                hover
+                                                keyField={"id"}
+                                                responsive
+                                                bordered={false}
+                                                striped={false}
+                                                defaultSorted={defaultSorted}
+                                                classes={
+                                                  "table align-middle table-nowrap"
+                                                }
+                                                headerWrapperClasses={
+                                                  "thead-light"
+                                                }
+                                                {...toolkitProps.baseProps}
+                                                {...paginationTableProps}
+                                              />
+                                            </div>
+                                          </Col>
+                                        </Row>
+
+                                        <Row className="align-items-md-center mt-30">
+                                          <Col className="inner-custom-pagination d-flex">
+                                            <span className="paginationitmes ">
+                                              Items
+                                            </span>
+                                            <div className="d-inline ">
+                                              {/* <SizePerPageDropdownStandalone
                                                 {...paginationProps}
                                               /> */}
 
-                                                <ButtonDropdown
-                                                  isOpen={isOpen}
-                                                  toggle={toggle}
-                                                  onClick={(e) =>
-                                                    pagelengthnum(e)
-                                                  }
+                                              <ButtonDropdown
+                                                isOpen={isOpen}
+                                                toggle={toggle}
+                                                onClick={(e) =>
+                                                  pagelengthnum(e)
+                                                }
+                                              >
+                                                <DropdownToggle
+                                                  caret
+                                                  color="secondary"
                                                 >
-                                                  <DropdownToggle
-                                                    caret
-                                                    color="secondary"
-                                                  >
-                                                    {pageSize}
-                                                  </DropdownToggle>
-                                                  <DropdownMenu>
-                                                    <DropdownItem value="1">
-                                                      10
-                                                    </DropdownItem>
-                                                    <DropdownItem value="2">
-                                                      30
-                                                    </DropdownItem>
-                                                    <DropdownItem />
-                                                    <DropdownItem value="3">
-                                                      50
-                                                    </DropdownItem>
-                                                  </DropdownMenu>
-                                                </ButtonDropdown>
-                                              </div>
-                                              <span className="paginationitmes1 ">
-                                                show
-                                              </span>
-                                              <div className="text-md-right ms-auto ">
-                                                {/* <PaginationListStandalone
+                                                  {pageSize}
+                                                </DropdownToggle>
+                                                <DropdownMenu>
+                                                  <DropdownItem value="1">
+                                                    10
+                                                  </DropdownItem>
+                                                  <DropdownItem value="2">
+                                                    30
+                                                  </DropdownItem>
+                                                  <DropdownItem />
+                                                  <DropdownItem value="3">
+                                                    50
+                                                  </DropdownItem>
+                                                </DropdownMenu>
+                                              </ButtonDropdown>
+                                            </div>
+                                            <span className="paginationitmes1 ">
+                                              show
+                                            </span>
+                                            <div className="text-md-right ms-auto ">
+                                              {/* <PaginationListStandalone
                                                   className="inventoriespaginationcolor"
                                                   {...paginationProps}
                                                 /> */}
 
-                                                <Button
-                                                  color="secondary"
-                                                  className="waves-effect "
-                                                  style={{
-                                                    marginLeft: 7,
-                                                    marginRight: 7,
-                                                  }}
-                                                  disabled={currentPage <= 1}
-                                                  onClick={() =>
-                                                    currentPage === 1
-                                                      ? null
-                                                      : changeCurrentPage(
-                                                          (prev) => prev - 1
-                                                        )
-                                                  }
-                                                >
-                                                  <i class="dripicons-chevron-left"></i>
-                                                </Button>
+                                              <Button
+                                                color="secondary"
+                                                className="waves-effect "
+                                                style={{
+                                                  marginLeft: 7,
+                                                  marginRight: 7,
+                                                }}
+                                                disabled={currentPage <= 1}
+                                                onClick={() =>
+                                                  currentPage === 1
+                                                    ? null
+                                                    : changeCurrentPage(
+                                                        (prev) => prev - 1
+                                                      )
+                                                }
+                                              >
+                                                <i class="dripicons-chevron-left"></i>
+                                              </Button>
 
-                                                <Button
-                                                  style={{
-                                                    marginLeft: 7,
-                                                    marginRight: 7,
-                                                  }}
-                                                  color="success"
-                                                  className="btn-rounded waves-effect waves-light me-1 mr-2 ml-2"
-                                                >
-                                                  {currentPage}
-                                                </Button>
-                                                <Button
-                                                  style={{
-                                                    marginLeft: 7,
-                                                    marginRight: 7,
-                                                  }}
-                                                  color="secondary"
-                                                  className="waves-effect"
-                                                  disabled={!hasNextPage}
-                                                  onClick={() =>
-                                                    changeCurrentPage(
-                                                      (prev) => prev + 1
-                                                    )
-                                                  }
-                                                >
-                                                  <i class="dripicons-chevron-right"></i>
-                                                </Button>
-                                              </div>
-                                            </Col>
-                                          </Row>
-                                        </React.Fragment>
-                                      )
+                                              <Button
+                                                style={{
+                                                  marginLeft: 7,
+                                                  marginRight: 7,
+                                                }}
+                                                color="success"
+                                                className="btn-rounded waves-effect waves-light me-1 mr-2 ml-2"
+                                              >
+                                                {currentPage}
+                                              </Button>
+                                              <Button
+                                                style={{
+                                                  marginLeft: 7,
+                                                  marginRight: 7,
+                                                }}
+                                                color="secondary"
+                                                className="waves-effect"
+                                                disabled={!hasNextPage}
+                                                onClick={() =>
+                                                  changeCurrentPage(
+                                                    (prev) => prev + 1
+                                                  )
+                                                }
+                                              >
+                                                <i class="dripicons-chevron-right"></i>
+                                              </Button>
+                                            </div>
+                                          </Col>
+                                        </Row>
+                                      </React.Fragment>
                                     )}
                                   </ToolkitProvider>
                                 )}

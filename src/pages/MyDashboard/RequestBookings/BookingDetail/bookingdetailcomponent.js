@@ -4,7 +4,7 @@ import SimpleBar from "simplebar-react";
 import "./css/bookingdetail.css";
 import moment from "moment";
 const Bookingdetailcomponent = (bookings) => {
-  console.log("bookings abc : ", bookings);
+ 
   return (
     <div>
       <Row>
@@ -194,19 +194,17 @@ const Bookingdetailcomponent = (bookings) => {
                       </Col>
                     </Row>
                   </Card>
-                </Col>
-                <Col xs={5}>
-                  <p className="bookingdetail">User Personal Details</p>
-                  <Card className="innercards ">
+
+                  <Card className="innercards " style={{ marginTop: 300 }}>
                     <Row>
-                      <Col md={12}>
+                      <Col xs={12}>
                         <p className="bookingdetail">User Personal Details</p>
                         <hr />
                         <Row>
-                          <Col md={6} className="fontblackcolor">
+                          <Col xs={6} className="fontblackcolor">
                             Customer ID
                           </Col>
-                          <Col md={6}>
+                          <Col xs={6}>
                             <p className="fontcolor">
                               {bookings.bookings.userbookingData
                                 ? bookings.bookings.userbookingData.id
@@ -216,10 +214,10 @@ const Bookingdetailcomponent = (bookings) => {
                         </Row>
 
                         <Row>
-                          <Col md={6} className="fontblackcolor">
+                          <Col xs={6} className="fontblackcolor">
                             Full Name
                           </Col>
-                          <Col md={6}>
+                          <Col xs={6}>
                             <p className="fontcolor">
                               {bookings.bookings.userbookingData
                                 ? bookings.bookings.userbookingData.username
@@ -228,10 +226,10 @@ const Bookingdetailcomponent = (bookings) => {
                           </Col>
                         </Row>
                         <Row>
-                          <Col md={6} className="fontblackcolor">
+                          <Col xs={6} className="fontblackcolor">
                             Email Address
                           </Col>
-                          <Col md={6}>
+                          <Col xs={6}>
                             <p className="fontcolor">
                               {bookings.bookings.userbookingData
                                 ? bookings.bookings.userbookingData.Email
@@ -240,10 +238,10 @@ const Bookingdetailcomponent = (bookings) => {
                           </Col>
                         </Row>
                         <Row>
-                          <Col md={6} className="fontblackcolor">
+                          <Col xs={6} className="fontblackcolor">
                             Phone No.
                           </Col>
-                          <Col md={6}>
+                          <Col xs={6}>
                             <p className="fontcolor">
                               {bookings.bookings.userbookingData
                                 ? bookings.bookings.userbookingData.MobilePhone
@@ -252,10 +250,10 @@ const Bookingdetailcomponent = (bookings) => {
                           </Col>
                         </Row>
                         <Row>
-                          <Col md={6} className="fontblackcolor">
+                          <Col xs={6} className="fontblackcolor">
                             Date of Birth
                           </Col>
-                          <Col md={6}>
+                          <Col xs={6}>
                             <p className="fontcolor">
                               {bookings.bookings.userbookingData
                                 ? bookings.bookings.userbookingData.dob
@@ -264,10 +262,10 @@ const Bookingdetailcomponent = (bookings) => {
                           </Col>
                         </Row>
                         <Row>
-                          <Col md={6} className="fontblackcolor">
+                          <Col xs={6} className="fontblackcolor">
                             Adress
                           </Col>
-                          <Col md={6}>
+                          <Col xs={6}>
                             <p className="fontcolor">
                               {bookings.bookings.userbookingData
                                 ? bookings.bookings.userbookingData.address
@@ -276,10 +274,10 @@ const Bookingdetailcomponent = (bookings) => {
                           </Col>
                         </Row>
                         <Row>
-                          <Col md={6} className="fontblackcolor">
+                          <Col xs={6} className="fontblackcolor">
                             State
                           </Col>
-                          <Col md={6}>
+                          <Col xs={6}>
                             <p className="fontcolor">
                               {bookings.bookings.userbookingData
                                 ? bookings.bookings.userbookingData.state
@@ -288,10 +286,10 @@ const Bookingdetailcomponent = (bookings) => {
                           </Col>
                         </Row>
                         <Row>
-                          <Col md={6} className="fontblackcolor">
+                          <Col xs={6} className="fontblackcolor">
                             city
                           </Col>
-                          <Col md={6}>
+                          <Col xs={6}>
                             <p className="fontcolor">
                               {bookings.bookings.serbookingData
                                 ? bookings.userbookingData.cityName
@@ -305,136 +303,10 @@ const Bookingdetailcomponent = (bookings) => {
                     </Row>
                   </Card>
 
-                  {/* <Card className="innercards mt-5">
+                  {/* //guest */}
+                  <Card className="innercards mt-5">
                     <Row>
-                      <Col xs={12}>
-                        <p className="bookingdetail">
-                          Check in/ Checkout History
-                        </p>
-                        <hr />
-                      </Col>
-                    </Row>
-
-                    <Row>
-                      <Col xs={12}>
-                        <div>
-                          <SimpleBar style={{ maxHeight: "330px" }}>
-                            <ul className="list-unstyled activity-wid">
-                         
-                              <li className="activity-list">
-                                <div className="activity-icon avatar-xs">
-                                  <span className="greencolor  text-primary rounded-circle">
-                                    <i className=""></i>
-                                  </span>
-                                </div>
-                                <div>
-                                  <h5 className="fontblackcolordates">
-                                    Booking Status
-                                  </h5>
-                                  <p className="text-muted mb-0">
-                                    {bookings.bookingDetails
-                                      ? bookings.bookingDetails.bookingStatus
-                                      : "N/A"}
-                                  </p>
-                                </div>
-                              </li>
-                            </ul>
-                          </SimpleBar>
-                        </div>
-                      </Col>
-                    </Row>
-                    <Row>
-                      <Col xs={12}>
-                        <div>
-                          <SimpleBar style={{ maxHeight: "330px" }}>
-                            <ul className="list-unstyled activity-wid">
-                              {bookings.revokeBookingStatus
-                                ? bookings.revokeBookingStatus
-                                : null}
-                              {bookings.checkInCheckout &&
-                                bookings.checkInCheckout.length > 0 &&
-                                bookings.checkInCheckout.map((time) => (
-                                  <>
-                                    {time.toTime && (
-                                      <li className="activity-list">
-                                        <div className="activity-icon avatar-xs">
-                                          <span className="avatar-title bg-soft-primary text-primary rounded-circle">
-                                            <i className=""></i>
-                                          </span>
-                                        </div>
-                                        <div>
-                                          <div>
-                                            <h5 className="fontblackcolordates">
-                                              {moment(time.toTime).format(
-                                                "YYYY-MM-DD"
-                                              )}
-                                              <small className="text-muted">
-                                                {" "}
-                                                {moment(time.toTime).format(
-                                                  "HH:mm"
-                                                )}
-                                              </small>
-                                            </h5>
-                                          </div>
-
-                                          <div>
-                                            <p className="text-muted mb-0">
-                                              Check out
-                                            </p>
-                                          </div>
-                                        </div>
-                                      </li>
-                                    )}
-
-                                    {time.fromTime && (
-                                      <li className="activity-list">
-                                        <div className="activity-icon  avatar-xs">
-                                          <span className="greencolor  text-primary rounded-circle">
-                                            <i className=""></i>
-                                          </span>
-                                        </div>
-                                        <div>
-                                          <div>
-                                            <h5 className="fontblackcolordates">
-                                              {moment(time.fromTime).format(
-                                                "YYYY-MM-DD "
-                                              )}
-                                              <small className="text-muted">
-                                                {" "}
-                                                {moment(time.fromTime).format(
-                                                  "HH:mm"
-                                                )}
-                                              </small>
-                                            </h5>
-                                          </div>
-
-                                          <div>
-                                            <p className="text-muted mb-0">
-                                              Check in
-                                            </p>
-                                          </div>
-                                        </div>
-                                      </li>
-                                    )}
-                                  </>
-                                ))}
-                            </ul>
-                          </SimpleBar>
-                        </div>
-                      </Col>
-                    </Row>
-                  </Card> */}
-                </Col>
-
-                <Col xs={1}></Col>
-              </Row>
-
-              <Row>
-                <Col xs={1}></Col>
-                <Col xs={5}>
-                  <Card className="innercards">
-                    {/* <Row>
-                      <Col xs={12}>
+                      <Col md={12}>
                         <p className="bookingdetail ">Guests Information</p>
 
                         <Card>
@@ -453,8 +325,8 @@ const Bookingdetailcomponent = (bookings) => {
                                   </tr>
                                 </thead>
                                 <tbody>
-                                  {bookings.guestData.data
-                                    ? bookings.guestData.data.map(
+                                  {bookings.bookings.guestData.data
+                                    ? bookings.bookings.guestData.data.map(
                                         (element, Index) => (
                                           <tr>
                                             <td>
@@ -487,21 +359,149 @@ const Bookingdetailcomponent = (bookings) => {
                           </CardBody>
                         </Card>
                       </Col>
-                    </Row> */}
+                    </Row>
                   </Card>
                 </Col>
                 <Col xs={5}>
-                  <Card className="innercards">
-                    {" "}
-                    {/* <Row>
-                      <Col md={12}>
+                  <Card className="innercards mt-5">
+                    <Row>
+                      <Col xs={12}>
+                        <p className="bookingdetail">
+                          Check in/ Checkout History
+                        </p>
+                        <hr />
+                      </Col>
+                    </Row>
+
+                    <Row>
+                      <Col xs={12}>
+                        <div>
+                          {/* <SimpleBar> */}
+
+                          <ul className="list-unstyled activity-wid">
+                            <li className="activity-list">
+                              <div className="activity-icon avatar-xs">
+                                <span className="greencolor  text-primary rounded-circle">
+                                  <i className=""></i>
+                                </span>
+                              </div>
+                              <div>
+                                <h5 className="fontblackcolordates">
+                                  Booking Status
+                                </h5>
+                                <p className="text-muted mb-0">
+                                  {bookings.bookings.bookingDetails
+                                    ? bookings.bookings.bookingDetails
+                                        .bookingStatus
+                                    : "N/A"}
+                                </p>
+                              </div>
+                            </li>
+                          </ul>
+                          {/* </SimpleBar> */}
+                        </div>
+                      </Col>
+                    </Row>
+                    <Row>
+                      <Col xs={12}>
+                        <div>
+                          {/* <SimpleBar> */}
+                          <ul className="list-unstyled activity-wid">
+                            {bookings.bookings.revokeBookingStatus
+                              ? bookings.bookings.revokeBookingStatus
+                              : null}
+                            {bookings.bookings.checkInCheckout &&
+                              bookings.bookings.checkInCheckout.length > 0 &&
+                              bookings.bookings.checkInCheckout.map((time) => (
+                                <>
+                                  {time.toTime && (
+                                    <li className="activity-list">
+                                      <div className="activity-icon avatar-xs">
+                                        <span className="avatar-title bg-soft-primary text-primary rounded-circle">
+                                          <i className=""></i>
+                                        </span>
+                                      </div>
+                                      <div>
+                                        <div>
+                                          <h5 className="fontblackcolordates">
+                                            {moment(time.toTime).format(
+                                              "YYYY-MM-DD"
+                                            )}
+                                            <small className="text-muted">
+                                              {" "}
+                                              {moment(time.toTime).format(
+                                                "HH:mm"
+                                              )}
+                                            </small>
+                                          </h5>
+                                        </div>
+
+                                        <div>
+                                          <p className="text-muted mb-0">
+                                            Check out
+                                          </p>
+                                        </div>
+                                      </div>
+                                    </li>
+                                  )}
+
+                                  {time.fromTime && (
+                                    <li className="activity-list">
+                                      <div className="activity-icon  avatar-xs">
+                                        <span className="greencolor  text-primary rounded-circle">
+                                          <i className=""></i>
+                                        </span>
+                                      </div>
+                                      <div>
+                                        <div>
+                                          <h5 className="fontblackcolordates">
+                                            {moment(time.fromTime).format(
+                                              "YYYY-MM-DD "
+                                            )}
+                                            <small className="text-muted">
+                                              {" "}
+                                              {moment(time.fromTime).format(
+                                                "HH:mm"
+                                              )}
+                                            </small>
+                                          </h5>
+                                        </div>
+
+                                        <div>
+                                          <p className="text-muted mb-0">
+                                            Check in
+                                          </p>
+                                        </div>
+                                      </div>
+                                    </li>
+                                  )}
+                                </>
+                              ))}
+                          </ul>
+                          {/* </SimpleBar> */}
+                        </div>
+                      </Col>
+                    </Row>
+                  </Card>
+                </Col>
+
+                <Col xs={1}></Col>
+              </Row>
+
+              <Row style={{ marginTop: 300 }}>
+                <Col xs={1}></Col>
+
+                <Col xs={5}>
+                  {/* <Card className="innercards ">
+                    <Row>
+                      <Col xs={12}>
                         <p className="bookingdetail">User Personal Details</p>
                         <hr />
                         <Row>
-                          <Col md={6} className="fontblackcolor">
+                          <Col xs={6} className="fontblackcolor">
                             Customer ID
                           </Col>
-                          <Col md={6}>
+                          <Col xs={6}>
                             <p className="fontcolor">
                               {bookings.bookings.userbookingData
                                 ? bookings.bookings.userbookingData.id
@@ -511,10 +511,10 @@ const Bookingdetailcomponent = (bookings) => {
                         </Row>
 
                         <Row>
-                          <Col md={6} className="fontblackcolor">
+                          <Col xs={6} className="fontblackcolor">
                             Full Name
                           </Col>
-                          <Col md={6}>
+                          <Col xs={6}>
                             <p className="fontcolor">
                               {bookings.bookings.userbookingData
                                 ? bookings.bookings.userbookingData.username
@@ -523,10 +523,10 @@ const Bookingdetailcomponent = (bookings) => {
                           </Col>
                         </Row>
                         <Row>
-                          <Col md={6} className="fontblackcolor">
+                          <Col xs={6} className="fontblackcolor">
                             Email Address
                           </Col>
-                          <Col md={6}>
+                          <Col xs={6}>
                             <p className="fontcolor">
                               {bookings.bookings.userbookingData
                                 ? bookings.bookings.userbookingData.Email
@@ -535,10 +535,10 @@ const Bookingdetailcomponent = (bookings) => {
                           </Col>
                         </Row>
                         <Row>
-                          <Col md={6} className="fontblackcolor">
+                          <Col xs={6} className="fontblackcolor">
                             Phone No.
                           </Col>
-                          <Col md={6}>
+                          <Col xs={6}>
                             <p className="fontcolor">
                               {bookings.bookings.userbookingData
                                 ? bookings.bookings.userbookingData.MobilePhone
@@ -547,10 +547,10 @@ const Bookingdetailcomponent = (bookings) => {
                           </Col>
                         </Row>
                         <Row>
-                          <Col md={6} className="fontblackcolor">
+                          <Col xs={6} className="fontblackcolor">
                             Date of Birth
                           </Col>
-                          <Col md={6}>
+                          <Col xs={6}>
                             <p className="fontcolor">
                               {bookings.bookings.userbookingData
                                 ? bookings.bookings.userbookingData.dob
@@ -559,10 +559,10 @@ const Bookingdetailcomponent = (bookings) => {
                           </Col>
                         </Row>
                         <Row>
-                          <Col md={6} className="fontblackcolor">
+                          <Col xs={6} className="fontblackcolor">
                             Adress
                           </Col>
-                          <Col md={6}>
+                          <Col xs={6}>
                             <p className="fontcolor">
                               {bookings.bookings.userbookingData
                                 ? bookings.bookings.userbookingData.address
@@ -571,10 +571,10 @@ const Bookingdetailcomponent = (bookings) => {
                           </Col>
                         </Row>
                         <Row>
-                          <Col md={6} className="fontblackcolor">
+                          <Col xs={6} className="fontblackcolor">
                             State
                           </Col>
-                          <Col md={6}>
+                          <Col xs={6}>
                             <p className="fontcolor">
                               {bookings.bookings.userbookingData
                                 ? bookings.bookings.userbookingData.state
@@ -583,10 +583,10 @@ const Bookingdetailcomponent = (bookings) => {
                           </Col>
                         </Row>
                         <Row>
-                          <Col md={6} className="fontblackcolor">
+                          <Col xs={6} className="fontblackcolor">
                             city
                           </Col>
-                          <Col md={6}>
+                          <Col xs={6}>
                             <p className="fontcolor">
                               {bookings.bookings.serbookingData
                                 ? bookings.userbookingData.cityName
@@ -597,9 +597,10 @@ const Bookingdetailcomponent = (bookings) => {
 
                         <hr />
                       </Col>
-                    </Row> */}
-                  </Card>
+                    </Row>
+                  </Card> */}
                 </Col>
+                <Col xs={5}>{/* <Card className="innercards"></Card> */}</Col>
                 <Col xs={1}></Col>
               </Row>
             </Card>

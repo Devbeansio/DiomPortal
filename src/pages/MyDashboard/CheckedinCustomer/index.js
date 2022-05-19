@@ -53,6 +53,11 @@ const columns = [
     dataField: "currentBookingId",
     text: "Booking ID",
     sort: true,
+    formatter: (cell, row) => (
+      <Link to={`/bookingdetail/${row.currentBookingId}/1`} className="link">
+        {cell}
+      </Link>
+    ),
   },
   {
     dataField: "currentbookingType",

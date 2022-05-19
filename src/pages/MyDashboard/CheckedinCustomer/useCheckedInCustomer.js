@@ -6,21 +6,20 @@ import { getcheckInLocations, getLocations } from "../../../APIS";
 import { useAllDataQuery } from "../../../hooks/query";
 
 export const useCheckedInCustomer = () => {
-  const [filter, setFilter] = useState("1414904256");
+  const [filter, setFilter] = useState("");
   const [isOpen, setIsOpen] = useState(false);
   const token = localStorage.getItem("Token");
   const [currentPage, setCurrentPage] = useState(1);
   const [pageSize, setPageSize] = useState(50);
-  const [applyLocationFilter, setApplyFilter] = useState(true);
+  const [applyLocationFilter, setApplyLocationFilter] = useState(false);
   const changeCurrentPage = (pageNum) => setCurrentPage(pageNum);
   const queryClient = useQueryClient();
   const {
     data: { data: customerCheckInData, hasNextPage, hasPreviousPage, total },
     isLoading,
-  } = usePaginatedQuery(["checkedcustomers", currentPage], () =>
-    getcustomers(pageSize, currentPage, token, applyLocationFilter, filter)
+  } = usePaginatedQuery(["checkedcustomers", currentPage, filter], () =>
+    getcustomers(filter, pageSize, currentPage, token, applyLocationFilter)
   );
-  // console.log("customerCheckInData : ", customerCheckInData);
   const { data: locationsData, isLoading: loadingLocations } = useAllDataQuery(
     ["locations", "visible"],
     () => getcheckInLocations(token)
@@ -45,19 +44,24 @@ export const useCheckedInCustomer = () => {
   };
 
   const handeldiomlocation = async (val) => {
-    console.log("val : ", val);
-
-    setCurrentPage(1);
-    setApplyFilter(true);
-    setFilter(val);
+    if (val === "All") {
+      setCurrentPage(1);
+      setApplyLocationFilter(false);
+      setFilter();
+      queryClient.invalidateQueries("checkedcustomers");
+    } else {
+      setCurrentPage(1);
+      setFilter(val);
+      setApplyLocationFilter(true);
+      queryClient.invalidateQueries("checkedcustomers");
+    }
   };
 
   useEffect(() => {
-    // FOR PRE-FETCHING NEXT PAGE
     if (hasNextPage) {
       const nextPage = currentPage + 1;
       queryClient.prefetchQuery(["checkedcustomer", nextPage], () =>
-        getcustomers(pageSize, nextPage, token, applyLocationFilter, filter)
+        getcustomers(filter, pageSize, nextPage, token, applyLocationFilter)
       );
     }
   }, [currentPage, queryClient]);
