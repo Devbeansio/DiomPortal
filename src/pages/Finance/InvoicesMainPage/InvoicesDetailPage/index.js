@@ -268,12 +268,18 @@ function InvoicesDetailPage() {
               </CardBody>
             </Col>
             <Col md={4}>
+              {console.log("InvoiceData.erpInvoiceUrl",InvoiceData.erpInvoiceUrl)}
               {InvoiceData.id && (
-                <PDFDownloadLink
-                  stopColor={true}
-                  document={<GeneratePdf InvoiceData={InvoiceData} />}
-                  fileName="invoice.pdf"
-                >
+                // <PDFDownloadLink
+                //   stopColor={true}
+                //   document={<GeneratePdf InvoiceData={InvoiceData} />}
+                //   fileName="invoice.pdf"
+                // >
+                <a
+                          className=" link text-muted font-weight-bold "
+                          href={`${InvoiceData.erpInvoiceUrl}`}
+                          download
+                        >
                   <Button
                     color="success"
                     outline
@@ -283,7 +289,8 @@ function InvoicesDetailPage() {
                     Export
                     {/* </p> */}
                   </Button>
-                </PDFDownloadLink>
+                  </a>
+                // </PDFDownloadLink>
               )}
               {/* </Button> */}
               <Button

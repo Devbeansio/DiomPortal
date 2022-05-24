@@ -6,10 +6,15 @@ import { Row, Col, Button, Container, Alert, Label } from "reactstrap";
 import { AvForm, AvField } from "availity-reactstrap-validation";
 import { checkLogin, apiError } from "../../store/actions";
 import { DIOM_BASED_URLS } from "../../config/url";
+import { useSnackbar } from "notistack";
 
 const Login = () => {
-  const [username, setUsername] = useState("humx7898@gmail.com");
-  const [userpassword, setUserpassword] = useState("123456789Abc");
+  // const [username, setUsername] = useState("humx7898@gmail.com");
+  // const [userpassword, setUserpassword] = useState("123456789Abc");
+    const [username, setUsername] = useState("");
+  const [userpassword, setUserpassword] = useState("");
+  const message = 'Your Email or Password is Incorrect';
+  const { enqueueSnackbar } = useSnackbar();
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -30,10 +35,19 @@ const Login = () => {
     })
       .then((response) => response.json())
       .then((result3) => {
-        // console.log("hmm loggedin");
+        console.log("hmm loggedin");
+    
+
+        result3.token? history.push('/mydashboard'):
+      
+        enqueueSnackbar(message, { 
+          variant: 'error', 
+      });
+
         const Token = result3.token;
         localStorage.setItem("Token", Token);
-        dispatch(checkLogin(values, history));
+
+        // dispatch(checkLogin(values, history));
       })
       .catch((error) => console.log("error", error));
 

@@ -5,15 +5,17 @@ import { Row, Col, Button, Alert, Container, Label } from "reactstrap";
 import sign_up_image from "./pic/sign_up_image.png";
 import "./css/Login.css";
 import { AvForm, AvField } from "availity-reactstrap-validation";
+import { ToastContainer } from "react-toastify";
 import { checkLogin, apiError } from "../../store/actions";
 import { DIOM_BASED_URLS } from "../../config/url";
 import { getMessaging, onMessage, getToken } from "firebase/messaging";
 const Login = () => {
-  const [username, setUsername] = useState("humx7898@gmail.com");
-  const [userpassword, setUserpassword] = useState("123456789Abc");
+  const [username, setUsername] = useState("");
+  const [userpassword, setUserpassword] = useState("");
+
   const dispatch = useDispatch();
   const history = useHistory();
-  const { loginError } = useSelector((state) => state.Login);
+  // const { loginError } = useSelector((state) => state.Login);
   const [currentTokenOfUser, setCurrentTokenOfUser] = useState("");
 
   const handleSubmit = (event, values) => {
@@ -31,13 +33,20 @@ const Login = () => {
       }),
     })
       .then((response) => response.json())
-      .then((result3) => {
-        // console.log("hmm loggedin");
-        const Token = result3.token;
-        localStorage.setItem("Token", Token);
-        dispatch(checkLogin(values, history));
-      })
-      .catch((error) => console.log("error", error));
+      .then((resp) => {
+      
+        localStorage.setItem("Token", resp.token);
+    
+    // history.push("/mydashboard");
+    dispatch(
+      checkLogin(
+        { username, password: userpassword, currentTokenOfUser },
+        history
+      )
+     
+    ) 
+    })
+    // .catch((error) => console.log("error", error));
     //   ***********API END**************
   };
   const UserPasswordFunc = (e) => {
@@ -53,11 +62,12 @@ const Login = () => {
         "BM1fWytNemYmBDWXErhlC830Pawh6YMuAXqU1T7XWsUm5_U7ZCXIZipfmwkcLIOlcz8uexN7u-9EtqpQWChFb-E",
     }).then((currentToken) => {
       if (currentToken) {
+       
         setCurrentTokenOfUser(currentToken);
       }
     });
 
-    dispatch(apiError(""));
+    // dispatch(apiError(""));
     document.body.classList.add("auth-body-bg");
     return document.body.classList.remove("auth-body-bg");
   }, []);
@@ -88,9 +98,9 @@ const Login = () => {
                             Welcome to Diom Admin Panel
                           </h4>
                         </div>
-                        {loginError && loginError ? (
+                        {/* {loginError && loginError ? (
                           <Alert color="danger">{loginError}</Alert>
-                        ) : null}
+                        ) : null} */}
                         <div className="p-2 mt-5">
                           <Label
                             htmlFor="username"
@@ -177,6 +187,7 @@ const Login = () => {
           </Row>
         </Container>
       </div>
+      <ToastContainer autoClose={8000} />
     </React.Fragment>
   );
 };

@@ -11,6 +11,7 @@ import {
   Input,
   CardBody,
   Button,
+  
 } from "reactstrap";
 import classnames from "classnames";
 import Select from "react-select";
@@ -75,7 +76,7 @@ const products = [
 ];
 
 const ReportRequest = () => {
-  const {reportTypeOptions}=  useReportRequest()
+  const {reportTypeOptions,retryFunc,downloadFunc}=  useReportRequest()
   const [activeTabJustify, setActiveTabJustify] = useState("1");
   const { SearchBar } = Search;
   const changeCurrentPage = 1;
@@ -124,9 +125,9 @@ const ReportRequest = () => {
             size="sm"
             block
             outline
-            // onClick={() => {
-            //   // tog_static(row._id);
-            // }}
+            onClick={() => {
+              retryFunc()
+            }}
           >
             Retry
             
@@ -179,9 +180,9 @@ const ReportRequest = () => {
             color="success"
             size="sm"
             block
-            // onClick={() => {
-            //   // tog_static(row._id);
-            // }}
+            onClick={() => {
+              downloadFunc()
+            }}
             
             
           >

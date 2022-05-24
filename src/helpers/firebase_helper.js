@@ -49,6 +49,7 @@ class FirebaseAuthBackend {
         .then(
           (user) => {
             resolve(auth().currentUser);
+            
           },
           (error) => {
             reject(this._handleError(error));

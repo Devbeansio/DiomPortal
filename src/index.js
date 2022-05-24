@@ -20,7 +20,7 @@ const app = (
         vertical: 'bottom',
         horizontal: 'right',
     }}>
-      <BrowserRouter>
+      <BrowserRouter >
         <App />
       </BrowserRouter>
       </SnackbarProvider>

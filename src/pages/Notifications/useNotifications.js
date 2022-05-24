@@ -9,6 +9,7 @@ function UseNotifications() {
     getAdminNotifications(token)
   );
   const adminNotificationdata = adminNotificationsdata.data;
+  // console.log("adminNotificationdata : ",adminNotificationdata?.data)
 
   // *************
   return { adminNotificationdata };

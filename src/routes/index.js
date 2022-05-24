@@ -31,7 +31,7 @@ import ResponsiveTables from "../pages/Tables/ResponsiveTables";
 import EditableTables from "../pages/Tables/EditableTables";
 
 // Inner Authentication
-import Login1 from "../pages/AuthenticationInner/Login";
+// import Login1 from "../pages/AuthenticationInner/Login";
 import Register1 from "../pages/AuthenticationInner/Register";
 import ForgetPwd1 from "../pages/AuthenticationInner/ForgetPassword";
 
@@ -136,7 +136,7 @@ const publicRoutes = [
   { path: "/lock-screen", component: AuthLockScreen },
 
   // Authentication Inner
-  { path: "/auth-login", component: Login1 },
+  // { path: "/auth-login", component: Login1 },
   { path: "/auth-register", component: Register1 },
   { path: "/auth-recoverpw", component: ForgetPwd1 },
 

@@ -15,7 +15,8 @@ const login = (state = initialState, action) => {
         case LOGIN_USER_SUCCESSFUL:
             state = {
                 ...state,
-                loading: false
+                loading: false,
+              
             }
             break;
 

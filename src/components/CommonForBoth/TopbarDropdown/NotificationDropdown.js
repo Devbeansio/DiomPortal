@@ -58,10 +58,12 @@ const NotificationDropdown = () => {
             className="notifocationfontstyle"
           >
             <div className="d-flex flex-column" style={{ padding: 10 }}>
-              {adminNotificationdata?.data.map((e) => (
-                <div>
+           
+{/* 
+              { adminNotificationdata && adminNotificationdata?.data.map((e) => (
+                <div key={e?.id}>
                   {e?.redirectTo === "BOOKING" ? (
-                    <div key={e?.id}>
+                    <div >
                       {e.actionType === "CANCELLED_BOOKING" ? (
                         <div className="flex-1">
                           <div>
@@ -346,7 +348,7 @@ const NotificationDropdown = () => {
                     </div>
                   ) : null}
                 </div>
-              ))}
+              ))} */}
             </div>
             {/* </Link> */}
           </SimpleBar>

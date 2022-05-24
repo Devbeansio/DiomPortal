@@ -147,7 +147,11 @@ const UseReports = () => {
       setreportFinalValues({ ...reportFinalValues, startDate: startdate });
       setReportFinalLabels({ ...reportFinalLabels, startDate: startdate });
     } else {
-      alert("please select valid date");
+      // alert("please select valid date");
+      const message = 'please select valid date';
+      enqueueSnackbar(message, { 
+        variant: 'failed', 
+    });
     }
   };
   const endDateFunc = (e) => {
@@ -160,7 +164,11 @@ const UseReports = () => {
       setreportFinalValues({ ...reportFinalValues, endDate: enddate });
       setReportFinalLabels({ ...reportFinalLabels, endDate: enddate });
     } else {
-      alert("please select valid date");
+      // alert("please select valid date");
+      const message = 'please select valid date';
+      enqueueSnackbar(message, { 
+        variant: 'failed', 
+    });
     }
   };
 

@@ -19,7 +19,8 @@ const NotificationListingPage = () => {
           <h3 className="mb-5">All Notifications</h3>
         </Col>
       </Row>
-      {adminNotificationdata?.data.map((e) => (
+    
+      {/* { adminNotificationdata && adminNotificationdata?.data.map((e) => (
         <Row key={e?.id}>
           <Col md={1}></Col>
           <Col md={10}>
@@ -260,7 +261,7 @@ const NotificationListingPage = () => {
 
           <Col md={1}></Col>
         </Row>
-      ))}
+      ))} */}
     </div>
   );
 };
