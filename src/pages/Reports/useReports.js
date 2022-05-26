@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import {  useQuery } from "react-query";
+import { useQuery } from "react-query";
 // import { getLocations } from "../../APIS";
-import {  useSnackbar } from "notistack";
+import { useSnackbar } from "notistack";
 import moment from "moment";
 import {
   getreportLocationBrand,
@@ -10,11 +10,12 @@ import {
 } from "../../APIS/reports";
 import { getUserByProfession } from "../../APIS/userProfle";
 import { useAllDataQuery } from "../../hooks/query";
+import { DIOM_BASED_URLS } from "../../config/url";
 
 const UseReports = () => {
   const { enqueueSnackbar } = useSnackbar();
   const token = localStorage.getItem("Token");
-  const providerRef = React.useRef()
+  const providerRef = React.useRef();
 
   // const queryClient = new QueryClient();
   const [reportFinalValues, setreportFinalValues] = useState([]);
@@ -22,12 +23,13 @@ const UseReports = () => {
   const [categoryDropDown, setCategoryDropDown] = useState([]);
   const [locationApplyFilter, setLocationApplyFilter] = useState(false);
   const [resourcetypeApplyFilter, setResourcetypeApplyFilter] = useState(false);
+  const [reportTypeValues, setReportTypeValues] = useState([]);
   const [userDropDownVisibility, setUserDropDownVisibility] = useState(true);
   const reportTypeOptions = [
-    { label: "Booking Report", value: 0 },
-    { label: "User Report", value: 1 },
-    { label: "User Ananlysis Report", value: 2 },
-    { label: "Cancelled Bookings", value: 3 },
+    { label: "Booking Report", value: "BOOKING_REPORTS_REPORTS" },
+    { label: "User Report", value: "USER_REPORTS" },
+    { label: "User Ananlysis Report", value: "USER_ANALYSIS_REPORTS" },
+    { label: "Cancelled Bookings", value: "CANCELLED_BOOKINGS_REPORTS" },
   ];
   const timeSlotOptions = [
     { label: "08 AM - 04 PM", value: "08_AM-04_PM" },
@@ -36,8 +38,7 @@ const UseReports = () => {
   ];
 
   const reportTypeHandeler = (e) => {
-    setreportFinalValues({ ...reportFinalValues, reportType: e });
-    setReportFinalLabels({ ...reportFinalLabels, reportType: e });
+    setReportTypeValues({ reportType: e.value });
     if (e.label === "Booking Report" || e.label === "Cancelled Bookings") {
       setUserDropDownVisibility(true);
     } else if (
@@ -148,10 +149,10 @@ const UseReports = () => {
       setReportFinalLabels({ ...reportFinalLabels, startDate: startdate });
     } else {
       // alert("please select valid date");
-      const message = 'please select valid date';
-      enqueueSnackbar(message, { 
-        variant: 'failed', 
-    });
+      const message = "please select valid date";
+      enqueueSnackbar(message, {
+        variant: "failed",
+      });
     }
   };
   const endDateFunc = (e) => {
@@ -165,10 +166,10 @@ const UseReports = () => {
       setReportFinalLabels({ ...reportFinalLabels, endDate: enddate });
     } else {
       // alert("please select valid date");
-      const message = 'please select valid date';
-      enqueueSnackbar(message, { 
-        variant: 'failed', 
-    });
+      const message = "please select valid date";
+      enqueueSnackbar(message, {
+        variant: "failed",
+      });
     }
   };
 
@@ -239,16 +240,30 @@ const UseReports = () => {
   // *************
 
   const reportExport = () => {
-    const message = 'In Process. It will be available shortly in the " Report section"';
-    enqueueSnackbar(message, { 
-      variant: 'success',
-      
-  });
-    console.log("reportFinalIDs : ", reportFinalValues);
-    console.log("reportFinalLabels: ", reportFinalLabels);
+    const message =
+      'In Process. It will be available shortly in the " Report section"';
 
-    
-
+    fetch(`${DIOM_BASED_URLS}/reports`, {
+      method: "POST",
+      headers: {
+        Accept: "application/json, text/plain",
+        "Content-Type": "application/json;charset=UTF-8",
+        Authorization: "Bearer " + token,
+      },
+      body: JSON.stringify({
+        reportValues: reportFinalLabels,
+        reportLebels: reportFinalValues,
+        reportType: reportTypeValues,
+      }),
+    })
+      .then((result3) => {
+        if (result3.status === ok) {
+          enqueueSnackbar(message, {
+            variant: "success",
+          });
+        }
+      })
+      .catch((error) => toast.error(" Something went wrong"));
   };
 
   useEffect(

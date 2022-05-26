@@ -84,7 +84,7 @@ const authProtectedRoutes = [
   { path: "/resourcetype", component: ResourceType },
   { path: "/categories", component: Categories },
   { path: "/createcategory", component: CreateCategory },
-  { path: "/notificationListingPage", component: NotificationListingPage },
+  { path: "/notificationListingPage//:PreviousUrl", component: NotificationListingPage },
 
   {
     path: "/resourcedetailed/:id/:resourceTypeKey",

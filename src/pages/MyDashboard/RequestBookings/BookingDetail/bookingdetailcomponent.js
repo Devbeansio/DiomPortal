@@ -328,7 +328,7 @@ const Bookingdetailcomponent = (bookings) => {
                                   {bookings.bookings.guestData.data
                                     ? bookings.bookings.guestData.data.map(
                                         (element, Index) => (
-                                          <tr>
+                                          <tr key={(Math.random()*1000).toString()}>
                                             <td>
                                               {element
                                                 ? element.bookingId
@@ -416,7 +416,7 @@ const Bookingdetailcomponent = (bookings) => {
                                 <>
                                   {time.toTime && (
                                     <li className="activity-list">
-                                      <div className="activity-icon avatar-xs">
+                                      <div className="activity-icon avatar-xs" key={(Math.random()*1000).toString()}>
                                         <span className="avatar-title bg-soft-primary text-primary rounded-circle">
                                           <i className=""></i>
                                         </span>

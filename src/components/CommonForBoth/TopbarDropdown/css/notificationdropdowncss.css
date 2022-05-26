@@ -1,11 +1,32 @@
 .notificlockmargin{
 /* margin-left: 27px; */
 margin-left: 197px;
-
+font-family:"Montserrat";
  /* text-align: right; */
 }
 .notifocationfontstyle{
     font-family: "Montserrat";
     font-weight: 18PX;
     font-size: small;
+}
+.readnotificationcss{
+    font-family: "Montserrat";
+    color: black;
+    font-weight: 18PX;
+    font-size: small;
+    margin-left: 13px;
+    opacity: 0.5;
+}
+
+.notificationfontstyle{
+    font-family: "Montserrat";
+    font-style: normal;
+}
+
+.viewAllbButtonAlignment{
+
+text-align: right;
+}
+.allmarkread{
+    text-decoration: underline;
 }

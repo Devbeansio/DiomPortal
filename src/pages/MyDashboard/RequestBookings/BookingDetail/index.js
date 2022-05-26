@@ -365,7 +365,7 @@ const BookingDetail = () => {
                                   ))} */}
 {bookingDetails?bookingDetails.bookingStatusTimeLogs?.map((e)=>{
   return(
-  < li className="activity-list" key={e}>
+  < li className="activity-list" key={(Math.random()*1000).toString()}>
                                           <div className="activity-icon avatar-xs">
                                             <span className="avatar-title bg-soft-primary text-primary rounded-circle">
                                            
@@ -435,7 +435,7 @@ const BookingDetail = () => {
                                   <tbody>
                                     {guestData.data
                                       ? guestData.data.map((element, Index) => (
-                                          <tr>
+                                          <tr key={(Math.random()*1000).toString()}>
                                             <td>
                                               {element
                                                 ? element.bookingId

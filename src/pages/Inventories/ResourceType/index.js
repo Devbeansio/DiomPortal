@@ -55,6 +55,17 @@ const columns = [
     text: "Locations",
     sort: true,
   },
+  {
+    dataField: "visibility",
+    text: "Status",
+    sort: true,
+    formatter: (cell, row) => (
+      row.visibility === true ?(
+     <span style={{color:"#32CD32"}}>Active</span>):
+     row.visibility === false ?
+     (
+     <span style={{color:"#808080"}}>Inactive</span>):null
+    )},
 ];
 
 const defaultSorted = [
@@ -93,9 +104,7 @@ const ResourceType = () => {
       ) : (
         <div className="page-content">
           <Row>
-            {/* {filter !== "All"
-              ? console.log("i am filtered : ", filter)
-              : console.log("i am nothing")} */}
+           
             <Col md={12}>
               <Row>
                 <Col md={12}>

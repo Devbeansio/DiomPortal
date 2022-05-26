@@ -38,6 +38,7 @@ export const getResourceTypes = async (
     _id: element.id,
     ResourceType: element.Name,
     resourceTypeKey: element.resourceTypeKey,
+    visibility:element.visibility,
     //locationName: element.images.map((e) => e.locationName),
     locationName: element.businessName,
   }));

@@ -19,3 +19,19 @@
 .requestmarkcircle{
     color: lightskyblue;
 }
+
+
+
+.readnotificationlistingcss{
+    font-family: "Montserrat";
+    color: black;
+    font-weight: 18PX;
+    font-size: small;
+    margin-left: 13px;
+    opacity: 0.5;
+}
+
+.notificationfontstylelisting{
+    font-family: "Montserrat";
+    font-style: normal;
+}

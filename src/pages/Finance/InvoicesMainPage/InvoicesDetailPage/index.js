@@ -1,3 +1,8 @@
+
+
+
+
+
 import React, { useRef } from "react";
 import { Row, Col, CardBody, Button, Input } from "reactstrap";
 import { Link } from "react-router-dom";
@@ -29,6 +34,11 @@ function InvoicesDetailPage() {
     content: () => componentRef.current,
     copyStyles: true,
   });
+
+  const invoiceWithWnplDownload=()=>{
+    const d =  InvoiceData.erpInvoiceUrl;
+    saveAs(d, 'image.jpg') 
+  }
 
   return (
     <>
@@ -268,28 +278,32 @@ function InvoicesDetailPage() {
               </CardBody>
             </Col>
             <Col md={4}>
-              {console.log("InvoiceData.erpInvoiceUrl",InvoiceData.erpInvoiceUrl)}
+            {console.log("InvoiceData.erpInvoiceUrl : ",InvoiceData.erpInvoiceUrl)}
+             
               {InvoiceData.id && (
                 // <PDFDownloadLink
                 //   stopColor={true}
                 //   document={<GeneratePdf InvoiceData={InvoiceData} />}
                 //   fileName="invoice.pdf"
                 // >
+               
                 <a
                           className=" link text-muted font-weight-bold "
-                          href={`${InvoiceData.erpInvoiceUrl}`}
-                          download
+                          // href={`${InvoiceData.erpInvoiceUrl}`}
+                          // download
+                          
                         >
                   <Button
                     color="success"
                     outline
                     className="invoicesdetailbuttons waves-effect waves-light  w-100  "
+                    onClick={invoiceWithWnplDownload}
                   >
                     {/* <p className="invoicepdfcss "> */}
                     Export
                     {/* </p> */}
                   </Button>
-                  </a>
+                     </a>
                 // </PDFDownloadLink>
               )}
               {/* </Button> */}

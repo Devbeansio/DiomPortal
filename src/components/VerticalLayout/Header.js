@@ -324,15 +324,15 @@ class Header extends Component {
   removeBodyCss() {
     document.body.classList.add("no_padding");
   }
-  tog_center = () => {
-    if (!localStorage.getItem("locationId")) {
-      return;
-    }
-    this.setState((prevState) => ({
-      modal_center: !prevState.modal_center,
-    }));
-    this.removeBodyCss();
-  };
+  // tog_center = () => {
+  //   if (!localStorage.getItem("locationId")) {
+  //     return;
+  //   }
+  //   this.setState((prevState) => ({
+  //     modal_center: !prevState.modal_center,
+  //   }));
+  //   this.removeBodyCss();
+  // };
 
   render() {
     return (
@@ -358,7 +358,8 @@ class Header extends Component {
                     {/* <img src={logolight} alt="" height="20" /> */}
                     <img src={Diomlogo} alt="" height="30" />
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <Button
+                    {/* button remove start   */}
+                    {/* <Button
                       color="success"
                       className="btn-rounded waves-effect waves-light mr-1 ml-3 "
                       onClick={this.tog_center}
@@ -366,7 +367,7 @@ class Header extends Component {
                       {!this.state.selectedLocationData
                         ? "Diom"
                         : this.state.selectedLocationData.Name}
-                    </Button>
+                    </Button> */}
                   </span>
                 </Link>
               </div>
@@ -404,7 +405,7 @@ class Header extends Component {
             </div>
           </div>
           {/* model */}
-          <Modal
+          {/* <Modal
             className=""
             isOpen={
               this.state.modal_center || !localStorage.getItem("locationId")
@@ -503,7 +504,7 @@ class Header extends Component {
                 </Row>
               </FormGroup>
             </ModalBody>
-          </Modal>
+          </Modal> */}
 
           <div>
             <Modal

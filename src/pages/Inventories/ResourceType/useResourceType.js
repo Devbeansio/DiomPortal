@@ -23,6 +23,7 @@ export const useResourceType = () => {
   } = usePaginatedQuery(["resourceTypes", pageSize, currentPage, filter], () =>
     getResourceTypes(pageSize, currentPage, token, applyLocationFilter, filter)
   );
+  
 
   const {
     data: { data: searchedresourceTypeData },
