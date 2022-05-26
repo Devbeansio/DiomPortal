@@ -12,7 +12,7 @@ export const useInventory = () => {
     getResource(id, token)
   );
   const a = useQuery("resource", () => getResource(id, token));
-  console.log("AA", a);
+  // console.log("AA", a);
 
   const [modal_static, setModal_static] = useState(false);
 

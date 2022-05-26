@@ -35,7 +35,7 @@ const Login = () => {
     })
       .then((response) => response.json())
       .then((result3) => {
-        console.log("hmm loggedin");
+        // console.log("hmm loggedin");
     
 
         result3.token? history.push('/mydashboard'):

@@ -162,7 +162,7 @@ const UseRequestBookings = () => {
 
   const fetchFilteredTodayBookings = async (val) => {
     // QueryClient.invalidateQueries("gettodaysbookings");
-    console.log("val : ", val);
+    // console.log("val : ", val);
     if (val === "All") {
       setCurrentPage(1);
       setApplyFilter(false);

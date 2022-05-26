@@ -14,7 +14,7 @@ const NotificationListingPage = () => {
   
   const { adminNotificationdata,notificationSeenFunc } = UseNotifications();
   const { PreviousUrl } = useParams();
-  console.log("previousUrl",PreviousUrl)
+  
   return (
     <div className="page-content">
       <Row>

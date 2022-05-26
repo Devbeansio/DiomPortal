@@ -30,7 +30,7 @@ const useLocationBrandDetail = () => {
   };
 
   const startTimeFunc = (e) => {
-    console.log("start time : ", e.target.value);
+    // console.log("start time : ", e.target.value);
     setStartTime(e.target.value);
   };
   const endTimeFunc = (e) => {

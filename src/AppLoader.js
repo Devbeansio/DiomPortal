@@ -5,7 +5,7 @@ import { useIsFetching } from "react-query";
 
 const AppWithLoader = (props, children) => {
   const isFetching = useIsFetching();
-  console.log("dadas", isFetching);
+  // console.log("dadas", isFetching);
   return (
     <LoadingOverlay
       active={isFetching}

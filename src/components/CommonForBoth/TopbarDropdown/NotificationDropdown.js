@@ -51,10 +51,10 @@ const NotificationDropdown = () => {
               <Col>
                 <h6 className="m-0"> {"Notifications"} </h6>
               </Col>
-              <div className="col-auto  allmarkread">
-                <Link  className="small" onClick={()=>{(markAllReadFunc())}}>
+              <div className="col-auto  allmarkread small markallarrow"    onClick={()=>{(markAllReadFunc())}}>
+                {/* <Link  className="small" onClick={()=>{(markAllReadFunc())}}> */}
                   {"Mark all as read"}
-                </Link>
+                {/* </Link> */}
               </div>
             </Row>
           </div>

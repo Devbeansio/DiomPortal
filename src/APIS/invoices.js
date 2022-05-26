@@ -70,7 +70,7 @@ export const getInvoice = async (size = 30, page = 1, token = "", id) => {
   const resJson = await res.json();
 
   const InvoiceData = resJson.data;
-  console.log("InvoiceData", InvoiceData);
+  // console.log("InvoiceData", InvoiceData);
 
   return {
     data: InvoiceData,

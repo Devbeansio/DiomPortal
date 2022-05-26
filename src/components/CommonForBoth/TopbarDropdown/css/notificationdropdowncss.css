@@ -30,3 +30,8 @@ text-align: right;
 .allmarkread{
     text-decoration: underline;
 }
+
+
+.markallarrow{
+    cursor: pointer;
+}

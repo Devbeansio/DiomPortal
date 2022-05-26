@@ -34,7 +34,7 @@ export const getcustomers = async (
     throw new Error(resJson.error.message);
   }
   const resJson = await res.json();
-  console.log("resJson : ", resJson);
+  // console.log("resJson : ", resJson);
   const customerCheckInData = resJson.data.map((e, index) => {
     return {
       ...e,

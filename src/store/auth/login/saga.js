@@ -23,7 +23,7 @@ function* loginUser({ payload: { user, history } }) {
     // debugger
     localStorage.setItem("authUser", JSON.stringify(response));
     history.push("/mydashboard");
-    console.log("saga success 1", response);
+    // console.log("saga success 1", response);
     
   } catch (error) {
     // console.log("error error", error);

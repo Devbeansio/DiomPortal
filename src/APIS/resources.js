@@ -14,7 +14,7 @@ export const getResources = async (
   applyFilter = false,
   filters = {}
 ) => {
-  console.log("page : ", page);
+  // console.log("page : ", page);
   const res = await fetch(
     !applyFilter
       ? `${DIOM_BASED_URLS}/admin-resources-inventories?size=${size}&page=${page}`

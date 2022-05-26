@@ -97,8 +97,8 @@ export const gettodaysbookings = async (
   applyFilter = false,
   filters = {}
 ) => {
-  console.log("filters :", filters);
-  console.log("applyFilter : ", applyFilter);
+  // console.log("filters :", filters);
+  // console.log("applyFilter : ", applyFilter);
   const res = await fetch(
     !applyFilter
       ? `${DIOM_BASED_URLS}/admin-diom-bookings/today?size=${size}&page=${page}`

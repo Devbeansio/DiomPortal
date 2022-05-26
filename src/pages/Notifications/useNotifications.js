@@ -35,7 +35,7 @@ function UseNotifications() {
 
   const notificationSeenFunc = (e)=>{
    
-    console.log("notificationSeenFunc ",e.id)
+   
 
 
     fetch(`${DIOM_BASED_URLS}/admin-notifications/${e.id}`, {
@@ -63,7 +63,7 @@ function UseNotifications() {
     getAdminNotifications(token)
   );
   const adminNotificationdata = adminNotificationsdata.data;
-  // console.log("adminNotificationdata : ",adminNotificationdata?.data)
+ 
 
   // *************
 

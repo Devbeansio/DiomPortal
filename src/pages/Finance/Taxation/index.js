@@ -65,7 +65,7 @@ const Taxation = () => {
   } = useTaxation();
   const Loader = require("react-loader");
   const { loading } = LoaderHook();
-  console.log("tax loader : ", loading);
+  // console.log("tax loader : ", loading);
 
   return (
     <>
