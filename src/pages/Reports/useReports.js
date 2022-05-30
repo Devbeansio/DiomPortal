@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { useQuery } from "react-query";
-// import { getLocations } from "../../APIS";
 import { useSnackbar } from "notistack";
 import moment from "moment";
 import {
@@ -52,10 +51,10 @@ const UseReports = () => {
     const timeSlotLabel = e.map((element) => {
       return element.value;
     });
-    // const timeSlotValue = e.map((element) => {
-    //   return element.value;
-    // });
-    setreportFinalValues({ ...reportFinalValues, timeSlot: timeSlotLabel });
+    const timeSlotValue = e.map((element) => {
+      return element.value;
+    });
+    setreportFinalValues({ ...reportFinalValues, timeSlot: timeSlotValue });
     setReportFinalLabels({ ...reportFinalLabels, timeSlot: timeSlotLabel });
   };
 
@@ -174,7 +173,7 @@ const UseReports = () => {
   };
 
   // ***************
-  // const { data: locationsData, isLoading: loadingLocations } = useAllDataQuery(
+
   const { data: locationsData, isLoading: loadingLocations } = useQuery(
     ["locationsreports1", reportFinalValues?.diomBrand],
     () => getreportLocations(token, locationApplyFilter, reportFinalValues)

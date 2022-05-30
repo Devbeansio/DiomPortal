@@ -9,7 +9,6 @@ import ForgetPwd from "../pages/Authentication/ForgetPassword";
 import AuthLockScreen from "../pages/Authentication/AuthLockScreen";
 
 // Dashboard
-import Dashboard from "../pages/Dashboard/index";
 
 // Pages Calendar
 import Calendar from "../pages/Calendar/Calendar";
@@ -43,7 +42,7 @@ import ReportRequest from "../pages/Reports/reportRequest";
 import AddAPackage from "../pages/AddAPackage/index";
 import LocationDetailed from "../pages/Locations/LocationDetailed/index";
 import Locations from "../pages/Locations/index";
-import Booking from "../pages/Booking/index";
+
 
 import LocationBrands from "../pages/Locations/LocationBrands/index";
 import Inventories from "../pages/Inventories/Index";
@@ -76,7 +75,7 @@ const authProtectedRoutes = [
   { path: "/addapackage", component: AddAPackage },
   { path: "/locationdetailed/:id", component: LocationDetailed },
   { path: "/locations", component: Locations },
-  { path: "/booking", component: Booking },
+ 
   { path: "/bookingdetail/:id/:t_ID", component: BookingDetail },
   { path: "/locationbrands", component: LocationBrands },
   { path: "/inventories", component: Inventories },
@@ -121,7 +120,7 @@ const authProtectedRoutes = [
   //calendar
   { path: "/calendar", component: Calendar },
 
-  { path: "/dashboard", component: Dashboard },
+  
 
   // this route should be at the end of all other routes
   // { path: "/", exact: true, component: () => <Redirect to="/dashboard" /> }

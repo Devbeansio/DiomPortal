@@ -14,7 +14,8 @@ font-family:"Montserrat";
     color: black;
     font-weight: 18PX;
     font-size: small;
-    margin-left: 13px;
+    /* margin-left: 13px; */
+    /* margin-bottom: 20px; */
     opacity: 0.5;
 }
 
@@ -34,4 +35,12 @@ text-align: right;
 
 .markallarrow{
     cursor: pointer;
+}
+
+/* .notiwidth{
+    width: 417px ;
+} */
+.dropdown-menu-lg{
+    /* width: 130%; */
+    width: 417px  !important;
 }

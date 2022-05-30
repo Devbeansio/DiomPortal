@@ -32,19 +32,20 @@ const NotificationDropdown = () => {
 
   return (
     <React.Fragment>
-      <Dropdown isOpen={menu} toggle={toggle} className="d-inline-block">
+      <Dropdown isOpen={menu} toggle={toggle} className="d-inline-block ">
         <DropdownToggle
           tag="button"
-          className="btn header-item noti-icon waves-effect"
-          id="page-header-notifications-dropdown"
+          className="btn header-item noti-icon waves-effect "
+          id="page-header-notifications-dropdown "
         >
           <i className="ri-notification-3-line"></i>
          {adminNotificationdata && adminNotificationdata?.length !==0 && adminNotificationdata?.data.map((e) => ( e.markRead === false?
           <span className="noti-dot"></span> : null ))}
         </DropdownToggle>
         <DropdownMenu
-          className="dropdown-menu-end dropdown-menu-lg p-0 "
-          aria-labelledby="page-header-notifications-dropdown"
+          className="dropdown-menu-end dropdown-menu-lg p-0 notiwidth "
+          aria-labelledby="page-header-notifications-dropdown "
+          // style={{ width:470}}
         >
           <div className="p-3">
             <Row className="align-items-center">
@@ -79,13 +80,13 @@ const NotificationDropdown = () => {
                               onClick={()=>notificationSeenFunc(e)}
                               
                             >
-                              <i className="mdi mdi-minus-circle revokedmarkcircle">
-                                <span className="mt-0 mb-1 revertcirclecolorcss notificationfontstyle" >
+                              <Row>
+                                <Col md={1}><i className="mdi mdi-minus-circle revokedmarkcircle"></i></Col>
+                                <Col md={8}>  <span className="mt-0 mb-1 revertcirclecolorcss notificationfontstyle" >
                                   {e?.title}
-                                </span>
-                              </i>
-                            </Link>
-                            <div className="font-size-12 text-muted">
+                                </span></Col>
+                                <Col md={3}>
+                                <div className="font-size-12 text-muted">
                               <p className="mb-1">{e?.body}</p>
                               <span className="notificlockmargin"></span>{" "}
                               <p className="mb-0">
@@ -98,6 +99,27 @@ const NotificationDropdown = () => {
                                   .fromNow()}
                               </p>
                             </div>
+                                </Col>
+                                </Row>
+                              {/* <i className="mdi mdi-minus-circle revokedmarkcircle"> */}
+                                {/* <span className="mt-0 mb-1 revertcirclecolorcss notificationfontstyle" >
+                                  {e?.title}
+                                </span> */}
+                              {/* </i> */}
+                            </Link>
+                            {/* <div className="font-size-12 text-muted">
+                              <p className="mb-1">{e?.body}</p>
+                              <span className="notificlockmargin"></span>{" "}
+                              <p className="mb-0">
+                                <i className="mdi mdi-clock-outline"></i>
+
+                                {moment
+                                  .utc(e?.createdAt)
+                                  .local()
+                                  .startOf("seconds")
+                                  .fromNow()}
+                              </p>
+                            </div> */}
                           </div>
                           :
                           <div>
@@ -105,13 +127,13 @@ const NotificationDropdown = () => {
                               to={`/bookingdetail/${e.bookingId}/1}`}
                               className="text-reset notification-item"
                             >
-                              <i className="mdi mdi-minus-circle revokedmarkcircle">
-                                <span className="mt-0 mb-1 readnotificationcss notificationfontstyle">
+                              <Row>
+                                <Col md={1}> <i className="mdi mdi-minus-circle revokedmarkcircle"></i></Col>
+                                <Col md={8}> <span className="mt-0 mb-1 readnotificationcss notificationfontstyle">
                                   {e?.title}
-                                </span>
-                              </i>
-                            </Link>
-                            <div className="font-size-12 text-muted">
+                                </span></Col>
+                                <Col md={3}>
+                                <div className="font-size-12 text-muted">
                               <p className="mb-1">{e?.body}</p>
                               <span className="notificlockmargin"></span>{" "}
                               <p className="mb-0">
@@ -124,6 +146,28 @@ const NotificationDropdown = () => {
                                   .fromNow()}
                               </p>
                             </div>
+                                </Col>
+                                </Row>
+
+                              {/* <i className="mdi mdi-minus-circle revokedmarkcircle"> */}
+                                {/* <span className="mt-0 mb-1 readnotificationcss notificationfontstyle">
+                                  {e?.title}
+                                </span> */}
+                              {/* </i> */}
+                            </Link>
+                            {/* <div className="font-size-12 text-muted">
+                              <p className="mb-1">{e?.body}</p>
+                              <span className="notificlockmargin"></span>{" "}
+                              <p className="mb-0">
+                                <i className="mdi mdi-clock-outline"></i>
+
+                                {moment
+                                  .utc(e?.createdAt)
+                                  .local()
+                                  .startOf("seconds")
+                                  .fromNow()}
+                              </p>
+                            </div> */}
                           </div>
                           
                           }
@@ -138,13 +182,15 @@ const NotificationDropdown = () => {
                               className="text-reset notification-item"
                               onClick={()=>notificationSeenFunc(e)}
                             >
-                              <i className="mdi mdi-alert-circle revokedmarkcircle">
+                              <Row>
+                                <Col md={1}><i className="mdi mdi-alert-circle revokedmarkcircle"></i></Col>
+                                <Col md={8}>
                                 <span className="mt-0 mb-1 revertcirclecolorcss notificationfontstyle">
                                   {e?.title}
                                 </span>
-                              </i>
-                            </Link>
-                            <div className="font-size-12 text-muted">
+                                </Col>
+                                <Col md={3}>
+                                <div className="font-size-12 text-muted">
                               <p className="mb-1">{e?.body}</p>
                               <p className="mb-0">
                                 <span className="notificlockmargin">
@@ -158,6 +204,28 @@ const NotificationDropdown = () => {
                                   .fromNow()}
                               </p>
                             </div>
+                                </Col>
+                              </Row>
+                              {/* <i className="mdi mdi-alert-circle revokedmarkcircle"> */}
+                                {/* <span className="mt-0 mb-1 revertcirclecolorcss notificationfontstyle">
+                                  {e?.title}
+                                </span> */}
+                              {/* </i> */}
+                            </Link>
+                            {/* <div className="font-size-12 text-muted">
+                              <p className="mb-1">{e?.body}</p>
+                              <p className="mb-0">
+                                <span className="notificlockmargin">
+                                  <i className="mdi mdi-clock-outline"></i>{" "}
+                                </span>
+
+                                {moment
+                                  .utc(e?.createdAt)
+                                  .local()
+                                  .startOf("seconds")
+                                  .fromNow()}
+                              </p>
+                            </div> */}
                           </div>
                           
                           
@@ -168,13 +236,13 @@ const NotificationDropdown = () => {
                               to={`/bookingdetail/${e.bookingId}/1}`}
                               className="text-reset notification-item"
                             >
-                              <i className="mdi mdi-alert-circle revokedmarkcircle">
-                                <span className="mt-0 mb-1 readnotificationcss notificationfontstyle">
+                              <Row>
+                                <Col md={1}><i className="mdi mdi-alert-circle revokedmarkcircle"></i></Col>
+                                <Col md={8}> <span className="mt-0 mb-1 readnotificationcss notificationfontstyle">
                                   {e?.title}
-                                </span>
-                              </i>
-                            </Link>
-                            <div className="font-size-12 text-muted">
+                                </span></Col>
+                                <Col md={3}>
+                                <div className="font-size-12 text-muted">
                               <p className="mb-1">{e?.body}</p>
                               <p className="mb-0">
                                 <span className="notificlockmargin">
@@ -188,6 +256,28 @@ const NotificationDropdown = () => {
                                   .fromNow()}
                               </p>
                             </div>
+                                </Col>
+                                </Row>
+                              {/* <i className="mdi mdi-alert-circle revokedmarkcircle"> */}
+                                {/* <span className="mt-0 mb-1 readnotificationcss notificationfontstyle">
+                                  {e?.title}
+                                </span> */}
+                              {/* </i> */}
+                            </Link>
+                            {/* <div className="font-size-12 text-muted">
+                              <p className="mb-1">{e?.body}</p>
+                              <p className="mb-0">
+                                <span className="notificlockmargin">
+                                  <i className="mdi mdi-clock-outline"></i>{" "}
+                                </span>
+
+                                {moment
+                                  .utc(e?.createdAt)
+                                  .local()
+                                  .startOf("seconds")
+                                  .fromNow()}
+                              </p>
+                            </div> */}
                           </div>
                           
                           }
@@ -202,13 +292,35 @@ const NotificationDropdown = () => {
                               className="text-reset notification-item"
                               onClick={()=>notificationSeenFunc(e)}
                             >
-                              <i className="mdi mdi-checkbox-marked-circle succesmarkcircle">
-                                <span className="mt-0 mb-1 revertcirclecolorcss notificationfontstyle">
+                              <Row> 
+                                <Col md={1}><i className="mdi mdi-checkbox-marked-circle succesmarkcircle"></i></Col>
+                                <Col md={8}><span className="mt-0 mb-1 revertcirclecolorcss notificationfontstyle">
                                   {e?.title}
-                                </span>
-                              </i>
+                                </span></Col>
+                                <Col md={3}>
+                                <div className="font-size-12 text-muted">
+                              <p className="mb-1">{e?.body}</p>
+                              <p className="mb-0">
+                                {/* <span className="notificlockmargin">
+                                  <i className="mdi mdi-clock-outline"></i>{" "}
+                                </span> */}
+
+                                {moment
+                                  .utc(e?.createdAt)
+                                  .local()
+                                  .startOf("seconds")
+                                  .fromNow()}
+                              </p>
+                            </div>
+                                </Col>
+                                </Row>
+                              {/* <i className="mdi mdi-checkbox-marked-circle succesmarkcircle"> */}
+                                {/* <span className="mt-0 mb-1 revertcirclecolorcss notificationfontstyle">
+                                  {e?.title}
+                                </span> */}
+                              {/* </i> */}
                             </Link>
-                            <div className="font-size-12 text-muted">
+                            {/* <div className="font-size-12 text-muted">
                               <p className="mb-1">{e?.body}</p>
                               <p className="mb-0">
                                 <span className="notificlockmargin">
@@ -221,7 +333,7 @@ const NotificationDropdown = () => {
                                   .startOf("seconds")
                                   .fromNow()}
                               </p>
-                            </div>
+                            </div> */}
                           </div>
                           :
                           <div>
@@ -229,13 +341,37 @@ const NotificationDropdown = () => {
                               to={`/bookingdetail/${e.bookingId}/1}`}
                               className="text-reset notification-item"
                             >
-                              <i className="mdi mdi-checkbox-marked-circle succesmarkcircle">
+                              <Row>
+                                <Col md={1}>  <i className="mdi mdi-checkbox-marked-circle succesmarkcircle"></i></Col>
+                                <Col md={8}>
                                 <span className="mt-0 mb-1 readnotificationcss notificationfontstyle">
                                   {e?.title}
                                 </span>
-                              </i>
+                                </Col>
+                                <Col md={3}>
+                                <div className="font-size-12 text-muted ">
+                              <p className="mb-1">{e?.body}</p>
+                              <p className="mb-0">
+                                {/* <span className="notificlockmargin">
+                                  <i className="mdi mdi-clock-outline"></i>{" "}
+                                </span> */}
+
+                                {moment
+                                  .utc(e?.createdAt)
+                                  .local()
+                                  .startOf("seconds")
+                                  .fromNow()}
+                              </p>
+                            </div>
+                                </Col>
+                              </Row>
+                              {/* <i className="mdi mdi-checkbox-marked-circle succesmarkcircle"> */}
+                                {/* <span className="mt-0 mb-1 readnotificationcss notificationfontstyle">
+                                  {e?.title}
+                                </span> */}
+                              {/* </i> */}
                             </Link>
-                            <div className="font-size-12 text-muted ">
+                            {/* <div className="font-size-12 text-muted ">
                               <p className="mb-1">{e?.body}</p>
                               <p className="mb-0">
                                 <span className="notificlockmargin">
@@ -248,7 +384,7 @@ const NotificationDropdown = () => {
                                   .startOf("seconds")
                                   .fromNow()}
                               </p>
-                            </div>
+                            </div> */}
                           </div>
 
                           }
@@ -262,13 +398,36 @@ const NotificationDropdown = () => {
                               className="text-reset notification-item"
                               onClick={()=>notificationSeenFunc(e)}
                             >
-                              <i className="mdi mdi-alert-circle revokedmarkcircle">
+                              <Row>
+                                <Col md={1}> <i className="mdi mdi-alert-circle revokedmarkcircle"></i></Col>
+                                <Col md={8}>  <span className="mt-0 mb-1 ml-1 revertcirclecolorcss notificationfontstyle">
+                                  {e?.title}
+                                </span></Col>
+                                <Col md={3}>
+
+                                <div className="font-size-12 text-muted">
+                              <p className="mb-1">{e?.body}</p>
+                              <p className="mb-0">
+                                {/* <span className="notificlockmargin">
+                                  <i className="mdi mdi-clock-outline"></i>{" "}
+                                </span> */}
+
+                                {moment
+                                  .utc(e?.createdAt)
+                                  .local()
+                                  .startOf("seconds")
+                                  .fromNow()}
+                              </p>
+                            </div>
+                                </Col>
+                              </Row>
+                              {/* <i className="mdi mdi-alert-circle revokedmarkcircle">
                                 <span className="mt-0 mb-1 ml-1 revertcirclecolorcss notificationfontstyle">
                                   {e?.title}
                                 </span>
-                              </i>
+                              </i> */}
                             </Link>
-                            <div className="font-size-12 text-muted">
+                            {/* <div className="font-size-12 text-muted">
                               <p className="mb-1">{e?.body}</p>
                               <p className="mb-0">
                                 <span className="notificlockmargin">
@@ -281,7 +440,7 @@ const NotificationDropdown = () => {
                                   .startOf("seconds")
                                   .fromNow()}
                               </p>
-                            </div>
+                            </div> */}
                           </div>
                           :
                           <div>
@@ -289,13 +448,40 @@ const NotificationDropdown = () => {
                             to={`/bookingdetail/${e.bookingId}/1}`}
                             className="text-reset notification-item"
                           >
-                            <i className="mdi mdi-alert-circle revokedmarkcircle">
+
+                            <Row>
+                              <Col md={1}> <i className="mdi mdi-alert-circle revokedmarkcircle"></i></Col>
+                              <Col md={8}>
                               <span className="mt-0 mb-1 ml-1 readnotificationcss notificationfontstyle">
                                 {e?.title}
                               </span>
-                            </i>
+
+                              </Col>
+                              <Col md={3}>
+
+                              <div className="font-size-12 text-muted">
+                            <p className="mb-1">{e?.body}</p>
+                            <p className="mb-0">
+                              {/* <span className="notificlockmargin">
+                                <i className="mdi mdi-clock-outline"></i>{" "}
+                              </span> */}
+
+                              {moment
+                                .utc(e?.createdAt)
+                                .local()
+                                .startOf("seconds")
+                                .fromNow()}
+                            </p>
+                          </div>
+                              </Col>
+                              </Row>
+                            {/* <i className="mdi mdi-alert-circle revokedmarkcircle">
+                              <span className="mt-0 mb-1 ml-1 readnotificationcss notificationfontstyle">
+                                {e?.title}
+                              </span>
+                            </i> */}
                           </Link>
-                          <div className="font-size-12 text-muted">
+                          {/* <div className="font-size-12 text-muted">
                             <p className="mb-1">{e?.body}</p>
                             <p className="mb-0">
                               <span className="notificlockmargin">
@@ -308,7 +494,7 @@ const NotificationDropdown = () => {
                                 .startOf("seconds")
                                 .fromNow()}
                             </p>
-                          </div>
+                          </div> */}
                         </div>
                           
                           }
@@ -316,25 +502,28 @@ const NotificationDropdown = () => {
                       ) : e.actionType === "INFO" ? (
                         <div className="flex-1  " >
                           {e.markRead === false?
+                        
                           <div>
                             <Link
                              to={`/bookingdetail/${e.bookingId}/1}`}
                               className="text-reset notification-item "
                               onClick={()=>notificationSeenFunc(e)}
                             >
-                              <i className="mdi mdi-information requestmarkcircle">
-                                <span className="mt-0 mb-1 revertcirclecolorcss notificationfontstyle"  >
+                                <Row className="mb-2 mt-1">
+                            <Col md={1}> <i className="mdi mdi-information requestmarkcircle">  </i>
+                            </Col>
+                            <Col md={8}> <span className="mt-0 mb-1 revertcirclecolorcss notificationfontstyle"  >
                              
-                                  {e?.title}
-                                </span>
-                              </i>
-                            </Link>
+                             {e?.title}
+                           </span></Col>
+                            {/* <Col md={1}></Col> */}
+                            <Col md={3}> 
                             <div className="font-size-12 text-muted">
                               <p className="mb-1">{e?.body}</p>
                               <p className="mb-0">
-                                <span className="notificlockmargin">
+                                {/* <span className="notificlockmargin">
                                   <i className="mdi mdi-clock-outline"></i>{" "}
-                                </span>
+                                </span> */}
 
                                 {moment
                                   .utc(e?.createdAt)
@@ -343,6 +532,12 @@ const NotificationDropdown = () => {
                                   .fromNow()}
                               </p>
                             </div>
+                            
+                            </Col>
+                          </Row>
+                           
+                            </Link>
+         
                           </div>
                           :
                           <div>
@@ -350,19 +545,21 @@ const NotificationDropdown = () => {
                             to={`/bookingdetail/${e.bookingId}/1}`}
                             className="text-reset notification-item"
                           >
-                            <i className="mdi mdi-information requestmarkcircle">
-                              <span className="mt-0 mb-1 readnotificationcss notificationfontstyle">
+                            <Row className="mb-2 mb-1">
+                              <Col md={1}> <i className="mdi mdi-information requestmarkcircle"></i></Col>
+                              <Col md={8}><span className="mt-1  readnotificationcss notificationfontstyle mb-1">
                              
-                                {e?.title}
-                              </span>
-                            </i>
-                          </Link>
-                          <div className="font-size-12 text-muted">
+                             {e?.title}
+                           </span>
+                           </Col>
+                              <Col md={3}>
+
+                              <div className="font-size-12 text-muted">
                             <p className="mb-1">{e?.body}</p>
                             <p className="mb-0">
-                              <span className="notificlockmargin">
+                              {/* <span className="notificlockmargin">
                                 <i className="mdi mdi-clock-outline"></i>{" "}
-                              </span>
+                              </span> */}
 
                               {moment
                                 .utc(e?.createdAt)
@@ -371,6 +568,11 @@ const NotificationDropdown = () => {
                                 .fromNow()}
                             </p>
                           </div>
+                              </Col>
+                              </Row>
+                           
+                          </Link>
+                         
                         </div>           
                           }
                         </div>
@@ -387,13 +589,12 @@ const NotificationDropdown = () => {
                               className="text-reset notification-item"
                               onClick={()=>notificationSeenFunc(e)}
                               >
-                                <i className="mdi mdi-minus-circle revokedmarkcircle">
-                                  <span className="mt-0 mb-1 revertcirclecolorcss notificationfontstyle">
+                                <Row>
+                                  <Col md={1}>    <i className="mdi mdi-minus-circle revokedmarkcircle"></i></Col>
+                                  <Col md={8}>     <span className="mt-0 mb-1 revertcirclecolorcss notificationfontstyle">
                                     {e?.title}
-                                  </span>
-                                </i>
-                              </Link>
-                              <div className="font-size-12 text-muted">
+                                  </span></Col>
+                                  <Col md={3}><div className="font-size-12 text-muted">
                                 <p className="mb-1">{e?.body}</p>
                                 <p className="mb-0">
                                   <span className="notificlockmargin">
@@ -406,18 +607,40 @@ const NotificationDropdown = () => {
                                     .startOf("seconds")
                                     .fromNow()}
                                 </p>
-                              </div>
+                              </div></Col>
+                                  
+                                </Row>
+                                {/* <i className="mdi mdi-minus-circle revokedmarkcircle"> */}
+                                  {/* <span className="mt-0 mb-1 revertcirclecolorcss notificationfontstyle">
+                                    {e?.title}
+                                  </span> */}
+                                {/* </i> */}
+                              </Link>
+                              {/* <div className="font-size-12 text-muted">
+                                <p className="mb-1">{e?.body}</p>
+                                <p className="mb-0">
+                                  <span className="notificlockmargin">
+                                    <i className="mdi mdi-clock-outline"></i>{" "}
+                                  </span>
+
+                                  {moment
+                                    .utc(e?.createdAt)
+                                    .local()
+                                    .startOf("seconds")
+                                    .fromNow()}
+                                </p>
+                              </div> */}
                             </div>
                             :
                             <div>
                               <Link to={`/userprofiledetail/${e.userId}`}>
-                                <i className="mdi mdi-minus-circle revokedmarkcircle">
-                                  <span className="mt-0 mb-1 readnotificationcss notificationfontstyle">
+
+                              <Row>
+                                  <Col md={1}><i className="mdi mdi-minus-circle revokedmarkcircle"></i></Col>
+                                  <Col md={8}> <span className="mt-0 mb-1 readnotificationcss notificationfontstyle">
                                     {e?.title}
-                                  </span>
-                                </i>
-                              </Link>
-                              <div className="font-size-12 text-muted">
+                                  </span></Col>
+                                  <Col md={3}>   <div className="font-size-12 text-muted">
                                 <p className="mb-1">{e?.body}</p>
                                 <p className="mb-0">
                                   <span className="notificlockmargin">
@@ -430,7 +653,29 @@ const NotificationDropdown = () => {
                                     .startOf("seconds")
                                     .fromNow()}
                                 </p>
-                              </div>
+                              </div></Col>
+                                  
+                                </Row>
+                                {/* <i className="mdi mdi-minus-circle revokedmarkcircle"> */}
+                                  {/* <span className="mt-0 mb-1 readnotificationcss notificationfontstyle">
+                                    {e?.title}
+                                  </span> */}
+                                {/* </i> */}
+                              </Link>
+                              {/* <div className="font-size-12 text-muted">
+                                <p className="mb-1">{e?.body}</p>
+                                <p className="mb-0">
+                                  <span className="notificlockmargin">
+                                    <i className="mdi mdi-clock-outline"></i>{" "}
+                                  </span>
+
+                                  {moment
+                                    .utc(e?.createdAt)
+                                    .local()
+                                    .startOf("seconds")
+                                    .fromNow()}
+                                </p>
+                              </div> */}
                             </div>
                             
                             }
@@ -443,13 +688,13 @@ const NotificationDropdown = () => {
                               className="text-reset notification-item"
                               onClick={()=>notificationSeenFunc(e)}
                               >
-                                <i className="mdi mdi-alert-circle revokedmarkcircle">
-                                  <span className="mt-0 mb-1 revertcirclecolorcss notificationfontstyle">
+                                <Row>
+                                  <Col md={1}> <i className="mdi mdi-alert-circle revokedmarkcircle"></i></Col>
+                                  <Col md={8}><span className="mt-0 mb-1 revertcirclecolorcss notificationfontstyle">
                                     {e?.title}
-                                  </span>
-                                </i>
-                              </Link>
-                              <div className="font-size-12 text-muted">
+                                  </span></Col>
+                                  <Col md={3}>
+                                  <div className="font-size-12 text-muted">
                                 <p className="mb-1">{e?.body}</p>
                                 <p className="mb-0">
                                   <span className="notificlockmargin">
@@ -463,17 +708,40 @@ const NotificationDropdown = () => {
                                     .fromNow()}
                                 </p>
                               </div>
+                                  </Col>
+                                  
+                                </Row>
+                                {/* <i className="mdi mdi-alert-circle revokedmarkcircle"> */}
+                                  {/* <span className="mt-0 mb-1 revertcirclecolorcss notificationfontstyle">
+                                    {e?.title}
+                                  </span> */}
+                                {/* </i> */}
+                              </Link>
+                              {/* <div className="font-size-12 text-muted">
+                                <p className="mb-1">{e?.body}</p>
+                                <p className="mb-0">
+                                  <span className="notificlockmargin">
+                                    <i className="mdi mdi-clock-outline"></i>{" "}
+                                  </span>
+
+                                  {moment
+                                    .utc(e?.createdAt)
+                                    .local()
+                                    .startOf("seconds")
+                                    .fromNow()}
+                                </p>
+                              </div> */}
                             </div>
                             :
                             <div>
                               <Link to={`/userprofiledetail/${e.userId}`}>
-                                <i className="mdi mdi-alert-circle revokedmarkcircle">
-                                  <span className="mt-0 mb-1 readnotificationcss notificationfontstyle">
+                              <Row>
+                                  <Col md={1}><i className="mdi mdi-alert-circle revokedmarkcircle"></i></Col>
+                                  <Col md={8}>   <span className="mt-0 mb-1 readnotificationcss notificationfontstyle">
                                     {e?.title}
-                                  </span>
-                                </i>
-                              </Link>
-                              <div className="font-size-12 text-muted">
+                                  </span></Col>
+                                  <Col md={3}>
+                                  <div className="font-size-12 text-muted">
                                 <p className="mb-1">{e?.body}</p>
                                 <p className="mb-0">
                                   <span className="notificlockmargin">
@@ -487,6 +755,29 @@ const NotificationDropdown = () => {
                                     .fromNow()}
                                 </p>
                               </div>
+                                  </Col>
+                                  
+                                </Row>
+                                {/* <i className="mdi mdi-alert-circle revokedmarkcircle"> */}
+                                  {/* <span className="mt-0 mb-1 readnotificationcss notificationfontstyle">
+                                    {e?.title}
+                                  </span> */}
+                                {/* </i> */}
+                              </Link>
+                              {/* <div className="font-size-12 text-muted">
+                                <p className="mb-1">{e?.body}</p>
+                                <p className="mb-0">
+                                  <span className="notificlockmargin">
+                                    <i className="mdi mdi-clock-outline"></i>{" "}
+                                  </span>
+
+                                  {moment
+                                    .utc(e?.createdAt)
+                                    .local()
+                                    .startOf("seconds")
+                                    .fromNow()}
+                                </p>
+                              </div> */}
                             </div>
                             
                             }
@@ -499,13 +790,12 @@ const NotificationDropdown = () => {
                               className="text-reset notification-item"
                               onClick={()=>notificationSeenFunc(e)}
                               >
-                                <i className="mdi mdi-checkbox-marked-circle succesmarkcircle">
-                                  <span className="mt-0 mb-1 revertcirclecolorcss notificationfontstyle">
+                                <Row>
+                                  <Col md={1}><i className="mdi mdi-checkbox-marked-circle succesmarkcircle"></i></Col>
+                                  <Col md={8}> <span className="mt-0 mb-1 revertcirclecolorcss notificationfontstyle">
                                     {e?.title}
-                                  </span>
-                                </i>
-                              </Link>
-                              <div className="font-size-12 text-muted">
+                                  </span></Col>
+                                  <Col md={3}><div className="font-size-12 text-muted">
                                 <p className="mb-1">{e?.body}</p>
                                 <p className="mb-0">
                                   <span className="notificlockmargin">
@@ -518,18 +808,41 @@ const NotificationDropdown = () => {
                                     .startOf("seconds")
                                     .fromNow()}
                                 </p>
-                              </div>
+                              </div></Col>
+                                  
+                                </Row>
+                                {/* <i className="mdi mdi-checkbox-marked-circle succesmarkcircle"> */}
+                                  {/* <span className="mt-0 mb-1 revertcirclecolorcss notificationfontstyle">
+                                    {e?.title}
+                                  </span> */}
+                                {/* </i> */}
+                              </Link>
+                              {/* <div className="font-size-12 text-muted">
+                                <p className="mb-1">{e?.body}</p>
+                                <p className="mb-0">
+                                  <span className="notificlockmargin">
+                                    <i className="mdi mdi-clock-outline"></i>{" "}
+                                  </span>
+
+                                  {moment
+                                    .utc(e?.createdAt)
+                                    .local()
+                                    .startOf("seconds")
+                                    .fromNow()}
+                                </p>
+                              </div> */}
                             </div>
                             :
                             <div>
                               <Link to={`/userprofiledetail/${e.userId}`}>
-                                <i className="mdi mdi-checkbox-marked-circle succesmarkcircle">
-                                  <span className="mt-0 mb-1 readnotificationcss notificationfontstyle">
+
+                              <Row>
+                                  <Col md={1}>  <i className="mdi mdi-checkbox-marked-circle succesmarkcircle"></i></Col>
+                                  <Col md={8}><span className="mt-0 mb-1 readnotificationcss notificationfontstyle">
                                     {e?.title}
-                                  </span>
-                                </i>
-                              </Link>
-                              <div className="font-size-12 text-muted">
+                                  </span></Col>
+                                  <Col md={3}>
+                                  <div className="font-size-12 text-muted">
                                 <p className="mb-1">{e?.body}</p>
                                 <p className="mb-0">
                                   <span className="notificlockmargin">
@@ -543,6 +856,29 @@ const NotificationDropdown = () => {
                                     .fromNow()}
                                 </p>
                               </div>
+                                  </Col>
+                                  
+                                </Row>
+                                {/* <i className="mdi mdi-checkbox-marked-circle succesmarkcircle"> */}
+                                  {/* <span className="mt-0 mb-1 readnotificationcss notificationfontstyle">
+                                    {e?.title}
+                                  </span> */}
+                                {/* </i> */}
+                              </Link>
+                              {/* <div className="font-size-12 text-muted">
+                                <p className="mb-1">{e?.body}</p>
+                                <p className="mb-0">
+                                  <span className="notificlockmargin">
+                                    <i className="mdi mdi-clock-outline"></i>{" "}
+                                  </span>
+
+                                  {moment
+                                    .utc(e?.createdAt)
+                                    .local()
+                                    .startOf("seconds")
+                                    .fromNow()}
+                                </p>
+                              </div> */}
                             </div>
                             }
                           </div>
@@ -554,13 +890,13 @@ const NotificationDropdown = () => {
                               className="text-reset notification-item"
                               onClick={()=>notificationSeenFunc(e)}
                               >
-                                <i className="mdi mdi-alert-circle revokedmarkcircle">
-                                  <span className="mt-0 mb-1 ml-1 revertcirclecolorcss notificationfontstyle">
+                                <Row>
+                                  <Col md={1}> <i className="mdi mdi-alert-circle revokedmarkcircle"></i></Col>
+                                  <Col md={8}><span className="mt-0 mb-1 ml-1 revertcirclecolorcss notificationfontstyle">
                                     {e?.title}
-                                  </span>
-                                </i>
-                              </Link>
-                              <div className="font-size-12 text-muted">
+                                  </span></Col>
+                                  <Col md={3}>
+                                  <div className="font-size-12 text-muted">
                                 <p className="mb-1">{e?.body}</p>
                                 <p className="mb-0">
                                   <span className="notificlockmargin">
@@ -574,17 +910,40 @@ const NotificationDropdown = () => {
                                     .fromNow()}
                                 </p>
                               </div>
+                                  </Col>
+                                  
+                                </Row>
+                                {/* <i className="mdi mdi-alert-circle revokedmarkcircle"> */}
+                                  {/* <span className="mt-0 mb-1 ml-1 revertcirclecolorcss notificationfontstyle">
+                                    {e?.title}
+                                  </span> */}
+                                {/* </i> */}
+                              </Link>
+                              {/* <div className="font-size-12 text-muted">
+                                <p className="mb-1">{e?.body}</p>
+                                <p className="mb-0">
+                                  <span className="notificlockmargin">
+                                    <i className="mdi mdi-clock-outline"></i>{" "}
+                                  </span>
+
+                                  {moment
+                                    .utc(e?.createdAt)
+                                    .local()
+                                    .startOf("seconds")
+                                    .fromNow()}
+                                </p>
+                              </div> */}
                             </div>
                             :
                             <div>
                               <Link to={`/userprofiledetail/${e.userId}`}>
-                                <i className="mdi mdi-alert-circle revokedmarkcircle">
-                                  <span className="mt-0 mb-1 ml-1 readnotificationcss notificationfontstyle">
+                              <Row>
+                                  <Col md={1}> <i className="mdi mdi-alert-circle revokedmarkcircle"></i></Col>
+                                  <Col md={8}> <span className="mt-0 mb-1 ml-1 readnotificationcss notificationfontstyle">
                                     {e?.title}
-                                  </span>
-                                </i>
-                              </Link>
-                              <div className="font-size-12 text-muted">
+                                  </span></Col>
+                                  <Col md={3}>
+                                  <div className="font-size-12 text-muted">
                                 <p className="mb-1">{e?.body}</p>
                                 <p className="mb-0">
                                   <span className="notificlockmargin">
@@ -598,6 +957,29 @@ const NotificationDropdown = () => {
                                     .fromNow()}
                                 </p>
                               </div>
+                                  </Col>
+                                  
+                                </Row>
+                                {/* <i className="mdi mdi-alert-circle revokedmarkcircle"> */}
+                                  {/* <span className="mt-0 mb-1 ml-1 readnotificationcss notificationfontstyle">
+                                    {e?.title}
+                                  </span> */}
+                                {/* </i> */}
+                              </Link>
+                              {/* <div className="font-size-12 text-muted">
+                                <p className="mb-1">{e?.body}</p>
+                                <p className="mb-0">
+                                  <span className="notificlockmargin">
+                                    <i className="mdi mdi-clock-outline"></i>{" "}
+                                  </span>
+
+                                  {moment
+                                    .utc(e?.createdAt)
+                                    .local()
+                                    .startOf("seconds")
+                                    .fromNow()}
+                                </p>
+                              </div> */}
                             </div>
                             }
                           </div>
@@ -609,13 +991,13 @@ const NotificationDropdown = () => {
                               className="text-reset notification-item"
                               onClick={()=>notificationSeenFunc(e)}
                               >
-                                <i className="mdi mdi-information requestmarkcircle">
-                                  <span className="mt-0 mb-1 revertcirclecolorcss notificationfontstyle">
+                                <Row>
+                                  <Col md={1}> <i className="mdi mdi-information requestmarkcircle"></i></Col>
+                                  <Col md={8}><span className="mt-0 mb-1 revertcirclecolorcss notificationfontstyle">
                                     {e?.title}
-                                  </span>
-                                </i>
-                              </Link>
-                              <div className="font-size-12 text-muted">
+                                  </span></Col>
+                                  <Col md={3}>
+                                  <div className="font-size-12 text-muted">
                                 <p className="mb-1">{e?.body}</p>
                                 <p className="mb-0">
                                   <span className="notificlockmargin">
@@ -629,17 +1011,40 @@ const NotificationDropdown = () => {
                                     .fromNow()}
                                 </p>
                               </div>
+                                  </Col>
+                                  
+                                </Row>
+                                {/* <i className="mdi mdi-information requestmarkcircle"> */}
+                                  {/* <span className="mt-0 mb-1 revertcirclecolorcss notificationfontstyle">
+                                    {e?.title}
+                                  </span> */}
+                                {/* </i> */}
+                              </Link>
+                              {/* <div className="font-size-12 text-muted">
+                                <p className="mb-1">{e?.body}</p>
+                                <p className="mb-0">
+                                  <span className="notificlockmargin">
+                                    <i className="mdi mdi-clock-outline"></i>{" "}
+                                  </span>
+
+                                  {moment
+                                    .utc(e?.createdAt)
+                                    .local()
+                                    .startOf("seconds")
+                                    .fromNow()}
+                                </p>
+                              </div> */}
                             </div>
                             :
                             <div>
                             <Link to={`/userprofiledetail/${e.userId}`}>
-                              <i className="mdi mdi-information requestmarkcircle">
-                                <span className="mt-0 mb-1 readnotificationcss notificationfontstyle">
+                            <Row>
+                                  <Col md={1}> <i className="mdi mdi-information requestmarkcircle"></i></Col>
+                                  <Col md={8}> <span className="mt-0 mb-1 readnotificationcss notificationfontstyle">
                                   {e?.title}
-                                </span>
-                              </i>
-                            </Link>
-                            <div className="font-size-12 text-muted">
+                                </span></Col>
+                                  <Col md={3}>
+                                  <div className="font-size-12 text-muted">
                               <p className="mb-1">{e?.body}</p>
                               <p className="mb-0">
                                 <span className="notificlockmargin">
@@ -653,6 +1058,29 @@ const NotificationDropdown = () => {
                                   .fromNow()}
                               </p>
                             </div>
+                                  </Col>
+                                  
+                                </Row>
+                              {/* <i className="mdi mdi-information requestmarkcircle"> */}
+                                {/* <span className="mt-0 mb-1 readnotificationcss notificationfontstyle">
+                                  {e?.title}
+                                </span> */}
+                              {/* </i> */}
+                            </Link>
+                            {/* <div className="font-size-12 text-muted">
+                              <p className="mb-1">{e?.body}</p>
+                              <p className="mb-0">
+                                <span className="notificlockmargin">
+                                  <i className="mdi mdi-clock-outline"></i>{" "}
+                                </span>
+
+                                {moment
+                                  .utc(e?.createdAt)
+                                  .local()
+                                  .startOf("seconds")
+                                  .fromNow()}
+                              </p>
+                            </div> */}
                           </div>
                             }
                           </div>
