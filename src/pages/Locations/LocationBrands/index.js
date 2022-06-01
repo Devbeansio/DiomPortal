@@ -189,7 +189,7 @@ const LocationBrands = () => {
                                         : changeCurrentPage((prev) => prev - 1)
                                     }
                                   >
-                                    <i class="dripicons-chevron-left"></i>
+                                    <i className="dripicons-chevron-left"></i>
                                   </Button>
 
                                   <Button
@@ -214,7 +214,7 @@ const LocationBrands = () => {
                                       changeCurrentPage((prev) => prev + 1)
                                     }
                                   >
-                                    <i class="dripicons-chevron-right"></i>
+                                    <i className="dripicons-chevron-right"></i>
                                   </Button>
                                 </div>
                               </Col>

@@ -22,6 +22,8 @@ import paginationFactory, {
   PaginationProvider,
 } from "react-bootstrap-table2-paginator";
 import useReportRequest from "./generateodf/useReportRequest";
+import UseReports from "./useReports";
+
 
 const products = [
   {
@@ -76,19 +78,29 @@ const products = [
 ];
 
 const ReportRequest = () => {
-  const {reportTypeOptions,retryFunc,downloadFunc}=  useReportRequest()
+  const { 
+    // pastReportsDataa,
+    // newReportsDataa,isLoading,
+    // reportTyperequestFunc
+  }=UseReports();
+  const {reportTypeOptions,retryFunc,downloadFunc,pastReportsDataa,newOldReportsData,setNewOldReportsData,
+    newReportsDataa,isLoading,reportTyperequestFunc}=  useReportRequest()
+  // const pastReportData = pastReportsDataa?.data;
   const [activeTabJustify, setActiveTabJustify] = useState("1");
+  
+
   const { SearchBar } = Search;
+  const Loader = require("react-loader");
   const changeCurrentPage = 1;
 
   const columns1 = [
     {
-      dataField: "id",
+      dataField: "reportType",
       text: "Report Type",
       sort: true,
     },
     {
-      dataField: "name",
+      dataField: "locationBrands",
       text: "Brand(s)",
       sort: true,
     },
@@ -140,27 +152,27 @@ const ReportRequest = () => {
 
   const columns = [
     {
-      dataField: "id",
+      dataField: "reportType",
       text: "Report Type",
       sort: true,
     },
     {
-      dataField: "name",
+      dataField: "locationBrands",
       text: "Brand(s)",
       sort: true,
     },
     {
-      dataField: "position",
+      dataField: "business",
       text: "Location(s)",
       sort: true,
     },
     {
-      dataField: "office",
+      dataField: "resourceTypes",
       text: "Resource Type(s)",
       sort: true,
     },
     {
-      dataField: "age",
+      dataField: "timeSlots",
       text: "Time Slot",
       sort: true,
     },
@@ -174,6 +186,10 @@ const ReportRequest = () => {
       text: "Download",
       sort: true,
       formatter: (cell, row) => (
+        <a href ={row.fileUrl}
+          download>
+
+        
         <div>
           <Button
             className="w-100"
@@ -181,7 +197,7 @@ const ReportRequest = () => {
             size="sm"
             block
             onClick={() => {
-              downloadFunc()
+              downloadFunc(row.id)
             }}
             
             
@@ -190,6 +206,7 @@ const ReportRequest = () => {
             {cell}
           </Button>
         </div>
+        </a>
       ),
     },
   ];
@@ -213,8 +230,13 @@ const ReportRequest = () => {
   };
   return (
     <div className="page-content">
-    
+   {/* {console.log("pastReportsDataa <><><><><><><>: ",pastReportsDataa)} */}
+   {isLoading ? (
+          <Loader loaded={false} className="spinner" />
+        ) : (
+   <div>
       <p className="reporttitlecss">Reports</p>
+     
       <Row>
         <Col md={12}>
           <Card>
@@ -229,6 +251,7 @@ const ReportRequest = () => {
                       })}
                       onClick={() => {
                         toggleCustomJustified("1");
+                        setNewOldReportsData(  pastReportsDataa)
                         // getUseractivebookings();
                       }}
                     >
@@ -245,6 +268,8 @@ const ReportRequest = () => {
                       })}
                       onClick={() => {
                         toggleCustomJustified("2");
+                        // console.log("newReportsDataa :<<<<>",newReportsDataa)
+                        setNewOldReportsData(  newReportsDataa)
                         // fetchScheduledBookings();
                       }}
                     >
@@ -292,6 +317,7 @@ const ReportRequest = () => {
                   classNamePrefix="select2-selection"
                   className="reportinputmargin"
                   options={reportTypeOptions}
+                  onChange={(opt)=>reportTyperequestFunc(opt)}
                   // options={this.state.diomBrand}
                 />
               </Col>
@@ -419,7 +445,7 @@ const ReportRequest = () => {
                                             )
                                       }
                                     >
-                                      <i class="dripicons-chevron-left"></i>
+                                      <i className="dripicons-chevron-left"></i>
                                     </Button>
 
                                     <Button
@@ -444,7 +470,7 @@ const ReportRequest = () => {
                                         changeCurrentPage((prev) => prev + 1)
                                       }
                                     >
-                                      <i class="dripicons-chevron-right"></i>
+                                      <i className="dripicons-chevron-right"></i>
                                     </Button>
                                   </div>
                                 </Col> */}
@@ -456,18 +482,23 @@ const ReportRequest = () => {
                         </PaginationProvider>
                       </div>
                     ) : (
-                      <div>
+                     
+                      (<div>
                         <PaginationProvider
                           pagination={paginationFactory(pageOptions)}
                           keyField="id"
                           columns={columns}
-                          data={products}
+                          
+                          data={activeTabJustify==="1"?pastReportsDataa:activeTabJustify==="2"?newReportsDataa:null}
+                        
                         >
                           {({ paginationProps, paginationTableProps }) => (
                             <ToolkitProvider
                               keyField="id"
                               columns={columns}
-                              data={products}
+                              
+                              data={activeTabJustify === "1" ?pastReportsDataa:activeTabJustify === "2" ?newReportsDataa:null}
+                             
                               search
                             >
                               {(toolkitProps) => (
@@ -553,7 +584,7 @@ const ReportRequest = () => {
                                             )
                                       }
                                     >
-                                      <i class="dripicons-chevron-left"></i>
+                                      <i className="dripicons-chevron-left"></i>
                                     </Button>
 
                                     <Button
@@ -578,7 +609,7 @@ const ReportRequest = () => {
                                         changeCurrentPage((prev) => prev + 1)
                                       }
                                     >
-                                      <i class="dripicons-chevron-right"></i>
+                                      <i className="dripicons-chevron-right"></i>
                                     </Button>
                                   </div>
                                 </Col> */}
@@ -589,6 +620,8 @@ const ReportRequest = () => {
                           )}
                         </PaginationProvider>
                       </div>
+                      )
+                      
                     )}
                   </CardBody>
                 </Card>
@@ -597,6 +630,8 @@ const ReportRequest = () => {
           </Card>
         </Col>
       </Row>
+      </div>
+      )}
     </div>
   );
 };

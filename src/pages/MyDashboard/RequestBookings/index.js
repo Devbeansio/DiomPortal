@@ -541,7 +541,7 @@ const RequestBookings = () => {
                                                 )
                                           }
                                         >
-                                          <i class="dripicons-chevron-left"></i>
+                                          <i className="dripicons-chevron-left"></i>
                                         </Button>
 
                                         <Button
@@ -576,7 +576,7 @@ const RequestBookings = () => {
                                             )
                                           }
                                         >
-                                          <i class="dripicons-chevron-right"></i>
+                                          <i className="dripicons-chevron-right"></i>
                                         </Button>
                                       </div>
                                     </Col>
@@ -733,7 +733,7 @@ const RequestBookings = () => {
                                                 )
                                           }
                                         >
-                                          <i class="dripicons-chevron-left"></i>
+                                          <i className="dripicons-chevron-left"></i>
                                         </Button>
 
                                         <Button
@@ -768,7 +768,7 @@ const RequestBookings = () => {
                                             )
                                           }
                                         >
-                                          <i class="dripicons-chevron-right"></i>
+                                          <i className="dripicons-chevron-right"></i>
                                         </Button>
                                       </div>
                                     </Col>

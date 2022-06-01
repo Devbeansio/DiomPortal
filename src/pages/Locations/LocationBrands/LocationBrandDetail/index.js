@@ -143,7 +143,7 @@ const LocationBrandDetail = () => {
                   </Col>
                   <Col md={3} className="mt-5">
                     <FormGroup className="mt-1">
-                      <label class="LBDLabels">Operational Hours</label>
+                      <label className="LBDLabels">Operational Hours</label>
                       <Input
                         // format="HH:mm:ss.SSS"
                         type="time"
@@ -158,7 +158,7 @@ const LocationBrandDetail = () => {
                   </Col>
                   <Col md={3} className="mt-5">
                     <FormGroup className=" mt-2">
-                      <label class="LBDLabels"></label>
+                      <label className="LBDLabels"></label>
                       <Input
                         type="time"
                         //  defaultValue="13:45:00"

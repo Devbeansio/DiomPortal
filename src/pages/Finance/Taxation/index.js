@@ -178,7 +178,7 @@ const Taxation = () => {
                                     }
                                   >
                                     {" "}
-                                    <i class="dripicons-chevron-left"></i>
+                                    <i className="dripicons-chevron-left"></i>
                                   </Button>
 
                                   <Button
@@ -197,7 +197,7 @@ const Taxation = () => {
                                       changeCurrentPage((prev) => prev + 1)
                                     }
                                   >
-                                    <i class="dripicons-chevron-right"></i>
+                                    <i className="dripicons-chevron-right"></i>
                                   </Button>
                                 </div>
                               </Col>

@@ -101,7 +101,8 @@ class SidebarContent extends Component {
 
             <li>
               <Link to="/#" className="waves-effect has-arrow">
-                <i class="mdi mdi-clipboard-check-outline"></i>
+                <i className="mdi mdi-clipboard-check-outline" 
+               ></i>
 
                 <span className="ml-1">{this.props.t("Inventory")}</span>
               </Link>

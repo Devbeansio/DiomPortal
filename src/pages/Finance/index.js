@@ -29,7 +29,7 @@ const Finance = () => {
                         </CardTitle>
                       </Col>
                       <Col md={2}>
-                        <i class="dripicons-blog finnanceicons"></i>
+                        <i className="dripicons-blog finnanceicons"></i>
                       </Col>
                     </Row>
                   </CardBody>
@@ -48,7 +48,7 @@ const Finance = () => {
                         </CardTitle>
                       </Col>
                       <Col md={2}>
-                        <i class="ri-money-dollar-circle-line finnanceicons"></i>
+                        <i className="ri-money-dollar-circle-line finnanceicons"></i>
                       </Col>
                     </Row>
                   </CardBody>

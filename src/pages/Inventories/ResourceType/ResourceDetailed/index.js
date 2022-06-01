@@ -154,7 +154,7 @@ const ResourceDetailed = () => {
                                             <SearchBar
                                               {...toolkitProps.searchProps}
                                             />
-                                            <i class="search-box chat-search-box" />
+                                            <i className="search-box chat-search-box" />
                                           </div>
                                         </div>
                                       </Col>
@@ -577,7 +577,7 @@ const ResourceDetailed = () => {
                               // onClick={() => imagedeletedfunc(e._id)}
                               onClick={() => imagedeletedfunc(e._id)}
                             >
-                              <i class=" mdi mdi-delete  deliconsize "></i>
+                              <i className=" mdi mdi-delete  deliconsize "></i>
                             </Button>
                           </Col>
                         </Row>
@@ -607,7 +607,7 @@ const ResourceDetailed = () => {
                               <input {...getInputProps()} />
 
                               <div className="mb-3">
-                                <i class="display-4 text-muted ri-upload-cloud-2-line" />
+                                <i className="display-4 text-muted ri-upload-cloud-2-line" />
                               </div>
                               <h5>Drop files here or click to upload.</h5>
                             </div>
@@ -688,7 +688,7 @@ const ResourceDetailed = () => {
                         setResourceTypeAddMoreBlock(false);
                       }}
                     >
-                      <i class="mdi mdi-account-cancel"></i>
+                      <i className="mdi mdi-account-cancel"></i>
                     </Button>
                   </Col>
                 </Row>

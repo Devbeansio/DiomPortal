@@ -315,13 +315,13 @@ const MyDashboard = () => {
                             <CardTitle className="headings">Bookings</CardTitle>
                           </Col>
                           <Col md={2} lg={2} sm={2}>
-                            <i class="fas fa-bell icons"></i>
+                            <i className="fas fa-bell icons"></i>
                           </Col>
                         </Row>
                         <Row className="mt-3">
                           <Col md={10} lg={10} sm={10}></Col>
                           <Col md={2} lg={2} sm={2}>
-                            <i class="fas fa-arrow-right"></i>
+                            <i className="fas fa-arrow-right"></i>
                           </Col>
                         </Row>
                       </CardBody>
@@ -340,7 +340,7 @@ const MyDashboard = () => {
                             </CardTitle>
                           </Col>
                           <Col md={2} lg={2} sm={2}>
-                            <i class="fas fa-users icons"></i>
+                            <i className="fas fa-users icons"></i>
                           </Col>
                         </Row>
                         <Row className="mt-3">
@@ -348,7 +348,7 @@ const MyDashboard = () => {
                             <CardText className="amount"></CardText>
                           </Col>
                           <Col md={2} lg={2} sm={2}>
-                            <i class="fas fa-arrow-right "></i>
+                            <i className="fas fa-arrow-right "></i>
                           </Col>
                         </Row>
                       </CardBody>

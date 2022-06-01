@@ -6,19 +6,18 @@ export const getreportLocations = async (
   reportFinalValues,
   locationInvalidatequerry
 ) => {
-  const diomBrandValues = reportFinalValues?.diomBrand;
+  const diomBrandValues = reportFinalValues?.locationCategoriesId;
 
   const res = (
     await (
       await fetch(
-        !locationApplyFilter || diomBrandValues.length === 0
+        !locationApplyFilter || diomBrandValues?.length === 0
           ? `${DIOM_BASED_URLS}/admin-business-locations?filter={"where":{"visibility":true}}`
           : `${DIOM_BASED_URLS}/admin-business-locations?filter={"where":{"locationCategoriesId":{"inq":${JSON.stringify(
               diomBrandValues
             )}}}}`,
         {
           method: "GET",
-          redirect: "follow",
           headers: {
             Authorization: "Bearer " + token,
           },
@@ -42,7 +41,6 @@ export const getreportLocationBrand = async (token) => {
     await (
       await fetch(`${DIOM_BASED_URLS}/admin-location-categories`, {
         method: "GET",
-        redirect: "follow",
         headers: {
           Authorization: "Bearer " + token,
         },
@@ -73,18 +71,18 @@ export const getResourcetypereports = async (
   resourcetypeApplyFilter,
   reportFinalValues
 ) => {
-  const diomLocationValue = reportFinalValues?.diomLocations;
+  const diomLocationValue = reportFinalValues?.businessId;
+ 
 
   return await (
     await fetch(
-      !resourcetypeApplyFilter || diomLocationValue.length === 0
+      !resourcetypeApplyFilter || diomLocationValue?.length === 0
         ? `${DIOM_BASED_URLS}/admin-resource-types-inventories`
         : `${DIOM_BASED_URLS}/admin-resource-types-inventories?filter={"where":{"BusinessId":{"inq":${JSON.stringify(
             diomLocationValue
           )}}}}`,
       {
         method: "GET",
-        redirect: "follow",
         headers: {
           Authorization: "Bearer " + token,
         },
@@ -92,3 +90,71 @@ export const getResourcetypereports = async (
     )
   ).json();
 };
+
+
+
+
+/**
+ *
+ * @param size
+ * @param page
+ * @param {JWT} token
+ * @returns a list of Past in DIOM
+ */
+
+ export const getPastreports = async (token,selectedReportType,postFilter) => {
+  
+  
+  return await (
+    await fetch(
+      !postFilter?
+      `${DIOM_BASED_URLS}/reports?page=1&size=50&filter={"where":{"exported": true}}`
+      :`${DIOM_BASED_URLS}/reports?page=1&size=50&filter={"where":{"exported": true,"reportType":"${selectedReportType}"}}`,
+      // `${DIOM_BASED_URLS}/reports?page=1&size=50&filter={"where":{"exported": false}}`
+      //    : `${DIOM_BASED_URLS}/reports?page=1&size=50&filter={"where":{"exported": false,"reportType":"${selectedReportType}"}}`,   
+          {
+        
+          method: "GET",
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      }
+    )
+  ).json();
+};
+
+
+
+
+
+
+/**
+ *
+ * @param size
+ * @param page
+ * @param {JWT} token
+ * @returns a list of New in DIOM
+ */
+
+ export const getNewreports = async (
+  token,selectedReportType,postFilter
+) => {
+ 
+
+  return await (
+    await fetch(
+      !postFilter?
+        //  `${DIOM_BASED_URLS}/reports?page=1&size=50&filter={"where":{"exported": true}}`
+        //  :`${DIOM_BASED_URLS}/reports?page=1&size=50&filter={"where":{"exported": true,"reportType":"${selectedReportType}"}}`,
+         `${DIOM_BASED_URLS}/reports?page=1&size=50&filter={"where":{"exported": false}}`
+         : `${DIOM_BASED_URLS}/reports?page=1&size=50&filter={"where":{"exported": false,"reportType":"${selectedReportType}"}}`,
+      {
+        method: "GET",
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      }
+    )
+  ).json();
+};
+

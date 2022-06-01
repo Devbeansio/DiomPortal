@@ -297,7 +297,7 @@ const LocationDetailed = () => {
                                   onClick={() => imagedeletedfunc(e._id)}
                                 >
                                   {/* dripicons-tag-delete */}
-                                  <i class=" mdi mdi-delete  deliconsize "></i>
+                                  <i className=" mdi mdi-delete  deliconsize "></i>
                                 </Button>
                               </Col>
                             </Row>
@@ -328,7 +328,7 @@ const LocationDetailed = () => {
                                   <input {...getInputProps()} />
 
                                   <div className="mb-3 ">
-                                    <i class="display-4 text-muted ri-upload-cloud-2-line" />
+                                    <i className="display-4 text-muted ri-upload-cloud-2-line" />
                                   </div>
 
                                   <h5>Drop files or click to upload</h5>
@@ -407,7 +407,7 @@ const LocationDetailed = () => {
                             setLocationAddMoreBlock(false);
                           }}
                         >
-                          <i class="mdi mdi-account-cancel"></i>
+                          <i className="mdi mdi-account-cancel"></i>
                         </Button>
                       </Col>
                     </Row>
@@ -524,7 +524,7 @@ const LocationDetailed = () => {
                                 onClick={() => imagedeletedAmentiesfunc(e._id)}
                               >
                                 {/* dripicons-tag-delete */}
-                                <i class=" mdi mdi-delete  deliconsize "></i>
+                                <i className=" mdi mdi-delete  deliconsize "></i>
                               </Button>
                             </Col>
                           </Row>
@@ -553,7 +553,7 @@ const LocationDetailed = () => {
                                 >
                                   <input {...getInputProps()} />
                                   <div className=" mt-5">
-                                    <i class="display-4 text-muted ri-upload-cloud-2-line"></i>
+                                    <i className="display-4 text-muted ri-upload-cloud-2-line"></i>
                                   </div>
                                   <h5 className=" ">
                                     Drag files or click to upload
@@ -645,7 +645,7 @@ const LocationDetailed = () => {
                             setAmenitiesAddMoreBlock(false);
                           }}
                         >
-                          <i class="mdi mdi-account-cancel"></i>
+                          <i className="mdi mdi-account-cancel"></i>
                         </Button>
                       </Col>
                     </Row>
@@ -727,7 +727,7 @@ const LocationDetailed = () => {
                                       nearbyimagedeletedfunc(e._id)
                                     }
                                   >
-                                    <i class=" mdi mdi-delete  deliconsize "></i>
+                                    <i className=" mdi mdi-delete  deliconsize "></i>
                                   </Button>
                                 </Col>
                               </Col>
@@ -758,7 +758,7 @@ const LocationDetailed = () => {
                                   <input {...getInputProps()} />
 
                                   <div className="mb-3 ">
-                                    <i class="display-4 text-muted ri-upload-cloud-2-line" />
+                                    <i className="display-4 text-muted ri-upload-cloud-2-line" />
                                   </div>
 
                                   <h5>Drop files or click to upload</h5>
@@ -829,7 +829,7 @@ const LocationDetailed = () => {
                             setNearbyAddMoreBlock(false);
                           }}
                         >
-                          <i class="mdi mdi-account-cancel"></i>
+                          <i className="mdi mdi-account-cancel"></i>
                         </Button>
                       </Col>
                     </Row>

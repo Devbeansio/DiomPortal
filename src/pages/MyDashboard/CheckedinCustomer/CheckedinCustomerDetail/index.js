@@ -547,7 +547,7 @@ const CheckedinCustomerDetail = () => {
                                                     )
                                               }
                                             >
-                                              <i class="dripicons-chevron-left"></i>
+                                              <i className="dripicons-chevron-left"></i>
                                             </Button>
 
                                             <Button
@@ -574,7 +574,7 @@ const CheckedinCustomerDetail = () => {
                                                 )
                                               }
                                             >
-                                              <i class="dripicons-chevron-right"></i>
+                                              <i className="dripicons-chevron-right"></i>
                                             </Button>
                                           </div>
                                         </Col>

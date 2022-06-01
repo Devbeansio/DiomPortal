@@ -247,7 +247,7 @@ const Inventoryshow_page = () => {
                 <Form.Group controlId="exampleForm.SelectCustom">
                   <select
                     onChange={searchByCategory}
-                    class="form-select inventoryadditiontextboxheightwidth inventorylabelstextbox"
+                    className="form-select inventoryadditiontextboxheightwidth inventorylabelstextbox"
                     id="inputGroupSelect01"
                   >
                     <option selected>Choose Product Category</option>

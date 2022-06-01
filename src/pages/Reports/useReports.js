@@ -1,15 +1,19 @@
 import React, { useState, useEffect } from "react";
 import { useQuery } from "react-query";
+// import { getLocations } from "../../APIS";
 import { useSnackbar } from "notistack";
 import moment from "moment";
 import {
+  getNewreports,
+  getPastreports,
   getreportLocationBrand,
   getreportLocations,
   getResourcetypereports,
 } from "../../APIS/reports";
 import { getUserByProfession } from "../../APIS/userProfle";
-import { useAllDataQuery } from "../../hooks/query";
+import { useAllDataQuery, usePaginatedQuery } from "../../hooks/query";
 import { DIOM_BASED_URLS } from "../../config/url";
+import { toast } from "react-toastify";
 
 const UseReports = () => {
   const { enqueueSnackbar } = useSnackbar();
@@ -20,12 +24,13 @@ const UseReports = () => {
   const [reportFinalValues, setreportFinalValues] = useState([]);
   const [reportFinalLabels, setReportFinalLabels] = useState([]);
   const [categoryDropDown, setCategoryDropDown] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
   const [locationApplyFilter, setLocationApplyFilter] = useState(false);
   const [resourcetypeApplyFilter, setResourcetypeApplyFilter] = useState(false);
   const [reportTypeValues, setReportTypeValues] = useState([]);
   const [userDropDownVisibility, setUserDropDownVisibility] = useState(true);
   const reportTypeOptions = [
-    { label: "Booking Report", value: "BOOKING_REPORTS_REPORTS" },
+    { label: "Booking Report", value: "BOOKING_REPORTS" },
     { label: "User Report", value: "USER_REPORTS" },
     { label: "User Ananlysis Report", value: "USER_ANALYSIS_REPORTS" },
     { label: "Cancelled Bookings", value: "CANCELLED_BOOKINGS_REPORTS" },
@@ -37,7 +42,11 @@ const UseReports = () => {
   ];
 
   const reportTypeHandeler = (e) => {
+   
+
     setReportTypeValues({ reportType: e.value });
+    setReportFinalLabels({  reportLabel: e.label });
+
     if (e.label === "Booking Report" || e.label === "Cancelled Bookings") {
       setUserDropDownVisibility(true);
     } else if (
@@ -51,10 +60,10 @@ const UseReports = () => {
     const timeSlotLabel = e.map((element) => {
       return element.value;
     });
-    const timeSlotValue = e.map((element) => {
-      return element.value;
-    });
-    setreportFinalValues({ ...reportFinalValues, timeSlot: timeSlotValue });
+    // const timeSlotValue = e.map((element) => {
+    //   return element.value;
+    // });
+    setreportFinalValues({ ...reportFinalValues, timeSlot: timeSlotLabel });
     setReportFinalLabels({ ...reportFinalLabels, timeSlot: timeSlotLabel });
   };
 
@@ -67,11 +76,11 @@ const UseReports = () => {
     });
     setreportFinalValues({
       ...reportFinalValues,
-      resourceTypes: resourceTypeValue,
+      resourceTypeId: resourceTypeValue,
     });
     setReportFinalLabels({
       ...reportFinalLabels,
-      resourceTypes: resourceTypeLabel,
+      resourceTypeName: resourceTypeLabel,
     });
   };
   const userTypeIndustryHandler = (e) => {
@@ -83,11 +92,11 @@ const UseReports = () => {
     });
     setreportFinalValues({
       ...reportFinalValues,
-      userTypeByIndustry: userTypeIndustryValue,
+      industryId: userTypeIndustryValue,
     });
     setReportFinalLabels({
       ...reportFinalLabels,
-      userTypeByIndustry: userTypeIndustryLabel,
+      industryName: userTypeIndustryLabel,
     });
   };
 
@@ -98,8 +107,15 @@ const UseReports = () => {
     const brandLabel = e.map((element) => {
       return element.label;
     });
-    setreportFinalValues({ ...reportFinalValues, diomBrand: brandValue });
-    setReportFinalLabels({ ...reportFinalLabels, diomBrand: brandLabel });
+   
+    setreportFinalValues({
+      ...reportFinalValues,
+      locationCategoriesId  : brandValue,
+    });
+    setReportFinalLabels({
+      ...reportFinalLabels,
+       locationCategoriesName: brandLabel,
+    });
     setLocationApplyFilter(true);
   };
 
@@ -113,11 +129,11 @@ const UseReports = () => {
     });
     setreportFinalValues({
       ...reportFinalValues,
-      diomLocations: locationValue,
+      businessId: locationValue,
     });
     setReportFinalLabels({
       ...reportFinalLabels,
-      diomLocations: locationLabel,
+      businessName: locationLabel,
     });
   };
 
@@ -130,11 +146,11 @@ const UseReports = () => {
     });
     setreportFinalValues({
       ...reportFinalValues,
-      userTypeByPosition: userTypePositionValue,
+      positionId: userTypePositionValue,
     });
     setReportFinalLabels({
       ...reportFinalLabels,
-      userTypeByPosition: userTypePositionLabel,
+      positionName: userTypePositionLabel,
     });
   };
   const startdateFunc = (e) => {
@@ -164,7 +180,7 @@ const UseReports = () => {
       setreportFinalValues({ ...reportFinalValues, endDate: enddate });
       setReportFinalLabels({ ...reportFinalLabels, endDate: enddate });
     } else {
-      // alert("please select valid date");
+     
       const message = "please select valid date";
       enqueueSnackbar(message, {
         variant: "failed",
@@ -172,10 +188,11 @@ const UseReports = () => {
     }
   };
 
-  // ***************
 
+  // ***************
+  // const { data: locationsData, isLoading: loadingLocations } = useAllDataQuery(
   const { data: locationsData, isLoading: loadingLocations } = useQuery(
-    ["locationsreports1", reportFinalValues?.diomBrand],
+    ["locationsreports1", reportFinalValues?.locationCategoriesId],
     () => getreportLocations(token, locationApplyFilter, reportFinalValues)
   );
   const locationData = locationsData;
@@ -188,7 +205,7 @@ const UseReports = () => {
   // *************
 
   const resourceTypedropdownData = useQuery(
-    ["resourceTypedropdownreports", reportFinalValues?.diomLocations],
+    ["resourceTypedropdownreports", reportFinalValues?.businessId],
     () =>
       getResourcetypereports(token, resourcetypeApplyFilter, reportFinalValues)
   );
@@ -216,7 +233,6 @@ const UseReports = () => {
   );
   const userByProfessionData = userByProfession.data;
   const userByProfessionDataa = userByProfessionData?.data;
-  // console.log("userByProfessionData ", userByProfessionDataa);
   const userbyprofessionindustry = userByProfessionDataa?.industries.map(
     (element, index) => ({
       value: element.id,
@@ -224,7 +240,6 @@ const UseReports = () => {
     })
   );
 
-  // console.log("userbyprofessionindustry ", userbyprofessionindustry);
   const userbyprofessionPosition = userByProfessionDataa?.positions.map(
     (element, index) => {
       return {
@@ -235,13 +250,20 @@ const UseReports = () => {
       };
     }
   );
-  // console.log("userbyprofessionPosition ", userbyprofessionPosition);
   // *************
 
   const reportExport = () => {
     const message =
       'In Process. It will be available shortly in the " Report section"';
 
+    console.log({
+      // fromTime: reportFinalLabels.startDate,
+      // toTime: reportFinalLabels.endDate,
+      reportLebels  : reportFinalLabels,
+      reportValues : reportFinalValues,
+      // reportType: reportTypeValues.reportType,
+    });
+   
     fetch(`${DIOM_BASED_URLS}/reports`, {
       method: "POST",
       headers: {
@@ -250,20 +272,58 @@ const UseReports = () => {
         Authorization: "Bearer " + token,
       },
       body: JSON.stringify({
-        reportValues: reportFinalLabels,
-        reportLebels: reportFinalValues,
-        reportType: reportTypeValues,
+        fromTime: reportFinalLabels.startDate,
+        toTime: reportFinalLabels.endDate,
+        reportValues:  reportFinalValues,
+        reportLebels:  reportFinalLabels,
+        reportType: reportTypeValues.reportType,
+        reportName: reportFinalLabels.reportLabel
       }),
     })
       .then((result3) => {
-        if (result3.status === ok) {
+       
           enqueueSnackbar(message, {
             variant: "success",
           });
-        }
+        
       })
-      .catch((error) => toast.error(" Something went wrong"));
+      .catch((error) => 
+      toast.error(" Something went wrong"));
   };
+
+
+
+// // *************
+
+// const {
+//   data: { data: pastReportsDataa, hasNextPage, hasPreviousPage, total },
+//   isLoading,
+// } = usePaginatedQuery(
+//   ["pastReprtssData"],
+//   () =>
+//   getPastreports(token)
+// );
+
+// // const pastReportsDataa = pastReportsData.data;
+// // console.log("past reports : ",pastReportsData)
+
+// // *************
+// // *************
+// const {
+//   data: { data: newReportsDataa},
+  
+// } = usePaginatedQuery(
+//   ["newReportssData",currentPage],
+//   () =>
+//   getNewreports(token)
+// );
+
+// // const newReportsDataa = newReportsData.data;
+// // console.log("New reports : ",newReportsDataa)
+
+// // *************
+
+
 
   useEffect(
     // FOR PRE-FETCHING NEXT PAGE
@@ -281,6 +341,8 @@ const UseReports = () => {
   );
 
   return {
+    // pastReportsDataa,
+    // newReportsDataa,
     reportTypeOptions,
     userByProfessionData,
     userbyprofessionPosition,
@@ -300,6 +362,8 @@ const UseReports = () => {
     endDateFunc,
     reportExport,
     categoryDropDown,
+    // reportTyperequestFunc,
+    // isLoading,
   };
 };
 

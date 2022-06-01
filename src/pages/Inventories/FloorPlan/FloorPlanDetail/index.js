@@ -285,7 +285,7 @@ const FloorPlanDetail = () => {
                           // onClick={deleteFloorPlansFunc}>
                           onClick={tog_static1}>
                           <span style={{color:"black"}}>
-                          <i  class="dripicons-cross" ></i>
+                          <i  className="dripicons-cross" ></i>
                           </span>
                           </Button>
                         </span>
