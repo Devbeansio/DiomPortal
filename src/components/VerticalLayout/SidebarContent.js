@@ -200,6 +200,9 @@ class SidebarContent extends Component {
               </Link>
             </li>
 
+
+            
+
             {/* <li className="menu-title">{this.props.t("Other Pages")}</li> */}
 
             {/* <li>
@@ -257,7 +260,22 @@ class SidebarContent extends Component {
                 </li>
               </ul>
             </li> */}
+             {/* <li className="menu-title">{this.props.t('')}</li> */}
+            <br/>
+
+            <br/><br/><br/><br/><br/><br/><br/>
+
+
+
+          <li>
+              <Link to="/datalogs" className=" waves-effect">
+                <i className="mdi mdi-view-list"></i>
+                <span className="ml-1">{this.props.t("Logs")}</span>
+              </Link>
+            </li>
           </ul>
+         
+
         </div>
       </React.Fragment>
     );

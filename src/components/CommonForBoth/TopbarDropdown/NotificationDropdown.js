@@ -39,7 +39,9 @@ const NotificationDropdown = () => {
           id="page-header-notifications-dropdown "
         >
           <i className="ri-notification-3-line"></i>
-         {adminNotificationdata && adminNotificationdata?.length !==0 && adminNotificationdata?.data.map((e) => ( e.markRead === false?
+         {/* {adminNotificationdata && adminNotificationdata?.length !==0 && adminNotificationdata?.data.map((e) => ( e.markRead === false?
+          <span className="noti-dot" key={(Math.random()*1000).toString()}></span> : null ))} */}
+           {adminNotificationdata && adminNotificationdata?.length >0 && adminNotificationdata?.data.map((e) => ( e.markRead === false?
           <span className="noti-dot" key={(Math.random()*1000).toString()}></span> : null ))}
         </DropdownToggle>
         
@@ -72,7 +74,7 @@ const NotificationDropdown = () => {
             <div className="d-flex flex-column" style={{ padding: 10 }}>
            
 
-              { adminNotificationdata && adminNotificationdata?.length !==0 && adminNotificationdata?.data.map((e) => (
+              {adminNotificationdata && adminNotificationdata?.length >0 && adminNotificationdata?.data.map((e) => (
                 <div className="all " key={(Math.random()*1000).toString()}>
                   {e?.redirectTo === "BOOKING" ? (
                     <div   >
@@ -779,7 +781,8 @@ const NotificationDropdown = () => {
                     </div>
                   ) : null}
                 </div>
-              ))} 
+                
+              )) } 
             </div>
            
           </SimpleBar>

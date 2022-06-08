@@ -98,30 +98,26 @@ const Locations = () => {
         <div className="page-content">
           <div>
             <Row>
-              <Col md={2} style={{ marginLeft: 25 }}>
+              <Col md={3} lg={3} style={{ marginLeft: 25 }} className="d-flex justify-content-between">
                 <h5 className="loctiontitle">Locations</h5>
-              </Col>
-              <Col md={1}>
-                <div className="button-items">
+                <span className="totipalignment"> <li className="fas fa-info-circle  " id="TooltipRight"></li></span>
                   <Tooltip
                     fade={true}
                     flip={true}
                     placement="right"
                     isOpen={ttright}
-                    variant="success"
+                    // variant="success"
                     target="TooltipRight"
+                    className="toltipbbgclr"
+
                     toggle={() => setTtright(!ttright)}
                   >
-                    <p>
+                    <p className="">
                       Make Sure to add a "Location Brand" to any location add or
                       edit.A Location will only Appear on app if it has a
                       location brand.
                     </p>
                   </Tooltip>
-                  {/* <Button type="button"  color="secondary"
-                        className="btn-rounded waves-effect sm" id="TooltipRight"> i</Button> */}
-                  <li className="fas fa-info-circle " id="TooltipRight"></li>
-                </div>
               </Col>
               <Col md={7}></Col>
               <Col md={2} className="">

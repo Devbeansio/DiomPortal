@@ -14,9 +14,10 @@ export const useUserProfile = () => {
   const {
     data: { data: userProfileData, hasNextPage, hasPreviousPage, total },
     isLoading,
-  } = usePaginatedQuery(["userprofile", currentPage], () =>
+  } = usePaginatedQuery(["userprofile",`${currentPage}` ,`${pageSize}`], () =>
     getuserprofile(pageSize, currentPage, token)
   );
+console.log("hasNextPage",hasNextPage)
 
   const toggle = () => {
     setIsOpen(!isOpen);
@@ -41,7 +42,7 @@ export const useUserProfile = () => {
     // FOR PRE-FETCHING NEXT PAGE
     if (hasNextPage) {
       const nextPage = currentPage + 1;
-      queryClient.prefetchQuery(["userprofile", nextPage], () =>
+      queryClient.prefetchQuery(["userprofile", `${currentPage}` ,`${pageSize}`], () =>
         getuserprofile(pageSize, nextPage, token)
       );
     }

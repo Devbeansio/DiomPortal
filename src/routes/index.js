@@ -66,6 +66,8 @@ import RequestBookings from "../pages/MyDashboard/RequestBookings/index.js";
 import UserProfileDetail from "../pages/UserProfile/UserProfileDetail/index.js";
 import CreateCategory from "../pages/Inventories/Categories/createCategory";
 import NotificationListingPage from "../pages/Notifications/notificationListingPage";
+import DataLogs from "../pages/DataLogs";
+const token = localStorage.getItem("Token");
 const authProtectedRoutes = [
   { path: "/mydashboard", component: MyDashboard },
   { path: "/categoriesdetail/:id", component: CategoriesDetail },
@@ -75,6 +77,7 @@ const authProtectedRoutes = [
   { path: "/addapackage", component: AddAPackage },
   { path: "/locationdetailed/:id", component: LocationDetailed },
   { path: "/locations", component: Locations },
+  {path:"/datalogs",component:DataLogs},
  
   { path: "/bookingdetail/:id/:t_ID", component: BookingDetail },
   { path: "/locationbrands", component: LocationBrands },
@@ -124,7 +127,8 @@ const authProtectedRoutes = [
 
   // this route should be at the end of all other routes
   // { path: "/", exact: true, component: () => <Redirect to="/dashboard" /> }
-  { path: "/", exact: true, component: () => <Redirect to="/login" /> },
+
+  { path: "/", exact: true, component: () =>token !== ""?<Redirect to="/mydashboard" /> :<Redirect to="/login" /> },
 ];
 
 const publicRoutes = [

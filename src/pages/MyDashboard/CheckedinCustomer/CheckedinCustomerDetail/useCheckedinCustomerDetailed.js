@@ -27,21 +27,27 @@ export const UseCheckedinCustomerDetailed = () => {
 
   const {
     data: { data: userActiveBookingData, total, hasNextPage, hasPreviousPage },
-  } = usePaginatedQuery(["activecustomer", id, activeTabJustify], () =>
+  } = usePaginatedQuery(["activecustomer",`${pageSize}`,`${currentPage}`], () =>
     getUseractivebookings(pageSize, currentPage, token, id)
   );
 
   const {
-    data: { data: userSechduledBookigsData },
-  } = usePaginatedQuery(["scheduledcustomer", id, activeTabJustify], () =>
+    data: { data: userSechduledBookigsData,hasNextPage:scheduledHasNextPage },
+  } = usePaginatedQuery(["scheduledcustomer",`${pageSize}`,`${currentPage}`], () =>
     getUserscheduledbookings(pageSize, currentPage, token, id)
   );
-
+  
   const {
-    data: { data: usePastBookingsData },
-  } = usePaginatedQuery(["pastcustomer", id, activeTabJustify], () =>
+    data: { data: usePastBookingsData,hasNextPage:pastHasNextPage },
+  } = usePaginatedQuery(["pastcustomer", `${pageSize}`,`${currentPage}`], () =>
     getUserpastbookings(pageSize, currentPage, token, id)
   );
+
+  const toggleCustomJustified = (tab) => {
+    if (activeTabJustify !== tab) {
+      setActiveTabJustify(tab);
+    }
+  };
 
   const toggle = () => {
     setIsOpen(!isOpen);
@@ -80,6 +86,8 @@ export const UseCheckedinCustomerDetailed = () => {
     usePastBookingsData,
     // activeTabJustify,
     isLoading,
+    toggleCustomJustified,
+    scheduledHasNextPage,pastHasNextPage,
     activeTabJustify,
     setActiveTabJustify,
     pagelengthnum,

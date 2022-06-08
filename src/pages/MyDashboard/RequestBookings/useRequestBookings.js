@@ -36,7 +36,7 @@ const UseRequestBookings = () => {
   const tog_static = (__id) => {
     setModal_static(!modal_static);
     setIdfSelectedRow(__id);
-
+ 
     removeBodyCss();
   };
   const tog_static1 = () => {
@@ -98,8 +98,11 @@ const UseRequestBookings = () => {
         setModal_static1(false);
         if (activeTabJustify === "1") {
           gettodaybookings();
+          queryClient.invalidateQueries("gettodaysbookings");
+       
         } else if (activeTabJustify === "3") {
           fetchScheduledBookings();
+          queryClient.invalidateQueries("getschduledbookings")
         }
       })
       .catch((error) => toast.error(error.message));
@@ -140,7 +143,7 @@ const UseRequestBookings = () => {
   const {
     data: { data: todayBookingsdata, hasNextPage, hasPreviousPage, total },
     isLoading,
-  } = usePaginatedQuery(["gettodaysbookings", currentPage, filter], () =>
+  } = usePaginatedQuery(["gettodaysbookings", `${pageSize}`,`${currentPage}`, `${filter}`], () =>
     gettodaysbookings(pageSize, currentPage, token, applyLocationFilter, filter)
   );
 
@@ -148,7 +151,7 @@ const UseRequestBookings = () => {
     // FOR PRE-FETCHING NEXT PAGE
     if (hasNextPage) {
       const nextPage = currentPage + 1;
-      queryClient.prefetchQuery(["gettodaysbookings", nextPage], () =>
+      queryClient.prefetchQuery(["gettodaysbookings", `${pageSize}`,`${currentPage}`, `${filter}`], () =>
         gettodaysbookings(
           pageSize,
           nextPage,
@@ -182,7 +185,7 @@ const UseRequestBookings = () => {
       hasPreviousPage: pastPreviousPage,
       total: pastTotal,
     },
-  } = usePaginatedQuery(["getpastbookings", currentPage, filter], () =>
+  } = usePaginatedQuery(["getpastbookings", `${pageSize}`,`${currentPage}`, `${filter}`], () =>
     getPasttbookings(pageSize, currentPage, token, applyLocationFilter, filter)
   );
 
@@ -190,7 +193,7 @@ const UseRequestBookings = () => {
     // FOR PRE-FETCHING NEXT PAGE
     if (hasNextPage) {
       const nextPage = currentPage + 1;
-      queryClient.prefetchQuery(["getpastbookings", nextPage], () =>
+      queryClient.prefetchQuery(["getpastbookings", `${pageSize}`,`${currentPage}`, `${filter}`], () =>
         getPasttbookings(pageSize, nextPage, token, applyLocationFilter, filter)
       );
     }
@@ -209,7 +212,7 @@ const UseRequestBookings = () => {
       hasPreviousPage: ScheduledPreviousPage,
       total: ScheduledTotal,
     },
-  } = usePaginatedQuery(["getschduledbookings", currentPage, filter], () =>
+  } = usePaginatedQuery(["getschduledbookings", `${pageSize}`,`${currentPage}`, `${filter}`], () =>
     getschduleddbookings(
       pageSize,
       currentPage,
@@ -223,7 +226,7 @@ const UseRequestBookings = () => {
     // FOR PRE-FETCHING NEXT PAGE
     if (hasNextPage) {
       const nextPage = currentPage + 1;
-      queryClient.prefetchQuery(["getschduledbookings", nextPage], () =>
+      queryClient.prefetchQuery(["getschduledbookings", `${pageSize}`,`${currentPage}`, `${filter}`], () =>
         getschduleddbookings(
           pageSize,
           nextPage,

@@ -8,6 +8,7 @@ import { Row, Col, CardBody, Button, Input } from "reactstrap";
 import { Link } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 import moment from "moment";
+import { saveAs } from 'file-saver';
 import "../../css/InvoicesDetailPage.css";
 import { useParams } from "react-router-dom";
 import { useReactToPrint } from "react-to-print";
@@ -36,8 +37,10 @@ function InvoicesDetailPage() {
   });
 
   const invoiceWithWnplDownload=()=>{
+    var FileSaver = require('file-saver');
     const d =  InvoiceData.erpInvoiceUrl;
-    saveAs(d, 'image.jpg') 
+    FileSaver.saveAs(d, 'image.jpg');
+    // <a href={d} download />
   }
 
   return (
@@ -108,6 +111,16 @@ function InvoicesDetailPage() {
                       <Col md={5} className="rightaligncss">
                         {" "}
                         {InvoiceData ? InvoiceData.bookingId : "---/-"}
+                      </Col>
+                    </Row>
+                    <Row>
+                      <Col md={7}>
+                        {" "}
+                        <p className="invoicedetailname">Invoice Erp id :</p>
+                      </Col>
+                      <Col md={5} className="rightaligncss">
+                        {" "}
+                        {InvoiceData ? InvoiceData.erpInvoiceId : "---/-"}
                       </Col>
                     </Row>
                   </Col>
@@ -243,7 +256,7 @@ function InvoicesDetailPage() {
                       </Col>
                       <Col md={4} className="rightaligncss">
                         {" "}
-                        12
+                        {InvoiceData?.total}
                       </Col>
                     </Row>
                     <Row>
@@ -252,7 +265,7 @@ function InvoicesDetailPage() {
                       </Col>
                       <Col md={4} className="rightaligncss">
                         {" "}
-                        12
+                        {InvoiceData?.vatPrice}
                       </Col>
                     </Row>
                     <Row>
@@ -261,7 +274,7 @@ function InvoicesDetailPage() {
                       </Col>
                       <Col md={4} className="rightaligncss">
                         {" "}
-                        12
+                        {/* 12 */}
                       </Col>
                     </Row>
                     <Row>
@@ -270,7 +283,7 @@ function InvoicesDetailPage() {
                       </Col>
                       <Col md={4} className="rightaligncss">
                         {" "}
-                        12
+                        {InvoiceData?.balanceWithVat}
                       </Col>
                     </Row>
                   </Col>

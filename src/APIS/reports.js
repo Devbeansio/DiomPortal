@@ -102,16 +102,15 @@ export const getResourcetypereports = async (
  * @returns a list of Past in DIOM
  */
 
- export const getPastreports = async (token,selectedReportType,postFilter) => {
+ export const getPastreports = async (token,selectedReportType,postFilter,pageSize,currentPage) => {
   
   
   return await (
     await fetch(
       !postFilter?
-      `${DIOM_BASED_URLS}/reports?page=1&size=50&filter={"where":{"exported": true}}`
-      :`${DIOM_BASED_URLS}/reports?page=1&size=50&filter={"where":{"exported": true,"reportType":"${selectedReportType}"}}`,
-      // `${DIOM_BASED_URLS}/reports?page=1&size=50&filter={"where":{"exported": false}}`
-      //    : `${DIOM_BASED_URLS}/reports?page=1&size=50&filter={"where":{"exported": false,"reportType":"${selectedReportType}"}}`,   
+      `${DIOM_BASED_URLS}/reports?page=${currentPage}&size=${pageSize}&filter={"where":{"exported": true}}`
+      :`${DIOM_BASED_URLS}/reports?page=1&size=${pageSize}&filter={"where":{"exported": true,"reportType":"${selectedReportType}"}}`,
+      
           {
         
           method: "GET",
@@ -137,17 +136,16 @@ export const getResourcetypereports = async (
  */
 
  export const getNewreports = async (
-  token,selectedReportType,postFilter
+  token,selectedReportType,postFilter,pageSize,currentPage
 ) => {
- 
+
 
   return await (
     await fetch(
       !postFilter?
-        //  `${DIOM_BASED_URLS}/reports?page=1&size=50&filter={"where":{"exported": true}}`
-        //  :`${DIOM_BASED_URLS}/reports?page=1&size=50&filter={"where":{"exported": true,"reportType":"${selectedReportType}"}}`,
-         `${DIOM_BASED_URLS}/reports?page=1&size=50&filter={"where":{"exported": false}}`
-         : `${DIOM_BASED_URLS}/reports?page=1&size=50&filter={"where":{"exported": false,"reportType":"${selectedReportType}"}}`,
+       
+         `${DIOM_BASED_URLS}/reports?page=${currentPage}&size=${pageSize}&filter={"where":{"exported": false}}`
+         : `${DIOM_BASED_URLS}/reports?page=1&size=${pageSize}&filter={"where":{"exported": false,"reportType":"${selectedReportType}"}}`,
       {
         method: "GET",
         headers: {
@@ -158,3 +156,10 @@ export const getResourcetypereports = async (
   ).json();
 };
 
+
+
+
+export const exportApiFunc =( requestOptions,enqueueSnackbar) => {
+  fetch(`${DIOM_BASED_URLS}/reports`, requestOptions
+      )
+  }

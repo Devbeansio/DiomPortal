@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useQuery } from "react-query";
+import { useMutation, useQuery } from "react-query";
 // import { getLocations } from "../../APIS";
 import { useSnackbar } from "notistack";
 import moment from "moment";
@@ -14,6 +14,12 @@ import { getUserByProfession } from "../../APIS/userProfle";
 import { useAllDataQuery, usePaginatedQuery } from "../../hooks/query";
 import { DIOM_BASED_URLS } from "../../config/url";
 import { toast } from "react-toastify";
+import { exportApiFunc } from "../../APIS/reports";
+
+// const exportApiFunc =( requestOptions,enqueueSnackbar) => {
+// fetch(`${DIOM_BASED_URLS}/reports`, requestOptions
+//     )
+// }
 
 const UseReports = () => {
   const { enqueueSnackbar } = useSnackbar();
@@ -29,6 +35,34 @@ const UseReports = () => {
   const [resourcetypeApplyFilter, setResourcetypeApplyFilter] = useState(false);
   const [reportTypeValues, setReportTypeValues] = useState([]);
   const [userDropDownVisibility, setUserDropDownVisibility] = useState(true);
+  const {
+    mutate,
+    data,
+    error,
+    isError,
+    isIdle,
+    isLoading,
+    isPaused,
+    isSuccess,
+    mutateAsync,
+    reset,
+    status,
+  } = useMutation(exportApiFunc);
+
+  if (isLoading) {
+    const message =
+      'In Process. It will be available shortly in the " Report section"';
+    enqueueSnackbar(message, {
+      variant: "success",
+    });
+  }
+  if (isSuccess) {
+    const message = "Report generated Successfully";
+    enqueueSnackbar(message, {
+      variant: "success",
+    });
+  }
+
   const reportTypeOptions = [
     { label: "Booking Report", value: "BOOKING_REPORTS" },
     { label: "User Report", value: "USER_REPORTS" },
@@ -42,10 +76,9 @@ const UseReports = () => {
   ];
 
   const reportTypeHandeler = (e) => {
-   
-
+    // setReportTypeValues({ reportType: e.value });
     setReportTypeValues({ reportType: e.value });
-    setReportFinalLabels({  reportLabel: e.label });
+    setReportFinalLabels({ reportLabel: e.label });
 
     if (e.label === "Booking Report" || e.label === "Cancelled Bookings") {
       setUserDropDownVisibility(true);
@@ -56,14 +89,15 @@ const UseReports = () => {
       setUserDropDownVisibility(false);
     }
   };
+
   const timeSlotHandler = (e) => {
     const timeSlotLabel = e.map((element) => {
+      return element.label;
+    });
+    const timeSlotValue = e.map((element) => {
       return element.value;
     });
-    // const timeSlotValue = e.map((element) => {
-    //   return element.value;
-    // });
-    setreportFinalValues({ ...reportFinalValues, timeSlot: timeSlotLabel });
+    setreportFinalValues({ ...reportFinalValues, timeSlot: timeSlotValue });
     setReportFinalLabels({ ...reportFinalLabels, timeSlot: timeSlotLabel });
   };
 
@@ -107,14 +141,14 @@ const UseReports = () => {
     const brandLabel = e.map((element) => {
       return element.label;
     });
-   
+
     setreportFinalValues({
       ...reportFinalValues,
-      locationCategoriesId  : brandValue,
+      locationCategoriesId: brandValue,
     });
     setReportFinalLabels({
       ...reportFinalLabels,
-       locationCategoriesName: brandLabel,
+      locationCategoriesName: brandLabel,
     });
     setLocationApplyFilter(true);
   };
@@ -166,7 +200,7 @@ const UseReports = () => {
       // alert("please select valid date");
       const message = "please select valid date";
       enqueueSnackbar(message, {
-        variant: "failed",
+        variant: "error",
       });
     }
   };
@@ -180,14 +214,12 @@ const UseReports = () => {
       setreportFinalValues({ ...reportFinalValues, endDate: enddate });
       setReportFinalLabels({ ...reportFinalLabels, endDate: enddate });
     } else {
-     
       const message = "please select valid date";
       enqueueSnackbar(message, {
-        variant: "failed",
+        variant: "error",
       });
     }
   };
-
 
   // ***************
   // const { data: locationsData, isLoading: loadingLocations } = useAllDataQuery(
@@ -252,19 +284,8 @@ const UseReports = () => {
   );
   // *************
 
-  const reportExport = () => {
-    const message =
-      'In Process. It will be available shortly in the " Report section"';
-
-    console.log({
-      // fromTime: reportFinalLabels.startDate,
-      // toTime: reportFinalLabels.endDate,
-      reportLebels  : reportFinalLabels,
-      reportValues : reportFinalValues,
-      // reportType: reportTypeValues.reportType,
-    });
-   
-    fetch(`${DIOM_BASED_URLS}/reports`, {
+  const reportExport = async() => {
+    const requestOptions = {
       method: "POST",
       headers: {
         Accept: "application/json, text/plain",
@@ -274,56 +295,17 @@ const UseReports = () => {
       body: JSON.stringify({
         fromTime: reportFinalLabels.startDate,
         toTime: reportFinalLabels.endDate,
-        reportValues:  reportFinalValues,
-        reportLebels:  reportFinalLabels,
+        reportValues: reportFinalValues,
+        reportLebels: reportFinalLabels,
         reportType: reportTypeValues.reportType,
-        reportName: reportFinalLabels.reportLabel
+        // reportType: reportFinalLabels.reportLabel,
+        reportName: reportFinalLabels.reportLabel,
       }),
-    })
-      .then((result3) => {
-       
-          enqueueSnackbar(message, {
-            variant: "success",
-          });
-        
-      })
-      .catch((error) => 
-      toast.error(" Something went wrong"));
+    };
+   await mutate(requestOptions);
+   
+   
   };
-
-
-
-// // *************
-
-// const {
-//   data: { data: pastReportsDataa, hasNextPage, hasPreviousPage, total },
-//   isLoading,
-// } = usePaginatedQuery(
-//   ["pastReprtssData"],
-//   () =>
-//   getPastreports(token)
-// );
-
-// // const pastReportsDataa = pastReportsData.data;
-// // console.log("past reports : ",pastReportsData)
-
-// // *************
-// // *************
-// const {
-//   data: { data: newReportsDataa},
-  
-// } = usePaginatedQuery(
-//   ["newReportssData",currentPage],
-//   () =>
-//   getNewreports(token)
-// );
-
-// // const newReportsDataa = newReportsData.data;
-// // console.log("New reports : ",newReportsDataa)
-
-// // *************
-
-
 
   useEffect(
     // FOR PRE-FETCHING NEXT PAGE
@@ -341,8 +323,6 @@ const UseReports = () => {
   );
 
   return {
-    // pastReportsDataa,
-    // newReportsDataa,
     reportTypeOptions,
     userByProfessionData,
     userbyprofessionPosition,

@@ -56,159 +56,159 @@ class Header extends Component {
     this.setState({ modal_static: true });
   };
 
-  alllocationsfunc = async () => {
-    fetch(
-      `${DIOM_BASED_URLS}/admin-business-locations?filter={"where":{"visibility":true}}`,
-      {
-        method: "GET",
-        redirect: "follow",
+  // alllocationsfunc = async () => {
+  //   fetch(
+  //     `${DIOM_BASED_URLS}/admin-business-locations?filter={"where":{"visibility":true}}`,
+  //     {
+  //       method: "GET",
+  //       redirect: "follow",
 
-        headers: {
-          Authorization: "Bearer " + this.state.token,
-        },
-      }
-    )
-      .then((response) => response.json())
-      .then((result3) => {
-        const mapdata = result3.map((element) => ({
-          value: element.id,
-          label: element.Name,
-        }));
+  //       headers: {
+  //         Authorization: "Bearer " + this.state.token,
+  //       },
+  //     }
+  //   )
+  //     .then((response) => response.json())
+  //     .then((result3) => {
+  //       const mapdata = result3.map((element) => ({
+  //         value: element.id,
+  //         label: element.Name,
+  //       }));
 
-        this.setState({
-          diomLocation: [
-            {
-              label: "--All Locations",
-              options: mapdata,
+  //       this.setState({
+  //         diomLocation: [
+  //           {
+  //             label: "--All Locations",
+  //             options: mapdata,
 
-              headers: {
-                Authorization: "Bearer " + this.state.token,
-              },
-            },
-          ],
-        });
-      })
-      .catch((error) => console.log("error", error));
-  };
+  //             headers: {
+  //               Authorization: "Bearer " + this.state.token,
+  //             },
+  //           },
+  //         ],
+  //       });
+  //     })
+  //     .catch((error) => console.log("error", error));
+  // };
 
-  diomBrandfunc = async () => {
-    fetch(`${DIOM_BASED_URLS}/admin-location-categories`, {
-      method: "GET",
-      redirect: "follow",
+  // diomBrandfunc = async () => {
+  //   fetch(`${DIOM_BASED_URLS}/admin-location-categories`, {
+  //     method: "GET",
+  //     redirect: "follow",
 
-      headers: {
-        Authorization: "Bearer " + this.state.token,
-      },
-    })
-      .then((response) => response.json())
-      .then((result) => {
-        const mapdata = result.map((element) => ({
-          value: element.id,
-          label: element.name,
-        }));
-        this.setState({
-          diomBrand: [
-            {
-              label: "--All Brands",
-              options: mapdata,
-            },
-          ],
-        });
-      })
-      .catch((error) => console.log("error", error));
-  };
+  //     headers: {
+  //       Authorization: "Bearer " + this.state.token,
+  //     },
+  //   })
+  //     .then((response) => response.json())
+  //     .then((result) => {
+  //       const mapdata = result.map((element) => ({
+  //         value: element.id,
+  //         label: element.name,
+  //       }));
+  //       this.setState({
+  //         diomBrand: [
+  //           {
+  //             label: "--All Brands",
+  //             options: mapdata,
+  //           },
+  //         ],
+  //       });
+  //     })
+  //     .catch((error) => console.log("error", error));
+  // };
 
-  changeLocationBrand = async (id) => {
-    fetch(
-      `${DIOM_BASED_URLS}/admin-business-locations?filter={"where":{"visibility":true,"locationCategoriesId":"${id}"}}`,
-      {
-        method: "GET",
-        redirect: "follow",
+  // changeLocationBrand = async (id) => {
+  //   fetch(
+  //     `${DIOM_BASED_URLS}/admin-business-locations?filter={"where":{"visibility":true,"locationCategoriesId":"${id}"}}`,
+  //     {
+  //       method: "GET",
+  //       redirect: "follow",
 
-        headers: {
-          Authorization: "Bearer " + this.state.token,
-        },
-      }
-    )
-      .then((response) => response.json())
-      .then((result2) => {
-        // this.setState({ diomLocation:result })
-        const mapdata = result2.map((element) => ({
-          value: element.id,
-          label: element.Name,
-        }));
+  //       headers: {
+  //         Authorization: "Bearer " + this.state.token,
+  //       },
+  //     }
+  //   )
+  //     .then((response) => response.json())
+  //     .then((result2) => {
+  //       // this.setState({ diomLocation:result })
+  //       const mapdata = result2.map((element) => ({
+  //         value: element.id,
+  //         label: element.Name,
+  //       }));
 
-        this.setState((prevState) => ({
-          ...prevState,
-          diomLocation: [
-            {
-              label: "--All Locations",
-              options: [...mapdata],
-            },
-          ],
-        }));
-      })
-      .catch((error) => console.log("error", error));
-  };
+  //       this.setState((prevState) => ({
+  //         ...prevState,
+  //         diomLocation: [
+  //           {
+  //             label: "--All Locations",
+  //             options: [...mapdata],
+  //           },
+  //         ],
+  //       }));
+  //     })
+  //     .catch((error) => console.log("error", error));
+  // };
 
-  diomLocationfunc = async () => {
-    fetch(
-      `${DIOM_BASED_URLS}/admin-business-locations?filter={"where":{"visibility":true}}`,
-      {
-        method: "GET",
-        redirect: "follow",
+  // diomLocationfunc = async () => {
+  //   fetch(
+  //     `${DIOM_BASED_URLS}/admin-business-locations?filter={"where":{"visibility":true}}`,
+  //     {
+  //       method: "GET",
+  //       redirect: "follow",
 
-        headers: {
-          Authorization: "Bearer " + this.state.token,
-        },
-      }
-    )
-      .then((response) => response.json())
-      .then((result2) => {
-        // this.setState({ diomLocation:result })
-        const mapdata = result2.map((element) => ({
-          value: element.id,
-          label: element.Name,
-        }));
+  //       headers: {
+  //         Authorization: "Bearer " + this.state.token,
+  //       },
+  //     }
+  //   )
+  //     .then((response) => response.json())
+  //     .then((result2) => {
+  //       // this.setState({ diomLocation:result })
+  //       const mapdata = result2.map((element) => ({
+  //         value: element.id,
+  //         label: element.Name,
+  //       }));
 
-        this.setState({
-          diomLocation: [
-            {
-              label: "--All Locations",
-              options: [],
-            },
-          ],
-        });
-      })
-      .catch((error) => console.log("error", error));
-  };
+  //       this.setState({
+  //         diomLocation: [
+  //           {
+  //             label: "--All Locations",
+  //             options: [],
+  //           },
+  //         ],
+  //       });
+  //     })
+  //     .catch((error) => console.log("error", error));
+  // };
 
-  getSelectedDiomLocation(locationId) {
-    if (!locationId) {
-      return;
-    }
+  // getSelectedDiomLocation(locationId) {
+  //   if (!locationId) {
+  //     return;
+  //   }
 
-    fetch(`${DIOM_BASED_URLS}/admin-business-locations/${locationId}`, {
-      method: "GET",
-      redirect: "follow",
+  //   fetch(`${DIOM_BASED_URLS}/admin-business-locations/${locationId}`, {
+  //     method: "GET",
+  //     redirect: "follow",
 
-      headers: {
-        Authorization: "Bearer " + this.state.token,
-      },
-    })
-      .then((response) => response.json())
-      .then((location) => {
-        this.setState(
-          {
-            selectedLocationData: location,
-          },
-          () => {
-            this.setState({ modal_center: false });
-          }
-        );
-      })
-      .catch((error) => console.log("error", error));
-  }
+  //     headers: {
+  //       Authorization: "Bearer " + this.state.token,
+  //     },
+  //   })
+  //     .then((response) => response.json())
+  //     .then((location) => {
+  //       this.setState(
+  //         {
+  //           selectedLocationData: location,
+  //         },
+  //         () => {
+  //           this.setState({ modal_center: false });
+  //         }
+  //       );
+  //     })
+  //     .catch((error) => console.log("error", error));
+  // }
 
   syncLocationsFunc = () => {
     fetch(`${DIOM_BASED_URLS}/admin-business-locations/sync`, {
@@ -271,10 +271,10 @@ class Header extends Component {
       .catch((error) => toast.error(" Something went wrong"));
   };
   componentDidMount() {
-    this.diomBrandfunc();
-    this.diomLocationfunc();
-    this.alllocationsfunc();
-    this.getSelectedDiomLocation(localStorage.getItem("locationId"));
+    // this.diomBrandfunc();
+    // this.diomLocationfunc();
+    // this.alllocationsfunc();
+    // this.getSelectedDiomLocation(localStorage.getItem("locationId"));
     // {
     //   this.locationId && this.setState({ disabledvalue: false });
     // }

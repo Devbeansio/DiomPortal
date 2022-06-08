@@ -16,7 +16,7 @@ export const useInvoices = () => {
   const {
     data: { data: Invoiceslistingdata, hasNextPage, hasPreviousPage, total },
     isLoading,
-  } = usePaginatedQuery(["Invoices", currentPage], () =>
+  } = usePaginatedQuery(["Invoices", `${pageSize}`,`${currentPage}`], () =>
     getInvoices(pageSize, currentPage, token)
   );
 
@@ -48,7 +48,7 @@ export const useInvoices = () => {
     console.log(hasNextPage);
     if (hasNextPage) {
       const nextPage = currentPage + 1;
-      queryClient.prefetchQuery(["Invoices", nextPage], () =>
+      queryClient.prefetchQuery(["Invoices", `${pageSize}`,`${currentPage}`], () =>
         getInvoices(pageSize, nextPage, token)
       );
     }

@@ -17,7 +17,7 @@ export const useTaxation = () => {
   const {
     data: { data: taxationData, hasNextPage, hasPreviousPage, total },
     isLoading,
-  } = usePaginatedQuery(["taxation", currentPage], () =>
+  } = usePaginatedQuery(["taxation", `${pageSize}`,`${currentPage}`], () =>
     getTaxation(pageSize, currentPage, token)
   );
 
@@ -51,7 +51,7 @@ export const useTaxation = () => {
 
     if (hasNextPage) {
       const nextPage = currentPage + 1;
-      queryClient.prefetchQuery(["taxation", nextPage], () =>
+      queryClient.prefetchQuery(["taxation", `${pageSize}`,`${currentPage}`], () =>
         getTaxation(pageSize, nextPage, token)
       );
     }

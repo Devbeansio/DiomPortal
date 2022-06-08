@@ -92,7 +92,9 @@ const CheckedinCustomerDetail = () => {
     usePastBookingsData,
     // activeTabJustify,
     hasNextPage,
+    scheduledHasNextPage,pastHasNextPage,
     hasPreviousPage,
+    toggleCustomJustified,
     total,
     activeTabJustify,
     setActiveTabJustify,
@@ -104,11 +106,7 @@ const CheckedinCustomerDetail = () => {
     isOpen,
   } = UseCheckedinCustomerDetailed();
 
-  const toggleCustomJustified = (tab) => {
-    if (activeTabJustify !== tab) {
-      setActiveTabJustify(tab);
-    }
-  };
+ 
   const Loader = require("react-loader");
 
   return (
@@ -560,6 +558,23 @@ const CheckedinCustomerDetail = () => {
                                             >
                                               {currentPage}
                                             </Button>
+                                            {/* <Button
+                                              style={{
+                                                marginLeft: 7,
+                                                marginRight: 7,
+                                              }}
+                                              color="secondary"
+                                              className="waves-effect"
+                                              disabled={!hasNextPage}
+                                              onClick={() =>
+                                                changeCurrentPage(
+                                                  (prev) => prev + 1
+                                                )
+                                              }
+                                            >
+                                              <i className="dripicons-chevron-right"></i>
+                                            </Button> */}
+                                              {activeTabJustify === "1"?
                                             <Button
                                               style={{
                                                 marginLeft: 7,
@@ -576,6 +591,43 @@ const CheckedinCustomerDetail = () => {
                                             >
                                               <i className="dripicons-chevron-right"></i>
                                             </Button>
+                                            :
+                                            activeTabJustify === "2"?
+                                          
+                                            <Button
+                                              style={{
+                                                marginLeft: 7,
+                                                marginRight: 7,
+                                              }}
+                                              color="secondary"
+                                              className="waves-effect"
+                                              disabled={!scheduledHasNextPage}
+                                              onClick={() =>
+                                                changeCurrentPage(
+                                                  (prev) => prev + 1
+                                                )
+                                              }
+                                            >
+                                              <i className="dripicons-chevron-right"></i>
+                                            </Button>
+                                            :
+                                            activeTabJustify === "3"?
+                                            <Button
+                                              style={{
+                                                marginLeft: 7,
+                                                marginRight: 7,
+                                              }}
+                                              color="secondary"
+                                              className="waves-effect"
+                                              disabled={!pastHasNextPage}
+                                              onClick={() =>
+                                                changeCurrentPage(
+                                                  (prev) => prev + 1
+                                                )
+                                              }
+                                            >
+                                              <i className="dripicons-chevron-right"></i>
+                                            </Button>:null}
                                           </div>
                                         </Col>
                                       </Row>

@@ -100,12 +100,15 @@ const UserProfileDetail = () => {
     currentPage,
     pageOptions,
     userdetailsData,
+    toggleCustomJustified,
+    activeTabJustify, setActiveTabJustify,
     userActivebookingsData,
     userPastBookingsData,
     userScheduledBookingsData,
     hasNextPage,
     hasPreviousPage,
     total,
+    pastHasNextPage,scheduledHasNextPage,
     isLoading,
     pagelengthnum,
     pageSize,
@@ -115,10 +118,10 @@ const UserProfileDetail = () => {
     changeCurrentPage,
   } = useUserProfileDetail();
 
-  const [userActiveBookings, setUserActiveBookings] = useState([
-    userActivebookingsData,
-  ]);
-  const [activeTabJustify, setActiveTabJustify] = useState("1");
+  // const [userActiveBookings, setUserActiveBookings] = useState([
+  //   userActivebookingsData,
+  // ]);
+  // const [activeTabJustify, setActiveTabJustify] = useState("1");
 
   // const pageOptions = {
   //   sizePerPage: 10,
@@ -126,11 +129,11 @@ const UserProfileDetail = () => {
   //   custom: true,
   // };
 
-  const toggleCustomJustified = (tab) => {
-    if (activeTabJustify !== tab) {
-      setActiveTabJustify(tab);
-    }
-  };
+  // const toggleCustomJustified = (tab) => {
+  //   if (activeTabJustify !== tab) {
+  //     setActiveTabJustify(tab);
+  //   }
+  // };
   const Loader = require("react-loader");
 
   return (
@@ -564,7 +567,9 @@ const UserProfileDetail = () => {
                                               className="btn-rounded waves-effect waves-light me-1 mr-2 ml-2"
                                             >
                                               {currentPage}
+                                            
                                             </Button>
+                                            {activeTabJustify === "1"?
                                             <Button
                                               style={{
                                                 marginLeft: 7,
@@ -581,6 +586,43 @@ const UserProfileDetail = () => {
                                             >
                                               <i className="dripicons-chevron-right"></i>
                                             </Button>
+                                            :
+                                            activeTabJustify === "2"?
+                                          
+                                            <Button
+                                              style={{
+                                                marginLeft: 7,
+                                                marginRight: 7,
+                                              }}
+                                              color="secondary"
+                                              className="waves-effect"
+                                              disabled={!scheduledHasNextPage}
+                                              onClick={() =>
+                                                changeCurrentPage(
+                                                  (prev) => prev + 1
+                                                )
+                                              }
+                                            >
+                                              <i className="dripicons-chevron-right"></i>
+                                            </Button>
+                                            :
+                                            activeTabJustify === "3"?
+                                            <Button
+                                              style={{
+                                                marginLeft: 7,
+                                                marginRight: 7,
+                                              }}
+                                              color="secondary"
+                                              className="waves-effect"
+                                              disabled={!pastHasNextPage}
+                                              onClick={() =>
+                                                changeCurrentPage(
+                                                  (prev) => prev + 1
+                                                )
+                                              }
+                                            >
+                                              <i className="dripicons-chevron-right"></i>
+                                            </Button>:null}
                                           </div>
                                         </Col>
                                       </Row>

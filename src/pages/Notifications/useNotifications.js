@@ -3,6 +3,7 @@ import { useQuery } from "react-query";
 import { getAdminNotifications } from "../../APIS/notifications";
 import { DIOM_BASED_URLS } from "../../config/url";
 import { useQueryClient } from "react-query";
+import { toast } from "react-toastify";
 
 function UseNotifications() {
   const token = localStorage.getItem("Token");

@@ -27,7 +27,7 @@ export const useResourceType = () => {
 
   const {
     data: { data: searchedresourceTypeData },
-  } = usePaginatedQuery(["searchedresourceTypes"], () =>
+  } = usePaginatedQuery(["searchedresourceTypes",`${pageSize}`,`${currentPage}`], () =>
     getSearchedResourceTypes(token)
   );
 
@@ -74,7 +74,7 @@ export const useResourceType = () => {
       const nextPage = currentPage + 1;
 
       queryClient.prefetchQuery(
-        ["resourceTypes", pageSize, nextPage, filter],
+        ["resourceTypes",`${pageSize}`,`${currentPage}`],
         () => getResourceTypes(pageSize, nextPage, token)
       );
     }

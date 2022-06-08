@@ -3,6 +3,7 @@ import {
   Row,
   Col,
   Card,
+  Tooltip,
   FormGroup,
   CardBody,
   Button,
@@ -96,6 +97,7 @@ const ResourceType = () => {
     filter,
   } = useResourceType();
   const Loader = require("react-loader");
+  const [ttright, setTtright] = useState();
 
   return (
     <>
@@ -114,6 +116,22 @@ const ResourceType = () => {
                         <span className="locationbrandtitle ml-4 ">
                           Resource Type
                         </span>
+                        <span className="totipalignment"> <li className="fas fa-info-circle  " id="TooltipRight"></li></span>
+                  <Tooltip
+                    fade={true}
+                    flip={true}
+                    placement="right"
+                    isOpen={ttright}
+                    // variant="success"
+                    target="TooltipRight"
+                    className="toltipbbgclr"
+
+                    toggle={() => setTtright(!ttright)}
+                  >
+                    <p className="">
+                     Make Sure to Assign a "Category" whenever adding or aditing a resource Type.Thier app won't show a Resource Type without a "Category". 
+                    </p>
+                  </Tooltip>
                       </Col>
                       <Col md={6}></Col>
                       <Col md={2}></Col>

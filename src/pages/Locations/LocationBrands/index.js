@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useState} from "react";
 import "../css/MyLocationBrands.css";
 import {
   Row,
@@ -7,6 +7,7 @@ import {
   Card,
   CardBody,
   ButtonDropdown,
+  Tooltip,
   DropdownToggle,
   DropdownMenu,
   DropdownItem,
@@ -71,6 +72,7 @@ const LocationBrands = () => {
     changeCurrentPage,
   } = useLocationBrands();
   const Loader = require("react-loader");
+  const [ttright, setTtright] = useState();
 
   return (
     <>
@@ -81,6 +83,22 @@ const LocationBrands = () => {
           <Row className="mb-3">
             <Col md={4}>
               <span className="locationbrandtitle  ">Location Brands</span>
+              <span className="totipalignment"> <li className="fas fa-info-circle  " id="TooltipRight"></li></span>
+                  <Tooltip
+                    fade={true}
+                    flip={true}
+                    placement="right"
+                    isOpen={ttright}
+                    // variant="success"
+                    target="TooltipRight"
+                    className="toltipbbgclr"
+
+                    toggle={() => setTtright(!ttright)}
+                  >
+                    <p className="">
+                      If a brand is changed or moved, the locations needs to be activated again, in order to be displayed back on the app.
+                    </p>
+                  </Tooltip>
             </Col>
             <Col md={5}></Col>
             <Col md={3}>

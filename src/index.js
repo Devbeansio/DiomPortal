@@ -16,7 +16,7 @@ import { SnackbarProvider } from "notistack";
 const app = (
   <Provider store={store}>
     <QueryClientProvider client={queryClient}>
-    <SnackbarProvider maxSnack={3}  anchorOrigin={{
+    <SnackbarProvider maxSnack={1} preventDuplicate  anchorOrigin={{
         vertical: 'bottom',
         horizontal: 'right',
     }}>

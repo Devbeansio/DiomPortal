@@ -12,6 +12,16 @@
   z-index: 1000 !important;
 }
 
+.totipalignment{
+  /* align-items: left; */
+ /* display: inline */
+ /* padding-right: 30px; */
+ /* text-align: left;
+ */
+ margin-right: 87px;
+    margin-top: 5px;
+}
+
 .paginationitmes1 {
   font-family: "Montserrat";
   font-style: normal;

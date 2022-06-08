@@ -13,6 +13,7 @@ export const useUserProfileDetail = () => {
   const token = localStorage.getItem("Token");
   const [currentPage, setCurrentPage] = useState(1);
   const [pageSize, setPageSize] = useState(50);
+  const [activeTabJustify, setActiveTabJustify] = useState("1");
   const changeCurrentPage = (pageNum) => setCurrentPage(pageNum);
   const queryClient = useQueryClient();
 
@@ -25,18 +26,18 @@ export const useUserProfileDetail = () => {
 
   const {
     data: { data: userActivebookingsData, hasNextPage, hasPreviousPage, total },
-  } = usePaginatedQuery(["activebookings", id], () =>
+  } = usePaginatedQuery(["activebookings", `${pageSize}`,`${currentPage}`], () =>
     getUseractivebookings(pageSize, currentPage, token, id)
   );
   const {
-    data: { data: userPastBookingsData },
-  } = usePaginatedQuery(["pastbookings", id], () =>
+    data: { data: userPastBookingsData,hasNextPage:pastHasNextPage },
+  } = usePaginatedQuery(["pastbookings", `${pageSize}`,`${currentPage}`], () =>
     getUserPastBookings(pageSize, currentPage, token, id)
   );
 
   const {
-    data: { data: userScheduledBookingsData },
-  } = usePaginatedQuery(["scheduledbookings", id], () =>
+    data: { data: userScheduledBookingsData ,hasNextPage:scheduledHasNextPage},
+  } = usePaginatedQuery(["scheduledbookings", `${pageSize}`,`${currentPage}`], () =>
     getUserScheduledBookings(pageSize, currentPage, token, id)
   );
 
@@ -58,6 +59,12 @@ export const useUserProfileDetail = () => {
     custom: true,
   };
 
+  const toggleCustomJustified = (tab) => {
+    if (activeTabJustify !== tab) {
+      setActiveTabJustify(tab);
+    }
+  };
+
   useEffect(() => {
     // FOR PRE-FETCHING NEXT PAGE
     if (hasNextPage) {
@@ -75,13 +82,16 @@ export const useUserProfileDetail = () => {
     userPastBookingsData,
     userScheduledBookingsData,
     hasNextPage,
+    activeTabJustify, setActiveTabJustify,
     hasPreviousPage,
     total,
     isLoading,
     pagelengthnum,
+    pastHasNextPage,scheduledHasNextPage,
     pageSize,
     toggle,
     isOpen,
+    toggleCustomJustified,
     changeCurrentPage,
   };
 };

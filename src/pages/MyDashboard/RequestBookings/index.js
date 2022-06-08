@@ -554,6 +554,7 @@ const RequestBookings = () => {
                                         >
                                           {currentPage}
                                         </Button>
+                                       { activeTabJustify === "1"?
                                         <Button
                                           style={{
                                             marginLeft: 7,
@@ -561,15 +562,23 @@ const RequestBookings = () => {
                                           }}
                                           color="secondary"
                                           className="waves-effect"
-                                          disabled={
-                                            activeTabJustify === "1"
-                                              ? !hasNextPage
-                                              : activeTabJustify === "6"
-                                              ? !pastNextPage
-                                              : activeTabJustify === "3"
-                                              ? !ScheduledNextPage
-                                              : null
+                                          disabled={!hasNextPage}
+                                          onClick={() =>
+                                            changeCurrentPage(
+                                              (prev) => prev + 1
+                                            )
                                           }
+                                        >
+                                          <i className="dripicons-chevron-right"></i>
+                                        </Button>:activeTabJustify === "3"? 
+                                         <Button
+                                          style={{
+                                            marginLeft: 7,
+                                            marginRight: 7,
+                                          }}
+                                          color="secondary"
+                                          className="waves-effect"
+                                          disabled={!ScheduledNextPage}
                                           onClick={() =>
                                             changeCurrentPage(
                                               (prev) => prev + 1
@@ -578,6 +587,24 @@ const RequestBookings = () => {
                                         >
                                           <i className="dripicons-chevron-right"></i>
                                         </Button>
+                                        :activeTabJustify === "6"?
+                                        <Button
+                                        style={{
+                                          marginLeft: 7,
+                                          marginRight: 7,
+                                        }}
+                                        color="secondary"
+                                        className="waves-effect"
+                                        disabled={!pastNextPage}
+                                        onClick={() =>
+                                          changeCurrentPage(
+                                            (prev) => prev + 1
+                                          )
+                                        }
+                                      >
+                                        <i className="dripicons-chevron-right"></i>
+                                      </Button>
+                                        :null}
                                       </div>
                                     </Col>
                                   </Row>
@@ -735,7 +762,7 @@ const RequestBookings = () => {
                                         >
                                           <i className="dripicons-chevron-left"></i>
                                         </Button>
-
+{console.log("activeTabJustify ::::> ",activeTabJustify)}
                                         <Button
                                           style={{
                                             marginLeft: 7,
@@ -746,6 +773,7 @@ const RequestBookings = () => {
                                         >
                                           {currentPage}
                                         </Button>
+                                        { activeTabJustify === "1"?
                                         <Button
                                           style={{
                                             marginLeft: 7,
@@ -753,15 +781,23 @@ const RequestBookings = () => {
                                           }}
                                           color="secondary"
                                           className="waves-effect"
-                                          disabled={
-                                            activeTabJustify === "1"
-                                              ? !hasNextPage
-                                              : activeTabJustify === "6"
-                                              ? !pastNextPage
-                                              : activeTabJustify === "3"
-                                              ? !ScheduledNextPage
-                                              : null
+                                          disabled={!hasNextPage}
+                                          onClick={() =>
+                                            changeCurrentPage(
+                                              (prev) => prev + 1
+                                            )
                                           }
+                                        >
+                                          <i className="dripicons-chevron-right"></i>
+                                        </Button>:activeTabJustify === "3"? 
+                                         <Button
+                                          style={{
+                                            marginLeft: 7,
+                                            marginRight: 7,
+                                          }}
+                                          color="secondary"
+                                          className="waves-effect"
+                                          disabled={!ScheduledNextPage}
                                           onClick={() =>
                                             changeCurrentPage(
                                               (prev) => prev + 1
@@ -770,6 +806,24 @@ const RequestBookings = () => {
                                         >
                                           <i className="dripicons-chevron-right"></i>
                                         </Button>
+                                        :activeTabJustify === "6"?
+                                        <Button
+                                        style={{
+                                          marginLeft: 7,
+                                          marginRight: 7,
+                                        }}
+                                        color="secondary"
+                                        className="waves-effect"
+                                        disabled={!pastNextPage}
+                                        onClick={() =>
+                                          changeCurrentPage(
+                                            (prev) => prev + 1
+                                          )
+                                        }
+                                      >
+                                        <i className="dripicons-chevron-right"></i>
+                                      </Button>
+                                        :null}
                                       </div>
                                     </Col>
                                   </Row>

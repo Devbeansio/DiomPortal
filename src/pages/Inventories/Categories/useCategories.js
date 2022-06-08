@@ -13,7 +13,7 @@ export const useCategories = () => {
   const {
     data: { data: categoriesData, hasNextPage, hasPreviousPage, total },
     isLoading,
-  } = usePaginatedQuery(["categories", currentPage], () =>
+  } = usePaginatedQuery(["categories", `${pageSize}`,`${currentPage}`], () =>
     getCategories(pageSize, currentPage, token)
   );
 
@@ -41,7 +41,7 @@ export const useCategories = () => {
     // FOR PRE-FETCHING NEXT PAGE
     if (hasNextPage) {
       const nextPage = currentPage + 1;
-      queryClient.prefetchQuery(["categories", nextPage], () =>
+      queryClient.prefetchQuery(["categories", `${pageSize}`,`${currentPage}`], () =>
         getCategories(pageSize, nextPage, token)
       );
     }

@@ -23,7 +23,7 @@ export const getcustomers = async (
       : `${DIOM_BASED_URLS}/admin-diom-location/${filter}/active-customers`,
     {
       method: "GET",
-      redirect: "follow",
+      
       headers: {
         Authorization: "Bearer " + token,
       },
@@ -66,7 +66,6 @@ export const getcustomer = async (size = 30, page = 1, token = "", id) => {
 
     {
       method: "GET",
-      redirect: "follow",
       headers: {
         Authorization: "Bearer " + token,
       },
@@ -107,7 +106,6 @@ export const getUseractivebookings = async (
 
     {
       method: "GET",
-      redirect: "follow",
       headers: {
         Authorization: "Bearer " + token,
       },
@@ -145,7 +143,6 @@ export const getUserscheduledbookings = async (
 
     {
       method: "GET",
-      redirect: "follow",
       headers: {
         Authorization: "Bearer " + token,
       },
@@ -182,7 +179,6 @@ export const getUserpastbookings = async (
 
     {
       method: "GET",
-      redirect: "follow",
       headers: {
         Authorization: "Bearer " + token,
       },

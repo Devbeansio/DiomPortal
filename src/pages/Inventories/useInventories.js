@@ -43,7 +43,7 @@ export const useInventories = () => {
 
   const {
     data: { data: resourcessearchedData },
-  } = usePaginatedQuery(["searcehdresources"], () =>
+  } = usePaginatedQuery(["searcehdresources",`${pageSize}`,`${currentPage}`], () =>
     getSearchedResources(token)
   );
 

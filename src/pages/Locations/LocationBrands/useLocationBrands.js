@@ -14,7 +14,7 @@ export const useLocationBrands = () => {
   const {
     data: { data: locationBrandsData, hasNextPage, hasPreviousPage, total },
     isLoading,
-  } = usePaginatedQuery(["locationbrands", currentPage], () =>
+  } = usePaginatedQuery(["locationbrands", `${pageSize}`,`${currentPage}`], () =>
     getLocationBrands(pageSize, currentPage, token)
   );
 
@@ -39,7 +39,7 @@ export const useLocationBrands = () => {
     // FOR PRE-FETCHING NEXT PAGE
     if (hasNextPage) {
       const nextPage = currentPage + 1;
-      queryClient.prefetchQuery(["locationbrands", nextPage], () =>
+      queryClient.prefetchQuery(["locationbrands", `${pageSize}`,`${currentPage}`], () =>
         getLocationBrands(pageSize, nextPage, token)
       );
     }

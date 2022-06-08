@@ -17,7 +17,7 @@ export const useCheckedInCustomer = () => {
   const {
     data: { data: customerCheckInData, hasNextPage, hasPreviousPage, total },
     isLoading,
-  } = usePaginatedQuery(["checkedcustomers", currentPage, filter], () =>
+  } = usePaginatedQuery(["checkedcustomers",`${pageSize}`,`${currentPage}`,`${filter}`], () =>
     getcustomers(filter, pageSize, currentPage, token, applyLocationFilter)
   );
   const { data: locationsData, isLoading: loadingLocations } = useAllDataQuery(
@@ -60,7 +60,7 @@ export const useCheckedInCustomer = () => {
   useEffect(() => {
     if (hasNextPage) {
       const nextPage = currentPage + 1;
-      queryClient.prefetchQuery(["checkedcustomer", nextPage], () =>
+      queryClient.prefetchQuery(["checkedcustomer", `${pageSize}`,`${currentPage}`,`${filter}`], () =>
         getcustomers(filter, pageSize, nextPage, token, applyLocationFilter)
       );
     }
