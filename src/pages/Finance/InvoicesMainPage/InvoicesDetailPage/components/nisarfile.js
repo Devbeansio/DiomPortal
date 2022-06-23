@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
   });
   
 const NisarFile = (props) => {
-    console.log('----->', props)
+    // console.log('----->', props)
   return (
       
           <Document>

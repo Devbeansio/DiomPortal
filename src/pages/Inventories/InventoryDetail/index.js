@@ -16,8 +16,7 @@ import { useInventory } from "./useInventory";
 
 const InventoryDetail = () => {
   const {
-    isError,
-    error,
+    
     isLoading,
     resourcesDetails,
     modal_static,
@@ -26,14 +25,14 @@ const InventoryDetail = () => {
   } = useInventory();
   const Loader = require("react-loader");
 
-  if (isError || error) {
-    console.log(resourcesDetails);
-    return (
-      <>
-        <p>{error}</p>
-      </>
-    );
-  }
+  // if (isError || error) {
+  //   // console.log(resourcesDetails);
+  //   return (
+  //     <div className="page-content">
+  //       <p>{error}</p>
+  //     </div>
+  //   );
+  // }
   return (
     <>
       {isLoading ? (
@@ -65,17 +64,17 @@ const InventoryDetail = () => {
             <Row className="mt-4">
               <Col md={4}>
                 <p className="label">Resource Name</p>
-                <p className="labeldetails">{resourcesDetails.Name}</p>
+                <p className="labeldetails">{resourcesDetails?.Name}</p>
               </Col>
               <Col md={4}>
                 <p className="label">Type of resource</p>
                 <p className="labeldetails">
-                  {resourcesDetails.ResourceTypeName}
+                  {resourcesDetails?.ResourceTypeName}
                 </p>
               </Col>
               <Col md={4}>
                 <p className="label">Location</p>
-                <p className="labeldetails">{resourcesDetails.BusinessName}</p>
+                <p className="labeldetails">{resourcesDetails?.BusinessName}</p>
               </Col>
             </Row>
           </Card>

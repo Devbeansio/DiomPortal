@@ -27,7 +27,7 @@ export const useBookingDetails = () => {
   const bookingData = useQuery(["bookingsDetails", id], () =>
     getBooking(token, id)
   );
-  const bookingsDailedData = bookingData.data;
+  const bookingsDailedData = bookingData?.data?.data;
 
   // *************
 
@@ -40,7 +40,7 @@ export const useBookingDetails = () => {
   const bookingguestData = useQuery(["guestDetails", id], () =>
     getGuest(token, id)
   );
-  const bookingsguestData = bookingguestData.data;
+  const bookingsguestData = bookingguestData?.data?.data;
 
   const guestinfofunc = async () => {
     setGuestData(bookingsguestData);
@@ -54,7 +54,7 @@ export const useBookingDetails = () => {
     { enabled: bookingsDailedData ? true : false }
   );
 
-  const userbookingData = bookinguserData.data;
+  const userbookingData = bookinguserData?.data?.data;
   const isLoading = bookinguserData.isLoading;
 
   // ********

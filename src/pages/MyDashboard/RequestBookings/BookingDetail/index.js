@@ -3,7 +3,7 @@ import { Card, Row, Col, Button, CardBody, Table } from "reactstrap";
 import SimpleBar from "simplebar-react";
 
 import "./css/bookingdetail.css";
-import { Link, useParams, useHistory } from "react-router-dom";
+import { Link, useParams, useHistory, useLocation } from "react-router-dom";
 
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast } from "react-toastify";
@@ -13,6 +13,8 @@ import Bookingdetailcomponent from "./bookingdetailcomponent";
 import { useBookingDetails } from "./useBookingDetails";
 
 const BookingDetail = () => {
+  const location = useLocation()
+ const history = useHistory()
   const {
     error,
     bookingDetails,
@@ -29,8 +31,10 @@ const BookingDetail = () => {
   } = useBookingDetails();
 
   const Loader = require("react-loader");
+ 
   const pageStyle = `{ size: 5.5in }`;
   const { id, t_ID } = useParams();
+ 
   const componentRef = useRef();
   const handlePrint = useReactToPrint({
     content: () => componentRef.current,
@@ -53,11 +57,24 @@ const BookingDetail = () => {
           <div className="page-content">
             <div>
               <Row className="mb-4">
+                
                 <Col md={4}>
-                  <Link to={`/requestbookings/${t_ID}`} className="link">
-                    {" "}
-                    <span className="fas fa-angle-left arrowheightwidth"></span>
-                  </Link>
+                  {/* <Link to={`/requestbookings/${t_ID}`} className="link"> */}
+               {t_ID?
+                   <Link to={`${history?.location?.state?.prevPath}/${t_ID}`} className="link">
+                   {" "}
+                   <span className="fas fa-angle-left arrowheightwidth"></span>
+                 </Link>:
+                  <Link to={`${history?.location?.state?.prevPath}`} className="link">
+                  {" "}
+                  <span className="fas fa-angle-left arrowheightwidth"></span>
+                </Link>
+                 }
+                  
+             
+               
+                  
+                   
 
                   <span className="bookingtitle ml-4">{id}</span>
                 </Col>
@@ -231,9 +248,11 @@ const BookingDetail = () => {
                         </Col>
                         <Col md={6} className="alignrighttext">
                           <p className="fontcolor">
+                          <Link to={{pathname:`/invoicesdetailpage/${bookingDetails.invoiceNumber  ? bookingDetails.invoiceNumber: "N/A"}` ,state: { prevPath: location.pathname }}} className="link">
                             {bookingDetails.invoiceNumber
                               ? bookingDetails.invoiceNumber
                               : "N/A"}
+                              </Link>
                           </p>
                         </Col>
                       </Row>

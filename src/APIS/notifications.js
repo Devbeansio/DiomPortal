@@ -6,15 +6,27 @@ import { DIOM_BASED_URLS } from "../config/url";
  * @returns a list of Notifications in DIOM
  */
 
-export const getAdminNotifications = async (token) => {
-  return await (
-    await fetch(`${DIOM_BASED_URLS}/admin-notifications`, {
+export const getAdminNotifications = async (token,pageNumber) => {
+  const size = "10";
+  // return await (
+
+    const res = await fetch(`${DIOM_BASED_URLS}/admin-notifications`, {
+      // await fetch(`${DIOM_BASED_URLS}/admin-notifications?size=${size}&page=${pageNumber}`, {
       method: "GET",
       headers: {
         Authorization: "Bearer " + token,
       },
     })
-  ).json();
+  // ).json();
+  if (!res.ok) {
+    const resJson = await res.json();
+    throw new Error(resJson.error.message);
+  }
+  const data = await res.json();
+  
+  return {
+    data
+  };
 };
 
 

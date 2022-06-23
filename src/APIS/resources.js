@@ -91,7 +91,8 @@ export const getSearchedResources = async (token) => {
  * @returns  object of a single resource
  */
 export const getResource = async (id, token) => {
-  return await (
+  // return await (
+    const res =
     await fetch(`${DIOM_BASED_URLS}/admin-resources-inventories/${id}`, {
       method: "GET",
       redirect: "follow",
@@ -99,5 +100,15 @@ export const getResource = async (id, token) => {
         Authorization: "Bearer " + token,
       },
     })
-  ).json();
+
+    if (!res.ok) {
+      const resJson = await res.json();
+      throw new Error(resJson.error.message);
+    }
+    const data = await res.json();
+    
+    return {
+      data
+    };
+  // ).json();
 };

@@ -51,8 +51,8 @@ export const getFloorplans = async (size = 30, page = 1, token = "") => {
  */
 
 export const getFloorPlansNames = async (token = "", floorid) => {
-  return await (
-    await await fetch(
+  // return await (
+    const res =  await fetch(
       `${DIOM_BASED_URLS}/admin-business-locations/${floorid}`,
       {
         method: "GET",
@@ -62,5 +62,14 @@ export const getFloorPlansNames = async (token = "", floorid) => {
         },
       }
     )
-  ).json();
+    if (!res.ok) {
+      const resJson = await res.json();
+      throw new Error(resJson.error.message);
+    }
+    const data = await res.json();
+    
+    return {
+      data
+    };
+  // ).json();
 };

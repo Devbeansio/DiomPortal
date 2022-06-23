@@ -52,6 +52,77 @@ const useFloorPlanDetail = () => {
     removeBodyCss();
   };
 
+
+  function Offsymbol(text) {
+    return (
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "100%",
+          fontSize: 12,
+          color: "#fff",
+          paddingRight: 2,
+        }}
+      >
+        {text}
+      </div>
+    );
+  }
+
+  function OnSymbol(text) {
+    return (
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "100%",
+          fontSize: 12,
+          color: "#fff",
+          paddingRight: 2,
+        }}
+      >
+        {text}
+      </div>
+    );
+  }
+
+  const getFloorPlansStatusFunc = (e,_id)=>{
+// console.log("hey i am here ===>> ",e, floorid,_id )
+
+fetch(
+  `${DIOM_BASED_URLS}/admin-business-locations/${floorid}/floorpans/${_id}`,
+  {
+    method: "PATCH",
+    headers: {
+      Accept: "application/json, text/plain",
+      "Content-Type": "application/json;charset=UTF-8",
+      Authorization: "Bearer " + token,
+    },
+    body: JSON.stringify({
+      visibility: e,
+    }),
+  }
+)
+  .then((result3) => {
+    if (result3.status === 200) {
+      toast.success("Updated Successfully");
+      QueryClient.invalidateQueries("floorplanname");
+    }
+    else if (result3.status === 204){
+      toast.success("Updated Successfully");
+      QueryClient.invalidateQueries("floorplanname");
+    }
+    else {
+      toast.error(" Something went wrong");
+    }
+  })
+  .catch((error) => toast.error(" Something went wrong"));
+
+  }
+
   const namefunc = (e) => {
     setSelectLocationNameById((prev) => ({
       ...prev,
@@ -152,7 +223,7 @@ const deleteFloorPlansFunc = ()=>{
   const floorPlanData = useQuery(["floorplanname", floorid], () =>
     getFloorPlansNames(token, floorid)
   );
-  const floorPlanNameData = floorPlanData.data;
+  const floorPlanNameData = floorPlanData?.data?.data;
   // *************
   const getlocations = async () => {
     setSelectLocationNameById(floorPlanNameData);
@@ -191,10 +262,13 @@ const deleteFloorPlansFunc = ()=>{
     namefunc,
     uploadFile,
     tog_static,
+    Offsymbol,
+    OnSymbol,
     deleteFloorPlansFunc,
     getlocations,
     modal_static1,
     setModal_static1,
+    getFloorPlansStatusFunc,
     tog_static1,
   };
 };

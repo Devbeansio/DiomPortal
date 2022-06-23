@@ -25,7 +25,6 @@ export const getCategories = async (size = 30, page = 1, token = "") => {
     throw new Error(resJson.error.message);
   }
   const resJson = await res.json();
-
   const categoriesData = resJson.data.map((e, i) => ({
     id: i + 1,
     _id: e.id,
@@ -50,15 +49,24 @@ export const getCategories = async (size = 30, page = 1, token = "") => {
  */
 
 export const getCategoryDetails = async (token = "", id) => {
-  return await (
-    await await fetch(`${DIOM_BASED_URLS}/resource-type-categories/${id}`, {
+  // return await (
+    const res= await fetch(`${DIOM_BASED_URLS}/resource-type-categories/${id}`, {
       method: "GET",
       redirect: "follow",
       headers: {
         Authorization: "Bearer " + token,
       },
     })
-  ).json();
+  // ).json();
+  if (!res.ok) {
+    const resJson = await res.json();
+    throw new Error(resJson.error.message);
+  }
+  const data = await res.json();
+  
+  return {
+    data
+  };
 };
 
 /**
@@ -70,8 +78,8 @@ export const getCategoryDetails = async (token = "", id) => {
  */
 
 export const getCategoryDetaildropdown = async (token = "", id) => {
-  return await (
-    await await fetch(
+  // return await (
+    const res= await fetch(
       `${DIOM_BASED_URLS}/admin-resource-types-inventories?filter={"where":{"resourceTypeCategoryId":"${id}"}}`,
       {
         method: "GET",
@@ -81,7 +89,16 @@ export const getCategoryDetaildropdown = async (token = "", id) => {
         },
       }
     )
-  ).json();
+    if (!res.ok) {
+      const resJson = await res.json();
+      throw new Error(resJson.error.message);
+    }
+    const data = await res.json();
+    
+    return {
+      data
+    };
+  // ).json();
 };
 
 /**
@@ -93,13 +110,22 @@ export const getCategoryDetaildropdown = async (token = "", id) => {
  */
 
 export const getResourcetypeDropdown = async (token = "", id) => {
-  return await (
-    await await fetch(`${DIOM_BASED_URLS}/admin-resource-types-inventories`, {
+  // return await (
+    const res= await fetch(`${DIOM_BASED_URLS}/admin-resource-types-inventories`, {
       method: "GET",
       redirect: "follow",
       headers: {
         Authorization: "Bearer " + token,
       },
     })
-  ).json();
+    if (!res.ok) {
+      const resJson = await res.json();
+      throw new Error(resJson.error.message);
+    }
+    const data = await res.json();
+    
+    return {
+      data
+    };
+  // ).json();
 };

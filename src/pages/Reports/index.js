@@ -129,6 +129,7 @@ const Reports = () => {
               <Select
                 options={timeSlotOptions}
                 // value={selectedMulti}
+                placeholder="All Slots"
                 isMulti={true}
                 onChange={timeSlotHandler}
                 classNamePrefix="select2-selection"
@@ -161,7 +162,7 @@ const Reports = () => {
                   isMulti={true}
                   options={brandData}
                   onChange={(opt) => diomBrandHandler(opt)}
-                  placeholder="Brands"
+                  placeholder="All Brands"
                   classNamePrefix="select2-selection "
                 />
               </FormGroup>
@@ -175,7 +176,7 @@ const Reports = () => {
                     (opt) => diomLocationHandler(opt)
                     // console.log("options : ", opt)
                   }
-                  placeholder="All Location"
+                  placeholder="All Locations"
                   classNamePrefix="select2-selection"
                 />
               </FormGroup>
@@ -192,6 +193,7 @@ const Reports = () => {
             <Col md={12}>
               <Select
                 // value={selectedMulti}
+                placeholder="All resources"
                 isMulti={true}
                 options={categoryDropDown}
                 onChange={(opt) => resourceTypeHandler(opt)}

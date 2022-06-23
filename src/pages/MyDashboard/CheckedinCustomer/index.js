@@ -20,56 +20,14 @@ import paginationFactory, {
   PaginationListStandalone,
   SizePerPageDropdownStandalone,
 } from "react-bootstrap-table2-paginator";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
 import "../../Tables/datatables.scss";
 import BounceLoader from "react-spinners/BounceLoader";
 import { useCheckedInCustomer } from "./useCheckedInCustomer";
 
 const { SearchBar } = Search;
-const columns = [
-  {
-    dataField: "id",
-    text: " No.",
-    sort: true,
-  },
 
-  {
-    dataField: "fullName",
-    text: "Name",
-    sort: true,
-    formatter: (cell, row) => (
-      <Link to={`/checkedincustomerdetail/${row._id}`} className="link">
-        {cell}
-      </Link>
-    ),
-  },
-  {
-    dataField: "email",
-    text: "Email",
-    sort: true,
-  },
-  {
-    dataField: "currentBookingId",
-    text: "Booking ID",
-    sort: true,
-    formatter: (cell, row) => (
-      <Link to={`/bookingdetail/${row.currentBookingId}/1`} className="link">
-        {cell}
-      </Link>
-    ),
-  },
-  {
-    dataField: "currentbookingType",
-    text: "Booking Type",
-    sort: true,
-  },
-  {
-    dataField: "checkInTime",
-    text: "Recent Checkin",
-    sort: true,
-  },
-];
 
 const defaultSorted = [
   {
@@ -79,6 +37,7 @@ const defaultSorted = [
 ];
 
 const CheckedinCustomer = () => {
+  const location = useLocation()
   const {
     currentPage,
     pageOptions,
@@ -97,6 +56,52 @@ const CheckedinCustomer = () => {
     changeCurrentPage,
   } = useCheckedInCustomer();
   const Loader = require("react-loader");
+
+  const columns = [
+    {
+      dataField: "id",
+      text: " No.",
+      sort: true,
+    },
+  
+    {
+      dataField: "fullName",
+      text: "Name",
+      sort: true,
+      formatter: (cell, row) => (
+        <Link
+        to={{pathname:`/checkedincustomerdetail/${row._id}` ,state: { prevPath: location.pathname }}} className="link">
+          {cell}
+        </Link>
+      ),
+    },
+    {
+      dataField: "email",
+      text: "Email",
+      sort: true,
+    },
+    {
+      dataField: "currentBookingId",
+      text: "Booking ID",
+      sort: true,
+      formatter: (cell, row) => (
+        <Link
+        to={{pathname:`/bookingdetail/${row.currentBookingId}/1` ,state: { prevPath: location.pathname }}} className="link">
+          {cell}
+        </Link>
+      ),
+    },
+    {
+      dataField: "currentbookingType",
+      text: "Booking Type",
+      sort: true,
+    },
+    {
+      dataField: "checkInTime",
+      text: "Recent Checkin",
+      sort: true,
+    },
+  ];
 
   return (
     <>

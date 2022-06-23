@@ -38,27 +38,27 @@ const UseDashboard = () => {
   const dashboardFinanceCardddata = useQuery(["FinanceCards"], () =>
     getFinanceCard(token)
   );
-  const financeCardddata = dashboardFinanceCardddata.data;
+  const financeCardddata = dashboardFinanceCardddata?.data?.data;
   // *******General******
   const dashboardGeneralCardddata = useQuery(["GeneralCards"], () =>
     getGenaralCard(token)
   );
-  const generalCardddata = dashboardGeneralCardddata.data;
+  const generalCardddata = dashboardGeneralCardddata?.data?.data;
   // *******Location******
   const dashboardLocationCardddata = useQuery(["LocationCards"], () =>
     getLocationCard(token)
   );
-  const locationCardddata = dashboardLocationCardddata.data;
+  const locationCardddata = dashboardLocationCardddata?.data?.data;
   // *******Brand******
   const dashboardBrandCardddata = useQuery(["BrandCards"], () =>
     getBrandCard(token)
   );
-  const brandCardddata = dashboardBrandCardddata.data;
+  const brandCardddata = dashboardBrandCardddata?.data?.data;
   // *******Brand******
   const dashboardUsersCardddata = useQuery(["UsersCards"], () =>
     getUsersCard(token)
   );
-  const usersCardddata = dashboardUsersCardddata.data;
+  const usersCardddata = dashboardUsersCardddata?.data?.data;
   return {
     loaded,
     activeTabJustify,

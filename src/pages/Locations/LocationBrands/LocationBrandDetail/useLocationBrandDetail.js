@@ -214,7 +214,7 @@ const useLocationBrandDetail = () => {
   const BrandDetailData = useQuery(["BrandDetail", id], () =>
     getBranddDetail(token, id)
   );
-  const BrandDetailDailedData = BrandDetailData.data;
+  const BrandDetailDailedData = BrandDetailData?.data?.data;
   // *************
   const getBrandDetail = async () => {
     setLocationBrandData(BrandDetailDailedData);
@@ -224,7 +224,7 @@ const useLocationBrandDetail = () => {
   const BrandDetailDropDownData = useQuery(["BrandDetaildropdown", id], () =>
     getBranddDetaildropdown(token, id)
   );
-  const BrandDetailDropDownDailedData = BrandDetailDropDownData.data;
+  const BrandDetailDropDownDailedData = BrandDetailDropDownData?.data?.data;
   // console.log(
   //   "BrandDetailDropDownDailedData : ",
   //   BrandDetailDropDownDailedData
@@ -242,7 +242,7 @@ const useLocationBrandDetail = () => {
   const BrandlocationsDropDownData = useQuery(["Brandlocations", id], () =>
     getBrandallocationdropdown(token, id)
   );
-  const BrandLocationsDailedData = BrandlocationsDropDownData.data;
+  const BrandLocationsDailedData = BrandlocationsDropDownData?.data?.data;
   const isLoader = BrandlocationsDropDownData.isLoader;
   // *************
   const getBrandalllocationsdropdown = async () => {

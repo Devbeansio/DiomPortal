@@ -69,7 +69,8 @@ const Taxation = () => {
 
   return (
     <>
-      {isLoading ? (
+      {
+      isLoading ? (
         <Loader loaded={false} className="spinner" />
       ) : (
         // <ClipLoader color="green" loading={loading} size={150} />

@@ -17,7 +17,7 @@ export const useUserProfile = () => {
   } = usePaginatedQuery(["userprofile",`${currentPage}` ,`${pageSize}`], () =>
     getuserprofile(pageSize, currentPage, token)
   );
-console.log("hasNextPage",hasNextPage)
+// console.log("hasNextPage",hasNextPage)
 
   const toggle = () => {
     setIsOpen(!isOpen);

@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import ChartsEmbedSDK from "@mongodb-js/charts-embed-dom";
+import { Chart_Base_Url } from "../../config/chartsData";
 
 // last Month
 //   {
@@ -11,7 +12,8 @@ import ChartsEmbedSDK from "@mongodb-js/charts-embed-dom";
 ////////
 const Chart = ({ filter, chartId, height, width }) => {
   const sdk = new ChartsEmbedSDK({
-    baseUrl: "https://charts.mongodb.com/charts-project-0-kjtvb",
+    // baseUrl: "https://charts.mongodb.com/charts-project-0-kjtvb",
+    baseUrl:Chart_Base_Url
   });
   const newDate = new Date();
   const firstDayPrevMonth = new Date(

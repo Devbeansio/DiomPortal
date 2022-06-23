@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useState} from "react";
 import { useQuery } from "react-query";
 import { getAdminNotifications } from "../../APIS/notifications";
 import { DIOM_BASED_URLS } from "../../config/url";
@@ -6,6 +6,8 @@ import { useQueryClient } from "react-query";
 import { toast } from "react-toastify";
 
 function UseNotifications() {
+  const[pageNumber,setPageNumber] = useState(1);
+  const[adminNotificationdta,setadminNotificationdta]=useState()
   const token = localStorage.getItem("Token");
   const QueryClient = useQueryClient()
 
@@ -60,10 +62,21 @@ function UseNotifications() {
 
 
   // *************
-  const adminNotificationsdata = useQuery(["adminNotifications"], () =>
-    getAdminNotifications(token)
+  const fetchMoreData=()=>{
+
+    setPageNumber(pageNumber + 1)
+  
+  }
+  const adminNotificationsdata = useQuery(["adminNotifications",pageNumber], () =>
+    getAdminNotifications(token,pageNumber),{refetchInterval:15000}
+
   );
-  const adminNotificationdata = adminNotificationsdata.data;
+  // const adminNotificationsdata = adminNotificationdta?adminNotificationdta.concat(adminNotificationsdta):adminNotificationdta
+  // setadminNotificationdta(adminNotificationsdta)
+  // console.log("adminNotificationsdata : ",adminNotificationsdata)
+ 
+  const hasMore = adminNotificationsdata?.data?.hasNextPage
+  const adminNotificationdata = adminNotificationsdata?.data?.data;
  
 
   // *************
@@ -71,7 +84,7 @@ function UseNotifications() {
 
 
 
-  return { adminNotificationdata,notificationSeenFunc,markAllReadFunc };
+  return { adminNotificationdata,notificationSeenFunc,markAllReadFunc ,hasMore,fetchMoreData};
 }
 
 export default UseNotifications;

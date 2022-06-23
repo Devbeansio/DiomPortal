@@ -39,12 +39,11 @@ const NotificationDropdown = () => {
           id="page-header-notifications-dropdown "
         >
           <i className="ri-notification-3-line"></i>
-         {/* {adminNotificationdata && adminNotificationdata?.length !==0 && adminNotificationdata?.data.map((e) => ( e.markRead === false?
+         {/* {adminNotificationdata && adminNotificationdata?.length > 0 && adminNotificationdata?.data.map((e) => ( e.markRead === false?
           <span className="noti-dot" key={(Math.random()*1000).toString()}></span> : null ))} */}
-           {adminNotificationdata && adminNotificationdata?.length >0 && adminNotificationdata?.data.map((e) => ( e.markRead === false?
+           {adminNotificationdata && adminNotificationdata?.length  !==0 && adminNotificationdata?.data.map((e) => ( e.markRead === false?
           <span className="noti-dot" key={(Math.random()*1000).toString()}></span> : null ))}
         </DropdownToggle>
-        
         <DropdownMenu
 
         key={(Math.random()*1000).toString()}
@@ -74,11 +73,12 @@ const NotificationDropdown = () => {
             <div className="d-flex flex-column" style={{ padding: 10 }}>
            
 
-              {adminNotificationdata && adminNotificationdata?.length >0 && adminNotificationdata?.data.map((e) => (
+              {adminNotificationdata && adminNotificationdata?.length !==0 && adminNotificationdata?.data.map((e) => (
                 <div className="all " key={(Math.random()*1000).toString()}>
                   {e?.redirectTo === "BOOKING" ? (
                     <div   >
-                      {e.actionType === "CANCELLED_BOOKING" ? (
+                      {
+                      e.actionType === "CANCELLED_BOOKING" ? (
                         <div className="flex-1"  >
                           {e.markRead === false?
                           <div>
@@ -91,7 +91,7 @@ const NotificationDropdown = () => {
                             >
                               <Row className="mb-2 mt-1" key={(Math.random()*1000).toString()}>
                                 <Col md={1}><i className="mdi mdi-minus-circle revokedmarkcircle"></i></Col>
-                                <Col md={8}>  <span className="mt-0 mb-1 revertcirclecolorcss notificationfontstyle" >
+                                <Col md={8}>  <span className="mt-0 mb-1 revertcirclecolorcss1 notificationfontstyle" >
                                   {e?.title}
                                 </span></Col>
                                 <Col md={3}>
@@ -162,7 +162,7 @@ const NotificationDropdown = () => {
                               <Row className="mb-2 mt-1" key={(Math.random()*1000).toString()}>
                                 <Col md={1}><i className="mdi mdi-alert-circle revokedmarkcircle"></i></Col>
                                 <Col md={8}>
-                                <span className="mt-0 mb-1 revertcirclecolorcss notificationfontstyle">
+                                <span className="mt-0 mb-1 revertcirclecolorcss1 notificationfontstyle">
                                   {e?.title}
                                 </span>
                                 </Col>
@@ -237,7 +237,7 @@ const NotificationDropdown = () => {
                             >
                               <Row className="mb-2 mt-1" key={(Math.random()*1000).toString()}> 
                                 <Col md={1}><i className="mdi mdi-checkbox-marked-circle succesmarkcircle"></i></Col>
-                                <Col md={8}><span className="mt-0 mb-1 revertcirclecolorcss notificationfontstyle">
+                                <Col md={8}><span className="mt-0 mb-1 revertcirclecolorcss1 notificationfontstyle">
                                   {e?.title}
                                 </span></Col>
                                 <Col md={3}>
@@ -305,7 +305,7 @@ const NotificationDropdown = () => {
                             >
                               <Row className="mb-2 mt-1" key={(Math.random()*1000).toString()}>
                                 <Col md={1}> <i className="mdi mdi-alert-circle revokedmarkcircle"></i></Col>
-                                <Col md={8}>  <span className="mt-0 mb-1 ml-1 revertcirclecolorcss notificationfontstyle">
+                                <Col md={8}>  <span className="mt-0 mb-1 ml-1 revertcirclecolorcss1 notificationfontstyle">
                                   {e?.title}
                                 </span></Col>
                                 <Col md={3}>
@@ -379,7 +379,7 @@ const NotificationDropdown = () => {
                                 <Row className="mb-2 mt-1" key={(Math.random()*1000).toString()}>
                             <Col md={1}> <i className="mdi mdi-information requestmarkcircle">  </i>
                             </Col>
-                            <Col md={8}> <span className="mt-0 mb-1 revertcirclecolorcss notificationfontstyle"  >
+                            <Col md={8}> <span className="mt-0 mb-1 revertcirclecolorcss1 notificationfontstyle"  >
                              
                              {e?.title}
                            </span></Col>
@@ -438,7 +438,81 @@ const NotificationDropdown = () => {
                         </div>           
                           }
                         </div>
-                      ) : null}
+                      ): e.actionType === "SUCCESS" ? (
+                        <div className="flex-1  " >
+                        {e.markRead === false?
+                      
+                        <div>
+                          <Link
+                           to={`/reportRequest/1}`}
+                            className="text-reset notification-item "
+                            onClick={()=>notificationSeenFunc(e)}
+                          >
+                              <Row className="mb-2 mt-1" key={(Math.random()*1000).toString()}>
+                          <Col md={1}> <i className="mdi mdi-checkbox-marked-circle succesmarkcircle"> </i>
+                          </Col>
+                          <Col md={8}> <span className="mt-0 mb-1 revertcirclecolorcss1 notificationfontstyle"  >
+                           
+                           {e?.title}
+                         </span></Col>
+                         
+                          <Col md={3}> 
+                          <div className="font-size-12 text-muted">
+                            <p className="mb-1">{e?.body}</p>
+                            <p className="mb-0">
+                      
+
+                              {moment
+                                .utc(e?.createdAt)
+                                .local()
+                                .startOf("seconds")
+                                .fromNow()}
+                            </p>
+                          </div>
+                          
+                          </Col>
+                        </Row>
+                         
+                          </Link>
+       
+                        </div>
+                        :
+                        <div>
+                        <Link
+                          to={`/bookingdetail/${e.bookingId}/1}`}
+                          className="text-reset notification-item"
+                        >
+                          <Row className="mb-2 mt-1" key={(Math.random()*1000).toString()}>
+                            <Col md={1}><i className="mdi mdi-checkbox-marked-circle succesmarkcircle"></i></Col>
+                            <Col md={8}><span className="mt-1  readnotificationcss notificationfontstyle mb-1">
+                           
+                           {e?.title}
+                         </span>
+                         </Col>
+                            <Col md={3}>
+
+                            <div className="font-size-12 text-muted">
+                          <p className="mb-1">{e?.body}</p>
+                          <p className="mb-0">
+                         
+                            {moment
+                              .utc(e?.createdAt)
+                              .local()
+                              .startOf("seconds")
+                              .fromNow()}
+                          </p>
+                        </div>
+                            </Col>
+                            </Row>
+                         
+                        </Link>
+                       
+                      </div>           
+                        }
+                      </div>
+                      
+                      
+                     ) : null}
                     </div>
                   ) : e?.redirectTo === "USER" ? (
                     <div  >
@@ -453,7 +527,7 @@ const NotificationDropdown = () => {
                               >
                                 <Row className="mb-2 mt-1" key={(Math.random()*1000).toString()}>
                                   <Col md={1}>    <i className="mdi mdi-minus-circle revokedmarkcircle"></i></Col>
-                                  <Col md={8}>     <span className="mt-0 mb-1 revertcirclecolorcss notificationfontstyle">
+                                  <Col md={8}>     <span className="mt-0 mb-1 revertcirclecolorcss1 notificationfontstyle">
                                     {e?.title}
                                   </span></Col>
                                   <Col md={3}><div className="font-size-12 text-muted">
@@ -518,7 +592,7 @@ const NotificationDropdown = () => {
                               >
                                 <Row className="mb-2 mt-1" key={(Math.random()*1000).toString()}>
                                   <Col md={1}> <i className="mdi mdi-alert-circle revokedmarkcircle"></i></Col>
-                                  <Col md={8}><span className="mt-0 mb-1 revertcirclecolorcss notificationfontstyle">
+                                  <Col md={8}><span className="mt-0 mb-1 revertcirclecolorcss1 notificationfontstyle">
                                     {e?.title}
                                   </span></Col>
                                   <Col md={3}>
@@ -586,7 +660,7 @@ const NotificationDropdown = () => {
                               >
                                 <Row className="mb-2 mt-1" key={(Math.random()*1000).toString()}>
                                   <Col md={1}><i className="mdi mdi-checkbox-marked-circle succesmarkcircle"></i></Col>
-                                  <Col md={8}> <span className="mt-0 mb-1 revertcirclecolorcss notificationfontstyle">
+                                  <Col md={8}> <span className="mt-0 mb-1 revertcirclecolorcss1 notificationfontstyle">
                                     {e?.title}
                                   </span></Col>
                                   <Col md={3}><div className="font-size-12 text-muted">
@@ -652,7 +726,7 @@ const NotificationDropdown = () => {
                               >
                                 <Row className="mb-2 mt-1" key={(Math.random()*1000).toString()}>
                                   <Col md={1}> <i className="mdi mdi-alert-circle revokedmarkcircle"></i></Col>
-                                  <Col md={8}><span className="mt-0 mb-1 ml-1 revertcirclecolorcss notificationfontstyle">
+                                  <Col md={8}><span className="mt-0 mb-1 ml-1 revertcirclecolorcss1 notificationfontstyle">
                                     {e?.title}
                                   </span></Col>
                                   <Col md={3}>
@@ -719,7 +793,7 @@ const NotificationDropdown = () => {
                               >
                                 <Row className="mb-2 mt-1" key={(Math.random()*1000).toString()}>
                                   <Col md={1}> <i className="mdi mdi-information requestmarkcircle"></i></Col>
-                                  <Col md={8}><span className="mt-0 mb-1 revertcirclecolorcss notificationfontstyle">
+                                  <Col md={8}><span className="mt-0 mb-1 revertcirclecolorcss1 notificationfontstyle">
                                     {e?.title}
                                   </span></Col>
                                   <Col md={3}>
@@ -776,10 +850,164 @@ const NotificationDropdown = () => {
                           </div>
                             }
                           </div>
-                        ) : null}
+                        ) 
+                        : e.actionType === "SUCCESS" ? (
+                          <div className="flex-1  " >
+                          {e.markRead === false?
+                        
+                          <div>
+                            <Link
+                             to={`/reportRequest/1}`}
+                              className="text-reset notification-item "
+                              onClick={()=>notificationSeenFunc(e)}
+                            >
+                                <Row className="mb-2 mt-1" key={(Math.random()*1000).toString()}>
+                            <Col md={1}> <i className="mdi mdi-checkbox-marked-circle succesmarkcircle"> </i>
+                            </Col>
+                            <Col md={8}> <span className="mt-0 mb-1 revertcirclecolorcss1 notificationfontstyle"  >
+                             
+                             {e?.title}
+                           </span></Col>
+                           
+                            <Col md={3}> 
+                            <div className="font-size-12 text-muted">
+                              <p className="mb-1">{e?.body}</p>
+                              <p className="mb-0">
+                        
+  
+                                {moment
+                                  .utc(e?.createdAt)
+                                  .local()
+                                  .startOf("seconds")
+                                  .fromNow()}
+                              </p>
+                            </div>
+                            
+                            </Col>
+                          </Row>
+                           
+                            </Link>
+         
+                          </div>
+                          :
+                          <div>
+                          <Link
+                            to={`/bookingdetail/${e.bookingId}/1}`}
+                            className="text-reset notification-item"
+                          >
+                            <Row className="mb-2 mt-1" key={(Math.random()*1000).toString()}>
+                              <Col md={1}><i className="mdi mdi-checkbox-marked-circle succesmarkcircle"></i></Col>
+                              <Col md={8}><span className="mt-1  readnotificationcss notificationfontstyle mb-1">
+                             
+                             {e?.title}
+                           </span>
+                           </Col>
+                              <Col md={3}>
+  
+                              <div className="font-size-12 text-muted">
+                            <p className="mb-1">{e?.body}</p>
+                            <p className="mb-0">
+                           
+                              {moment
+                                .utc(e?.createdAt)
+                                .local()
+                                .startOf("seconds")
+                                .fromNow()}
+                            </p>
+                          </div>
+                              </Col>
+                              </Row>
+                           
+                          </Link>
+                         
+                        </div>           
+                          }
+                        </div> 
+                       ) : null}
                       </div>
                     </div>
-                  ) : null}
+                  )
+                  : e?.redirectTo === "REPORTS" ?(
+                    <div>
+                    {
+                    e.actionType === "SUCCESS" ? (
+                     <div className="flex-1  " >
+                     {e.markRead === false?
+                   
+                     <div>
+                       <Link
+                        to={`/reportRequest/1}`}
+                         className="text-reset notification-item "
+                         onClick={()=>notificationSeenFunc(e)}
+                       >
+                           <Row className="mb-2 mt-1" key={(Math.random()*1000).toString()}>
+                       <Col md={1}> <i className="mdi mdi-checkbox-marked-circle succesmarkcircle"> </i>
+                       </Col>
+                       <Col md={8}> <span className="mt-0 mb-1 revertcirclecolorcss1 notificationfontstyle"  >
+                        
+                        {e?.title}
+                      </span></Col>
+                      
+                       <Col md={3}> 
+                       <div className="font-size-12 text-muted">
+                         <p className="mb-1">{e?.body}</p>
+                         <p className="mb-0">
+                   
+
+                           {moment
+                             .utc(e?.createdAt)
+                             .local()
+                             .startOf("seconds")
+                             .fromNow()}
+                         </p>
+                       </div>
+                       
+                       </Col>
+                     </Row>
+                      
+                       </Link>
+    
+                     </div>
+                     :
+                     <div>
+                     <Link
+                       to={`/bookingdetail/${e.bookingId}/1}`}
+                       className="text-reset notification-item"
+                     >
+                       <Row className="mb-2 mt-1" key={(Math.random()*1000).toString()}>
+                         <Col md={1}><i className="mdi mdi-checkbox-marked-circle succesmarkcircle"></i></Col>
+                         <Col md={8}><span className="mt-1  readnotificationcss notificationfontstyle mb-1">
+                        
+                        {e?.title}
+                      </span>
+                      </Col>
+                         <Col md={3}>
+
+                         <div className="font-size-12 text-muted">
+                       <p className="mb-1">{e?.body}</p>
+                       <p className="mb-0">
+                      
+                         {moment
+                           .utc(e?.createdAt)
+                           .local()
+                           .startOf("seconds")
+                           .fromNow()}
+                       </p>
+                     </div>
+                         </Col>
+                         </Row>
+                      
+                     </Link>
+                    
+                   </div>           
+                     }
+                   </div> 
+                    ):null
+                    }
+                    </div>
+                    )
+                  
+                  : null}
                 </div>
                 
               )) } 

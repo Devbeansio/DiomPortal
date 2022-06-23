@@ -256,7 +256,7 @@ const UseCategoryDetail = () => {
   const categoryData = useQuery(["categpryDetails", id], () =>
     getCategoryDetails(token, id)
   );
-  const categoryDailedData = categoryData.data;
+  const categoryDailedData = categoryData?.data?.data;
   // console.log("categoryDailedData =======>>>>: ", categoryDailedData);
   // *************
   const CategoryDetail = async () => {
@@ -268,7 +268,7 @@ const UseCategoryDetail = () => {
   const categorydropdownData = useQuery(["categpryDetaildropdown", id], () =>
     getCategoryDetaildropdown(token, id)
   );
-  const categorydropdownDailedData = categorydropdownData.data;
+  const categorydropdownDailedData = categorydropdownData?.data?.data;
 
   // *************
   const CategoryDetaildropdown = async () => {
@@ -289,11 +289,11 @@ const UseCategoryDetail = () => {
   const resourceTypedropdownData = useQuery(["resourceTypedropdown", id], () =>
     getResourcetypeDropdown(token, id)
   );
-  const resourceTypedropdownDailedData = resourceTypedropdownData.data;
+  const resourceTypedropdownDailedData = resourceTypedropdownData?.data?.data;
   const isLoading = resourceTypedropdownData.isLoading;
   // *************
   const Resourcetypesdropdown = async () => {
-    const matadata = resourceTypedropdownDailedData.data.map((element) => {
+    const matadata = resourceTypedropdownDailedData?.data.map((element) => {
       return {
         label: element.Name,
         value: element.id,

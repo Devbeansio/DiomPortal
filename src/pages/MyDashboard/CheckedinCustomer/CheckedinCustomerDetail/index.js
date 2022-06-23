@@ -18,7 +18,7 @@ import {
   DropdownItem,
 } from "reactstrap";
 import classnames from "classnames";
-import { Link } from "react-router-dom";
+import { Link, useLocation ,useHistory} from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 import BootstrapTable from "react-bootstrap-table-next";
 import paginationFactory, {
@@ -32,48 +32,6 @@ import "../../../Tables/datatables.scss";
 import { UseCheckedinCustomerDetailed } from "./useCheckedinCustomerDetailed";
 
 const { SearchBar } = Search;
-const columns = [
-  {
-    dataField: "id",
-    text: "No.",
-    sort: true,
-  },
-  {
-    dataField: "_id",
-    text: "Booking ID",
-    sort: true,
-  },
-  {
-    dataField: "resourceName",
-    text: "Resource",
-    sort: true,
-  },
-  {
-    dataField: "businessName",
-    text: "Location",
-    sort: true,
-  },
-  {
-    dataField: "createdAt",
-    text: "Booking Date",
-    sort: true,
-  },
-  {
-    dataField: "bookingType",
-    text: "Booking Type",
-    sort: true,
-  },
-  {
-    dataField: "invoiceNumber",
-    text: "Invoice ID",
-    sort: true,
-  },
-  {
-    dataField: "totalAmount",
-    text: "Total Paid",
-    sort: true,
-  },
-];
 
 const defaultSorted = [
   {
@@ -83,6 +41,8 @@ const defaultSorted = [
 ];
 
 const CheckedinCustomerDetail = () => {
+  const history = useHistory()
+  const location = useLocation()
   const {
     currentPage,
     pageOptions,
@@ -105,6 +65,63 @@ const CheckedinCustomerDetail = () => {
     toggle,
     isOpen,
   } = UseCheckedinCustomerDetailed();
+  
+  const columns = [
+    {
+      dataField: "id",
+      text: "No.",
+      sort: true,
+    },
+    {
+      dataField: "_id",
+      text: "Booking ID",
+      sort: true,
+      formatter: (cell, row) => (
+        <Link to={{pathname:`/bookingdetail/${row._id}/1 `,state: { prevPath: location.pathname } }}  className="link">
+          {" "}
+          {cell}{" "}
+        </Link>
+      ),
+    },
+    {
+      dataField: "resourceName",
+      text: "Resource",
+      sort: true,
+    },
+    {
+      dataField: "businessName",
+      text: "Location",
+      sort: true,
+    },
+    {
+      dataField: "createdAt",
+      text: "Booking Date",
+      sort: true,
+    },
+    {
+      dataField: "bookingType",
+      text: "Booking Type",
+      sort: true,
+    },
+    {
+      
+      dataField: "invoiceNumber",
+      text: "Invoice ID",
+      sort: true,
+      formatter: (cell, row) => (
+        <Link  to={{pathname:`/invoicesdetailpage/${row.invoiceNumber}` ,state: { prevPath: location.pathname }}} className="link">
+          {" "}
+          {cell}{" "}
+        </Link>
+      ),
+    },
+    {
+      dataField: "totalAmount",
+      text: "Total Paid",
+      sort: true,
+    },
+  ];
+  
 
  
   const Loader = require("react-loader");
@@ -115,7 +132,7 @@ const CheckedinCustomerDetail = () => {
         <Loader loaded={false} className="spinner" />
       ) : (
         <div className="page-content">
-          {console.log("userActiveBookingData : ", userActiveBookingData)}
+   
           <div>
             <Row className="mb-4">
               <Col md={4}>

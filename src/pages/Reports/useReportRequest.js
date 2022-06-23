@@ -15,7 +15,7 @@ const useReportRequest = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [newOldReportsData, setNewOldReportsData] = useState([]);
   const [postFilter, setPostFilter] = useState(false);
-  const [selectedReportType, setSelectedReportType] = useState("USER_REPORTS");
+  const [selectedReportType, setSelectedReportType] = useState("");
   const [activeTabJustify, setActiveTabJustify] = useState("1");
    const QueryClient = useQueryClient();
 

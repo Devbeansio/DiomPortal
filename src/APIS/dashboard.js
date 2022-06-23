@@ -9,15 +9,24 @@ import { DIOM_BASED_URLS } from "../config/url";
  */
 
 export const getFinanceCard = async (token = "") => {
-  return await (
-    await await fetch(`${DIOM_BASED_URLS}/stats/finance`, {
+  // return await (
+    const res = await fetch(`${DIOM_BASED_URLS}/stats/finance`, {
       method: "GET",
       redirect: "follow",
       headers: {
         Authorization: "Bearer " + token,
       },
     })
-  ).json();
+    if (!res.ok) {
+      const resJson = await res.json();
+      throw new Error(resJson.error.message);
+    }
+    const data = await res.json();
+    
+    return {
+      data
+    };
+  // ).json();
 };
 
 /**
@@ -29,15 +38,24 @@ export const getFinanceCard = async (token = "") => {
  */
 
 export const getGenaralCard = async (token = "") => {
-  return await (
-    await await fetch(`${DIOM_BASED_URLS}/stats/general`, {
+  // return await (
+    const res = await fetch(`${DIOM_BASED_URLS}/stats/general`, {
       method: "GET",
       redirect: "follow",
       headers: {
         Authorization: "Bearer " + token,
       },
     })
-  ).json();
+    if (!res.ok) {
+      const resJson = await res.json();
+      throw new Error(resJson.error.message);
+    }
+    const data = await res.json();
+    
+    return {
+      data
+    };
+  // ).json();
 };
 
 /**
@@ -49,15 +67,24 @@ export const getGenaralCard = async (token = "") => {
  */
 
 export const getLocationCard = async (token = "") => {
-  return await (
-    await await fetch(`${DIOM_BASED_URLS}/stats/locations`, {
+  // return await (
+    const res =  await fetch(`${DIOM_BASED_URLS}/stats/locations`, {
       method: "GET",
       redirect: "follow",
       headers: {
         Authorization: "Bearer " + token,
       },
     })
-  ).json();
+  // ).json();
+  if (!res.ok) {
+    const resJson = await res.json();
+    throw new Error(resJson.error.message);
+  }
+  const data = await res.json();
+  
+  return {
+    data
+  };
 };
 
 /**
@@ -69,15 +96,24 @@ export const getLocationCard = async (token = "") => {
  */
 
 export const getBrandCard = async (token = "") => {
-  return await (
-    await await fetch(`${DIOM_BASED_URLS}/stats/brands`, {
+  // return await (
+    const res= await fetch(`${DIOM_BASED_URLS}/stats/brands`, {
       method: "GET",
       redirect: "follow",
       headers: {
         Authorization: "Bearer " + token,
       },
     })
-  ).json();
+    if (!res.ok) {
+      const resJson = await res.json();
+      throw new Error(resJson.error.message);
+    }
+    const data = await res.json();
+    
+    return {
+      data
+    };
+  // ).json();
 };
 
 /**
@@ -89,13 +125,22 @@ export const getBrandCard = async (token = "") => {
  */
 
 export const getUsersCard = async (token = "") => {
-  return await (
-    await await fetch(`${DIOM_BASED_URLS}/stats/users`, {
+  // return await (
+    const res =  await fetch(`${DIOM_BASED_URLS}/stats/users`, {
       method: "GET",
       redirect: "follow",
       headers: {
         Authorization: "Bearer " + token,
       },
     })
-  ).json();
+  // ).json();
+  if (!res.ok) {
+    const resJson = await res.json();
+    throw new Error(resJson.error.message);
+  }
+  const data = await res.json();
+  
+  return {
+    data
+  };
 };

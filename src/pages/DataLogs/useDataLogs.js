@@ -19,10 +19,10 @@ const UseDataLogs = () => {
         ["GetDataLogsss",`${currentPage}` ,`${pageSize}`],
         () => getDataLogs(token,currentPage,pageSize)
       );
-      const logsData = logsDataa?.data;
-      const hasNextPage = logsDataa.hasNextPage;
-      const total = logsDataa.total;
-      const hasPreviousPage = logsDataa.hasPreviousPage
+      const logsData = logsDataa?.data?.data;
+      const hasNextPage = logsDataa?.data?.hasNextPage;
+      const total = logsDataa?.data?.total;
+      const hasPreviousPage = logsDataa?.data?.hasPreviousPage
 
       // console.log("hasNextPage : ",logsDataa.total )
     const removeBodyCss = () => {
@@ -40,7 +40,7 @@ const UseDataLogs = () => {
 
     const  logdetialsfunc = async(logId)=>{
         
-console.log("its ID ===>",logId)
+// console.log("its ID ===>",logId)
 //starts
 try{
 const response = await   fetch(
@@ -65,7 +65,7 @@ if (!response.ok) {
 }
 const result = await response.json();
 const logsDataDeails = result
-console.log("logsDataDeails:::::::::::::logsDataDeails",logsDataDeails.hyperPayMessage)
+// console.log("logsDataDeails:::::::::::::logsDataDeails",logsDataDeails.hyperPayMessage)
        setLogsDataDetail(logsDataDeails)
        setModal_static(true)
 } catch(error){ 

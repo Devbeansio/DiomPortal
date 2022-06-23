@@ -41,6 +41,9 @@ class Header extends Component {
       isSocialPf: false,
       modal_static: false,
       disabledvalue: true,
+      locationDiablity:false,
+      resourcesDiablity:false,
+      resourceTypesDiablity:false,
       diomBrand: [],
       diomLocation: [],
       diomAllLocation: [],
@@ -56,161 +59,9 @@ class Header extends Component {
     this.setState({ modal_static: true });
   };
 
-  // alllocationsfunc = async () => {
-  //   fetch(
-  //     `${DIOM_BASED_URLS}/admin-business-locations?filter={"where":{"visibility":true}}`,
-  //     {
-  //       method: "GET",
-  //       redirect: "follow",
-
-  //       headers: {
-  //         Authorization: "Bearer " + this.state.token,
-  //       },
-  //     }
-  //   )
-  //     .then((response) => response.json())
-  //     .then((result3) => {
-  //       const mapdata = result3.map((element) => ({
-  //         value: element.id,
-  //         label: element.Name,
-  //       }));
-
-  //       this.setState({
-  //         diomLocation: [
-  //           {
-  //             label: "--All Locations",
-  //             options: mapdata,
-
-  //             headers: {
-  //               Authorization: "Bearer " + this.state.token,
-  //             },
-  //           },
-  //         ],
-  //       });
-  //     })
-  //     .catch((error) => console.log("error", error));
-  // };
-
-  // diomBrandfunc = async () => {
-  //   fetch(`${DIOM_BASED_URLS}/admin-location-categories`, {
-  //     method: "GET",
-  //     redirect: "follow",
-
-  //     headers: {
-  //       Authorization: "Bearer " + this.state.token,
-  //     },
-  //   })
-  //     .then((response) => response.json())
-  //     .then((result) => {
-  //       const mapdata = result.map((element) => ({
-  //         value: element.id,
-  //         label: element.name,
-  //       }));
-  //       this.setState({
-  //         diomBrand: [
-  //           {
-  //             label: "--All Brands",
-  //             options: mapdata,
-  //           },
-  //         ],
-  //       });
-  //     })
-  //     .catch((error) => console.log("error", error));
-  // };
-
-  // changeLocationBrand = async (id) => {
-  //   fetch(
-  //     `${DIOM_BASED_URLS}/admin-business-locations?filter={"where":{"visibility":true,"locationCategoriesId":"${id}"}}`,
-  //     {
-  //       method: "GET",
-  //       redirect: "follow",
-
-  //       headers: {
-  //         Authorization: "Bearer " + this.state.token,
-  //       },
-  //     }
-  //   )
-  //     .then((response) => response.json())
-  //     .then((result2) => {
-  //       // this.setState({ diomLocation:result })
-  //       const mapdata = result2.map((element) => ({
-  //         value: element.id,
-  //         label: element.Name,
-  //       }));
-
-  //       this.setState((prevState) => ({
-  //         ...prevState,
-  //         diomLocation: [
-  //           {
-  //             label: "--All Locations",
-  //             options: [...mapdata],
-  //           },
-  //         ],
-  //       }));
-  //     })
-  //     .catch((error) => console.log("error", error));
-  // };
-
-  // diomLocationfunc = async () => {
-  //   fetch(
-  //     `${DIOM_BASED_URLS}/admin-business-locations?filter={"where":{"visibility":true}}`,
-  //     {
-  //       method: "GET",
-  //       redirect: "follow",
-
-  //       headers: {
-  //         Authorization: "Bearer " + this.state.token,
-  //       },
-  //     }
-  //   )
-  //     .then((response) => response.json())
-  //     .then((result2) => {
-  //       // this.setState({ diomLocation:result })
-  //       const mapdata = result2.map((element) => ({
-  //         value: element.id,
-  //         label: element.Name,
-  //       }));
-
-  //       this.setState({
-  //         diomLocation: [
-  //           {
-  //             label: "--All Locations",
-  //             options: [],
-  //           },
-  //         ],
-  //       });
-  //     })
-  //     .catch((error) => console.log("error", error));
-  // };
-
-  // getSelectedDiomLocation(locationId) {
-  //   if (!locationId) {
-  //     return;
-  //   }
-
-  //   fetch(`${DIOM_BASED_URLS}/admin-business-locations/${locationId}`, {
-  //     method: "GET",
-  //     redirect: "follow",
-
-  //     headers: {
-  //       Authorization: "Bearer " + this.state.token,
-  //     },
-  //   })
-  //     .then((response) => response.json())
-  //     .then((location) => {
-  //       this.setState(
-  //         {
-  //           selectedLocationData: location,
-  //         },
-  //         () => {
-  //           this.setState({ modal_center: false });
-  //         }
-  //       );
-  //     })
-  //     .catch((error) => console.log("error", error));
-  // }
 
   syncLocationsFunc = () => {
+    this.setState({locationDiablity:true});
     fetch(`${DIOM_BASED_URLS}/admin-business-locations/sync`, {
       method: "GET",
       redirect: "follow",
@@ -223,14 +74,17 @@ class Header extends Component {
       .then((result) => {
         // if (result) {
         toast.success("Locations Synced Successfully");
+        this.setState({locationDiablity:false})
         // }
         // else {
         //   toast.error(" Something went wrong");
         // }
       })
       .catch((error) => toast.error(" Something went wrong"));
+      
   };
   syncResourceFunc = () => {
+    this.setState({resourcesDiablity: true})
     fetch(`${DIOM_BASED_URLS}/admin-resources-inventories/sync`, {
       method: "GET",
       redirect: "follow",
@@ -243,15 +97,20 @@ class Header extends Component {
       .then((result) => {
         if (result) {
           toast.success("Resources Successfully Synced");
+          this.setState({resourcesDiablity: false})
+        
         } else {
           toast.error(" Something went wrong");
+          this.setState({resourcesDiablity: false})
         }
       })
       .catch((error) => console.log("error", error));
+     
 
     // toast.error(" Something went wrong"));
   };
   syncResourceTypeFunc = () => {
+    this.setState({resourceTypesDiablity:true})
     fetch(`${DIOM_BASED_URLS}/admin-resource-types-inventories/sync`, {
       method: "GET",
       redirect: "follow",
@@ -264,11 +123,14 @@ class Header extends Component {
       .then((result) => {
         if (result) {
           toast.success("ResourceTypes Successfully Synced");
+          this.setState({resourceTypesDiablity:false})
         } else {
           toast.error(" Something went wrong");
+          this.setState({resourceTypesDiablity:false})
         }
       })
       .catch((error) => toast.error(" Something went wrong"));
+      
   };
   componentDidMount() {
     // this.diomBrandfunc();
@@ -337,6 +199,7 @@ class Header extends Component {
   render() {
     return (
       <React.Fragment>
+        {/* {console.log("i am dibility : ",this.state.locationDiablity)} */}
         <header id="page-topbar">
           <div className="navbar-header">
             <div className="d-flex">
@@ -549,8 +412,9 @@ class Header extends Component {
                             // className=" noti-icon right-bar-toggle waves-effect"
                 
                 > */}
-                        <div className="  " onClick={this.syncLocationsFunc}>
+                        <div  hidden={this.state.locationDiablity} onClick={this.syncLocationsFunc}>
                           <i
+                          
                             type="button"
                             className=" fas fa-sync-alt synclocationsheadingsicon "
                           ></i>
@@ -568,7 +432,7 @@ class Header extends Component {
                   onClick={this.syncResourceFunc}
                   type="button"
                 > */}
-                        <div className="  " onClick={this.syncResourceFunc}>
+                        <div  hidden={this.state.resourcesDiablity} onClick={this.syncResourceFunc}>
                           <i
                             type="button"
                             className=" fas fa-sync-alt synclocationsheadingsicon"
@@ -589,7 +453,7 @@ class Header extends Component {
                   onClick={this.syncResourceTypeFunc}
                   type="button"
                         > */}
-                        <div onClick={this.syncResourceTypeFunc}>
+                        <div  hidden={this.state.resourceTypesDiablity} onClick={this.syncResourceTypeFunc}>
                           <i
                             type="button"
                             className=" fas fa-sync-alt synclocationsheadingsicon"

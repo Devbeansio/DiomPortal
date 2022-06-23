@@ -227,10 +227,10 @@ const UseResourceTypeDetail = () => {
   };
 
   const updatelocationbranddetails = () => {
-    console.log(
-      " resourceDetailes.perMinuteMinutePrice : ",
-      resourceDetailes.perMinuteMinutePrice
-    );
+    // console.log(
+    //   " resourceDetailes.perMinuteMinutePrice : ",
+    //   resourceDetailes.perMinuteMinutePrice
+    // );
     fetch(
       `${DIOM_BASED_URLS}/admin-resource-types-inventories/${id}`,
 
@@ -301,7 +301,9 @@ const UseResourceTypeDetail = () => {
   const Locationfocusdest = useQuery(["Locationfocusdest", id], () =>
     GetLocationfocusdest(token, resourceTypeKey)
   );
-  const Locationfocusdestdata = Locationfocusdest.data;
+  
+  const Locationfocusdestdata = Locationfocusdest?.data?.data;
+  
 
   // *************
 
@@ -314,7 +316,9 @@ const UseResourceTypeDetail = () => {
   const resourcetypeResources = useQuery(["resourcetypeResources", id], () =>
     getResourcetypeResources(token, id)
   );
-  const resourcetypeResourcesdata = resourcetypeResources.data;
+  
+  const resourcetypeResourcesdata = resourcetypeResources?.data?.data;
+  // console.log("resourcetypeResourcesdata ====> ",resourcetypeResourcesdata?.data)
 
   // *************
 
@@ -327,7 +331,7 @@ const UseResourceTypeDetail = () => {
   const getHourlydayrate = useQuery(["gethourlydayrate", id], () =>
     getHourlyDayRate(token, id)
   );
-  const getHourlydayrateData = getHourlydayrate.data;
+  const getHourlydayrateData = getHourlydayrate?.data?.data;
 
   // *************
   const gethourlyDayRateFunc = async () => {
@@ -350,7 +354,7 @@ const UseResourceTypeDetail = () => {
   const locationsresourceTypes = useQuery(["locationsresourceTypes", id], () =>
     getlocationsresourceTypes(token, id)
   );
-  const locationsresourceTypesdata = locationsresourceTypes.data;
+  const locationsresourceTypesdata = locationsresourceTypes?.data?.data;
   // *************
   const getalllocationsfunc = async () => {
     const mapdata = locationsresourceTypesdata.map((element, index) => ({

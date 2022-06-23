@@ -76,15 +76,24 @@ export const getLocationBrand = async (token = "", id) => {
  */
 
 export const getBranddDetail = async (token = "", id) => {
-  return await (
-    await await fetch(`${DIOM_BASED_URLS}/admin-location-categories/${id}`, {
+  // return await (
+    const res = await fetch(`${DIOM_BASED_URLS}/admin-location-categories/${id}`, {
       method: "GET",
       redirect: "follow",
       headers: {
         Authorization: "Bearer " + token,
       },
     })
-  ).json();
+    if (!res.ok) {
+      const resJson = await res.json();
+      throw new Error(resJson.error.message);
+    }
+    const data = await res.json();
+    
+    return {
+      data
+    };
+  // ).json();
 };
 
 /**
@@ -96,8 +105,8 @@ export const getBranddDetail = async (token = "", id) => {
  */
 
 export const getBranddDetaildropdown = async (token = "", id) => {
-  return await (
-    await await fetch(
+  // return await (
+    const res = await fetch(
       `${DIOM_BASED_URLS}/admin-location-categories/${id}/locations`,
       {
         method: "GET",
@@ -107,7 +116,16 @@ export const getBranddDetaildropdown = async (token = "", id) => {
         },
       }
     )
-  ).json();
+    if (!res.ok) {
+      const resJson = await res.json();
+      throw new Error(resJson.error.message);
+    }
+    const data = await res.json();
+    
+    return {
+      data
+    };
+  // ).json();
 };
 
 /**
@@ -119,13 +137,22 @@ export const getBranddDetaildropdown = async (token = "", id) => {
  */
 
 export const getBrandallocationdropdown = async (token = "", id) => {
-  return await (
-    await await fetch(`${DIOM_BASED_URLS}/admin-business-locations`, {
+  // return await (
+    const res =  await fetch(`${DIOM_BASED_URLS}/admin-business-locations`, {
       method: "GET",
       redirect: "follow",
       headers: {
         Authorization: "Bearer " + token,
       },
     })
-  ).json();
+    if (!res.ok) {
+      const resJson = await res.json();
+      throw new Error(resJson.error.message);
+    }
+    const data = await res.json();
+    
+    return {
+      data
+    };
+  // ).json();
 };

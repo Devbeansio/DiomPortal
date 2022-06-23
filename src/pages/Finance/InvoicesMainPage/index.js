@@ -19,62 +19,13 @@ import paginationFactory, {
   PaginationProvider,
 } from "react-bootstrap-table2-paginator";
 import BounceLoader from "react-spinners/BounceLoader";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
 import "../../Tables/datatables.scss";
 import { useInvoices } from "./useInvoices";
 const { SearchBar } = Search;
 
-const columns = [
-  {
-    dataField: "id",
-    text: "No.",
-    sort: true,
-  },
-  {
-    dataField: "invoiceId",
-    text: "Invoice ID",
-    sort: true,
-    formatter: (cell, row) => (
-      <Link to={`/invoicesdetailpage/${row.invoiceId}`} className="link">
-        {" "}
-        {cell}{" "}
-      </Link>
-    ),
-  },
 
-  {
-    dataField: "customerData",
-    text: "Name",
-    sort: true,
-  },
-
-  {
-    dataField: "createdAt",
-    text: "Date",
-    sort: true,
-  },
-  {
-    dataField: "bookingId",
-    text: "Booking ID",
-    sort: true,
-    formatter: (cell, row) => (
-      <Link to={`/bookingdetail/${row.bookingId}/1`} className="link">
-        {cell}
-      </Link>
-    ),
-  },
-  {
-    dataField: "totalPaid",
-    text: "Total Paid",
-    sort: true,
-  },
-  {
-    dataField: "paymentMethod",
-    text: "Payment Method",
-    sort: true,
-  },
-];
 
 const defaultSorted = [
   {
@@ -84,6 +35,8 @@ const defaultSorted = [
 ];
 
 function InvoicesMainPage() {
+  const location = useLocation()
+
   const {
     currentPage,
     pageOptions,
@@ -105,6 +58,59 @@ function InvoicesMainPage() {
   const { loading } = LoaderHook();
   // console.log("i am api loading : ", getLocationdata.isLoading);
 
+
+  const columns = [
+    {
+      dataField: "id",
+      text: "No.",
+      sort: true,
+    },
+    {
+      dataField: "invoiceId",
+      text: "Invoice ID",
+      sort: true,
+      formatter: (cell, row) => (
+        <Link 
+        to={{pathname:`/invoicesdetailpage/${row.invoiceId}` ,state: { prevPath: location.pathname }}} className="link">
+          {" "}
+          {cell}{" "}
+        </Link>
+      ),
+    },
+  
+    {
+      dataField: "customerData",
+      text: "Name",
+      sort: true,
+    },
+  
+    {
+      dataField: "createdAt",
+      text: "Date",
+      sort: true,
+    },
+    {
+      dataField: "bookingId",
+      text: "Booking ID",
+      sort: true,
+      formatter: (cell, row) => (
+        <Link 
+        to={{pathname:`/bookingdetail/${row.bookingId}/1`,state: { prevPath: location.pathname }}} className="link">
+          {cell}
+        </Link>
+      ),
+    },
+    {
+      dataField: "totalPaid",
+      text: "Total Paid",
+      sort: true,
+    },
+    {
+      dataField: "paymentMethod",
+      text: "Payment Method",
+      sort: true,
+    },
+  ];
   return (
     <>
       {isLoading ? (

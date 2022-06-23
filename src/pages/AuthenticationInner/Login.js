@@ -36,10 +36,7 @@ const Login = () => {
       .then((response) => response.json())
       .then((result3) => {
         // console.log("hmm loggedin");
-    
-
         result3.token? history.push('/mydashboard'):
-      
         enqueueSnackbar(message, { 
           variant: 'error', 
       });
@@ -55,7 +52,7 @@ const Login = () => {
   };
 
   const UserPasswordFunc = (e) => {
-    console.log(e.target.value);
+    // console.log(e.target.value);
     setUserpassword(e.target.value);
   };
 

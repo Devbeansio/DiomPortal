@@ -5,7 +5,7 @@
 
 import React, { useRef } from "react";
 import { Row, Col, CardBody, Button, Input } from "reactstrap";
-import { Link } from "react-router-dom";
+import { Link, useHistory, useLocation } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 import moment from "moment";
 import { saveAs } from 'file-saver';
@@ -21,11 +21,13 @@ import { Accordion } from "react-bootstrap-accordion";
 
 function InvoicesDetailPage() {
   const { InvoiceData, isLoading } = useInvoice();
+  const history = useHistory()
 
   // const [loaded, setLoaded] = useState(false);
   const createdat = moment(InvoiceData.createdAt).format("YYYY-MM-DD ");
   const bookingfrom = moment(InvoiceData.bookingFromTime).format("YYYY-MM-DD ");
   const bookingto = moment(InvoiceData.bookingToTime).format("YYYY-MM-DD ");
+  const location = useLocation()
 
   const Loader = require("react-loader");
   const { id } = useParams();
@@ -51,7 +53,7 @@ function InvoicesDetailPage() {
         <div className="page-content">
           <Row className="mb-3">
             <Col md={3}>
-              <Link to="/invoicesmainpage" className="link">
+              <Link to={history?.location?.state?.prevPath} className="link">
                 <span className="fas fa-angle-left arrowheightwidth"></span>
               </Link>
 
@@ -110,7 +112,10 @@ function InvoicesDetailPage() {
                       </Col>
                       <Col md={5} className="rightaligncss">
                         {" "}
+                        <Link 
+                         to={{pathname:`/bookingdetail/${InvoiceData ?.bookingId}/1`,state: { prevPath: location.pathname }}} className="link">
                         {InvoiceData ? InvoiceData.bookingId : "---/-"}
+                        </Link>
                       </Col>
                     </Row>
                     <Row>
@@ -291,7 +296,7 @@ function InvoicesDetailPage() {
               </CardBody>
             </Col>
             <Col md={4}>
-            {console.log("InvoiceData.erpInvoiceUrl : ",InvoiceData.erpInvoiceUrl)}
+            {/* {console.log("InvoiceData.erpInvoiceUrl : ",InvoiceData.erpInvoiceUrl)} */}
              
               {InvoiceData.id && (
                 // <PDFDownloadLink

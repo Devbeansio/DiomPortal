@@ -2,6 +2,7 @@ import React, { useState, useEffect, Suspense, lazy } from "react";
 import Container from "reactstrap/lib/Container";
 import Chart from "./Chart";
 import moment from "moment";
+import { chart_Data_Urls } from "../../config/chartsData";
 import {
   Row,
   Col,
@@ -63,7 +64,8 @@ const MyDashboard = () => {
                   height={"350px"}
                   width={"480px"}
                   filter={maxDataAge}
-                  chartId={"625134b0-5d61-46db-86c0-48eef0760b6e"}
+                  chartId={chart_Data_Urls.Revenue_By_Locations}
+                  // chartId={"625134b0-5d61-46db-86c0-48eef0760b6e"}
                 />
               </div>
             </Col>
@@ -74,7 +76,8 @@ const MyDashboard = () => {
                   height={"350px"}
                   width={"480px"}
                   filter={maxDataAge}
-                  chartId={"625139bf-45ca-4d14-85ba-9a0e96d9ab76"}
+                  // chartId={"625139bf-45ca-4d14-85ba-9a0e96d9ab76"}
+                  chartId={chart_Data_Urls.Bookings_By_Brands}
                 />
               </div>
             </Col>
@@ -86,7 +89,8 @@ const MyDashboard = () => {
                   height={"350px"}
                   width={"480px"}
                   filter={maxDataAge}
-                  chartId={"6256af9a-04a5-4f01-8929-ba406cf900cb"}
+                  chartId={chart_Data_Urls.Revenue_by_Brands}
+                  // chartId={"6256af9a-04a5-4f01-8929-ba406cf900cb"}
                 />
               </div>
             </Col>
@@ -97,7 +101,8 @@ const MyDashboard = () => {
                   height={"350px"}
                   width={"480px"}
                   filter={maxDataAge}
-                  chartId={"62514999-70f4-431b-8d96-68f6a4c6a942"}
+                  chartId={chart_Data_Urls.Revenue_By_Booking_Type}
+                  // chartId={"62514999-70f4-431b-8d96-68f6a4c6a942"}
                 />
               </div>
             </Col>
@@ -109,7 +114,8 @@ const MyDashboard = () => {
                   height={"350px"}
                   width={"480px"}
                   filter={maxDataAge}
-                  chartId={"625154e9-ed04-4f19-8b12-9548acd2508c"}
+                  chartId={chart_Data_Urls.Bookings_By_Resource_Type}
+                  // chartId={"625154e9-ed04-4f19-8b12-9548acd2508c"}
                 />
               </div>
             </Col>
@@ -120,7 +126,8 @@ const MyDashboard = () => {
                   height={"350px"}
                   width={"480px"}
                   filter={maxDataAge}
-                  chartId={"62514d58-905f-40e2-83f4-4c6b1b2877eb"}
+                  chartId={chart_Data_Urls.Revenue_By_Resource_Type}
+                  // chartId={"62514d58-905f-40e2-83f4-4c6b1b2877eb"}
                 />
               </div>
             </Col>
@@ -138,7 +145,8 @@ const MyDashboard = () => {
                   height={"350px"}
                   width={"480px"}
                   filter={maxDataAge}
-                  chartId={"625134b0-5d61-46db-86c0-48eef0760b6e"}
+                  chartId={chart_Data_Urls.Revenue_By_Locations}
+                  // chartId={"625134b0-5d61-46db-86c0-48eef0760b6e"}
                 />
               </div>
             </Col>
@@ -149,7 +157,8 @@ const MyDashboard = () => {
                   height={"350px"}
                   width={"480px"}
                   filter={maxDataAge}
-                  chartId={"62514d58-905f-40e2-83f4-4c6b1b2877eb"}
+                  chartId={chart_Data_Urls.Revenue_By_Resource_Type}
+                  // chartId={"62514d58-905f-40e2-83f4-4c6b1b2877eb"}
                 />
               </div>
             </Col>
@@ -162,7 +171,8 @@ const MyDashboard = () => {
                   height={"350px"}
                   width={"480px"}
                   filter={maxDataAge}
-                  chartId={"6256af9a-04a5-4f01-8929-ba406cf900cb"}
+                  chartId={chart_Data_Urls.Revenue_by_Brands}
+                  // chartId={"6256af9a-04a5-4f01-8929-ba406cf900cb"}
                 />
               </div>
             </Col>
@@ -191,7 +201,8 @@ const MyDashboard = () => {
                   height={"350px"}
                   width={"480px"}
                   filter={maxDataAge}
-                  chartId={"625134b0-5d61-46db-86c0-48eef0760b6e"}
+                  chartId={chart_Data_Urls.Revenue_By_Locations}
+                  // chartId={"625134b0-5d61-46db-86c0-48eef0760b6e"}
                 />
               </div>
             </Col>
@@ -202,7 +213,8 @@ const MyDashboard = () => {
                   height={"350px"}
                   width={"480px"}
                   filter={maxDataAge}
-                  chartId={"62515345-2438-4c2b-8a7d-0245e2511098"}
+                  chartId={chart_Data_Urls.Bookings_By_Locations}
+                  // chartId={"62515345-2438-4c2b-8a7d-0245e2511098"}
                 />
               </div>
             </Col>
@@ -214,7 +226,8 @@ const MyDashboard = () => {
                   height={"350px"}
                   width={"480px"}
                   filter={maxDataAge}
-                  chartId={"625154e9-ed04-4f19-8b12-9548acd2508c"}
+                  chartId={chart_Data_Urls.Bookings_By_Resource_Type}
+                  // chartId={"625154e9-ed04-4f19-8b12-9548acd2508c"}
                 />
               </div>
             </Col>
@@ -225,7 +238,8 @@ const MyDashboard = () => {
                   height={"350px"}
                   width={"480px"}
                   filter={maxDataAge}
-                  chartId={"6257b292-342b-4a2c-83f5-dfcb02f4bae1"}
+                  chartId={chart_Data_Urls.Locations_With_Booking_Types}
+                  // chartId={"6257b292-342b-4a2c-83f5-dfcb02f4bae1"}
                 />
               </div>
             </Col>
@@ -243,7 +257,8 @@ const MyDashboard = () => {
                   height={"350px"}
                   width={"480px"}
                   filter={maxDataAge}
-                  chartId={"625139bf-45ca-4d14-85ba-9a0e96d9ab76"}
+                  chartId={chart_Data_Urls.Bookings_By_Brands}
+                  // chartId={"625139bf-45ca-4d14-85ba-9a0e96d9ab76"}
                 />
               </div>
             </Col>
@@ -254,7 +269,8 @@ const MyDashboard = () => {
                   height={"350px"}
                   width={"480px"}
                   filter={maxDataAge}
-                  chartId={"6256af9a-04a5-4f01-8929-ba406cf900cb"}
+                  chartId={chart_Data_Urls.Revenue_by_Brands}
+                  // chartId={"6256af9a-04a5-4f01-8929-ba406cf900cb"}
                 />
               </div>
             </Col>
@@ -272,7 +288,8 @@ const MyDashboard = () => {
                   height={"350px"}
                   width={"480px"}
                   filter={maxDataAge}
-                  chartId={"6256aed7-adc9-4235-8e2e-c4d5e33c4cd1"}
+                  chartId={chart_Data_Urls.Users_By_Industry}
+                  // chartId={"6256aed7-adc9-4235-8e2e-c4d5e33c4cd1"}
                 />
               </div>
             </Col>
@@ -283,7 +300,8 @@ const MyDashboard = () => {
                   height={"350px"}
                   width={"480px"}
                   filter={maxDataAge}
-                  chartId={"6256af21-ad42-491c-886b-c379e048fc5a"}
+                  chartId={chart_Data_Urls.Users_By_Position}
+                  // chartId={"6256af21-ad42-491c-886b-c379e048fc5a"}
                 />
               </div>
             </Col>

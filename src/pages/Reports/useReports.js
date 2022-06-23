@@ -210,7 +210,8 @@ const UseReports = () => {
     let start = moment(endddate).isAfter(d.setMonth(d.getMonth() - 3));
     let end = moment(e.target.value).isBefore(moment().add(-1, "days"));
     if (start && end) {
-      const enddate = new Date(endddate).toISOString();
+      // const enddate = new Date(endddate).toISOString();
+      const  enddate = new Date(`${endddate} 23:59 UTC`).toISOString()
       setreportFinalValues({ ...reportFinalValues, endDate: enddate });
       setReportFinalLabels({ ...reportFinalLabels, endDate: enddate });
     } else {
@@ -263,8 +264,8 @@ const UseReports = () => {
   const userByProfession = useQuery(["getuserbyprofession"], () =>
     getUserByProfession(token)
   );
-  const userByProfessionData = userByProfession.data;
-  const userByProfessionDataa = userByProfessionData?.data;
+  const userByProfessionData = userByProfession?.data;
+  const userByProfessionDataa = userByProfessionData?.data?.data;
   const userbyprofessionindustry = userByProfessionDataa?.industries.map(
     (element, index) => ({
       value: element.id,

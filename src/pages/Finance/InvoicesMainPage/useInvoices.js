@@ -45,7 +45,7 @@ export const useInvoices = () => {
   useEffect(() => {
     loadingFunc();
     // FOR PRE-FETCHING NEXT PAGE
-    console.log(hasNextPage);
+    // console.log(hasNextPage);
     if (hasNextPage) {
       const nextPage = currentPage + 1;
       queryClient.prefetchQuery(["Invoices", `${pageSize}`,`${currentPage}`], () =>

@@ -9,15 +9,24 @@ import moment from "moment";
  * @returns a list of BOOKING in DIOM
  */
 export const getBooking = async (token = "", id) => {
-  return await (
-    await fetch(`${DIOM_BASED_URLS}/admin-diom-bookings/${id}`, {
+  // return await (
+    const res = await fetch(`${DIOM_BASED_URLS}/admin-diom-bookings/${id}`, {
       method: "GET",
       redirect: "follow",
       headers: {
         Authorization: "Bearer " + token,
       },
     })
-  ).json();
+  // ).json();
+  if (!res.ok) {
+    const resJson = await res.json();
+    throw new Error(resJson.error.message);
+  }
+  const data = await res.json();
+  
+  return {
+    data
+  };
 };
 
 /**
@@ -29,15 +38,25 @@ export const getBooking = async (token = "", id) => {
  */
 
 export const getGuest = async (token = "", id) => {
-  return await (
-    await fetch(`${DIOM_BASED_URLS}/admin-booking-guest/booking/${id}`, {
+  // return await (
+   const res =  await fetch(`${DIOM_BASED_URLS}/admin-booking-guest/booking/${id}`, {
       method: "GET",
       redirect: "follow",
       headers: {
         Authorization: "Bearer " + token,
       },
     })
-  ).json();
+
+    if (!res.ok) {
+      const resJson = await res.json();
+      throw new Error(resJson.error.message);
+    }
+    const data = await res.json();
+    
+    return {
+      data
+    };
+  // ).json();
 };
 
 /**
@@ -50,15 +69,25 @@ export const getGuest = async (token = "", id) => {
 
 export const getbookinguser = async (token, id) => {
   // if (id) {
-  return await (
-    await fetch(`${DIOM_BASED_URLS}/users/${id}`, {
+  // return await (
+    const res = await fetch(`${DIOM_BASED_URLS}/users/${id}`, {
       method: "GET",
       redirect: "follow",
       headers: {
         Authorization: "Bearer " + token,
       },
     })
-  ).json();
+
+    if (!res.ok) {
+      const resJson = await res.json();
+      throw new Error(resJson.error.message);
+    }
+    const data = await res.json();
+    
+    return {
+      data
+    };
+  // ).json();
   // }
 };
 
@@ -71,8 +100,8 @@ export const getbookinguser = async (token, id) => {
  */
 
 export const getbookinglocations = async (token = "") => {
-  return await (
-    await fetch(
+  // return await (
+   const res =  await fetch(
       `${DIOM_BASED_URLS}/admin-business-locations?filter={"where":{"visibility":true}}`,
       {
         method: "GET",
@@ -82,7 +111,17 @@ export const getbookinglocations = async (token = "") => {
         },
       }
     )
-  ).json();
+
+    if (!res.ok) {
+      const resJson = await res.json();
+      throw new Error(resJson.error.message);
+    }
+    const data = await res.json();
+    
+    return {
+      data
+    };
+  // ).json();
 };
 
 /**
@@ -124,9 +163,9 @@ export const gettodaysbookings = async (
     _id: booking.id,
     updatedAt: moment(booking.updatedAt).format("YYYY-MM-DD HH:mm"),
     Bookingstartend:
-      moment(booking.fromTime).format("MMM DD ") +
+      moment(booking.fromTime).format("DD MMM (HH:mm)") +
       " - " +
-      moment(booking.toTime).format("MMM DD"),
+      moment(booking.toTime).format("DD MMM (HH:mm"),
 
     timeLogs:
       booking.timeLogs.length > 0
@@ -189,9 +228,9 @@ export const getschduleddbookings = async (
     _id: booking.id,
 
     Bookingstartend:
-      moment(booking.fromTime).format("MMM DD ") +
+      moment(booking.fromTime).format("DD MMM (HH:mm)") +
       " - " +
-      moment(booking.toTime).format("MMM DD"),
+      moment(booking.toTime).format("DD MMM (HH:mm)"),
     timeLogs: booking.timeLogs.map((e) => moment(e.fromTime).format("HH:mm")),
   }));
   return {
@@ -244,9 +283,9 @@ export const getPasttbookings = async (
     updatedAt: moment(booking.updatedAt).format("YYYY-MM-DD HH:mm"),
     _id: booking.id,
     Bookingstartend:
-      moment(booking.fromTime).format("MMM DD ") +
+      moment(booking.fromTime).format("DD MMM (HH:mm)") +
       " - " +
-      moment(booking.toTime).format("MMM DD"),
+      moment(booking.toTime).format("DD MMM (HH:mm)"),
     // timeLogs: booking.timeLogs.map((e,i) =>(e.fromTime? moment(e.fromTime).format("HH:mm") :null)),
   }));
   return {

@@ -20,7 +20,7 @@ export const useLocationBrandDetail = () => {
   // );
 
   const { data } = useQuery(["LocationBranddetail"], async () => {
-    console.log(" i am working");
+    // console.log(" i am working");
     const res = await fetch(
       `${DIOM_BASED_URLS}/admin-location-categories/${id}`,
       {
@@ -38,7 +38,7 @@ export const useLocationBrandDetail = () => {
     const dd = await res.json();
     return { data: dd };
   });
-  console.log("data : ", data);
+  // console.log("data : ", data);
 
   // const { BrandAllLocationsData } = useQuery(
   //   ["brandalllocations"],

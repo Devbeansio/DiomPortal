@@ -526,8 +526,8 @@ const UseLocationDetailed = () => {
   const Locationdata = useQuery(["locations", id], () =>
     getLocation(token, id)
   );
-  const getLocationdata = Locationdata.data;
-  const isLoading = Locationdata;
+  const getLocationdata = Locationdata?.data?.data;
+  const isLoading = Locationdata?.data;
   // *************
   const getlocations = async () => {
     setLocationstitle(getLocationdata);
@@ -539,12 +539,12 @@ const UseLocationDetailed = () => {
   const diomlocationBrandddata = useQuery(["locationbrands", id], () =>
     getdiomlocationBrand(token)
   );
-  const diomlocationBrandata = diomlocationBrandddata.data;
+  const diomlocationBrandata = diomlocationBrandddata?.data?.data;
 
   // *************
 
   const getdiomBrandfunc = async () => {
-    const mapdata = diomlocationBrandata.map((element) => ({
+    const mapdata = diomlocationBrandata?.map((element) => ({
       value: element.id,
       label: element.name,
     }));

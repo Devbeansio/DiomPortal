@@ -34,7 +34,7 @@ import paginationFactory, {
 } from "react-bootstrap-table2-paginator";
 
 import { ToastContainer, toast } from "react-toastify";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
 import "../../Tables/datatables.scss";
 import UseRequestBookings from "./useRequestBookings";
@@ -43,6 +43,7 @@ const { SearchBar } = Search;
 const Loader = require("react-loader");
 
 const RequestBookings = () => {
+  const location = useLocation()
   const {
     activeTabJustify,
     setLoaded,
@@ -96,7 +97,7 @@ const RequestBookings = () => {
       sort: true,
       formatter: (cell, row) => (
         <Link
-          to={`/bookingdetail/${row._id}/${activeTabJustify}`}
+        to={{pathname:`/bookingdetail/${row._id}/${activeTabJustify}`,state: { prevPath: location.pathname }}}
           className="link"
         >
           {cell}
@@ -108,7 +109,9 @@ const RequestBookings = () => {
       text: "Customer ID",
       sort: true,
       formatter: (cell, row) => (
-        <Link to={`/checkedincustomerdetail/${row.userId}`} className="link">
+         <Link 
+     //   to={`/checkedincustomerdetail/${row.userId}`} className="link">
+        to={{pathname:`/checkedincustomerdetail/${row.userId}` ,state: { prevPath: location.pathname }}}  className="link">
           {" "}
           {cell}{" "}
         </Link>
@@ -176,7 +179,7 @@ const RequestBookings = () => {
       sort: true,
       formatter: (cell, row) => (
         <Link
-          to={`/bookingdetail/${row._id}/${activeTabJustify}`}
+        to={{pathname:`/bookingdetail/${row._id}/${activeTabJustify}`,state: { prevPath: location.pathname }}}
           className="link"
         >
           {cell}
@@ -188,7 +191,8 @@ const RequestBookings = () => {
       text: "Customer ID",
       sort: true,
       formatter: (cell, row) => (
-        <Link to={`/checkedincustomerdetail/${row.userId}`} className="link">
+        <Link 
+        to={{pathname:`/checkedincustomerdetail/${row.userId}` ,state: { prevPath: location.pathname }}} className="link">
           {" "}
           {cell}{" "}
         </Link>
@@ -762,7 +766,7 @@ const RequestBookings = () => {
                                         >
                                           <i className="dripicons-chevron-left"></i>
                                         </Button>
-{console.log("activeTabJustify ::::> ",activeTabJustify)}
+{/* {console.log("activeTabJustify ::::> ",activeTabJustify)} */}
                                         <Button
                                           style={{
                                             marginLeft: 7,

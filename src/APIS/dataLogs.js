@@ -11,8 +11,8 @@ import { DIOM_BASED_URLS } from "../config/url";
 
 
  export const getDataLogs = async (token,currentPage,pageSize) => {
-    return await (
-      await await fetch(
+    // return await (
+      const res= await fetch(
         `${DIOM_BASED_URLS}/hyper-pay-logs?size=${pageSize}&page=${currentPage}`,
         {
           method: "GET",
@@ -22,7 +22,16 @@ import { DIOM_BASED_URLS } from "../config/url";
           },
         }
       )
-    ).json();
+      if (!res.ok) {
+        const resJson = await res.json();
+        throw new Error(resJson.error.message);
+      }
+      const data = await res.json();
+      
+      return {
+        data
+      };
+    // ).json();
   };
 
 

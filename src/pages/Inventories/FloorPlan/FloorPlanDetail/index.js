@@ -10,6 +10,7 @@ import {
   Form,
   Input,
 } from "reactstrap";
+import Switch from "react-switch";
 import { Link } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import Dropzone from "react-dropzone";
@@ -45,6 +46,9 @@ const FloorPlanDetail = () => {
     modal_static1,
     setModal_static1,
     tog_static1,
+    getFloorPlansStatusFunc,
+    Offsymbol,
+    OnSymbol,
   } = useFloorPlanDetail();
 
   const Loader = require("react-loader");
@@ -76,7 +80,21 @@ const FloorPlanDetail = () => {
                       : null}
                   </span>
                 </Col>
-                <Col md={6}></Col>
+                <Col md={5}></Col>
+                <Col md={1}>
+                <Switch
+                      onHandleColor="#16b185"
+                      width={70}
+                      uncheckedIcon={Offsymbol(<small>Inactive</small>)}
+                      checkedIcon={OnSymbol(<small>Active</small>)}
+                      onColor="#a2a2a2"
+                      onChange={(e) => getFloorPlansStatusFunc(e,selectLocationNameById?.floorPlans[0]?._id)}
+                      // checked={locationstite.visibility}
+                      checked={selectLocationNameById.hasOwnProperty('visibility')?selectLocationNameById?.floorPlans[0]?.visibility:true}
+                      className="mr-1 mt-1  "
+                    />
+
+                </Col>
                 <Col md={2}>
                   <Button
                     color="success"
@@ -92,9 +110,15 @@ const FloorPlanDetail = () => {
             <div>
               <Card className="cardcss1">
                 <Row>
-                  <Col md={12}>
+                  <Col md={11}>
                     <p className="itemlables1">Floorplan name</p>
-
+                    </Col>
+                    <Col md={1}>
+                    
+                    </Col>
+                </Row>
+                <Row>
+                  <Col md={12}>
                     <Input
                       type="text"
                       onChange={namefunc}

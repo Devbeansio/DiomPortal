@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./css/CheckedinCustomerDetail.css";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 import BounceLoader from "react-spinners/BounceLoader";
 import ImageAlt from "./imgs/transparentImage.png";
@@ -32,62 +32,7 @@ import "../../Tables/datatables.scss";
 import { useUserProfileDetail } from "./useUserProfileDetail";
 const activeTabJustify = "1";
 const { SearchBar } = Search;
-const columns = [
-  {
-    dataField: "id",
-    text: "No.",
-    sort: true,
-  },
-  {
-    dataField: "_id",
-    text: "Booking ID",
-    sort: true,
-    formatter: (cell, row) => (
-      <Link
-        to={`/bookingdetail/${row._id}/${activeTabJustify}`}
-        className="link"
-      >
-        {cell}
-      </Link>
-    ),
-  },
-  {
-    dataField: "resourceName",
-    text: "Resource",
-    sort: true,
-  },
-  {
-    dataField: "businessName",
-    text: "Location",
-    sort: true,
-  },
-  {
-    dataField: "createdAt",
-    text: "Booking Date",
-    sort: true,
-  },
-  {
-    dataField: "bookingType",
-    text: "Booking Type",
-    sort: true,
-  },
-  {
-    dataField: "invoiceNumber",
-    text: "Invoice ID",
-    sort: true,
-    formatter: (cell, row) => (
-      <Link to={`/invoicesdetailpage/${row.invoiceNumber}`} className="link">
-        {" "}
-        {cell}{" "}
-      </Link>
-    ),
-  },
-  {
-    dataField: "totalAmount",
-    text: "Total Paid",
-    sort: true,
-  },
-];
+
 const defaultSorted = [
   {
     dataField: "id",
@@ -117,6 +62,64 @@ const UserProfileDetail = () => {
 
     changeCurrentPage,
   } = useUserProfileDetail();
+  const location = useLocation()
+  const columns = [
+    {
+      dataField: "id",
+      text: "No.",
+      sort: true,
+    },
+    {
+      dataField: "_id",
+      text: "Booking ID",
+      sort: true,
+      formatter: (cell, row) => (
+        <Link
+        to={{pathname:`/bookingdetail/${row._id}/${activeTabJustify}`,state: { prevPath: location.pathname }}} 
+          className="link"
+        >
+          {cell}
+        </Link>
+      ),
+    },
+    {
+      dataField: "resourceName",
+      text: "Resource",
+      sort: true,
+    },
+    {
+      dataField: "businessName",
+      text: "Location",
+      sort: true,
+    },
+    {
+      dataField: "createdAt",
+      text: "Booking Date",
+      sort: true,
+    },
+    {
+      dataField: "bookingType",
+      text: "Booking Type",
+      sort: true,
+    },
+    {
+      dataField: "invoiceNumber",
+      text: "Invoice ID",
+      sort: true,
+      formatter: (cell, row) => (
+        <Link
+        to={{pathname:`/invoicesdetailpage/${row.invoiceNumber}` ,state: { prevPath: location.pathname }}} className="link">
+          {" "}
+          {cell}{" "}
+        </Link>
+      ),
+    },
+    {
+      dataField: "totalAmount",
+      text: "Total Paid",
+      sort: true,
+    },
+  ];
 
   // const [userActiveBookings, setUserActiveBookings] = useState([
   //   userActivebookingsData,

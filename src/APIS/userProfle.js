@@ -225,13 +225,23 @@ export const getUserScheduledBookings = async (
  */
 
 export const getUserByProfession = async (token = "") => {
-  return await (
-    await await fetch(`${DIOM_BASED_URLS}/general/users/professions`, {
+  // return await (
+    const res =  await fetch(`${DIOM_BASED_URLS}/general/users/professions`, {
       method: "GET",
       redirect: "follow",
       headers: {
         Authorization: "Bearer " + token,
       },
     })
-  ).json();
+
+    if (!res.ok) {
+      const resJson = await res.json();
+      throw new Error(resJson.error.message);
+    }
+    const data = await res.json();
+    
+    return {
+      data
+    };
+  // ).json();
 };

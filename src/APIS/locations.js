@@ -206,7 +206,8 @@ export const getsearchedLocationListing = async (token = "") => {
  */
 
 export const getLocation = async (token, id) => {
-  return await (
+  // return await (
+    const res=
     await fetch(`${DIOM_BASED_URLS}/admin-business-locations/${id}`, {
       method: "GET",
       redirect: "follow",
@@ -214,7 +215,16 @@ export const getLocation = async (token, id) => {
         Authorization: "Bearer " + token,
       },
     })
-  ).json();
+    if (!res.ok) {
+      const resJson = await res.json();
+      throw new Error(resJson.error.message);
+    }
+    const data = await res.json();
+    
+    return {
+      data
+    };
+  // ).json();
 };
 
 /**
@@ -226,7 +236,8 @@ export const getLocation = async (token, id) => {
  */
 
 export const getdiomlocationBrand = async (token) => {
-  return await (
+  // return await (
+    const res = 
     await fetch(`${DIOM_BASED_URLS}/admin-location-categories`, {
       method: "GET",
       redirect: "follow",
@@ -234,5 +245,15 @@ export const getdiomlocationBrand = async (token) => {
         Authorization: "Bearer " + token,
       },
     })
-  ).json();
+
+    if (!res.ok) {
+      const resJson = await res.json();
+      throw new Error(resJson.error.message);
+    }
+    const data = await res.json();
+    
+    return {
+      data
+    };
+  // ).json();
 };

@@ -1,3 +1,4 @@
+import moment from "moment";
 import { DIOM_BASED_URLS } from "../config/url";
 
 export const getreportLocations = async (
@@ -74,7 +75,8 @@ export const getResourcetypereports = async (
   const diomLocationValue = reportFinalValues?.businessId;
  
 
-  return await (
+  // return await (
+    const res = 
     await fetch(
       !resourcetypeApplyFilter || diomLocationValue?.length === 0
         ? `${DIOM_BASED_URLS}/admin-resource-types-inventories`
@@ -88,7 +90,19 @@ export const getResourcetypereports = async (
         },
       }
     )
-  ).json();
+  // ).json();
+  if (!res.ok) {
+    const resJson = await res.json();
+    throw new Error(resJson.error.message);
+  }
+  const resJson = await res.json();
+
+  return {
+    data: resJson?.data,
+    total: resJson.total,
+    hasNextPage: resJson.hasNextPage,
+    hasPreviousPage: resJson.hasPreviousPage,
+  };
 };
 
 
@@ -104,9 +118,9 @@ export const getResourcetypereports = async (
 
  export const getPastreports = async (token,selectedReportType,postFilter,pageSize,currentPage) => {
   
-  
-  return await (
-    await fetch(
+  console.log("selectedReportType : ",selectedReportType)
+  // return await (
+    const res = await fetch(
       !postFilter?
       `${DIOM_BASED_URLS}/reports?page=${currentPage}&size=${pageSize}&filter={"where":{"exported": true}}`
       :`${DIOM_BASED_URLS}/reports?page=1&size=${pageSize}&filter={"where":{"exported": true,"reportType":"${selectedReportType}"}}`,
@@ -119,7 +133,32 @@ export const getResourcetypereports = async (
         },
       }
     )
-  ).json();
+  // ).json();
+  if (!res.ok) {
+    const resJson = await res.json();
+    throw new Error(resJson.error.message);
+  }
+  const resJson = await res.json();
+  
+  const pastreports = resJson?.data.map((e, index) => ({
+    ...e,
+    id: e.id,
+    reportName: e.reportName,
+    reportType: e.reportType,
+    locationBrands:e.locationBrands,
+    business:e.business,
+    resourceTypes:e.resourceTypes,
+    timeSlots:e.timeSlots,
+    userIndustries:e.userIndustries,
+    fileUrl:e.fileUrl,
+    timeRangeTotal:moment(e.fromTime).format("DD-MM-YYYY" )+" "+ moment(e.toTime).format("DD-MM-YYYY" )
+  }));
+  return {
+    data: pastreports,
+    total: resJson.total,
+    hasNextPage: resJson.hasNextPage,
+    hasPreviousPage: resJson.hasPreviousPage,
+  };
 };
 
 
@@ -140,7 +179,8 @@ export const getResourcetypereports = async (
 ) => {
 
 
-  return await (
+  // return 
+  const res =
     await fetch(
       !postFilter?
        
@@ -153,7 +193,33 @@ export const getResourcetypereports = async (
         },
       }
     )
-  ).json();
+  
+  if (!res.ok) {
+    const resJson = await res.json();
+    throw new Error(resJson.error.message);
+  }
+  const resJson = await res.json();
+  
+  const newreports = resJson?.data.map((e, index) => ({
+    ...e,
+    id: e.id,
+    reportName: e.reportName,
+    reportType: e.reportType,
+    locationBrands:e.locationBrands,
+    business:e.business,
+    resourceTypes:e.resourceTypes,
+    timeSlots:e.timeSlots,
+    userIndustries:e.userIndustries,
+    fileUrl:e.fileUrl,
+    timeRangeTotal:moment(e.fromTime).format("DD-MM-YYYY" )+" "+ moment(e.toTime).format("DD-MM-YYYY" )
+  }));
+
+  return {
+    data: newreports,
+    total: resJson.total,
+    hasNextPage: resJson.hasNextPage,
+    hasPreviousPage: resJson.hasPreviousPage,
+  };
 };
 
 

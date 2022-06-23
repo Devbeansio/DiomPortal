@@ -40,7 +40,7 @@ export const getcustomers = async (
       ...e,
       id: index + 1,
       _id: e.id,
-      checkInTime: moment(e.checkInTime).format("DD/MM/YYYY"),
+      checkInTime: moment(e.checkInTime).format("DD/MM/YYYY hh:mm"),
     };
   });
 

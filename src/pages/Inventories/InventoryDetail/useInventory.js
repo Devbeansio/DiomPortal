@@ -8,11 +8,11 @@ export const useInventory = () => {
 
   const { id } = useParams();
 
-  const { data, isLoading, isError, error } = useQuery(["resource", id], () =>
+  const { data, isLoading } = useQuery(["resource", id], () =>
     getResource(id, token)
   );
   const a = useQuery("resource", () => getResource(id, token));
-  // console.log("AA", a);
+ 
 
   const [modal_static, setModal_static] = useState(false);
 
@@ -25,10 +25,9 @@ export const useInventory = () => {
   };
 
   return {
-    isError,
-    error,
+    
     isLoading,
-    resourcesDetails: data,
+    resourcesDetails: data?.data,
     modal_static,
     tog_static,
     setModal_static,

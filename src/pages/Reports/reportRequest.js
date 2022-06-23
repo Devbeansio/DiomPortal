@@ -118,39 +118,58 @@ const ReportRequest = () => {
 
   const columns = [
     {
+      dataField: "id",
+      text: "ID",
+      sort: true,
+      
+    },
+   
+    {
       dataField: "reportType",
       text: "Report Type",
       sort: true,
+      // style: { width: "10%" },
+      
     },
     {
       dataField: "locationBrands",
       text: "Brand(s)",
       sort: true,
+      // style: { width: "15%" },
     },
     {
       dataField: "business",
       text: "Location(s)",
       sort: true,
+      style: { width: "30%" },
     },
     {
       dataField: "resourceTypes",
       text: "Resource Type(s)",
       sort: true,
+      style: { width: "40%" },
+      
+     
     },
     {
       dataField: "timeSlots",
       text: "Time Slot",
       sort: true,
+      
+      style: { width: "20%" },
     },
     {
-      dataField: "startdate",
+      dataField: "timeRangeTotal",
       text: "Date Range",
       sort: true,
+      style: { width: "20%" },
+     
     },
     {
       dataField: "download",
       text: "Download",
       sort: true,
+      // style: { width: "15%" },
       formatter: (cell, row) => (
         <a href={row.fileUrl} download>
           <div>
@@ -213,7 +232,7 @@ const ReportRequest = () => {
                           }}
                         >
                           <span className="d-none d-sm-block reportlinktitle">
-                            Past
+                            New
                           </span>
                         </NavLink>
                       </NavItem>
@@ -228,7 +247,7 @@ const ReportRequest = () => {
                           }}
                         >
                           <span className="d-none d-sm-block reportlinktitle">
-                            New
+                          Past
                           </span>
                         </NavLink>
                       </NavItem>
@@ -291,9 +310,9 @@ const ReportRequest = () => {
                               keyField="id"
                               columns={columns}
                               data={
-                                activeTabJustify === "1"
+                                activeTabJustify === "2"
                                   ? pastReportsDataa
-                                  : activeTabJustify === "2"
+                                  : activeTabJustify === "1"
                                   ? newReportsDataa
                                   : null
                               }
@@ -303,9 +322,9 @@ const ReportRequest = () => {
                                   keyField="id"
                                   columns={columns}
                                   data={
-                                    activeTabJustify === "1"
+                                    activeTabJustify === "2"
                                       ? pastReportsDataa
-                                      : activeTabJustify === "2"
+                                      : activeTabJustify === "1"
                                       ? newReportsDataa
                                       : null
                                   }
@@ -331,7 +350,7 @@ const ReportRequest = () => {
                                               defaultSorted={defaultSorted}
                                               // selectRow={selectRow}
                                               classes={
-                                                "table align-middle table-nowrap"
+                                                "table align-middle "
                                               }
                                               headerWrapperClasses={
                                                 "thead-light"
@@ -407,7 +426,7 @@ const ReportRequest = () => {
                                     >
                                       {currentPage}
                                     </Button>
-                                   {activeTabJustify === "1"?
+                                   {activeTabJustify === "2"?
                                     <Button
                                       style={{
                                         marginLeft: 7,
@@ -423,7 +442,7 @@ const ReportRequest = () => {
                                       }
                                     >
                                       <i className="dripicons-chevron-right"></i>
-                                    </Button>:activeTabJustify === "2"?
+                                    </Button>:activeTabJustify === "1"?
                                      <Button
                                      style={{
                                        marginLeft: 7,

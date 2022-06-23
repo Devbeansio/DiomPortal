@@ -102,8 +102,8 @@ export const getSearchedResourceTypes = async (token = "") => {
  */
 
 export const getResourceResourceType = async (token = "", id) => {
-  return await (
-    await await fetch(
+  // return await (
+    const res = await fetch(
       // `${DIOM_BASED_URLS}/admin-resources-inventories?filter={ "where" : { "businessName" : ${id}}}`,
       `${DIOM_BASED_URLS}/admin-resources-inventories?filter={ "where" : { "ResourceTypeId" : ${id}}}`,
       {
@@ -114,7 +114,16 @@ export const getResourceResourceType = async (token = "", id) => {
         },
       }
     )
-  ).json();
+    if (!res.ok) {
+      const resJson = await res.json();
+      throw new Error(resJson.error.message);
+    }
+    const data = await res.json();
+    
+    return {
+      data:data?.data
+    };
+  // ).json();
 };
 
 /**
@@ -126,8 +135,8 @@ export const getResourceResourceType = async (token = "", id) => {
  */
 
 export const GetLocationfocusdest = async (token = "", resourceTypeKey) => {
-  return await (
-    await await fetch(
+  
+  const res= await fetch(
       `${DIOM_BASED_URLS}/locations/resourcetype/${resourceTypeKey}/locations`,
       {
         method: "GET",
@@ -137,7 +146,16 @@ export const GetLocationfocusdest = async (token = "", resourceTypeKey) => {
         },
       }
     )
-  ).json();
+  // ).json();
+  if (!res.ok) {
+    const resJson = await res.json();
+    throw new Error(resJson.error.message);
+  }
+  const data = await res.json();
+  
+  return await {
+   data
+  };
 };
 
 /**
@@ -149,8 +167,9 @@ export const GetLocationfocusdest = async (token = "", resourceTypeKey) => {
  */
 
 export const getResourcetypeResources = async (token = "", id) => {
-  return await (
-    await await fetch(
+  // return await (
+    const res=
+     await fetch(
       `${DIOM_BASED_URLS}/admin-resource-types-inventories/${id}`,
       {
         method: "GET",
@@ -160,7 +179,16 @@ export const getResourcetypeResources = async (token = "", id) => {
         },
       }
     )
-  ).json();
+  // ).json();
+  if (!res.ok) {
+    const resJson = await res.json();
+    throw new Error(resJson.error.message);
+  }
+  const data = await res.json();
+  
+  return await {
+   data
+  };
 };
 
 /**
@@ -172,8 +200,8 @@ export const getResourcetypeResources = async (token = "", id) => {
  */
 
 export const getHourlyDayRate = async (token = "", id) => {
-  return await (
-    await await fetch(
+  // return await (
+    const res = await fetch(
       `${DIOM_BASED_URLS}/admin-resource-types-inventories/${id}/prices`,
       {
         method: "GET",
@@ -183,7 +211,16 @@ export const getHourlyDayRate = async (token = "", id) => {
         },
       }
     )
-  ).json();
+  // ).json();
+  if (!res.ok) {
+    const resJson = await res.json();
+    throw new Error(resJson.error.message);
+  }
+  const data = await res.json();
+  
+  return await {
+   data
+  };
 };
 
 /**
@@ -195,13 +232,22 @@ export const getHourlyDayRate = async (token = "", id) => {
  */
 
 export const getlocationsresourceTypes = async (token = "", id) => {
-  return await (
-    await await fetch(`${DIOM_BASED_URLS}/admin-business-locations`, {
+  // return await (
+    const res = await fetch(`${DIOM_BASED_URLS}/admin-business-locations`, {
       method: "GET",
       redirect: "follow",
       headers: {
         Authorization: "Bearer " + token,
       },
     })
-  ).json();
+    if (!res.ok) {
+      const resJson = await res.json();
+      throw new Error(resJson.error.message);
+    }
+    const data = await res.json();
+    
+    return await {
+     data 
+    };
+  // ).json();
 };
