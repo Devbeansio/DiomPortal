@@ -2,17 +2,13 @@
 
 exports.__esModule = true;
 exports.default = void 0;
-var DPI = 72; // 72pt per inch.
 
-var MM_FACTOR = 1 / 25.4 * DPI;
-var CM_FACTOR = 1 / 2.54 * DPI;
 /**
  * Parses scalar value in value and unit pairs
  *
  * @param {String} scalar value
  * @returns {Object} parsed value
  */
-
 var parseValue = function parseValue(value) {
   var match = /^(-?\d*\.?\d+)(in|mm|cm|pt|vh|vw|px)?$/g.exec(value);
   return match ? {
@@ -34,16 +30,19 @@ var parseValue = function parseValue(value) {
 
 var transformUnit = function transformUnit(container, value) {
   var scalar = parseValue(value);
+  var dpi = container.dpi || 72;
+  var mmFactor = 1 / 25.4 * dpi;
+  var cmFactor = 1 / 2.54 * dpi;
 
   switch (scalar.unit) {
     case 'in':
-      return scalar.value * DPI;
+      return scalar.value * dpi;
 
     case 'mm':
-      return scalar.value * MM_FACTOR;
+      return scalar.value * mmFactor;
 
     case 'cm':
-      return scalar.value * CM_FACTOR;
+      return scalar.value * cmFactor;
 
     case 'vh':
       return scalar.value * (container.height / 100);

@@ -195,8 +195,12 @@ function InvoicesDetailPage() {
                   </Col>
                 </Row>
                 <Row>
-                  <Col></Col>
-                  <Col></Col>
+                  <Col>     <p className="invoicesdetailslabel">Discount Code</p></Col>
+                  <Col>
+                  <p className="invoicedetailsdata">
+                      {InvoiceData.discountCode ? InvoiceData.discountCode : "---/-"}
+                    </p>
+                  </Col>
                   <Col className="">
                     <p className="invoicesdetailslabel">Booking Start</p>
                   </Col>
@@ -207,8 +211,12 @@ function InvoicesDetailPage() {
                   </Col>
                 </Row>
                 <Row>
-                  <Col></Col>
-                  <Col></Col>
+                  <Col>  <p className="invoicesdetailslabel">Discount Amount</p></Col>
+                  <Col>
+                  <p className="invoicedetailsdata">
+                      {InvoiceData.discountAmount ? InvoiceData.discountAmount : "---/-"}
+                    </p>
+                  </Col>
                   <Col className="">
                     <p className="invoicesdetailslabel">Booking End</p>
                   </Col>

@@ -2,12 +2,10 @@
 
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault").default;
 
-var _interopRequireWildcard = require("@babel/runtime/helpers/interopRequireWildcard").default;
-
 exports.__esModule = true;
 exports.transformColor = exports.processTransform = exports.default = void 0;
 
-var R = _interopRequireWildcard(require("ramda"));
+var _fns = require("@react-pdf/fns");
 
 var _expand = _interopRequireDefault(require("./expand"));
 
@@ -33,10 +31,13 @@ exports.processTransform = _transform2.default;
  * @returns {Object} resolved style object
  */
 var resolveStyles = function resolveStyles(container, style) {
-  return R.compose((0, _transform.default)(container), _expand.default, (0, _mediaQueries.default)(container), _flatten.default)(style);
+  var computeMediaQueries = function computeMediaQueries(value) {
+    return (0, _mediaQueries.default)(container, value);
+  };
+
+  return (0, _fns.compose)((0, _transform.default)(container), _expand.default, computeMediaQueries, _flatten.default)(style);
 }; // Utils exported for SVG processing
 
 
-var _default = R.curryN(2, resolveStyles);
-
+var _default = resolveStyles;
 exports.default = _default;

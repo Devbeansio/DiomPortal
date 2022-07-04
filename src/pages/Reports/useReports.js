@@ -91,12 +91,17 @@ const UseReports = () => {
   };
 
   const timeSlotHandler = (e) => {
+
     const timeSlotLabel = e.map((element) => {
       return element.label;
     });
     const timeSlotValue = e.map((element) => {
       return element.value;
     });
+
+    console.log("label : ",timeSlotLabel)
+    console.log("value : ",timeSlotValue)
+
     setreportFinalValues({ ...reportFinalValues, timeSlot: timeSlotValue });
     setReportFinalLabels({ ...reportFinalLabels, timeSlot: timeSlotLabel });
   };

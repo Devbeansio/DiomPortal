@@ -4,8 +4,8 @@
   "private": true,
   "homepage": "https://diom-admin-panel.devbeans.io",
   "dependencies": {
-    "@emotion/react": "^11.9.0",
-    "@emotion/styled": "^11.8.1",
+    "@emotion/react": "^11.9.3",
+    "@emotion/styled": "^11.9.3",
     "@fullcalendar/bootstrap": "^5.7.0",
     "@fullcalendar/core": "^5.7.0",
     "@fullcalendar/daygrid": "^5.7.0",
@@ -13,6 +13,7 @@
     "@fullcalendar/react": "^5.7.0",
     "@lourenci/react-kanban": "^2.1.0",
     "@mongodb-js/charts-embed-dom": "^2.2.0",
+    "@mui/material": "^5.8.6",
     "@react-pdf-viewer/open": "^2.11.0",
     "@react-pdf/renderer": "^2.0.21",
     "@testing-library/jest-dom": "^5.12.0",

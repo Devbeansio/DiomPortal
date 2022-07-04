@@ -1,14 +1,12 @@
 "use strict";
 
-var _interopRequireWildcard = require("@babel/runtime/helpers/interopRequireWildcard").default;
-
 exports.__esModule = true;
 exports.default = void 0;
-
-var R = _interopRequireWildcard(require("ramda"));
-
 var BORDER_SHORTHAND_REGEX = /(-?\d+(\.\d+)?(px|in|mm|cm|pt|vw|vh|px)?)\s(\S+)\s(.+)/;
-var matchBorderShorthand = R.match(BORDER_SHORTHAND_REGEX);
+
+var matchBorderShorthand = function matchBorderShorthand(value) {
+  return value.match(BORDER_SHORTHAND_REGEX) || [];
+};
 
 var expandBorders = function expandBorders(key, value) {
   var match = matchBorderShorthand("" + value);

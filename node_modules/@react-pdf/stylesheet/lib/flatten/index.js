@@ -1,32 +1,19 @@
 "use strict";
 
-var _interopRequireWildcard = require("@babel/runtime/helpers/interopRequireWildcard").default;
-
 exports.__esModule = true;
 exports.default = void 0;
 
-var R = _interopRequireWildcard(require("ramda"));
+var _fns = require("@react-pdf/fns");
 
-var isNotArray = R.complement(R.is(Array));
-var castArray = R.when(isNotArray, function (v) {
-  return [v];
-});
 /**
  * Remove nil values from array
  *
  * @param {Array} array
  * @returns {Array} array without nils
  */
-
-var compact = R.filter(Boolean);
-/**
- * Checks if value is array
- *
- * @param {any} value
- * @returns {Boolean} is value an array
- */
-
-var isArray = R.is(Array);
+var compact = function compact(array) {
+  return array.filter(Boolean);
+};
 /**
  * Merges style objects array
  *
@@ -34,9 +21,10 @@ var isArray = R.is(Array);
  * @returns {Object} merged style object
  */
 
+
 var mergeStyles = function mergeStyles(styles) {
   return styles.reduce(function (acc, style) {
-    var s = isArray(style) ? flatten(style) : style;
+    var s = Array.isArray(style) ? flatten(style) : style;
     Object.keys(s).forEach(function (key) {
       if (s[key] !== null && s[key] !== undefined) {
         acc[key] = s[key];
@@ -53,6 +41,6 @@ var mergeStyles = function mergeStyles(styles) {
  */
 
 
-var flatten = R.compose(mergeStyles, compact, castArray);
+var flatten = (0, _fns.compose)(mergeStyles, compact, _fns.castArray);
 var _default = flatten;
 exports.default = _default;

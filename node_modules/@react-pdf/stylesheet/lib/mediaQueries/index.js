@@ -1,15 +1,11 @@
 "use strict";
 
-var _interopRequireWildcard = require("@babel/runtime/helpers/interopRequireWildcard").default;
-
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault").default;
 
 exports.__esModule = true;
 exports.default = void 0;
 
 var _extends3 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
-
-var R = _interopRequireWildcard(require("ramda"));
 
 var _mediaEngine = _interopRequireDefault(require("media-engine"));
 
@@ -33,6 +29,5 @@ var resolveMediaQueries = function resolveMediaQueries(container, styles) {
   }, {});
 };
 
-var _default = R.curryN(2, resolveMediaQueries);
-
+var _default = resolveMediaQueries;
 exports.default = _default;
