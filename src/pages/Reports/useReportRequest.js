@@ -5,9 +5,10 @@ import { getNewreports, getPastreports } from "../../APIS/reports";
 import { QueryClient ,useQueryClient} from "react-query";
 import { DIOM_BASED_URLS } from "../../config/url";
 import { toast } from "react-toastify";
+import { useHistory } from "react-router-dom";
 
 const useReportRequest = () => {
- 
+  let history = useHistory();
   const { enqueueSnackbar } = useSnackbar();
   const token = localStorage.getItem("Token");
   const [currentPage, setCurrentPage] = useState(1);
@@ -109,7 +110,7 @@ const useReportRequest = () => {
     },
     isLoading,
   } = usePaginatedQuery(["pastReprtssData", `${selectedReportType}, ${pageSize},${currentPage}`], () =>
-    getPastreports(token, selectedReportType, postFilter,pageSize,currentPage)
+    getPastreports(token, selectedReportType, postFilter,pageSize,currentPage,history)
   );
   // *************
   // *************
@@ -122,7 +123,7 @@ const useReportRequest = () => {
       refetch: newReportsRefteh,
     },
   } = usePaginatedQuery(["newReportssData", , `${selectedReportType},${pageSize},${currentPage}`], () =>
-    getNewreports(token, selectedReportType, postFilter,pageSize,currentPage)
+    getNewreports(token, selectedReportType, postFilter,pageSize,currentPage,history)
   );
 
 

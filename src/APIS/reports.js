@@ -70,7 +70,8 @@ export const getreportLocationBrand = async (token) => {
 export const getResourcetypereports = async (
   token = "",
   resourcetypeApplyFilter,
-  reportFinalValues
+  reportFinalValues,
+  history
 ) => {
   const diomLocationValue = reportFinalValues?.businessId;
  
@@ -92,6 +93,11 @@ export const getResourcetypereports = async (
     )
   // ).json();
   if (!res.ok) {
+    if(res.status === 401){
+      history.push("/login");
+      throw new Error(resJson.error.message);
+   
+  }
     const resJson = await res.json();
     throw new Error(resJson.error.message);
   }
@@ -116,7 +122,7 @@ export const getResourcetypereports = async (
  * @returns a list of Past in DIOM
  */
 
- export const getPastreports = async (token,selectedReportType,postFilter,pageSize,currentPage) => {
+ export const getPastreports = async (token,selectedReportType,postFilter,pageSize,currentPage,history) => {
   
   console.log("selectedReportType : ",selectedReportType)
   // return await (
@@ -135,6 +141,11 @@ export const getResourcetypereports = async (
     )
   // ).json();
   if (!res.ok) {
+    if(res.status === 401){
+      history.push("/login");
+      throw new Error(resJson.error.message);
+   
+  }
     const resJson = await res.json();
     throw new Error(resJson.error.message);
   }
@@ -175,7 +186,7 @@ export const getResourcetypereports = async (
  */
 
  export const getNewreports = async (
-  token,selectedReportType,postFilter,pageSize,currentPage
+  token,selectedReportType,postFilter,pageSize,currentPage,history
 ) => {
 
 
@@ -195,6 +206,11 @@ export const getResourcetypereports = async (
     )
   
   if (!res.ok) {
+    if(res.status === 401){
+      history.push("/login");
+      throw new Error(resJson.error.message);
+   
+  }
     const resJson = await res.json();
     throw new Error(resJson.error.message);
   }

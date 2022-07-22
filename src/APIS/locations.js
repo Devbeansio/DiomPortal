@@ -116,7 +116,8 @@ export const getLocationListing = async (
   page = 1,
   token = "",
   applyFilter = false,
-  filters = {}
+  filters = {},
+  history
 ) => {
   const res = await fetch(
     !applyFilter
@@ -132,6 +133,11 @@ export const getLocationListing = async (
     }
   );
   if (!res.ok) {
+    if(res.status === 401){
+      history.push("/login");
+      throw new Error(resJson.error.message);
+   
+  }
     const resJson = await res.json();
     throw new Error(resJson.error.message);
   }
@@ -162,7 +168,7 @@ export const getLocationListing = async (
  * @returns a list of all searched locations in DIOM
  */
 
-export const getsearchedLocationListing = async (token = "") => {
+export const getsearchedLocationListing = async (token = "",history) => {
   const res = await fetch(
     `${DIOM_BASED_URLS}/admin-business-locations`,
 
@@ -175,6 +181,11 @@ export const getsearchedLocationListing = async (token = "") => {
     }
   );
   if (!res.ok) {
+    if(res.status === 401){
+      history.push("/login");
+      throw new Error(resJson.error.message);
+   
+  }
     const resJson = await res.json();
     throw new Error(resJson.error.message);
   }
@@ -205,7 +216,7 @@ export const getsearchedLocationListing = async (token = "") => {
  * @returns a list of location in DIOM
  */
 
-export const getLocation = async (token, id) => {
+export const getLocation = async (token, id,history) => {
   // return await (
     const res=
     await fetch(`${DIOM_BASED_URLS}/admin-business-locations/${id}`, {
@@ -216,6 +227,11 @@ export const getLocation = async (token, id) => {
       },
     })
     if (!res.ok) {
+      if(res.status === 401){
+        history.push("/login");
+        throw new Error(resJson.error.message);
+     
+    }
       const resJson = await res.json();
       throw new Error(resJson.error.message);
     }
@@ -235,7 +251,7 @@ export const getLocation = async (token, id) => {
  * @returns a list of getdiomlocationBrand in DIOM
  */
 
-export const getdiomlocationBrand = async (token) => {
+export const getdiomlocationBrand = async (token,history) => {
   // return await (
     const res = 
     await fetch(`${DIOM_BASED_URLS}/admin-location-categories`, {
@@ -247,6 +263,11 @@ export const getdiomlocationBrand = async (token) => {
     })
 
     if (!res.ok) {
+      if(res.status === 401){
+        history.push("/login");
+        throw new Error(resJson.error.message);
+     
+    }
       const resJson = await res.json();
       throw new Error(resJson.error.message);
     }

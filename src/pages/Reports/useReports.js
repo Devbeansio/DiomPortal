@@ -15,6 +15,7 @@ import { useAllDataQuery, usePaginatedQuery } from "../../hooks/query";
 import { DIOM_BASED_URLS } from "../../config/url";
 import { toast } from "react-toastify";
 import { exportApiFunc } from "../../APIS/reports";
+import { useHistory } from "react-router-dom";
 
 // const exportApiFunc =( requestOptions,enqueueSnackbar) => {
 // fetch(`${DIOM_BASED_URLS}/reports`, requestOptions
@@ -22,6 +23,7 @@ import { exportApiFunc } from "../../APIS/reports";
 // }
 
 const UseReports = () => {
+  let history = useHistory();
   const { enqueueSnackbar } = useSnackbar();
   const token = localStorage.getItem("Token");
   const providerRef = React.useRef();
@@ -245,7 +247,7 @@ const UseReports = () => {
   const resourceTypedropdownData = useQuery(
     ["resourceTypedropdownreports", reportFinalValues?.businessId],
     () =>
-      getResourcetypereports(token, resourcetypeApplyFilter, reportFinalValues)
+      getResourcetypereports(token, resourcetypeApplyFilter, reportFinalValues,history)
   );
 
   const resourceTypedropdownDailedData = resourceTypedropdownData.data;
@@ -267,7 +269,7 @@ const UseReports = () => {
 
   // **************
   const userByProfession = useQuery(["getuserbyprofession"], () =>
-    getUserByProfession(token)
+    getUserByProfession(token,history)
   );
   const userByProfessionData = userByProfession?.data;
   const userByProfessionDataa = userByProfessionData?.data?.data;

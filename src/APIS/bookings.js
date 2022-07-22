@@ -8,7 +8,7 @@ import moment from "moment";
  * @param {JWT} token
  * @returns a list of BOOKING in DIOM
  */
-export const getBooking = async (token = "", id) => {
+export const getBooking = async (token = "", id,history) => {
   // return await (
     const res = await fetch(`${DIOM_BASED_URLS}/admin-diom-bookings/${id}`, {
       method: "GET",
@@ -19,6 +19,11 @@ export const getBooking = async (token = "", id) => {
     })
   // ).json();
   if (!res.ok) {
+    if(res.status === 401){
+      history.push("/login");
+      throw new Error(resJson.error.message);
+   
+  }
     const resJson = await res.json();
     throw new Error(resJson.error.message);
   }
@@ -37,7 +42,7 @@ export const getBooking = async (token = "", id) => {
  * @returns a list of guests in DIOM
  */
 
-export const getGuest = async (token = "", id) => {
+export const getGuest = async (token = "", id,history) => {
   // return await (
    const res =  await fetch(`${DIOM_BASED_URLS}/admin-booking-guest/booking/${id}`, {
       method: "GET",
@@ -48,6 +53,11 @@ export const getGuest = async (token = "", id) => {
     })
 
     if (!res.ok) {
+      if(res.status === 401){
+        history.push("/login");
+        throw new Error(resJson.error.message);
+     
+    }
       const resJson = await res.json();
       throw new Error(resJson.error.message);
     }
@@ -67,7 +77,7 @@ export const getGuest = async (token = "", id) => {
  * @returns a list of bookinguserdata in DIOM
  */
 
-export const getbookinguser = async (token, id) => {
+export const getbookinguser = async (token, id,history) => {
   // if (id) {
   // return await (
     const res = await fetch(`${DIOM_BASED_URLS}/users/${id}`, {
@@ -79,6 +89,11 @@ export const getbookinguser = async (token, id) => {
     })
 
     if (!res.ok) {
+      if(res.status === 401){
+        history.push("/login");
+        throw new Error(resJson.error.message);
+     
+    }
       const resJson = await res.json();
       throw new Error(resJson.error.message);
     }
@@ -99,7 +114,7 @@ export const getbookinguser = async (token, id) => {
  * @returns a list of bookings locations in DIOM
  */
 
-export const getbookinglocations = async (token = "") => {
+export const getbookinglocations = async (token = "",history) => {
   // return await (
    const res =  await fetch(
       `${DIOM_BASED_URLS}/admin-business-locations?filter={"where":{"visibility":true}}`,
@@ -113,6 +128,11 @@ export const getbookinglocations = async (token = "") => {
     )
 
     if (!res.ok) {
+      if(res.status === 401){
+        history.push("/login");
+        throw new Error(resJson.error.message);
+     
+    }
       const resJson = await res.json();
       throw new Error(resJson.error.message);
     }
@@ -134,7 +154,8 @@ export const gettodaysbookings = async (
   page = 1,
   token = "",
   applyFilter = false,
-  filters = {}
+  filters = {},
+  history
 ) => {
   // console.log("filters :", filters);
   // console.log("applyFilter : ", applyFilter);
@@ -152,6 +173,11 @@ export const gettodaysbookings = async (
   );
 
   if (!res.ok) {
+    if(res.status === 401){
+      history.push("/login");
+      throw new Error(resJson.error.message);
+   
+  }
     const resJson = await res.json();
     throw new Error(resJson.error.message);
   }
@@ -195,7 +221,8 @@ export const getschduleddbookings = async (
   page = 1,
   token = "",
   applyFilter = false,
-  filters = {}
+  filters = {},
+  history
 ) => {
   const res = await fetch(
     !applyFilter
@@ -211,6 +238,11 @@ export const getschduleddbookings = async (
   );
 
   if (!res.ok) {
+    if(res.status === 401){
+      history.push("/login");
+      throw new Error(resJson.error.message);
+   
+  }
     const resJson = await res.json();
     throw new Error(resJson.error.message);
   }
@@ -251,7 +283,8 @@ export const getPasttbookings = async (
   page = 1,
   token = "",
   applyFilter = false,
-  filters = {}
+  filters = {},
+  history
 ) => {
   const res = await fetch(
     !applyFilter
@@ -267,6 +300,11 @@ export const getPasttbookings = async (
   );
 
   if (!res.ok) {
+    if(res.status === 401){
+      history.push("/login");
+      throw new Error(resJson.error.message);
+   
+  }
     const resJson = await res.json();
     throw new Error(resJson.error.message);
   }

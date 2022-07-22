@@ -160,6 +160,7 @@ class SidebarContent extends Component {
                 </li>
               </ul>
             </li>
+          
 
             {/* <li>
               <Link to="/addapackage" className="waves-effect">
@@ -199,6 +200,13 @@ class SidebarContent extends Component {
                 <span className="ml-1">{this.props.t("Finance")}</span>
               </Link>
             </li>
+            {/* <li>
+            <li>
+                  <Link to="/fullcalender" className="waves-effect">
+                    <span className="ml-1">{this.props.t("Calender")}</span>
+                  </Link>
+                </li>
+            </li> */}
 
 
             

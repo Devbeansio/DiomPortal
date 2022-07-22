@@ -6,8 +6,10 @@ import {
   getSearchedResourceTypes,
 } from "../../../APIS/resourceType";
 import { getLocations } from "../../../APIS";
+import { useHistory } from "react-router-dom";
 
 export const useResourceType = () => {
+  let history = useHistory();
   const [isOpen, setIsOpen] = useState(false);
   const token = localStorage.getItem("Token");
   const [currentPage, setCurrentPage] = useState(1);
@@ -21,14 +23,14 @@ export const useResourceType = () => {
     data: { data: resourceTypeData, hasNextPage, hasPreviousPage, total },
     isLoading,
   } = usePaginatedQuery(["resourceTypes", pageSize, currentPage, filter], () =>
-    getResourceTypes(pageSize, currentPage, token, applyLocationFilter, filter)
+    getResourceTypes(pageSize, currentPage, token, applyLocationFilter, filter,history)
   );
   
 
   const {
     data: { data: searchedresourceTypeData },
   } = usePaginatedQuery(["searchedresourceTypes",`${pageSize}`,`${currentPage}`], () =>
-    getSearchedResourceTypes(token)
+    getSearchedResourceTypes(token,history)
   );
 
   const { data: locationsData, isLoading: loadingLocations } = useAllDataQuery(

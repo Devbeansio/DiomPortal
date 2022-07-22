@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import { useQueryClient } from "react-query";
+import { useHistory } from "react-router-dom";
 import { getFloorplans } from "../../../APIS/floorplans";
 import { usePaginatedQuery } from "../../../hooks/query";
 
 export const useFloorplans = () => {
+  let history = useHistory();
   const [isOpen, setIsOpen] = useState(false);
   const token = localStorage.getItem("Token");
   const [currentPage, setCurrentPage] = useState(1);
@@ -15,7 +17,7 @@ export const useFloorplans = () => {
     data: { data: floorPlansData, hasNextPage, hasPreviousPage, total },
     isLoading,
   } = usePaginatedQuery(["fllorplans", currentPage], () =>
-    getFloorplans(pageSize, currentPage, token)
+    getFloorplans(pageSize, currentPage, token,history)
   );
 
   const toggle = () => {
@@ -42,7 +44,7 @@ export const useFloorplans = () => {
     if (hasNextPage) {
       const nextPage = currentPage + 1;
       queryClient.prefetchQuery(["fllorplans", nextPage], () =>
-        getFloorplans(pageSize, nextPage, token)
+        getFloorplans(pageSize, nextPage, token,history)
       );
     }
   }, [currentPage, queryClient]);

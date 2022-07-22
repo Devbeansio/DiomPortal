@@ -8,7 +8,7 @@ import moment from "moment";
  * @returns a list of all userProfile in DIOM
  */
 
-export const getuserprofile = async (size = 30, page = 1, token = "") => {
+export const getuserprofile = async (size = 30, page = 1, token = "",history) => {
   const res = await fetch(
     `${DIOM_BASED_URLS}/users?size=${size}&page=${page}`,
 
@@ -21,6 +21,11 @@ export const getuserprofile = async (size = 30, page = 1, token = "") => {
     }
   );
   if (!res.ok) {
+    if(res.status === 401){
+      history.push("/login");
+      throw new Error(resJson.error.message);
+   
+  }
     const resJson = await res.json();
     throw new Error(resJson.error.message);
   }
@@ -50,7 +55,7 @@ export const getuserprofile = async (size = 30, page = 1, token = "") => {
  * @returns a list of one user in DIOM
  */
 
-export const getuserdetails = async (size = 30, page = 1, token = "", id) => {
+export const getuserdetails = async (size = 30, page = 1, token = "", id,history) => {
   const res = await fetch(
     `${DIOM_BASED_URLS}/users/${id}?size=${size}&page=${page}`,
 
@@ -63,6 +68,11 @@ export const getuserdetails = async (size = 30, page = 1, token = "", id) => {
     }
   );
   if (!res.ok) {
+    if(res.status === 401){
+      history.push("/login");
+      throw new Error(resJson.error.message);
+   
+  }
     const resJson = await res.json();
     throw new Error(resJson.error.message);
   }
@@ -89,7 +99,8 @@ export const getUseractivebookings = async (
   size = 30,
   page = 1,
   token = "",
-  id
+  id,
+  history
 ) => {
   const res = await fetch(
     `${DIOM_BASED_URLS}/admin-diom-bookings/${id}/active?size=${size}&page=${page}`,
@@ -103,6 +114,11 @@ export const getUseractivebookings = async (
     }
   );
   if (!res.ok) {
+    if(res.status === 401){
+      history.push("/login");
+      throw new Error(resJson.error.message);
+   
+  }
     const resJson = await res.json();
     throw new Error(resJson.error.message);
   }
@@ -134,7 +150,8 @@ export const getUserPastBookings = async (
   size = 30,
   page = 1,
   token = "",
-  id
+  id,
+  history
 ) => {
   const res = await fetch(
     `${DIOM_BASED_URLS}/bookings/users/${id}/history?size=${size}&page=${page}`,
@@ -148,6 +165,11 @@ export const getUserPastBookings = async (
     }
   );
   if (!res.ok) {
+    if(res.status === 401){
+      history.push("/login");
+      throw new Error(resJson.error.message);
+   
+  }
     const resJson = await res.json();
     throw new Error(resJson.error.message);
   }
@@ -182,7 +204,8 @@ export const getUserScheduledBookings = async (
   size = 30,
   page = 1,
   token = "",
-  id
+  id,
+  history
 ) => {
   const res = await fetch(
     `${DIOM_BASED_URLS}/bookings/users/${id}/scheduled?size=${size}&page=${page}`,
@@ -196,6 +219,11 @@ export const getUserScheduledBookings = async (
     }
   );
   if (!res.ok) {
+    if(res.status === 401){
+      history.push("/login");
+      throw new Error(resJson.error.message);
+   
+  }
     const resJson = await res.json();
     throw new Error(resJson.error.message);
   }
@@ -224,7 +252,7 @@ export const getUserScheduledBookings = async (
  * @returns a list of user  by profession in DIOM
  */
 
-export const getUserByProfession = async (token = "") => {
+export const getUserByProfession = async (token = "",history) => {
   // return await (
     const res =  await fetch(`${DIOM_BASED_URLS}/general/users/professions`, {
       method: "GET",
@@ -235,6 +263,11 @@ export const getUserByProfession = async (token = "") => {
     })
 
     if (!res.ok) {
+      if(res.status === 401){
+        history.push("/login");
+        throw new Error(resJson.error.message);
+     
+    }
       const resJson = await res.json();
       throw new Error(resJson.error.message);
     }

@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { DIOM_BASED_URLS } from "../../../config/url";
 import { getdiomlocationBrand, getLocation } from "../../../APIS/locations";
 import { useQueryClient, useQuery } from "react-query";
 
 const UseLocationDetailed = () => {
+  let history = useHistory();
   const QueryClient = useQueryClient();
   const [modal_static, setModal_static] = useState(false);
   const [locationstite, setLocationstitle] = useState({});
@@ -524,7 +525,7 @@ const UseLocationDetailed = () => {
 
   // *************
   const Locationdata = useQuery(["locations", id], () =>
-    getLocation(token, id)
+    getLocation(token, id,history)
   );
   const getLocationdata = Locationdata?.data?.data;
   const isLoading = Locationdata?.data;
@@ -537,7 +538,7 @@ const UseLocationDetailed = () => {
 
   // *************
   const diomlocationBrandddata = useQuery(["locationbrands", id], () =>
-    getdiomlocationBrand(token)
+    getdiomlocationBrand(token,history)
   );
   const diomlocationBrandata = diomlocationBrandddata?.data?.data;
 

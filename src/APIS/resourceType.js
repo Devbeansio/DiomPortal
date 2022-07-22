@@ -13,7 +13,8 @@ export const getResourceTypes = async (
   page,
   token = "",
   applyFilter = false,
-  filters = {}
+  filters = {},
+  history
 ) => {
   const res = await fetch(
     !applyFilter
@@ -29,6 +30,11 @@ export const getResourceTypes = async (
     }
   );
   if (!res.ok) {
+    if(res.status === 401){
+      history.push("/login");
+      throw new Error(resJson.error.message);
+   
+  }
     const resJson = await res.json();
     throw new Error(resJson.error.message);
   }
@@ -59,7 +65,7 @@ export const getResourceTypes = async (
  * @returns  searched resource types
  */
 
-export const getSearchedResourceTypes = async (token = "") => {
+export const getSearchedResourceTypes = async (token = "",history) => {
   const res = await fetch(
     `${DIOM_BASED_URLS}/admin-resource-types-inventories`,
 
@@ -72,6 +78,11 @@ export const getSearchedResourceTypes = async (token = "") => {
     }
   );
   if (!res.ok) {
+    if(res.status === 401){
+      history.push("/login");
+      throw new Error(resJson.error.message);
+   
+  }
     const resJson = await res.json();
     throw new Error(resJson.error.message);
   }
@@ -101,7 +112,7 @@ export const getSearchedResourceTypes = async (token = "") => {
  * @returns a list of resourcetype  in DIOM
  */
 
-export const getResourceResourceType = async (token = "", id) => {
+export const getResourceResourceType = async (token = "", id,history) => {
   // return await (
     const res = await fetch(
       // `${DIOM_BASED_URLS}/admin-resources-inventories?filter={ "where" : { "businessName" : ${id}}}`,
@@ -115,6 +126,11 @@ export const getResourceResourceType = async (token = "", id) => {
       }
     )
     if (!res.ok) {
+      if(res.status === 401){
+        history.push("/login");
+        throw new Error(resJson.error.message);
+     
+    }
       const resJson = await res.json();
       throw new Error(resJson.error.message);
     }
@@ -134,7 +150,7 @@ export const getResourceResourceType = async (token = "", id) => {
  * @returns a list of GetLocationfocusdest  in DIOM
  */
 
-export const GetLocationfocusdest = async (token = "", resourceTypeKey) => {
+export const GetLocationfocusdest = async (token = "", resourceTypeKey,history) => {
   
   const res= await fetch(
       `${DIOM_BASED_URLS}/locations/resourcetype/${resourceTypeKey}/locations`,
@@ -148,6 +164,11 @@ export const GetLocationfocusdest = async (token = "", resourceTypeKey) => {
     )
   // ).json();
   if (!res.ok) {
+    if(res.status === 401){
+      history.push("/login");
+      throw new Error(resJson.error.message);
+   
+  }
     const resJson = await res.json();
     throw new Error(resJson.error.message);
   }
@@ -166,7 +187,7 @@ export const GetLocationfocusdest = async (token = "", resourceTypeKey) => {
  * @returns a list of getallresources  in DIOM
  */
 
-export const getResourcetypeResources = async (token = "", id) => {
+export const getResourcetypeResources = async (token = "", id,history) => {
   // return await (
     const res=
      await fetch(
@@ -181,6 +202,11 @@ export const getResourcetypeResources = async (token = "", id) => {
     )
   // ).json();
   if (!res.ok) {
+    if(res.status === 401){
+      history.push("/login");
+      throw new Error(resJson.error.message);
+   
+  }
     const resJson = await res.json();
     throw new Error(resJson.error.message);
   }
@@ -199,7 +225,7 @@ export const getResourcetypeResources = async (token = "", id) => {
  * @returns a list of gethourlyDayRateFunc  in DIOM
  */
 
-export const getHourlyDayRate = async (token = "", id) => {
+export const getHourlyDayRate = async (token = "", id,history) => {
   // return await (
     const res = await fetch(
       `${DIOM_BASED_URLS}/admin-resource-types-inventories/${id}/prices`,
@@ -213,6 +239,11 @@ export const getHourlyDayRate = async (token = "", id) => {
     )
   // ).json();
   if (!res.ok) {
+    if(res.status === 401){
+      history.push("/login");
+      throw new Error(resJson.error.message);
+   
+  }
     const resJson = await res.json();
     throw new Error(resJson.error.message);
   }
@@ -231,7 +262,7 @@ export const getHourlyDayRate = async (token = "", id) => {
  * @returns a list of getalllocationsfunc  in DIOM
  */
 
-export const getlocationsresourceTypes = async (token = "", id) => {
+export const getlocationsresourceTypes = async (token = "", id,history) => {
   // return await (
     const res = await fetch(`${DIOM_BASED_URLS}/admin-business-locations`, {
       method: "GET",
@@ -241,6 +272,11 @@ export const getlocationsresourceTypes = async (token = "", id) => {
       },
     })
     if (!res.ok) {
+      if(res.status === 401){
+        history.push("/login");
+        throw new Error(resJson.error.message);
+     
+    }
       const resJson = await res.json();
       throw new Error(resJson.error.message);
     }

@@ -4,8 +4,10 @@ import { usePaginatedQuery } from "../../../hooks/query";
 import { getTaxation } from "../../../APIS/taxation";
 import { useQueryClient } from "react-query";
 import LoaderHook from "./../../../hooks/loaderHook";
+import { useHistory } from "react-router-dom";
 
 export const useTaxation = () => {
+  let history = useHistory();
   const { setLoading } = LoaderHook();
   const [isOpen, setIsOpen] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
@@ -18,7 +20,7 @@ export const useTaxation = () => {
     data: { data: taxationData, hasNextPage, hasPreviousPage, total },
     isLoading,
   } = usePaginatedQuery(["taxation", `${pageSize}`,`${currentPage}`], () =>
-    getTaxation(pageSize, currentPage, token)
+    getTaxation(pageSize, currentPage, token,history)
   );
 
   const toggle = () => {
@@ -52,7 +54,7 @@ export const useTaxation = () => {
     if (hasNextPage) {
       const nextPage = currentPage + 1;
       queryClient.prefetchQuery(["taxation", `${pageSize}`,`${currentPage}`], () =>
-        getTaxation(pageSize, nextPage, token)
+        getTaxation(pageSize, nextPage, token,history)
       );
     }
   }, [currentPage, queryClient]);

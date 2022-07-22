@@ -1,3 +1,4 @@
+import { useHistory } from "react-router-dom";
 import { DIOM_BASED_URLS } from "../config/url";
 
 /**
@@ -7,13 +8,16 @@ import { DIOM_BASED_URLS } from "../config/url";
  * @param {JWT} token
  * @returns a list of all resource in DIOM
  */
+
 export const getResources = async (
   size,
   page,
   token = "",
   applyFilter = false,
-  filters = {}
+  filters = {},
+  history
 ) => {
+
   // console.log("page : ", page);
   const res = await fetch(
     !applyFilter
@@ -29,6 +33,12 @@ export const getResources = async (
   );
 
   if (!res.ok) {
+    
+    if(res.status === 401){
+      history.push("/login");
+      throw new Error(resJson.error.message);
+   
+  }
     const resJson = await res.json();
     throw new Error(resJson.error.message);
   }
@@ -55,7 +65,7 @@ export const getResources = async (
  * @param {JWT} token
  * @returns a list of all resource in DIOM
  */
-export const getSearchedResources = async (token) => {
+export const getSearchedResources = async (token,history) => {
   const res = await fetch(`${DIOM_BASED_URLS}/admin-resources-inventories`, {
     method: "GET",
     redirect: "follow",
@@ -65,6 +75,11 @@ export const getSearchedResources = async (token) => {
   });
 
   if (!res.ok) {
+    if(res.status === 401){
+      history.push("/login");
+      throw new Error(resJson.error.message);
+   
+  }
     const resJson = await res.json();
     throw new Error(resJson.error.message);
   }
@@ -90,7 +105,7 @@ export const getSearchedResources = async (token) => {
  * @param {JWT} token
  * @returns  object of a single resource
  */
-export const getResource = async (id, token) => {
+export const getResource = async (id, token,history) => {
   // return await (
     const res =
     await fetch(`${DIOM_BASED_URLS}/admin-resources-inventories/${id}`, {
@@ -102,6 +117,11 @@ export const getResource = async (id, token) => {
     })
 
     if (!res.ok) {
+      if(res.status === 401){
+        history.push("/login");
+        throw new Error(resJson.error.message);
+     
+    }
       const resJson = await res.json();
       throw new Error(resJson.error.message);
     }

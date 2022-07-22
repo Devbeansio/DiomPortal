@@ -8,7 +8,7 @@ import { DIOM_BASED_URLS } from "../config/url";
  * @returns a list of all LocationBrands in DIOM
  */
 
-export const getLocationBrands = async (size = 30, page = 1, token = "") => {
+export const getLocationBrands = async (size = 30, page = 1, token = "",history) => {
   const res = await fetch(
     `${DIOM_BASED_URLS}/admin-location-categories`,
 
@@ -21,6 +21,11 @@ export const getLocationBrands = async (size = 30, page = 1, token = "") => {
     }
   );
   if (!res.ok) {
+    if(res.status === 401){
+      history.push("/login");
+      throw new Error(resJson.error.message);
+   
+  }
     const resJson = await res.json();
     throw new Error(resJson.error.message);
   }
@@ -48,7 +53,7 @@ export const getLocationBrands = async (size = 30, page = 1, token = "") => {
  * @returns a list of all LocationBrands in DIOM
  */
 
-export const getLocationBrand = async (token = "", id) => {
+export const getLocationBrand = async (token = "", id,history) => {
   const res = await fetch(
     `${DIOM_BASED_URLS}/admin-location-categories/${id}`,
     {
@@ -60,6 +65,11 @@ export const getLocationBrand = async (token = "", id) => {
     }
   );
   if (!res.ok) {
+    if(res.status === 401){
+      history.push("/login");
+      throw new Error(resJson.error.message);
+   
+  }
     const resJson = await res.json();
     throw new Error(resJson.error.message);
   }
@@ -75,7 +85,7 @@ export const getLocationBrand = async (token = "", id) => {
  * @returns a Brand Detail in DIOM
  */
 
-export const getBranddDetail = async (token = "", id) => {
+export const getBranddDetail = async (token = "", id,history) => {
   // return await (
     const res = await fetch(`${DIOM_BASED_URLS}/admin-location-categories/${id}`, {
       method: "GET",
@@ -85,6 +95,11 @@ export const getBranddDetail = async (token = "", id) => {
       },
     })
     if (!res.ok) {
+      if(res.status === 401){
+        history.push("/login");
+        throw new Error(resJson.error.message);
+     
+    }
       const resJson = await res.json();
       throw new Error(resJson.error.message);
     }
@@ -104,7 +119,7 @@ export const getBranddDetail = async (token = "", id) => {
  * @returns a Brand Detail dropdown in DIOM
  */
 
-export const getBranddDetaildropdown = async (token = "", id) => {
+export const getBranddDetaildropdown = async (token = "", id,history) => {
   // return await (
     const res = await fetch(
       `${DIOM_BASED_URLS}/admin-location-categories/${id}/locations`,
@@ -117,6 +132,11 @@ export const getBranddDetaildropdown = async (token = "", id) => {
       }
     )
     if (!res.ok) {
+      if(res.status === 401){
+        history.push("/login");
+        throw new Error(resJson.error.message);
+     
+    }
       const resJson = await res.json();
       throw new Error(resJson.error.message);
     }
@@ -136,7 +156,7 @@ export const getBranddDetaildropdown = async (token = "", id) => {
  * @returns a Brand Detail all location in DIOM
  */
 
-export const getBrandallocationdropdown = async (token = "", id) => {
+export const getBrandallocationdropdown = async (token = "", id,history) => {
   // return await (
     const res =  await fetch(`${DIOM_BASED_URLS}/admin-business-locations`, {
       method: "GET",
@@ -146,6 +166,11 @@ export const getBrandallocationdropdown = async (token = "", id) => {
       },
     })
     if (!res.ok) {
+      if(res.status === 401){
+        history.push("/login");
+        throw new Error(resJson.error.message);
+     
+    }
       const resJson = await res.json();
       throw new Error(resJson.error.message);
     }

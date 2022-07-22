@@ -4,8 +4,10 @@ import { getcustomers } from "../../../APIS/customerCheckedIn";
 import { usePaginatedQuery } from "../../../hooks/query";
 import { getcheckInLocations, getLocations } from "../../../APIS";
 import { useAllDataQuery } from "../../../hooks/query";
+import { useHistory } from "react-router-dom";
 
 export const useCheckedInCustomer = () => {
+  let history = useHistory();
   const [filter, setFilter] = useState("");
   const [isOpen, setIsOpen] = useState(false);
   const token = localStorage.getItem("Token");
@@ -18,7 +20,7 @@ export const useCheckedInCustomer = () => {
     data: { data: customerCheckInData, hasNextPage, hasPreviousPage, total },
     isLoading,
   } = usePaginatedQuery(["checkedcustomers",`${pageSize}`,`${currentPage}`,`${filter}`], () =>
-    getcustomers(filter, pageSize, currentPage, token, applyLocationFilter)
+    getcustomers(filter, pageSize, currentPage, token, applyLocationFilter,history)
   );
   const { data: locationsData, isLoading: loadingLocations } = useAllDataQuery(
     ["locations", "visible"],
@@ -61,7 +63,7 @@ export const useCheckedInCustomer = () => {
     if (hasNextPage) {
       const nextPage = currentPage + 1;
       queryClient.prefetchQuery(["checkedcustomer", `${pageSize}`,`${currentPage}`,`${filter}`], () =>
-        getcustomers(filter, pageSize, nextPage, token, applyLocationFilter)
+        getcustomers(filter, pageSize, nextPage, token, applyLocationFilter,history)
       );
     }
   }, [currentPage, queryClient]);

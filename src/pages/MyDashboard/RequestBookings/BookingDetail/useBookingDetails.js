@@ -25,7 +25,7 @@ export const useBookingDetails = () => {
 
   // *************
   const bookingData = useQuery(["bookingsDetails", id], () =>
-    getBooking(token, id)
+    getBooking(token, id,history)
   );
   const bookingsDailedData = bookingData?.data?.data;
 
@@ -38,7 +38,7 @@ export const useBookingDetails = () => {
   };
 
   const bookingguestData = useQuery(["guestDetails", id], () =>
-    getGuest(token, id)
+    getGuest(token, id,history)
   );
   const bookingsguestData = bookingguestData?.data?.data;
 
@@ -50,7 +50,7 @@ export const useBookingDetails = () => {
   const bookinguserData = useQuery(
     ["userDetails", id],
 
-    () => getbookinguser(token, bookingsDailedData?.userId),
+    () => getbookinguser(token, bookingsDailedData?.userId,history),
     { enabled: bookingsDailedData ? true : false }
   );
 

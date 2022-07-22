@@ -11,6 +11,7 @@ import { getschduleddbookings } from "../../../APIS/bookings";
 import { getPasttbookings } from "../../../APIS/bookings";
 
 const UseRequestBookings = () => {
+  let history = useHistory();
   const [isOpen, setIsOpen] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [pageSize, setPageSize] = useState(50);
@@ -93,7 +94,17 @@ const UseRequestBookings = () => {
     })
       .then((response) => response.json())
       .then((result) => {
+        if(result.statusCode === 200){
+        console.log("i am revoked result",result.message)
         toast.success("Booking Revoked");
+        }
+        else if(result.statusCode === 204){
+          console.log("i am revoked result",result.message)
+          toast.success("Booking Revoked");
+          }
+          else{
+            toast.success("You can not revoke a past booking");
+          }
 
         setModal_static1(false);
         if (activeTabJustify === "1") {
@@ -144,7 +155,7 @@ const UseRequestBookings = () => {
     data: { data: todayBookingsdata, hasNextPage, hasPreviousPage, total },
     isLoading,
   } = usePaginatedQuery(["gettodaysbookings", `${pageSize}`,`${currentPage}`, `${filter}`], () =>
-    gettodaysbookings(pageSize, currentPage, token, applyLocationFilter, filter)
+    gettodaysbookings(pageSize, currentPage, token, applyLocationFilter, filter,history)
   );
 
   useEffect(() => {
@@ -157,7 +168,8 @@ const UseRequestBookings = () => {
           nextPage,
           token,
           applyLocationFilter,
-          filter
+          filter,
+          history
         )
       );
     }
@@ -186,7 +198,7 @@ const UseRequestBookings = () => {
       total: pastTotal,
     },
   } = usePaginatedQuery(["getpastbookings", `${pageSize}`,`${currentPage}`, `${filter}`], () =>
-    getPasttbookings(pageSize, currentPage, token, applyLocationFilter, filter)
+    getPasttbookings(pageSize, currentPage, token, applyLocationFilter, filter,history)
   );
 
   useEffect(() => {
@@ -194,7 +206,7 @@ const UseRequestBookings = () => {
     if (hasNextPage) {
       const nextPage = currentPage + 1;
       queryClient.prefetchQuery(["getpastbookings", `${pageSize}`,`${currentPage}`, `${filter}`], () =>
-        getPasttbookings(pageSize, nextPage, token, applyLocationFilter, filter)
+        getPasttbookings(pageSize, nextPage, token, applyLocationFilter, filter,history)
       );
     }
   }, [currentPage, queryClient, applyLocationFilter]);
@@ -218,7 +230,8 @@ const UseRequestBookings = () => {
       currentPage,
       token,
       applyLocationFilter,
-      filter
+      filter,
+      history
     )
   );
 
@@ -232,7 +245,8 @@ const UseRequestBookings = () => {
           nextPage,
           token,
           applyLocationFilter,
-          filter
+          filter,
+          history
         )
       );
     }

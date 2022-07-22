@@ -10,8 +10,9 @@ import { DIOM_BASED_URLS } from "../config/url";
  */
 
 
- export const getDataLogs = async (token,currentPage,pageSize) => {
+ export const getDataLogs = async (token,currentPage,pageSize,history) => {
     // return await (
+      
       const res= await fetch(
         `${DIOM_BASED_URLS}/hyper-pay-logs?size=${pageSize}&page=${currentPage}`,
         {
@@ -23,6 +24,11 @@ import { DIOM_BASED_URLS } from "../config/url";
         }
       )
       if (!res.ok) {
+        if(res.status === 401){
+          history.push("/login");
+          throw new Error(resJson.error.message);
+       
+      }
         const resJson = await res.json();
         throw new Error(resJson.error.message);
       }

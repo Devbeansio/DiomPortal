@@ -9,7 +9,9 @@ import {
   getUsersCard,
 } from "../../APIS/dashboard";
 import { on } from "process";
+import { useHistory } from "react-router-dom";
 const UseDashboard = () => {
+  let history = useHistory();
   const today = moment().format("YYYY-MM ");
   const token = localStorage.getItem("Token");
   const t_ID = "1";
@@ -36,27 +38,27 @@ const UseDashboard = () => {
 
   // *******Finance******
   const dashboardFinanceCardddata = useQuery(["FinanceCards"], () =>
-    getFinanceCard(token)
+    getFinanceCard(token,history)
   );
   const financeCardddata = dashboardFinanceCardddata?.data?.data;
   // *******General******
   const dashboardGeneralCardddata = useQuery(["GeneralCards"], () =>
-    getGenaralCard(token)
+    getGenaralCard(token,history)
   );
   const generalCardddata = dashboardGeneralCardddata?.data?.data;
   // *******Location******
   const dashboardLocationCardddata = useQuery(["LocationCards"], () =>
-    getLocationCard(token)
+    getLocationCard(token,history)
   );
   const locationCardddata = dashboardLocationCardddata?.data?.data;
   // *******Brand******
   const dashboardBrandCardddata = useQuery(["BrandCards"], () =>
-    getBrandCard(token)
+    getBrandCard(token,history)
   );
   const brandCardddata = dashboardBrandCardddata?.data?.data;
   // *******Brand******
   const dashboardUsersCardddata = useQuery(["UsersCards"], () =>
-    getUsersCard(token)
+    getUsersCard(token,history)
   );
   const usersCardddata = dashboardUsersCardddata?.data?.data;
   return {

@@ -9,7 +9,7 @@ import moment from "moment";
  * @returns a list of all resource in DIOM
  */
 
-export const getFloorplans = async (size = 30, page = 1, token = "") => {
+export const getFloorplans = async (size = 30, page = 1, token = "",history) => {
   const res = await fetch(
     `${DIOM_BASED_URLS}/admin-business-locations?filter={"where":{"visibility":true}}`,
 
@@ -22,6 +22,11 @@ export const getFloorplans = async (size = 30, page = 1, token = "") => {
     }
   );
   if (!res.ok) {
+    if(res.status === 401){
+      history.push("/login");
+      throw new Error(resJson.error.message);
+   
+  }
     const resJson = await res.json();
     throw new Error(resJson.error.message);
   }
@@ -50,7 +55,7 @@ export const getFloorplans = async (size = 30, page = 1, token = "") => {
  * @returns a floor plan names in DIOM
  */
 
-export const getFloorPlansNames = async (token = "", floorid) => {
+export const getFloorPlansNames = async (token = "", floorid,history) => {
   // return await (
     const res =  await fetch(
       `${DIOM_BASED_URLS}/admin-business-locations/${floorid}`,
@@ -63,6 +68,11 @@ export const getFloorPlansNames = async (token = "", floorid) => {
       }
     )
     if (!res.ok) {
+      if(res.status === 401){
+        history.push("/login");
+        throw new Error(resJson.error.message);
+     
+    }
       const resJson = await res.json();
       throw new Error(resJson.error.message);
     }

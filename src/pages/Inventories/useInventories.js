@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import { QueryClient, useQuery, useQueryClient } from "react-query";
+import { useHistory } from "react-router-dom";
 import { getResources, getLocations, getSearchedResources } from "../../APIS";
 import { useAllDataQuery, usePaginatedQuery } from "../../hooks/query";
 export const useInventories = () => {
+  let history = useHistory();
   const [isOpen, setIsOpen] = useState(false);
   const token = localStorage.getItem("Token");
   const [currentPage, setCurrentPage] = useState(1);
@@ -27,7 +29,8 @@ export const useInventories = () => {
         currentPage,
         token,
         applyLocationFilter,
-        filter
+        filter,
+        history
       ),
     {
       keepPreviousData: true,
@@ -44,7 +47,7 @@ export const useInventories = () => {
   const {
     data: { data: resourcessearchedData },
   } = usePaginatedQuery(["searcehdresources",`${pageSize}`,`${currentPage}`], () =>
-    getSearchedResources(token)
+    getSearchedResources(token,history)
   );
 
   const { data: locationsData, isLoading: loadingLocations } = useAllDataQuery(
@@ -91,7 +94,7 @@ export const useInventories = () => {
       // console.log("dkakhdkjs dhakjs", ["resources", nextPage, filter]);
       queryClient.prefetchQuery(
         ["resources", nextPage, filter],
-        async () => await getResources(pageSize, nextPage, token)
+        async () => await getResources(pageSize, nextPage, token,history)
       );
     }
   }, [currentPage, filter]);

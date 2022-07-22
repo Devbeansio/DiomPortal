@@ -8,8 +8,9 @@ import { DIOM_BASED_URLS } from "../config/url";
  * @returns a Finance in DIOM
  */
 
-export const getFinanceCard = async (token = "") => {
+export const getFinanceCard = async (token = "",history) => {
   // return await (
+ 
     const res = await fetch(`${DIOM_BASED_URLS}/stats/finance`, {
       method: "GET",
       redirect: "follow",
@@ -18,6 +19,11 @@ export const getFinanceCard = async (token = "") => {
       },
     })
     if (!res.ok) {
+      if(res.status === 401){
+        history.push("/login");
+        throw new Error(resJson.error.message);
+     
+    }
       const resJson = await res.json();
       throw new Error(resJson.error.message);
     }
@@ -37,8 +43,9 @@ export const getFinanceCard = async (token = "") => {
  * @returns a General in DIOM
  */
 
-export const getGenaralCard = async (token = "") => {
+export const getGenaralCard = async (token = "",history) => {
   // return await (
+   
     const res = await fetch(`${DIOM_BASED_URLS}/stats/general`, {
       method: "GET",
       redirect: "follow",
@@ -47,6 +54,11 @@ export const getGenaralCard = async (token = "") => {
       },
     })
     if (!res.ok) {
+      if(res.status === 401){
+        history.push("/login");
+        throw new Error(resJson.error.message);
+     
+    }
       const resJson = await res.json();
       throw new Error(resJson.error.message);
     }
@@ -66,7 +78,7 @@ export const getGenaralCard = async (token = "") => {
  * @returns a Location in DIOM
  */
 
-export const getLocationCard = async (token = "") => {
+export const getLocationCard = async (token = "",history) => {
   // return await (
     const res =  await fetch(`${DIOM_BASED_URLS}/stats/locations`, {
       method: "GET",
@@ -77,6 +89,11 @@ export const getLocationCard = async (token = "") => {
     })
   // ).json();
   if (!res.ok) {
+    if(res.status === 401){
+      history.push("/login");
+      throw new Error(resJson.error.message);
+   
+  }
     const resJson = await res.json();
     throw new Error(resJson.error.message);
   }
@@ -95,7 +112,7 @@ export const getLocationCard = async (token = "") => {
  * @returns a brand in DIOM
  */
 
-export const getBrandCard = async (token = "") => {
+export const getBrandCard = async (token = "",history) => {
   // return await (
     const res= await fetch(`${DIOM_BASED_URLS}/stats/brands`, {
       method: "GET",
@@ -105,6 +122,11 @@ export const getBrandCard = async (token = "") => {
       },
     })
     if (!res.ok) {
+      if(res.status === 401){
+        history.push("/login");
+        throw new Error(resJson.error.message);
+     
+    }
       const resJson = await res.json();
       throw new Error(resJson.error.message);
     }
@@ -124,7 +146,7 @@ export const getBrandCard = async (token = "") => {
  * @returns a users in DIOM
  */
 
-export const getUsersCard = async (token = "") => {
+export const getUsersCard = async (token = "",history) => {
   // return await (
     const res =  await fetch(`${DIOM_BASED_URLS}/stats/users`, {
       method: "GET",
@@ -135,6 +157,11 @@ export const getUsersCard = async (token = "") => {
     })
   // ).json();
   if (!res.ok) {
+    if(res.status === 401){
+      history.push("/login");
+      throw new Error(resJson.error.message);
+   
+  }
     const resJson = await res.json();
     throw new Error(resJson.error.message);
   }

@@ -2,12 +2,13 @@ import { useEffect, useState } from "react";
 import { useQueryClient } from "react-query";
 import { usePaginatedQuery } from "../../../hooks/query";
 import { getuserdetails } from "../../../APIS/userProfle";
-import { useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { getUseractivebookings } from "../../../APIS/userProfle";
 import { getUserPastBookings } from "../../../APIS/userProfle";
 import { getUserScheduledBookings } from "../../../APIS/userProfle";
 
 export const useUserProfileDetail = () => {
+  let history = useHistory();
   const [isOpen, setIsOpen] = useState(false);
   const { id } = useParams();
   const token = localStorage.getItem("Token");
@@ -21,24 +22,24 @@ export const useUserProfileDetail = () => {
     data: { data: userdetailsData },
     isLoading,
   } = usePaginatedQuery(["userprofiledetails", id], () =>
-    getuserdetails(pageSize, currentPage, token, id)
+    getuserdetails(pageSize, currentPage, token, id,history)
   );
 
   const {
     data: { data: userActivebookingsData, hasNextPage, hasPreviousPage, total },
   } = usePaginatedQuery(["activebookings", `${pageSize}`,`${currentPage}`], () =>
-    getUseractivebookings(pageSize, currentPage, token, id)
+    getUseractivebookings(pageSize, currentPage, token, id,history)
   );
   const {
     data: { data: userPastBookingsData,hasNextPage:pastHasNextPage },
   } = usePaginatedQuery(["pastbookings", `${pageSize}`,`${currentPage}`], () =>
-    getUserPastBookings(pageSize, currentPage, token, id)
+    getUserPastBookings(pageSize, currentPage, token, id,history)
   );
 
   const {
     data: { data: userScheduledBookingsData ,hasNextPage:scheduledHasNextPage},
   } = usePaginatedQuery(["scheduledbookings", `${pageSize}`,`${currentPage}`], () =>
-    getUserScheduledBookings(pageSize, currentPage, token, id)
+    getUserScheduledBookings(pageSize, currentPage, token, id,history)
   );
 
   const toggle = () => {
@@ -70,7 +71,7 @@ export const useUserProfileDetail = () => {
     if (hasNextPage) {
       const nextPage = currentPage + 1;
       queryClient.prefetchQuery(["userprofiledetails", nextPage], () =>
-        getuserdetails(pageSize, currentPage, token, id)
+        getuserdetails(pageSize, currentPage, token, id,history)
       );
     }
   }, [currentPage, queryClient]);

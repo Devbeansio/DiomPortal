@@ -12,7 +12,8 @@ export const getTaxation = async (
   size = 30,
   page = 1,
   token = "",
-  applyFilter = false
+  applyFilter = false,
+  history
 ) => {
   const res = await fetch(`${DIOM_BASED_URLS}/admin-finances/taxes`, {
     method: "GET",
@@ -22,6 +23,11 @@ export const getTaxation = async (
     },
   });
   if (!res.ok) {
+    if(res.status === 401){
+      history.push("/login");
+      throw new Error(resJson.error.message);
+   
+  }
     const resJson = await res.json();
     throw new Error(resJson.error.message);
   }

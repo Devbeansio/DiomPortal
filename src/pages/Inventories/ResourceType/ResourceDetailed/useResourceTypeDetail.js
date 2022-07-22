@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { DIOM_BASED_URLS } from "../../../../config/url";
-import { useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useQueryClient, useQuery } from "react-query";
 
@@ -12,6 +12,7 @@ import {
   getResourceResourceType,
 } from "../../../../APIS/resourceType";
 const UseResourceTypeDetail = () => {
+  let history = useHistory();
   const QueryClient = useQueryClient();
   const [error, setError] = useState(null);
   const [resourceDetailes, setResourceDetailes] = useState([]);
@@ -40,32 +41,65 @@ const UseResourceTypeDetail = () => {
     setEnableEdit(true);
   };
   const getresourcetypeStatusFunc = async (e) => {
-    const response = await fetch(
-      `${DIOM_BASED_URLS}/admin-resource-types-inventories/${id}/togglevisibility`,
-      {
-        method: "PATCH",
-        redirect: "follow",
 
-        headers: {
-          Accept: "application/json, text/plain",
-          "Content-Type": "application/json;charset=UTF-8",
-          Authorization: "Bearer " + token,
-        },
-        body: JSON.stringify({
-          visibility: e,
-        }),
-      }
-    );
-
-    if (!response.ok) {
-      const message = `An error has occured: ${response.status}`;
-      throw new Error(message);
-    } else {
-      toast.success(response.message);
-
+    await fetch(
+        `${DIOM_BASED_URLS}/admin-resource-types-inventories/${id}/togglevisibility`,
+        {
+          method: "PATCH",
+          // redirect: "follow",
+  
+          headers: {
+            Accept: "application/json, text/plain",
+            "Content-Type": "application/json;charset=UTF-8",
+            Authorization: "Bearer " + token,
+          },
+          body: JSON.stringify({
+            visibility: e,
+          }),
+        }
+      ).then(response=>response.json())
+      .then((response)=>{
+        if (!response.ok) {
+          toast.success(response?.error?.message);
+        }
+        else {
       QueryClient.invalidateQueries("resourcetypeResources");
+        }
+        // console.log("i am ",response);
+      })
+    //   // .catch(error => { console.log('request failed', error); });
     }
-  };
+  //   const response = await fetch(
+  //     `${DIOM_BASED_URLS}/admin-resource-types-inventories/${id}/togglevisibility`,
+  //     {
+  //       method: "PATCH",
+  //       // redirect: "follow",
+
+  //       headers: {
+  //         Accept: "application/json, text/plain",
+  //         "Content-Type": "application/json;charset=UTF-8",
+  //         Authorization: "Bearer " + token,
+  //       },
+  //       body: JSON.stringify({
+  //         visibility: e,
+  //       }),
+  //     }
+  //   );
+    
+
+  //   if (!response.ok) {
+  //     console.log("THis->>>>", response.text())
+  //     const message = `An error has occured: ${response.statusText}`;
+  //     toast.error(response?.error?.message)
+  //     throw new Error(message);
+  //   } else {
+  //     console.log("resource ,",response)
+  //     toast.success(response.message);
+  //     // toast.error(response.statusText)
+
+  //     QueryClient.invalidateQueries("resourcetypeResources");
+  //   }
+  // };
 
   function Offsymbol(text) {
     return (
@@ -286,7 +320,7 @@ const UseResourceTypeDetail = () => {
 
   const resourceResourcetypesdata = useQuery(
     ["resourceResourcetypdata", id],
-    () => getResourceResourceType(token, id)
+    () => getResourceResourceType(token, id,history)
   );
   const resourceResourcetypedata = resourceResourcetypesdata.data;
 
@@ -299,7 +333,7 @@ const UseResourceTypeDetail = () => {
   // *************
 
   const Locationfocusdest = useQuery(["Locationfocusdest", id], () =>
-    GetLocationfocusdest(token, resourceTypeKey)
+    GetLocationfocusdest(token, resourceTypeKey,history)
   );
   
   const Locationfocusdestdata = Locationfocusdest?.data?.data;
@@ -314,7 +348,7 @@ const UseResourceTypeDetail = () => {
   // *************
 
   const resourcetypeResources = useQuery(["resourcetypeResources", id], () =>
-    getResourcetypeResources(token, id)
+    getResourcetypeResources(token, id,history)
   );
   
   const resourcetypeResourcesdata = resourcetypeResources?.data?.data;
@@ -329,7 +363,7 @@ const UseResourceTypeDetail = () => {
   // *************
 
   const getHourlydayrate = useQuery(["gethourlydayrate", id], () =>
-    getHourlyDayRate(token, id)
+    getHourlyDayRate(token, id,history)
   );
   const getHourlydayrateData = getHourlydayrate?.data?.data;
 
@@ -352,7 +386,7 @@ const UseResourceTypeDetail = () => {
 
   // *************
   const locationsresourceTypes = useQuery(["locationsresourceTypes", id], () =>
-    getlocationsresourceTypes(token, id)
+    getlocationsresourceTypes(token, id,history)
   );
   const locationsresourceTypesdata = locationsresourceTypes?.data?.data;
   // *************

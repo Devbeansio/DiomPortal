@@ -1,10 +1,12 @@
 import React,{useState,useEffect} from 'react'
 import { useQuery } from 'react-query';
+import { useHistory } from 'react-router-dom';
 import { getDataLogs } from '../../APIS/dataLogs';
 import { DIOM_BASED_URLS } from '../../config/url';
 import { useAllDataQuery, usePaginatedQuery } from '../../hooks/query';
 
 const UseDataLogs = () => {
+  let history = useHistory();
     const token = localStorage.getItem("Token");
     const [modal_static, setModal_static] = useState(false);
     const[logsDataDetail,setLogsDataDetail]=useState();
@@ -17,7 +19,7 @@ const UseDataLogs = () => {
 
     const { data:logsDataa } = useAllDataQuery(
         ["GetDataLogsss",`${currentPage}` ,`${pageSize}`],
-        () => getDataLogs(token,currentPage,pageSize)
+        () => getDataLogs(token,currentPage,pageSize,history)
       );
       const logsData = logsDataa?.data?.data;
       const hasNextPage = logsDataa?.data?.hasNextPage;

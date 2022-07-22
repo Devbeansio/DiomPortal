@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import { useQueryClient } from "react-query";
+import { useHistory } from "react-router-dom";
 import { getLocationBrands } from "../../../APIS/locationBrands";
 import { usePaginatedQuery } from "../../../hooks/query";
 
 export const useLocationBrands = () => {
+  let history = useHistory();
   const [isOpen, setIsOpen] = useState(false);
   const token = localStorage.getItem("Token");
   const [currentPage, setCurrentPage] = useState(1);
@@ -15,7 +17,7 @@ export const useLocationBrands = () => {
     data: { data: locationBrandsData, hasNextPage, hasPreviousPage, total },
     isLoading,
   } = usePaginatedQuery(["locationbrands", `${pageSize}`,`${currentPage}`], () =>
-    getLocationBrands(pageSize, currentPage, token)
+    getLocationBrands(pageSize, currentPage, token,history)
   );
 
   const toggle = () => {
@@ -40,7 +42,7 @@ export const useLocationBrands = () => {
     if (hasNextPage) {
       const nextPage = currentPage + 1;
       queryClient.prefetchQuery(["locationbrands", `${pageSize}`,`${currentPage}`], () =>
-        getLocationBrands(pageSize, nextPage, token)
+        getLocationBrands(pageSize, nextPage, token,history)
       );
     }
   }, [currentPage, queryClient]);

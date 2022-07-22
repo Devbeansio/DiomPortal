@@ -4,7 +4,9 @@ import { getInvoices } from "../../../APIS/invoices";
 // import { useAllDataQuery, usePaginatedQuery } from "../../hooks/query";
 import { usePaginatedQuery } from "../../../hooks/query";
 import LoaderHook from "../../../hooks/loaderHook";
+import { useHistory } from "react-router-dom";
 export const useInvoices = () => {
+  let history = useHistory();
   const { setLoading } = LoaderHook();
   const [isOpen, setIsOpen] = useState(false);
   const token = localStorage.getItem("Token");
@@ -17,7 +19,7 @@ export const useInvoices = () => {
     data: { data: Invoiceslistingdata, hasNextPage, hasPreviousPage, total },
     isLoading,
   } = usePaginatedQuery(["Invoices", `${pageSize}`,`${currentPage}`], () =>
-    getInvoices(pageSize, currentPage, token)
+    getInvoices(pageSize, currentPage, token,history)
   );
 
   const toggle = () => {
@@ -49,7 +51,7 @@ export const useInvoices = () => {
     if (hasNextPage) {
       const nextPage = currentPage + 1;
       queryClient.prefetchQuery(["Invoices", `${pageSize}`,`${currentPage}`], () =>
-        getInvoices(pageSize, nextPage, token)
+        getInvoices(pageSize, nextPage, token,history)
       );
     }
   }, [currentPage, queryClient, isLoading]);

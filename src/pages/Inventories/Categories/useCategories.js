@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import { useQueryClient } from "react-query";
+import { useHistory } from "react-router-dom";
 import { getCategories } from "../../../APIS/categories";
 import { usePaginatedQuery } from "../../../hooks/query";
 export const useCategories = () => {
+  let history = useHistory();
   const [isOpen, setIsOpen] = useState(false);
   const token = localStorage.getItem("Token");
   const [currentPage, setCurrentPage] = useState(1);
@@ -14,7 +16,7 @@ export const useCategories = () => {
     data: { data: categoriesData, hasNextPage, hasPreviousPage, total },
     isLoading,
   } = usePaginatedQuery(["categories", `${pageSize}`,`${currentPage}`], () =>
-    getCategories(pageSize, currentPage, token)
+    getCategories(pageSize, currentPage, token,history)
   );
 
   const toggle = () => {
@@ -42,7 +44,7 @@ export const useCategories = () => {
     if (hasNextPage) {
       const nextPage = currentPage + 1;
       queryClient.prefetchQuery(["categories", `${pageSize}`,`${currentPage}`], () =>
-        getCategories(pageSize, nextPage, token)
+        getCategories(pageSize, nextPage, token,history)
       );
     }
   }, [currentPage, queryClient]);

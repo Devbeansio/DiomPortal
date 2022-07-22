@@ -9,6 +9,7 @@ import { getResourcetypeDropdown } from "../../../../APIS/categories";
 import { getCategoryDetaildropdown } from "../../../../APIS/categories";
 
 const UseCategoryDetail = () => {
+  let history = useHistory();
   const QueryClient = useQueryClient();
   const [error, setError] = useState(null);
   const [selectedMulti, setSelectedMulti] = useState([]);
@@ -254,7 +255,7 @@ const UseCategoryDetail = () => {
 
   // *************
   const categoryData = useQuery(["categpryDetails", id], () =>
-    getCategoryDetails(token, id)
+    getCategoryDetails(token, id,history)
   );
   const categoryDailedData = categoryData?.data?.data;
   // console.log("categoryDailedData =======>>>>: ", categoryDailedData);
@@ -266,7 +267,7 @@ const UseCategoryDetail = () => {
 
   // *************
   const categorydropdownData = useQuery(["categpryDetaildropdown", id], () =>
-    getCategoryDetaildropdown(token, id)
+    getCategoryDetaildropdown(token, id,history)
   );
   const categorydropdownDailedData = categorydropdownData?.data?.data;
 
@@ -287,7 +288,7 @@ const UseCategoryDetail = () => {
 
   // *************
   const resourceTypedropdownData = useQuery(["resourceTypedropdown", id], () =>
-    getResourcetypeDropdown(token, id)
+    getResourcetypeDropdown(token, id,history)
   );
   const resourceTypedropdownDailedData = resourceTypedropdownData?.data?.data;
   const isLoading = resourceTypedropdownData.isLoading;

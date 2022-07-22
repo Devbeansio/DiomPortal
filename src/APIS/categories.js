@@ -8,7 +8,7 @@ import { DIOM_BASED_URLS } from "../config/url";
  * @returns a list of all resource in DIOM
  */
 
-export const getCategories = async (size = 30, page = 1, token = "") => {
+export const getCategories = async (size = 30, page = 1, token = "",history) => {
   const res = await fetch(
     `${DIOM_BASED_URLS}/resource-type-categories`,
 
@@ -21,6 +21,11 @@ export const getCategories = async (size = 30, page = 1, token = "") => {
     }
   );
   if (!res.ok) {
+    if(res.status === 401){
+      history.push("/login");
+      throw new Error(resJson.error.message);
+   
+  }
     const resJson = await res.json();
     throw new Error(resJson.error.message);
   }
@@ -48,7 +53,7 @@ export const getCategories = async (size = 30, page = 1, token = "") => {
  * @returns a list of category details in DIOM
  */
 
-export const getCategoryDetails = async (token = "", id) => {
+export const getCategoryDetails = async (token = "", id,history) => {
   // return await (
     const res= await fetch(`${DIOM_BASED_URLS}/resource-type-categories/${id}`, {
       method: "GET",
@@ -59,6 +64,11 @@ export const getCategoryDetails = async (token = "", id) => {
     })
   // ).json();
   if (!res.ok) {
+    if(res.status === 401){
+      history.push("/login");
+      throw new Error(resJson.error.message);
+   
+  }
     const resJson = await res.json();
     throw new Error(resJson.error.message);
   }
@@ -77,7 +87,7 @@ export const getCategoryDetails = async (token = "", id) => {
  * @returns a list of category detail dropdown in DIOM
  */
 
-export const getCategoryDetaildropdown = async (token = "", id) => {
+export const getCategoryDetaildropdown = async (token = "", id,history) => {
   // return await (
     const res= await fetch(
       `${DIOM_BASED_URLS}/admin-resource-types-inventories?filter={"where":{"resourceTypeCategoryId":"${id}"}}`,
@@ -90,6 +100,11 @@ export const getCategoryDetaildropdown = async (token = "", id) => {
       }
     )
     if (!res.ok) {
+      if(res.status === 401){
+        history.push("/login");
+        throw new Error(resJson.error.message);
+     
+    }
       const resJson = await res.json();
       throw new Error(resJson.error.message);
     }
@@ -109,7 +124,7 @@ export const getCategoryDetaildropdown = async (token = "", id) => {
  * @returns a list of resourcetype dropdown in DIOM
  */
 
-export const getResourcetypeDropdown = async (token = "", id) => {
+export const getResourcetypeDropdown = async (token = "", id,history) => {
   // return await (
     const res= await fetch(`${DIOM_BASED_URLS}/admin-resource-types-inventories`, {
       method: "GET",
@@ -119,6 +134,11 @@ export const getResourcetypeDropdown = async (token = "", id) => {
       },
     })
     if (!res.ok) {
+      if(res.status === 401){
+        history.push("/login");
+        throw new Error(resJson.error.message);
+     
+    }
       const resJson = await res.json();
       throw new Error(resJson.error.message);
     }

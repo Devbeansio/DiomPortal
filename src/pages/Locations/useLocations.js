@@ -3,7 +3,9 @@ import { useQueryClient } from "react-query";
 import { useAllDataQuery, usePaginatedQuery } from "../../hooks/query";
 import { getLocationBrand, getsearchedLocationListing } from "../../APIS";
 import { getLocationListing } from "../../APIS";
+import { useHistory } from "react-router-dom";
 export const useLocationsListing = () => {
+  let history = useHistory();
   const [isOpen, setIsOpen] = useState(false);
   const token = localStorage.getItem("Token");
   const [currentPage, setCurrentPage] = useState(1);
@@ -29,12 +31,12 @@ export const useLocationsListing = () => {
   const {
     data: { data: searchedlocationLisitngData },
   } = usePaginatedQuery(["searchedlocations"], () =>
-    getsearchedLocationListing(token)
+    getsearchedLocationListing(token,history)
   );
 
   const { data: locationsData, isLoading: loadingLocations } = useAllDataQuery(
     ["locationbrandData", "visible"],
-    () => getLocationBrand(token)
+    () => getLocationBrand(token,history)
   );
   const brandData = locationsData;
   const toggle = () => {
@@ -73,7 +75,7 @@ export const useLocationsListing = () => {
     if (hasNextPage) {
       const nextPage = currentPage + 1;
       queryClient.prefetchQuery(["locations",`${pageSize}`,`${currentPage}`, `${filter}`], () =>
-        getLocationListing(pageSize, nextPage, token)
+        getLocationListing(pageSize, nextPage, token,history)
       );
     }
   }, [currentPage, queryClient, filter]);

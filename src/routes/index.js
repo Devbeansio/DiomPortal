@@ -67,6 +67,7 @@ import UserProfileDetail from "../pages/UserProfile/UserProfileDetail/index.js";
 import CreateCategory from "../pages/Inventories/Categories/createCategory";
 import NotificationListingPage from "../pages/Notifications/notificationListingPage";
 import DataLogs from "../pages/DataLogs";
+import FullCalender from "../pages/FullCaleder";
 const token = localStorage.getItem("Token");
 const authProtectedRoutes = [
   { path: "/mydashboard", component: MyDashboard },
@@ -78,7 +79,7 @@ const authProtectedRoutes = [
   { path: "/locationdetailed/:id", component: LocationDetailed },
   { path: "/locations", component: Locations },
   {path:"/datalogs",component:DataLogs},
- 
+  {path:"/fullcalender",component:FullCalender},
   { path: "/bookingdetail/:id/:t_ID", component: BookingDetail },
   { path: "/locationbrands", component: LocationBrands },
   { path: "/inventories", component: Inventories },

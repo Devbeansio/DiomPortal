@@ -2,13 +2,14 @@ import { useEffect, useState } from "react";
 import { useQueryClient } from "react-query";
 import { getcustomer } from "../../../../APIS/customerCheckedIn";
 import { getuserdetails } from "../../../../APIS/userProfle";
-import { useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { usePaginatedQuery } from "../../../../hooks/query";
 import { getUserpastbookings } from "../../../../APIS/customerCheckedIn";
 import { getUserscheduledbookings } from "../../../../APIS/customerCheckedIn";
 import { getUseractivebookings } from "../../../../APIS/customerCheckedIn";
 
 export const UseCheckedinCustomerDetailed = () => {
+  let history = useHistory();
   const [isOpen, setIsOpen] = useState(false);
   const { id } = useParams();
   const token = localStorage.getItem("Token");
@@ -22,25 +23,25 @@ export const UseCheckedinCustomerDetailed = () => {
     data: { data: customerdetailedData },
     isLoading,
   } = usePaginatedQuery(["customerdetails", id], () =>
-    getuserdetails(pageSize, currentPage, token, id)
+    getuserdetails(pageSize, currentPage, token, id,history)
   );
 
   const {
     data: { data: userActiveBookingData, total, hasNextPage, hasPreviousPage },
   } = usePaginatedQuery(["activecustomer",`${pageSize}`,`${currentPage}`], () =>
-    getUseractivebookings(pageSize, currentPage, token, id)
+    getUseractivebookings(pageSize, currentPage, token, id,history)
   );
 
   const {
     data: { data: userSechduledBookigsData,hasNextPage:scheduledHasNextPage },
   } = usePaginatedQuery(["scheduledcustomer",`${pageSize}`,`${currentPage}`], () =>
-    getUserscheduledbookings(pageSize, currentPage, token, id)
+    getUserscheduledbookings(pageSize, currentPage, token, id,history)
   );
   
   const {
     data: { data: usePastBookingsData,hasNextPage:pastHasNextPage },
   } = usePaginatedQuery(["pastcustomer", `${pageSize}`,`${currentPage}`], () =>
-    getUserpastbookings(pageSize, currentPage, token, id)
+    getUserpastbookings(pageSize, currentPage, token, id,history)
   );
 
   const toggleCustomJustified = (tab) => {
@@ -72,7 +73,7 @@ export const UseCheckedinCustomerDetailed = () => {
     if (hasNextPage) {
       const nextPage = currentPage + 1;
       queryClient.prefetchQuery(["customerdetails", nextPage], () =>
-        getuserdetails(pageSize, currentPage, token, id)
+        getuserdetails(pageSize, currentPage, token, id,history)
       );
     }
   }, [currentPage, queryClient]);

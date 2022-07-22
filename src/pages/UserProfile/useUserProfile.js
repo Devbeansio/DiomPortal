@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import { useQueryClient } from "react-query";
+import { useHistory } from "react-router-dom";
 import { getuserprofile } from "../../APIS/userProfle";
 import { usePaginatedQuery } from "../../hooks/query";
 
 export const useUserProfile = () => {
+  let history = useHistory();
   const [isOpen, setIsOpen] = useState(false);
   const token = localStorage.getItem("Token");
   const [currentPage, setCurrentPage] = useState(1);
@@ -15,7 +17,7 @@ export const useUserProfile = () => {
     data: { data: userProfileData, hasNextPage, hasPreviousPage, total },
     isLoading,
   } = usePaginatedQuery(["userprofile",`${currentPage}` ,`${pageSize}`], () =>
-    getuserprofile(pageSize, currentPage, token)
+    getuserprofile(pageSize, currentPage, token,history)
   );
 // console.log("hasNextPage",hasNextPage)
 
@@ -43,7 +45,7 @@ export const useUserProfile = () => {
     if (hasNextPage) {
       const nextPage = currentPage + 1;
       queryClient.prefetchQuery(["userprofile", `${currentPage}` ,`${pageSize}`], () =>
-        getuserprofile(pageSize, nextPage, token)
+        getuserprofile(pageSize, nextPage, token, history)
       );
     }
   }, [currentPage, queryClient]);

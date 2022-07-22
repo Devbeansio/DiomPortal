@@ -11,6 +11,7 @@ class Logout extends Component {
   }
 
   componentDidMount() {
+    // console.log(this.props.history)
     // Fire Action for Remove all Item from localstorage and redirect to login page
     this.props.logoutUser(this.props.history);
     // this.props.logoutUser(localStorage.setItem("Token",""));

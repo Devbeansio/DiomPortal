@@ -13,7 +13,8 @@ export const getInvoices = async (
   size = 30,
   page = 1,
   token = "",
-  applyFilter = false
+  applyFilter = false,
+  history
 ) => {
   const res = await fetch(
     `${DIOM_BASED_URLS}/invoices?size=${size}&page=${page}`,
@@ -27,6 +28,11 @@ export const getInvoices = async (
     }
   );
   if (!res.ok) {
+    if(res.status === 401){
+      history.push("/login");
+      throw new Error(resJson.error.message);
+   
+  }
     const resJson = await res.json();
     throw new Error(resJson.error.message);
   }
@@ -51,7 +57,7 @@ export const getInvoices = async (
   };
 };
 
-export const getInvoice = async (size = 30, page = 1, token = "", id) => {
+export const getInvoice = async (size = 30, page = 1, token = "", id,history) => {
   const res = await fetch(
     `${DIOM_BASED_URLS}/invoices/${id}`,
 
@@ -64,6 +70,11 @@ export const getInvoice = async (size = 30, page = 1, token = "", id) => {
     }
   );
   if (!res.ok) {
+    if(res.status === 401){
+      history.push("/login");
+      throw new Error(resJson.error.message);
+   
+  }
     const resJson = await res.json();
     throw new Error(resJson.error.message);
   }

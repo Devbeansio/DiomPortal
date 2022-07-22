@@ -212,7 +212,7 @@ const useLocationBrandDetail = () => {
 
   // *************
   const BrandDetailData = useQuery(["BrandDetail", id], () =>
-    getBranddDetail(token, id)
+    getBranddDetail(token, id,history)
   );
   const BrandDetailDailedData = BrandDetailData?.data?.data;
   // *************
@@ -222,7 +222,7 @@ const useLocationBrandDetail = () => {
 
   // *************
   const BrandDetailDropDownData = useQuery(["BrandDetaildropdown", id], () =>
-    getBranddDetaildropdown(token, id)
+    getBranddDetaildropdown(token, id,history)
   );
   const BrandDetailDropDownDailedData = BrandDetailDropDownData?.data?.data;
   // console.log(
@@ -240,7 +240,7 @@ const useLocationBrandDetail = () => {
 
   // *************
   const BrandlocationsDropDownData = useQuery(["Brandlocations", id], () =>
-    getBrandallocationdropdown(token, id)
+    getBrandallocationdropdown(token, id,history)
   );
   const BrandLocationsDailedData = BrandlocationsDropDownData?.data?.data;
   const isLoader = BrandlocationsDropDownData.isLoader;
